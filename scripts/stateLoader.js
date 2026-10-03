@@ -24,10 +24,10 @@
    - review-output-package.js
 ========================================================= */
 
-  document.addEventListener("DOMContentLoaded", function () {
-    "use strict";
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
 
-    /* ==============*==================================*=====
+  /* ==============*==================================*=====
        HTML ELEMENT REFERENCES*
        Finds and stores the page elements that this script
        needs to read from or update.
@@ -36,58 +36,58 @@
        searching the*HTML document for the same element*.
     ==============================*======================== */
 
-    // Main Contract State dropdown
-    const contractState = document.getElementById("contractState");
+  // Main Contract State dropdown
+  const contractState = document.getElementById("contractState");
 
-    // Containers populated with state JSON information
-    const requiredFormsContainer = document.getElementById("requiredForms");
+  // Containers populated with state JSON information
+  const requiredFormsContainer = document.getElementById("requiredForms");
 
-    const specialNotesContainer = document.getElementById("specialNotes");
+  const specialNotesContainer = document.getElementById("specialNotes");
 
-    const reviewChecklistContainer = document.getElementById("reviewChecklist");
+  const reviewChecklistContainer = document.getElementById("reviewChecklist");
 
-    // State Requirements heading and summary elements
-    const contractStateBanner = document.getElementById("contractStateBanner");
+  // State Requirements heading and summary elements
+  const contractStateBanner = document.getElementById("contractStateBanner");
 
-    const stateRequirementSummary = document.getElementById(
-      "stateRequirementSummary",
-    );
+  const stateRequirementSummary = document.getElementById(
+    "stateRequirementSummary",
+  );
 
-    const applicableFormCount = document.getElementById("applicableFormCount");
+  const applicableFormCount = document.getElementById("applicableFormCount");
 
-    const specialNoteCount = document.getElementById("specialNoteCount");
+  const specialNoteCount = document.getElementById("specialNoteCount");
 
-    // State Requirements dashboard cards
-    const requiredFormCountCard = document.getElementById(
-      "requiredFormCountCard",
-    );
+  // State Requirements dashboard cards
+  const requiredFormCountCard = document.getElementById(
+    "requiredFormCountCard",
+  );
 
-    const reviewedFormCountCard = document.getElementById(
-      "reviewedFormCountCard",
-    );
+  const reviewedFormCountCard = document.getElementById(
+    "reviewedFormCountCard",
+  );
 
-    const remainingFormCountCard = document.getElementById(
-      "remainingFormCountCard",
-    );
+  const remainingFormCountCard = document.getElementById(
+    "remainingFormCountCard",
+  );
 
-    const specialNoteCountCard = document.getElementById("specialNoteCountCard");
+  const specialNoteCountCard = document.getElementById("specialNoteCountCard");
 
-    // Main page dashboard values
-    const dashboardState = document.getElementById("dashboardState");
+  // Main page dashboard values
+  const dashboardState = document.getElementById("dashboardState");
 
-    const dashboardSystem = document.getElementById("dashboardSystem");
+  const dashboardSystem = document.getElementById("dashboardSystem");
 
-    const dashboardProduct = document.getElementById("dashboardProduct");
+  const dashboardProduct = document.getElementById("dashboardProduct");
 
-    const dashboardFormCount = document.getElementById("dashboardFormCount");
+  const dashboardFormCount = document.getElementById("dashboardFormCount");
 
-    const dashboardIssueCount = document.getElementById("dashboardIssueCount");
+  const dashboardIssueCount = document.getElementById("dashboardIssueCount");
 
-    const dashboardReviewedCount = document.getElementById(
-      "dashboardReviewedCount",
-    );
-let currentStateData = null;
-    /* =======================================================
+  const dashboardReviewedCount = document.getElementById(
+    "dashboardReviewedCount",
+  );
+  let currentStateData = null;
+  /* =======================================================
      CURRENT STATE DATA
 
      Stores the JSON object for the currently selected state.
@@ -99,7 +99,7 @@ let currentStateData = null;
      It remains null until a state file loads successfully.
   ======================================================= */
 
-    /* =======================================================
+  /* =======================================================
       CONDITIONAL FORM FIELD LIST
 
       These Case Setup fields can affect which state forms
@@ -113,20 +113,20 @@ let currentStateData = null;
 
    ======================================================= */
 
-    const conditionFieldIds = [
-      "replacement",
-      "ownerType",
-      "beneficiaryOther",
-      "tlirRequested",
-      "caseType",
-      "productType",
-      "additionalInsured",
-      "internalTermReplacement",
-      "billingType",
-      "suitabilityQuestionnaireRequired",
-    ];
+  const conditionFieldIds = [
+    "replacement",
+    "ownerType",
+    "beneficiaryOther",
+    "tlirRequested",
+    "caseType",
+    "productType",
+    "additionalInsured",
+    "internalTermReplacement",
+    "billingType",
+    "suitabilityQuestionnaireRequired",
+  ];
 
-    /* ======================================================
+  /* ======================================================
        REQUIRED ELEMENT SAFETY CHECKS
 
        Stops the script if critical HTML elements are missing.
@@ -136,59 +136,59 @@ let currentStateData = null;
        Ex:"Cannot set properties of null"
     ======================================================= */
 
-    if (!contractState) {
-      console.error('The field with id="contractState" was not found.');
+  if (!contractState) {
+    console.error('The field with id="contractState" was not found.');
 
-      return;
-    }
+    return;
+  }
 
-    if (!requiredFormsContainer) {
-      console.error('The container with id="requiredForms" was not found.');
+  if (!requiredFormsContainer) {
+    console.error('The container with id="requiredForms" was not found.');
 
-      return;
-    }
+    return;
+  }
 
-    /* =======================================================
+  /* =======================================================
     PAGE EVENT LISTENERS
      
     Watches the Contract State and conditional Case Setup
     fields for user changes.
     ======================================================= */
 
-    // Load a new state JSON file when Contract State changes.
-    contractState.addEventListener("change", loadStateRequirements);
+  // Load a new state JSON file when Contract State changes.
+  contractState.addEventListener("change", loadStateRequirements);
 
-    // Reevaluate applicable forms whenever a conditional Case Setup field changes.
+  // Reevaluate applicable forms whenever a conditional Case Setup field changes.
 
-    conditionFieldIds.forEach(function (fieldId) {
-      const field = document.getElementById(fieldId);
+  conditionFieldIds.forEach(function (fieldId) {
+    const field = document.getElementById(fieldId);
 
-      if (!field) {
-        return;
-      }
-
-      field.addEventListener("change", refreshApplicableForms);
-
-      field.addEventListener("input", refreshApplicableForms);
-    });
-
-    // The system field is handled separately, its not included in conditionFieldIds.
-    const systemField = document.getElementById("system");
-
-    if (systemField) {
-      systemField.addEventListener("change", refreshApplicableForms);
+    if (!field) {
+      return;
     }
 
-    // Refilters and redraws the applicable forms using the state JSON thatd already loaded. This does not fetch the JSON file again.
-    function refreshApplicableForms() {
-      if (!currentStateData) {
-        return;
-      }
+    field.addEventListener("change", refreshApplicableForms);
 
-      renderApplicableForms(currentStateData);
+    field.addEventListener("input", refreshApplicableForms);
+  });
+
+  // The system field is handled separately, its not included in conditionFieldIds.
+  const systemField = document.getElementById("system");
+
+  if (systemField) {
+    systemField.addEventListener("change", refreshApplicableForms);
+  }
+
+  // Refilters and redraws the applicable forms using the state JSON thatd already loaded. This does not fetch the JSON file again.
+  function refreshApplicableForms() {
+    if (!currentStateData) {
+      return;
     }
 
-    /* ======================================================
+    renderApplicableForms(currentStateData);
+  }
+
+  /* ======================================================
       LOAD SELECTED STATE REQUIREMENTS
        
       Runs when the Contract State dropdown changes.
@@ -204,86 +204,84 @@ let currentStateData = null;
       7. Displays an error if the JSON cannot be loaded.
       ======================================================= */
 
-    async function loadStateRequirements() {
+  async function loadStateRequirements() {
+    // Get the state abbreviation selected by the user.
+    const selectedState = contractState.value;
 
-      // Get the state abbreviation selected by the user.
-      const selectedState = contractState.value;
+    // Remove the previously stored state data.
+    currentStateData = null;
 
-      // Remove the previously stored state data.
-      currentStateData = null;
+    // Clear forms, notes, checklist items, and counts.
+    clearStateDisplay();
+    if (dashboardIssueCount) {
+      dashboardIssueCount.textContent = "0";
+    }
 
-      // Clear forms, notes, checklist items, and counts.
-      clearStateDisplay();
-      if (dashboardIssueCount) {
-        dashboardIssueCount.textContent = "0";
-      }
-
-      // Stop here if the user cleared the Contract State field.
-      if (!selectedState) {
-        if (contractStateBanner) {
-          contractStateBanner.textContent = "Select a Contract State";
-        }
-
-        updateDashboardForNoState();
-
-        return;
-      }
-
+    // Stop here if the user cleared the Contract State field.
+    if (!selectedState) {
       if (contractStateBanner) {
-        contractStateBanner.textContent =
-          "Loading " + selectedState + " requirements...";
+        contractStateBanner.textContent = "Select a Contract State";
       }
 
-      // Load the state JSON without using a cached copy. Ex: data/NY.json
-      try {
-        const response = await fetch("data/" + selectedState + ".json", {
-          cache: "no-store",
-        });
+      updateDashboardForNoState();
 
-        // Treat an unsuccessful HTTP response as an error.
-        if (!response.ok) {
-          throw new Error(
-            "Unable to load data/" +
+      return;
+    }
+
+    if (contractStateBanner) {
+      contractStateBanner.textContent =
+        "Loading " + selectedState + " requirements...";
+    }
+
+    // Load the state JSON without using a cached copy. Ex: data/NY.json
+    try {
+      const response = await fetch("data/" + selectedState + ".json", {
+        cache: "no-store",
+      });
+
+      // Treat an unsuccessful HTTP response as an error.
+      if (!response.ok) {
+        throw new Error(
+          "Unable to load data/" +
             selectedState +
             ".json. HTTP status: " +
             response.status,
-          );
-        }
-
-        // Convert the JSON response into a JavaScript object.
-        const stateData = await response.json();
-
-        currentStateData = stateData;
-
-        // Send the loaded state data to each page-rendering function.
-        console.log("Loaded state data:", stateData);
-
-        renderStateBanner(stateData);
-        renderApplicableForms(stateData);
-        renderSpecialNotes(stateData);
-        renderReviewChecklist(stateData);
-        updateStateDashboardCards();
+        );
       }
+
+      // Convert the JSON response into a JavaScript object.
+      const stateData = await response.json();
+
+      currentStateData = stateData;
+
+      // Send the loaded state data to each page-rendering function.
+      console.log("Loaded state data:", stateData);
+
+      renderStateBanner(stateData);
+      renderApplicableForms(stateData);
+      renderSpecialNotes(stateData);
+      renderReviewChecklist(stateData);
+      updateStateDashboardCards();
+    } catch (error) {
       //Display a user-friendly message if the file is missing, the JSON is invalid, or the request otherwise fails.
-      catch (error) {
-        console.error("Unable to load state requirements:", error);
+      console.error("Unable to load state requirements:", error);
 
-        if (contractStateBanner) {
-          contractStateBanner.textContent =
-            "Unable to load " + selectedState + " requirements.";
-        }
+      if (contractStateBanner) {
+        contractStateBanner.textContent =
+          "Unable to load " + selectedState + " requirements.";
+      }
 
-        requiredFormsContainer.innerHTML = `
+      requiredFormsContainer.innerHTML = `
         <div class="warning-note">
           Confirm that data/${escapeHtml(
-          selectedState,
-        )}.json exists and contains valid JSON.
+            selectedState,
+          )}.json exists and contains valid JSON.
         </div>
       `;
-      }
     }
+  }
 
-    /* =======================================================
+  /* =======================================================
       CLEAR PREVIOUS STATE DISPLAY
        
       Removes information from the previously selected state
@@ -292,62 +290,62 @@ let currentStateData = null;
       This runs before a new state JSON file is rendered
       ===============================*======================= */
 
-    function clearStateDisplay() {
-      requiredFormsContainer.innerHTML = "";
+  function clearStateDisplay() {
+    requiredFormsContainer.innerHTML = "";
 
-      if (specialNotesContainer) {
-        specialNotesContainer.innerHTML = "";
-      }
-
-      if (reviewChecklistContainer) {
-        reviewChecklistContainer.innerHTML = "";
-      }
-
-      if (applicableFormCount) {
-        applicableFormCount.textContent = "0 forms";
-      }
-
-      if (specialNoteCount) {
-        specialNoteCount.textContent = "0 notes";
-      }
-      if (requiredFormCountCard) {
-        requiredFormCountCard.textContent = "0";
-      }
-
-      if (reviewedFormCountCard) {
-        reviewedFormCountCard.textContent = "0";
-      }
-
-      if (remainingFormCountCard) {
-        remainingFormCountCard.textContent = "0";
-      }
-
-      if (specialNoteCountCard) {
-        specialNoteCountCard.textContent = "0";
-      }
+    if (specialNotesContainer) {
+      specialNotesContainer.innerHTML = "";
     }
 
-    // Resets the main dashboard when no Contract State is currently selected.
-    function updateDashboardForNoState() {
-      if (dashboardState) {
-        dashboardState.textContent = "--";
-      }
-
-      if (dashboardFormCount) {
-        dashboardFormCount.textContent = "0";
-      }
-
-      if (dashboardReviewedCount) {
-        dashboardReviewedCount.textContent = "0";
-      }
-
-      if (stateRequirementSummary) {
-        stateRequirementSummary.textContent =
-          "Select a state to load requirements.";
-      }
+    if (reviewChecklistContainer) {
+      reviewChecklistContainer.innerHTML = "";
     }
 
-    /* =======================================
+    if (applicableFormCount) {
+      applicableFormCount.textContent = "0 forms";
+    }
+
+    if (specialNoteCount) {
+      specialNoteCount.textContent = "0 notes";
+    }
+    if (requiredFormCountCard) {
+      requiredFormCountCard.textContent = "0";
+    }
+
+    if (reviewedFormCountCard) {
+      reviewedFormCountCard.textContent = "0";
+    }
+
+    if (remainingFormCountCard) {
+      remainingFormCountCard.textContent = "0";
+    }
+
+    if (specialNoteCountCard) {
+      specialNoteCountCard.textContent = "0";
+    }
+  }
+
+  // Resets the main dashboard when no Contract State is currently selected.
+  function updateDashboardForNoState() {
+    if (dashboardState) {
+      dashboardState.textContent = "--";
+    }
+
+    if (dashboardFormCount) {
+      dashboardFormCount.textContent = "0";
+    }
+
+    if (dashboardReviewedCount) {
+      dashboardReviewedCount.textContent = "0";
+    }
+
+    if (stateRequirementSummary) {
+      stateRequirementSummary.textContent =
+        "Select a state to load requirements.";
+    }
+  }
+
+  /* =======================================
      Displays the selected state's name in:
 
     1. The State Requirements banner
@@ -356,23 +354,23 @@ let currentStateData = null;
     @param {Object} stateData loaded state JSON object.
     ==========================================*/
 
-    function renderStateBanner(stateData) {
-      const displayName =
-        stateData.displayName || stateData.state || contractState.value;
+  function renderStateBanner(stateData) {
+    const displayName =
+      stateData.displayName || stateData.state || contractState.value;
 
-      if (contractStateBanner) {
-        contractStateBanner.innerHTML = `
+    if (contractStateBanner) {
+      contractStateBanner.innerHTML = `
         <strong>Contract State:</strong>
         ${escapeHtml(displayName)}
       `;
-      }
-
-      if (dashboardState) {
-        dashboardState.textContent = stateData.state || "--";
-      }
     }
 
-    /* ====================================================
+    if (dashboardState) {
+      dashboardState.textContent = stateData.state || "--";
+    }
+  }
+
+  /* ====================================================
     FIELD VALUE HELPER
      
     Return a standardized value from an HTML field.
@@ -387,21 +385,21 @@ let currentStateData = null;
     Missing fields return an empty stiing.
     ====================================================== */
 
-    function getFieldValue(fieldId) {
-      const field = document.getElementById(fieldId);
+  function getFieldValue(fieldId) {
+    const field = document.getElementById(fieldId);
 
-      if (!field) {
-        return "";
-      }
-
-      if (field.type === "checkbox") {
-        return field.checked ? "yes" : "no";
-      }
-
-      return String(field.value).trim();
+    if (!field) {
+      return "";
     }
 
-    /* =============================================
+    if (field.type === "checkbox") {
+      return field.checked ? "yes" : "no";
+    }
+
+    return String(field.value).trim();
+  }
+
+  /* =============================================
      Creates one object containing the current Case Setup
      selections used by the form-condition engine.
 
@@ -411,34 +409,33 @@ let currentStateData = null;
     @returns {Object} Current conditional case values.
     ================================================= */
 
-    function getCaseValues() {
-      return {
-        replacement: getFieldValue("replacement"),
+  function getCaseValues() {
+    return {
+      replacement: getFieldValue("replacement"),
 
-        ownerType: getFieldValue("ownerType"),
+      ownerType: getFieldValue("ownerType"),
 
-        beneficiaryOther: getFieldValue("beneficiaryOther"),
+      beneficiaryOther: getFieldValue("beneficiaryOther"),
 
-        tlirRequested: getFieldValue("tlirRequested"),
+      tlirRequested: getFieldValue("tlirRequested"),
 
-        caseType: getFieldValue("caseType"),
+      caseType: getFieldValue("caseType"),
 
-        productType: getFieldValue("productType"),
+      productType: getFieldValue("productType"),
 
-        additionalInsured: getFieldValue("additionalInsured"),
+      additionalInsured: getFieldValue("additionalInsured"),
 
-        internalTermReplacement: getFieldValue("internalTermReplacement"),
+      internalTermReplacement: getFieldValue("internalTermReplacement"),
 
-        billingType: getFieldValue("billingType"),
+      billingType: getFieldValue("billingType"),
 
-        suitabilityQuestionnaireRequired: getFieldValue(
-          "suitabilityQuestionnaireRequired",
-        ),
-      };
-    }
+      suitabilityQuestionnaireRequired: getFieldValue(
+        "suitabilityQuestionnaireRequired",
+      ),
+    };
+  }
 
-
-    /* =======================================================
+  /* =======================================================
     FORM CONDITION EVALUATOR
      
     Determines whether one state form applies to the
@@ -455,45 +452,43 @@ let currentStateData = null;
     All conditions must pass, this function uses Array.every().
     ======================================================= */
 
-    function formApplies(form, caseValues) {
-
-      // Forms without conditions are always applicable.
-      if (!Array.isArray(form.conditions) || form.conditions.length === 0) {
-        return true;
-      }
-
-      // Every condition must be true for the form to apply
-      return form.conditions.every(function (rule) {
-        const actualValue = caseValues[rule.field];
-
-        switch (rule.operator) {
-
-          // Case field must exactly match the JSON value.
-          case "equals":
-            return actualValue === rule.value;
-
-          // Case field must not match the JSON value.
-          case "notEquals":
-            return actualValue !== rule.value;
-
-          // Case field must appear in the JSON value array.
-          case "includes":
-            return Array.isArray(rule.value) && rule.value.includes(actualValue);
-
-          // Case field must not appear in the JSON value array.
-          case "notIncludes":
-            return Array.isArray(rule.value) && !rule.value.includes(actualValue);
-
-          // Unknown operators fail safely.
-          default:
-            console.warn("Unknown form condition:", rule);
-
-            return false;
-        }
-      });
+  function formApplies(form, caseValues) {
+    // Forms without conditions are always applicable.
+    if (!Array.isArray(form.conditions) || form.conditions.length === 0) {
+      return true;
     }
 
-    /* ====================================================
+    // Every condition must be true for the form to apply
+    return form.conditions.every(function (rule) {
+      const actualValue = caseValues[rule.field];
+
+      switch (rule.operator) {
+        // Case field must exactly match the JSON value.
+        case "equals":
+          return actualValue === rule.value;
+
+        // Case field must not match the JSON value.
+        case "notEquals":
+          return actualValue !== rule.value;
+
+        // Case field must appear in the JSON value array.
+        case "includes":
+          return Array.isArray(rule.value) && rule.value.includes(actualValue);
+
+        // Case field must not appear in the JSON value array.
+        case "notIncludes":
+          return Array.isArray(rule.value) && !rule.value.includes(actualValue);
+
+        // Unknown operators fail safely.
+        default:
+          console.warn("Unknown form condition:", rule);
+
+          return false;
+      }
+    });
+  }
+
+  /* ====================================================
       RENDER APPLICABLE S*ATE FORMS
        
       Filters and displays forms from the selected states JSON file.
@@ -509,81 +504,76 @@ let currentStateData = null;
       7. Notify amendment-engine.js that rows were created.
       ==============================*======================== */
 
-    function renderApplicableForms(stateData) {
+  function renderApplicableForms(stateData) {
+    // Remove previously generated form rows and headings.
+    requiredFormsContainer.innerHTML = "";
 
-      // Remove previously generated form rows and headings.
-      requiredFormsContainer.innerHTML = "";
+    // Safely retrieve the forms array from the state JSON.
+    const allForms = Array.isArray(stateData.forms) ? stateData.forms : [];
 
-      // Safely retrieve the forms array from the state JSON.
-      const allForms = Array.isArray(stateData.forms) ? stateData.forms : [];
+    // Keep only forms that require initial review.
+    const reviewableForms = allForms.filter(function (form) {
+      return form.reviewRequired === true;
+    });
 
-      // Keep only forms that require initial review.
-      const reviewableForms = allForms.filter(function (form) {
-        return form.reviewRequired === true;
-      });
+    // Capture the user's current Case Setup selections.
+    const caseValues = getCaseValues();
 
-      // Capture the user's current Case Setup selections.
-      const caseValues = getCaseValues();
+    // Keep only the forms whose conditions currently pass.
+    const applicableForms = reviewableForms.filter(function (form) {
+      return formApplies(form, caseValues);
+    });
 
-      // Keep only the forms whose conditions currently pass.
-      const applicableForms = reviewableForms.filter(function (form) {
-        return formApplies(form, caseValues);
-      });
+    // Forms without conditions apply to every applicable case.
+    const alwaysRequiredForms = applicableForms.filter(function (form) {
+      return !Array.isArray(form.conditions) || form.conditions.length === 0;
+    });
 
-      // Forms without conditions apply to every applicable case.
-      const alwaysRequiredForms = applicableForms.filter(function (form) {
-        return !Array.isArray(form.conditions) || form.conditions.length === 0;
-      });
+    // Forms with conditions apply only to certain cases.
+    const conditionalForms = applicableForms.filter(function (form) {
+      return Array.isArray(form.conditions) && form.conditions.length > 0;
+    });
 
-      // Forms with conditions apply only to certain cases.
-      const conditionalForms = applicableForms.filter(function (form) {
-
-        return Array.isArray(form.conditions) && form.conditions.length > 0;
-      });
-
-      /* ================================================
+    /* ================================================
       Creates a heading inside the required forms container.
 
       @param {string} text Heading to display.
       ================================================== */
 
-      addGroupHeading("Required for All Applicable Cases");
+    addGroupHeading("Required for All Applicable Cases");
 
-
-
-      if (alwaysRequiredForms.length === 0) {
-
-        /* ================================================
+    if (alwaysRequiredForms.length === 0) {
+      /* ================================================
         Displays a message when a form group has no matching
         forms.
 
         @param {string} text Message to display
         ================================================== */
 
-        addEmptyMessage("No always-required forms are configured.");
-      } else {
-        alwaysRequiredForms.forEach(function (form) {
-          requiredFormsContainer.appendChild(
-            createFormRow(form, "Always Required"),
-          );
-        });
-      }
-
-      addGroupHeading("Conditional Forms");
-
-      if (conditionalForms.length === 0) {
-        addEmptyMessage(
-          "No conditional forms apply based on the current case selections.",
+      addEmptyMessage("No always-required forms are configured.");
+    } else {
+      alwaysRequiredForms.forEach(function (form) {
+        requiredFormsContainer.appendChild(
+          createFormRow(form, "Always Required"),
         );
-      } else {
-        conditionalForms.forEach(function (form) {
-          requiredFormsContainer.appendChild(createFormRow(form, "Conditional"));
-        });
-      }
+      });
+    }
 
-      updateDashboard(stateData, applicableForms);
+    addGroupHeading("Conditional Forms");
 
-      /* ================================================
+    if (conditionalForms.length === 0) {
+      addEmptyMessage(
+        "No conditional forms apply based on the current case selections.",
+      );
+    } else {
+      conditionalForms.forEach(function (form) {
+        requiredFormsContainer.appendChild(createFormRow(form, "Conditional"));
+      });
+    }
+
+    updateDashboard(stateData, applicableForms);
+
+    /* ================================================
         Notify amendment-engine.js that new form rows and NIGO
         panels now exist in the page.
 
@@ -591,37 +581,37 @@ let currentStateData = null;
         dropdowns and dynamic fields inside those panels.
          ================================================== */
 
-      document.dispatchEvent(
-        new CustomEvent("stateFormsUpdated", {
-          detail: {
-            state: stateData.state,
-            formCount: applicableForms.length,
-          },
-        }),
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("stateFormsUpdated", {
+        detail: {
+          state: stateData.state,
+          formCount: applicableForms.length,
+        },
+      }),
+    );
+  }
 
-    function addGroupHeading(text) {
-      const heading = document.createElement("h4");
+  function addGroupHeading(text) {
+    const heading = document.createElement("h4");
 
-      heading.className = "form-group-heading";
+    heading.className = "form-group-heading";
 
-      heading.textContent = text;
+    heading.textContent = text;
 
-      requiredFormsContainer.appendChild(heading);
-    }
+    requiredFormsContainer.appendChild(heading);
+  }
 
-    function addEmptyMessage(text) {
-      const message = document.createElement("p");
+  function addEmptyMessage(text) {
+    const message = document.createElement("p");
 
-      message.className = "empty-state";
+    message.className = "empty-state";
 
-      message.textContent = text;
+    message.textContent = text;
 
-      requiredFormsContainer.appendChild(message);
-    }
+    requiredFormsContainer.appendChild(message);
+  }
 
-    /* =======================================================
+  /* =======================================================
     CREATE REQUIRED FORM REVIEW ROW
      
     Creates one complete HTML row for a state form.
@@ -652,36 +642,35 @@ let currentStateData = null;
     Completed required-form row.
     ======================================================= */
 
-    function createFormRow(form, badgeText) {
+  function createFormRow(form, badgeText) {
+    // Create the outer container for this form.
+    const row = document.createElement("div");
 
-      // Create the outer container for this form.
-      const row = document.createElement("div");
+    row.className = "required-form-row";
 
-      row.className = "required-form-row";
+    // Read the form's information with safe fallback values.
+    const formId = form.form || "Unknown Form";
 
-      // Read the form's information with safe fallback values.
-      const formId = form.form || "Unknown Form";
+    const description = form.description || "";
 
-      const description = form.description || "";
+    const condition = form.condition || "";
 
-      const condition = form.condition || "";
+    const applicationForm = form.applicationForm || form.formType || "Part 1";
 
-      const applicationForm = form.applicationForm || form.formType || "Part 1";
+    // Store form information directly on the HTML row. Other scripts can read these values using row.dataset
+    row.dataset.formId = formId;
 
-      // Store form information directly on the HTML row. Other scripts can read these values using row.dataset
-      row.dataset.formId = formId;
+    row.dataset.formStatus = "";
 
-      row.dataset.formStatus = "";
+    row.dataset.applicationForm = applicationForm;
 
-      row.dataset.applicationForm = applicationForm;
-
-      /* ==============================================
+    /* ==============================================
        NIGO ISSUE WORKSPACE
 
        Hidden until the NIGO button is selected.
       ============================================== */
 
-      row.innerHTML = `
+    row.innerHTML = `
 
 
       <div class="state-form-main">
@@ -694,10 +683,11 @@ let currentStateData = null;
               ${escapeHtml(formId)}
             </strong>
 
-            <span class="${badgeText === "Always Required"
-          ? "required-badge"
-          : "conditional-badge"
-        }">
+            <span class="${
+              badgeText === "Always Required"
+                ? "required-badge"
+                : "conditional-badge"
+            }">
               ${escapeHtml(badgeText)}
             </span>
 
@@ -712,14 +702,15 @@ let currentStateData = null;
             ${escapeHtml(description)}
           </span>
 
-          ${condition
-          ? `
+          ${
+            condition
+              ? `
                 <small class="form-condition">
                   ${escapeHtml(condition)}
                 </small>
               `
-          : ""
-        }
+              : ""
+          }
 
         </div>
 
@@ -1025,10 +1016,10 @@ let currentStateData = null;
       </div>
     `;
 
-      return row;
-    }
+    return row;
+  }
 
-    /* =======================================================
+  /* =======================================================
       RENDER STATE-SPECIFIC NOTES
        
       Reads stateData.specialNotes and creates a warning box
@@ -1038,51 +1029,51 @@ let currentStateData = null;
       collapsible State Requirements section.
       ======================================================= */
 
-    function renderSpecialNotes(stateData) {
-      if (!specialNotesContainer) {
-        return;
-      }
+  function renderSpecialNotes(stateData) {
+    if (!specialNotesContainer) {
+      return;
+    }
 
-      specialNotesContainer.innerHTML = "";
+    specialNotesContainer.innerHTML = "";
 
-      const notes = Array.isArray(stateData.specialNotes)
-        ? stateData.specialNotes
-        : [];
+    const notes = Array.isArray(stateData.specialNotes)
+      ? stateData.specialNotes
+      : [];
 
-      if (notes.length === 0) {
-        specialNotesContainer.innerHTML = `
+    if (notes.length === 0) {
+      specialNotesContainer.innerHTML = `
         <p class="empty-state">
           No special state notes are configured.
         </p>
       `;
 
-        if (specialNoteCount) {
-          specialNoteCount.textContent = "0 notes";
-        }
-
-        return;
+      if (specialNoteCount) {
+        specialNoteCount.textContent = "0 notes";
       }
 
-      notes.forEach(function (note) {
-        const noteElement = document.createElement("div");
+      return;
+    }
 
-        noteElement.className = "warning-note";
+    notes.forEach(function (note) {
+      const noteElement = document.createElement("div");
 
-        noteElement.innerHTML = `
+      noteElement.className = "warning-note";
+
+      noteElement.innerHTML = `
           <strong>Important:</strong>
           ${escapeHtml(note)}
         `;
 
-        specialNotesContainer.appendChild(noteElement);
-      });
+      specialNotesContainer.appendChild(noteElement);
+    });
 
-      if (specialNoteCount) {
-        specialNoteCount.textContent =
-          notes.length + " note" + (notes.length === 1 ? "" : "s");
-      }
+    if (specialNoteCount) {
+      specialNoteCount.textContent =
+        notes.length + " note" + (notes.length === 1 ? "" : "s");
     }
+  }
 
-    /* =======================================================
+  /* =======================================================
       RENDER INITIAL REVIEW CHECKLIST
        
       Reads stateData.initialReviewChecks and creates one
@@ -1092,34 +1083,34 @@ let currentStateData = null;
       system to include these checkboxes in its calculation.
       ======================================================= */
 
-    function renderReviewChecklist(stateData) {
-      if (!reviewChecklistContainer) {
-        return;
-      }
+  function renderReviewChecklist(stateData) {
+    if (!reviewChecklistContainer) {
+      return;
+    }
 
-      reviewChecklistContainer.innerHTML = "";
+    reviewChecklistContainer.innerHTML = "";
 
-      const checks = Array.isArray(stateData.initialReviewChecks)
-        ? stateData.initialReviewChecks
-        : [];
+    const checks = Array.isArray(stateData.initialReviewChecks)
+      ? stateData.initialReviewChecks
+      : [];
 
-      if (checks.length === 0) {
-        reviewChecklistContainer.innerHTML = `
+    if (checks.length === 0) {
+      reviewChecklistContainer.innerHTML = `
         <p class="empty-state">
           No state-specific review checks
           are configured.
         </p>
       `;
 
-        return;
-      }
+      return;
+    }
 
-      checks.forEach(function (item, index) {
-        const checkRow = document.createElement("div");
+    checks.forEach(function (item, index) {
+      const checkRow = document.createElement("div");
 
-        checkRow.className = "check-row";
+      checkRow.className = "check-row";
 
-        checkRow.innerHTML = `
+      checkRow.innerHTML = `
           <label>
 
             <input
@@ -1135,11 +1126,11 @@ let currentStateData = null;
           </label>
         `;
 
-        reviewChecklistContainer.appendChild(checkRow);
-      });
-    }
+      reviewChecklistContainer.appendChild(checkRow);
+    });
+  }
 
-    /* =======================================================
+  /* =======================================================
     UPDATE MAIN PAGE DASHBOARD
      
     Updates:
@@ -1152,300 +1143,299 @@ let currentStateData = null;
     Then recalculates the reviewed form count.
     ======================================================= */
 
-    function updateDashboard(stateData, applicableForms) {
-      if (dashboardState) {
-        dashboardState.textContent = stateData.state || "--";
-      }
-
-      if (dashboardSystem) {
-        dashboardSystem.textContent = getSelectedFieldText("system") || "--";
-      }
-
-      if (dashboardProduct) {
-        dashboardProduct.textContent =
-          getSelectedFieldText("productType") || "--";
-      }
-
-      if (dashboardFormCount) {
-        dashboardFormCount.textContent = String(applicableForms.length);
-      }
-
-      if (applicableFormCount) {
-        applicableFormCount.textContent =
-          applicableForms.length +
-          " form" +
-          (applicableForms.length === 1 ? "" : "s");
-      }
-
-      if (stateRequirementSummary) {
-        const displayName =
-          stateData.displayName || stateData.state || "Selected state";
-
-        stateRequirementSummary.textContent =
-          displayName + ": " + applicableForms.length + " applicable forms";
-      }
-
-      updateReviewedCount();
-    }
-
-
-    function getSelectedFieldText(fieldId) {
-      const field = document.getElementById(fieldId);
-
-      if (!field || field.selectedIndex < 0) {
-        return "";
-      }
-
-      return field.options[field.selectedIndex].text.trim();
-    }
-    function updateStateDashboardCards() {
-      const totalForms =
-        requiredFormsContainer.querySelectorAll(".required-form-row").length;
-
-      const reviewedForms = requiredFormsContainer.querySelectorAll(
-        '.required-form-row[data-form-status="igo"], ' +
-        '.required-form-row[data-form-status="nigo"]',
-      ).length;
-
-      const remainingForms = Math.max(totalForms - reviewedForms, 0);
-      const openIssues = requiredFormsContainer.querySelectorAll(
-        '.required-form-row[data-form-status="nigo"]',
-      ).length;
-
-      if (dashboardIssueCount) {
-        dashboardIssueCount.textContent = String(openIssues);
-      }
-      const totalNotes = specialNotesContainer
-        ? specialNotesContainer.querySelectorAll(".warning-note").length
-        : 0;
-
-      if (requiredFormCountCard) {
-        requiredFormCountCard.textContent = String(totalForms);
-      }
-
-      if (reviewedFormCountCard) {
-        reviewedFormCountCard.textContent = String(reviewedForms);
-      }
-
-      if (remainingFormCountCard) {
-        remainingFormCountCard.textContent = String(remainingForms);
-      }
-
-      if (specialNoteCountCard) {
-        specialNoteCountCard.textContent = String(totalNotes);
-      }
-    }
-    function updateReviewedCount() {
-      const reviewedForms = document.querySelectorAll(
-        '.required-form-row[data-form-status="igo"], ' +
-        '.required-form-row[data-form-status="nigo"]',
-      ).length;
-
-      if (dashboardReviewedCount) {
-        dashboardReviewedCount.textContent = String(reviewedForms);
-      }
-    }
-
-    requiredFormsContainer.addEventListener("click", async function (event) {
-      const statusButton = event.target.closest("[data-form-action]");
-
-      const copyButton = event.target.closest("[data-copy-output]");
-
-      if (statusButton) {
-        handleFormStatus(statusButton);
-
-        return;
-      }
-
-      if (copyButton) {
-        await copyFormOutput(copyButton);
-      }
-    });
-
-    function handleFormStatus(button) {
-      const row = button.closest(".required-form-row");
-
-      if (!row) {
-        return;
-      }
-
-      const action = button.dataset.formAction;
-
-      const result = row.querySelector(".form-review-result");
-
-      const nigoPanel = row.querySelector(".form-nigo-panel");
-
-      row
-        .querySelectorAll(".form-status-button")
-        .forEach(function (statusButton) {
-          statusButton.classList.remove("selected");
-        });
-
-      button.classList.add("selected");
-
-      row.dataset.formStatus = action;
-
-      if (action === "igo") {
-        if (result) {
-          result.textContent = "All Clear";
-
-          result.className = "form-review-result result-igo";
-        }
-
-        if (nigoPanel) {
-          nigoPanel.hidden = true;
-        }
-      }
-
-      if (action === "nigo") {
-        if (result) {
-          result.textContent = "Issue Found";
-
-          result.className = "form-review-result result-nigo";
-        }
-
-        if (nigoPanel) {
-          nigoPanel.hidden = false;
-
-          document.dispatchEvent(
-            new CustomEvent("nigoPanelOpened", {
-              detail: {
-                panel: nigoPanel,
-
-                formId: row.dataset.formId,
-              },
-            }),
-          );
-        }
-      }
-
-      updateReviewedCount();
-      updateStateDashboardCards();
-
-      document.dispatchEvent(
-        new CustomEvent("stateFormsUpdated", {
-          detail: {
-            source: "formStatus",
-          },
-        }),
-      );
-    }
-
-    async function copyFormOutput(button) {
-      const panel = button.closest(".form-nigo-panel");
-
-      if (!panel) {
-        return;
-      }
-
-      const outputType = button.dataset.copyOutput;
-
-      const selector =
-        outputType === "requirement"
-          ? ".generated-requirement"
-          : ".generated-amendment";
-
-      const output = panel.querySelector(selector);
-
-      if (!output || !output.value.trim()) {
-        return;
-      }
-
-      const originalText = button.textContent.trim();
-
-      try {
-        await navigator.clipboard.writeText(output.value);
-      } catch (error) {
-        output.focus();
-        output.select();
-
-        document.execCommand("copy");
-      }
-
-      button.textContent = "Copied";
-
-      window.setTimeout(function () {
-        button.textContent = originalText;
-      }, 1400);
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    /*
-     * Load the currently selected state when
-     * the page initially opens.
-     */
-    if (contractState.value) {
-      loadStateRequirements();
-    }
-  });
-
-  const policyNumberField = document.getElementById("policyNumber");
-
-  policyNumberField.addEventListener("input", updatePolicyLookup);
-
-  document.addEventListener("stateFormsUpdated", function () {
-    updatePolicyLookup();
-  });
-
-  function updatePolicyLookup() {
-    const policyNumber = String(policyNumberField.value || "").replace(/\D/g, "");
-
-    const prefix = policyNumber.substring(0, 2);
-
-    let product = "--";
-    let system = "--";
-
-    switch (prefix) {
-      // Whole Life
-
-      case "21":
-      case "32":
-      case "34":
-        product = "Whole Life";
-        system = "WinRisk";
-        break;
-
-      // Vantage Term
-
-      case "38":
-      case "42":
-        product = "Vantage Term";
-        system = "TPP";
-        break;
-
-      // CareChoice
-
-      case "22":
-        product = "CareChoice";
-        system = "WinRisk";
-        break;
-
-      // VUL Guard
-
-      case "15":
-      case "16":
-        product = "VUL Guard";
-        system = "WinRisk";
-        break;
-    }
-
-    const dashboardProduct = document.getElementById("dashboardProduct");
-
-    const dashboardSystem = document.getElementById("dashboardSystem");
-
-    if (dashboardProduct) {
-      dashboardProduct.textContent = product;
+  function updateDashboard(stateData, applicableForms) {
+    if (dashboardState) {
+      dashboardState.textContent = stateData.state || "--";
     }
 
     if (dashboardSystem) {
-      dashboardSystem.textContent = system;
+      dashboardSystem.textContent = getSelectedFieldText("system") || "--";
+    }
+
+    if (dashboardProduct) {
+      dashboardProduct.textContent =
+        getSelectedFieldText("productType") || "--";
+    }
+
+    if (dashboardFormCount) {
+      dashboardFormCount.textContent = String(applicableForms.length);
+    }
+
+    if (applicableFormCount) {
+      applicableFormCount.textContent =
+        applicableForms.length +
+        " form" +
+        (applicableForms.length === 1 ? "" : "s");
+    }
+
+    if (stateRequirementSummary) {
+      const displayName =
+        stateData.displayName || stateData.state || "Selected state";
+
+      stateRequirementSummary.textContent =
+        displayName + ": " + applicableForms.length + " applicable forms";
+    }
+
+    updateReviewedCount();
+  }
+
+  function getSelectedFieldText(fieldId) {
+    const field = document.getElementById(fieldId);
+
+    if (!field || field.selectedIndex < 0) {
+      return "";
+    }
+
+    return field.options[field.selectedIndex].text.trim();
+  }
+  function updateStateDashboardCards() {
+    const totalForms =
+      requiredFormsContainer.querySelectorAll(".required-form-row").length;
+
+    const reviewedForms = requiredFormsContainer.querySelectorAll(
+      '.required-form-row[data-form-status="igo"], ' +
+        '.required-form-row[data-form-status="nigo"]',
+    ).length;
+
+    const remainingForms = Math.max(totalForms - reviewedForms, 0);
+    const openIssues = requiredFormsContainer.querySelectorAll(
+      '.required-form-row[data-form-status="nigo"]',
+    ).length;
+
+    if (dashboardIssueCount) {
+      dashboardIssueCount.textContent = String(openIssues);
+    }
+    const totalNotes = specialNotesContainer
+      ? specialNotesContainer.querySelectorAll(".warning-note").length
+      : 0;
+
+    if (requiredFormCountCard) {
+      requiredFormCountCard.textContent = String(totalForms);
+    }
+
+    if (reviewedFormCountCard) {
+      reviewedFormCountCard.textContent = String(reviewedForms);
+    }
+
+    if (remainingFormCountCard) {
+      remainingFormCountCard.textContent = String(remainingForms);
+    }
+
+    if (specialNoteCountCard) {
+      specialNoteCountCard.textContent = String(totalNotes);
     }
   }
+  function updateReviewedCount() {
+    const reviewedForms = document.querySelectorAll(
+      '.required-form-row[data-form-status="igo"], ' +
+        '.required-form-row[data-form-status="nigo"]',
+    ).length;
+
+    if (dashboardReviewedCount) {
+      dashboardReviewedCount.textContent = String(reviewedForms);
+    }
+  }
+
+  requiredFormsContainer.addEventListener("click", async function (event) {
+    const statusButton = event.target.closest("[data-form-action]");
+
+    const copyButton = event.target.closest("[data-copy-output]");
+
+    if (statusButton) {
+      handleFormStatus(statusButton);
+
+      return;
+    }
+
+    if (copyButton) {
+      await copyFormOutput(copyButton);
+    }
+  });
+
+  function handleFormStatus(button) {
+    const row = button.closest(".required-form-row");
+
+    if (!row) {
+      return;
+    }
+
+    const action = button.dataset.formAction;
+
+    const result = row.querySelector(".form-review-result");
+
+    const nigoPanel = row.querySelector(".form-nigo-panel");
+
+    row
+      .querySelectorAll(".form-status-button")
+      .forEach(function (statusButton) {
+        statusButton.classList.remove("selected");
+      });
+
+    button.classList.add("selected");
+
+    row.dataset.formStatus = action;
+
+    if (action === "igo") {
+      if (result) {
+        result.textContent = "All Clear";
+
+        result.className = "form-review-result result-igo";
+      }
+
+      if (nigoPanel) {
+        nigoPanel.hidden = true;
+      }
+    }
+
+    if (action === "nigo") {
+      if (result) {
+        result.textContent = "Issue Found";
+
+        result.className = "form-review-result result-nigo";
+      }
+
+      if (nigoPanel) {
+        nigoPanel.hidden = false;
+
+        document.dispatchEvent(
+          new CustomEvent("nigoPanelOpened", {
+            detail: {
+              panel: nigoPanel,
+
+              formId: row.dataset.formId,
+            },
+          }),
+        );
+      }
+    }
+
+    updateReviewedCount();
+    updateStateDashboardCards();
+
+    document.dispatchEvent(
+      new CustomEvent("stateFormsUpdated", {
+        detail: {
+          source: "formStatus",
+        },
+      }),
+    );
+  }
+
+  async function copyFormOutput(button) {
+    const panel = button.closest(".form-nigo-panel");
+
+    if (!panel) {
+      return;
+    }
+
+    const outputType = button.dataset.copyOutput;
+
+    const selector =
+      outputType === "requirement"
+        ? ".generated-requirement"
+        : ".generated-amendment";
+
+    const output = panel.querySelector(selector);
+
+    if (!output || !output.value.trim()) {
+      return;
+    }
+
+    const originalText = button.textContent.trim();
+
+    try {
+      await navigator.clipboard.writeText(output.value);
+    } catch (error) {
+      output.focus();
+      output.select();
+
+      document.execCommand("copy");
+    }
+
+    button.textContent = "Copied";
+
+    window.setTimeout(function () {
+      button.textContent = originalText;
+    }, 1400);
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  /*
+   * Load the currently selected state when
+   * the page initially opens.
+   */
+  if (contractState.value) {
+    loadStateRequirements();
+  }
+});
+
+const policyNumberField = document.getElementById("policyNumber");
+
+policyNumberField.addEventListener("input", updatePolicyLookup);
+
+document.addEventListener("stateFormsUpdated", function () {
+  updatePolicyLookup();
+});
+
+function updatePolicyLookup() {
+  const policyNumber = String(policyNumberField.value || "").replace(/\D/g, "");
+
+  const prefix = policyNumber.substring(0, 2);
+
+  let product = "--";
+  let system = "--";
+
+  switch (prefix) {
+    // Whole Life
+
+    case "21":
+    case "32":
+    case "34":
+      product = "Whole Life";
+      system = "WinRisk";
+      break;
+
+    // Vantage Term
+
+    case "38":
+    case "42":
+      product = "Vantage Term";
+      system = "TPP";
+      break;
+
+    // CareChoice
+
+    case "22":
+      product = "CareChoice";
+      system = "WinRisk";
+      break;
+
+    // VUL Guard
+
+    case "15":
+    case "16":
+      product = "VUL Guard";
+      system = "WinRisk";
+      break;
+  }
+
+  const dashboardProduct = document.getElementById("dashboardProduct");
+
+  const dashboardSystem = document.getElementById("dashboardSystem");
+
+  if (dashboardProduct) {
+    dashboardProduct.textContent = product;
+  }
+
+  if (dashboardSystem) {
+    dashboardSystem.textContent = system;
+  }
+}

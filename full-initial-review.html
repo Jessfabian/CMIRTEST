@@ -24,7 +24,6 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
 	<!-- ============================================
 					GLOBAL PAGE HEADER
 					Back navigation and page branding
@@ -125,26 +124,157 @@
             Amendments
             Email
             ===================================================== -->
-				<aside class="review-sidebar">
-					<button class="step-btn active">
-						Case Setup
-					</button>
-					<button class="step-btn">
-						State Requirements
-					</button>
-					<button class="step-btn">
-						Application Review
-					</button>
-					<button class="step-btn">
-						Requirements
-					</button>
-					<button class="step-btn">
-						Amendments
-					</button>
-					<button class="step-btn">
-						Email
-					</button>
-				</aside>
+    <aside class="review-sidebar">
+
+    <!-- WORKFLOW NAVIGATION -->
+
+    <div class="sidebar-section">
+
+        <h3 class="sidebar-heading">
+            Case Workflow
+        </h3>
+
+        <button class="step-btn active">
+            Case Setup
+        </button>
+
+        <button class="step-btn">
+            State Requirements
+        </button>
+
+        <button class="step-btn">
+            Application Review
+        </button>
+
+        <button class="step-btn">
+            Review Output Package
+        </button>
+
+        <button class="step-btn">
+            Email
+        </button>
+
+    </div>
+
+
+    <!-- POLICY AMENDMENT WORKSPACE -->
+<details class="sidebar-workspace">
+<summary class="workspace-summary">
+Policy Amendment
+</summary>
+        <div class="case-field">
+
+            <label>
+                Form Being Amended
+            </label>
+
+            <select id="globalAmendmentForm">
+                <option value="">
+                    Select Form
+                </option>
+            </select>
+
+        </div>
+
+        <div class="case-field">
+
+            <label>
+                Question / Section
+            </label>
+
+            <input
+                type="text"
+                id="globalQuestion"
+                placeholder="Example: C3"
+            >
+
+        </div>
+
+        <div class="case-field">
+
+            <label>
+                Amendment Template
+            </label>
+
+            <select id="globalAmendmentTemplate">
+                <option value="">
+                    Select Template
+                </option>
+            </select>
+
+        </div>
+
+        <div id="globalAmendmentFields"></div>
+
+        <div class="case-field">
+
+            <label>
+                Generated Amendment
+            </label>
+
+            <textarea
+                id="globalGeneratedAmendment"
+                rows="8"
+                readonly
+            ></textarea>
+
+        </div>
+
+     <button
+    type="button"
+    class="secondary-button"
+    id="copyGlobalAmendment"
+>
+    Copy
+</button>
+
+</details>
+
+    <!-- REQUIREMENT WORKSPACE -->
+
+    <details class="sidebar-workspace">
+    <summary class="workspace-summary">
+        Agency Requirement
+    </summary>
+        <div class="case-field">
+
+            <label>
+                Requirement Template
+            </label>
+
+            <select id="globalRequirementTemplate">
+                <option value="">
+                    Select Requirement
+                </option>
+            </select>
+
+        </div>
+
+        <div id="globalRequirementFields"></div>
+
+        <div class="case-field">
+
+            <label>
+                Generated Requirement
+            </label>
+
+            <textarea
+                id="globalGeneratedRequirement"
+                rows="8"
+                readonly
+            ></textarea>
+
+        </div>
+
+        <button
+            type="button"
+            class="secondary-button"
+            id="copyGlobalRequirement"
+        >
+            Copy
+        </button>
+</details>
+</aside>
 				<!-- =====================================================
 						 CASE SETUP SECTION
 						 Captures:
@@ -159,8 +289,13 @@
             State Requirements
             Dashboard Values
             ===================================================== -->
-				<section id="caseSetupSection" <section id="reviewContent">
-					<section id="caseSetupSection" class="card case-setup-card">
+
+    <section id="reviewContent">
+
+<section
+    id="caseSetupSection"
+    class="card case-setup-card"
+>
 						<div class="section-title-row">
 							<div>
 								<h2>MMSD INITIAL REVIEW</h2>
@@ -519,7 +654,6 @@ Processing Guidance
 				</div>
 			</div>
 
-			</section>
 			<!-- =====================================================
 											 STATE REQUIREMENTS
 											 Dynamically loaded from:
