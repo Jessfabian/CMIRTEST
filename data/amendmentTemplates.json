@@ -1,567 +1,193 @@
-{
-  "templates": {
-    "shouldInclude": {
-      "label": "Missing Information",
-      "template": "Question {question} of the {form} should include: {value}."
-    },
+  {
+    "templates": {
+      "questionShouldInclude": {
+        "label": "Question Should Include",
+        "category": "General",
+        "template": "Question {question} of the {form} should include: {value}.",
+        "fields": ["question", "form", "value"]
+      },
 
-    "questionIs": {
-      "label": "Question Value",
-      "template": "Question {question} of the {form} is {value}."
-    },
+      "questionIs": {
+        "label": "Question Is",
+        "category": "General",
+        "template": "Question {question} of the {form} is {value}.",
+        "fields": ["question", "form", "value"]
+      },
 
-    "notApplicable": {
-      "label": "Not Applicable",
-      "template": "Question {question} of the {form} is not applicable."
-    },
+      "questionNotApplicable": {
+        "label": "Question Not Applicable",
+        "category": "General",
+        "template": "Question {question} of the {form} is not applicable.",
+        "fields": ["question", "form"]
+      },
 
-    "ownerNameCorrection": {
-      "label": "Owner Name Correction",
-      "template": "The owner's name reflected on all forms in the application should read {value}."
-    },
+      "questionRangeIs": {
+        "label": "Question Range Is",
+        "category": "General",
+        "template": "Questions {questionRange} of the {form} are {value}.",
+        "fields": ["questionRange", "form", "value"]
+      },
 
-    "insuredNameCorrection": {
-      "label": "Insured Name Correction",
-      "template": "The insured's name reflected on all forms in the application should read {value}."
-    },
+      "questionRangeNotApplicable": {
+        "label": "Question Range Not Applicable",
+        "category": "General",
+        "template": "Questions {questionRange} of the {form} are not applicable.",
+        "fields": ["questionRange", "form"]
+      },
 
-    "insuredOwnerNameCorrection": {
-      "label": "Insured And Owner Name Correction",
-      "template": "The insured's and owner's name reflected on all forms in the application should read {value}."
-    },
+      "sectionShouldInclude": {
+        "label": "Section Should Include",
+        "category": "General",
+        "template": "Section {section} of the {form} should include: {value}.",
+        "fields": ["section", "form", "value"]
+      },
 
-    "addressCorrection": {
-      "label": "Address Correction",
-      "template": "The insured's or owner's address reflected on all forms in the application should read {value}."
-    },
+      "ownerNameCorrection": {
+        "label": "Owner Name Correction",
+        "category": "Global Amendments",
+        "template": "The owner's name reflected on all forms in the application should read {value}.",
+        "fields": ["value"]
+      },
 
-    "dobCorrection": {
-      "label": "Date of Birth Correction",
-      "template": "The insured's or owner's DOB reflected on all forms in the application should read {value}."
-    },
+      "ownerAddressCorrection": {
+        "label": "Owner Address Correction",
+        "category": "Global Amendments",
+        "template": "The owner's address reflected on all forms in the application should read {value}.",
+        "fields": ["value"]
+      },
 
-    "ownerSignature": {
-      "label": "Owner Signature",
-      "template": "The signature of Owner on the {form} is {value}."
-    },
+      "insuredNameCorrection": {
+        "label": "Insured Name Correction",
+        "category": "Global Amendments",
+        "template": "The insured's name reflected on all forms in the application should read {value}.",
+        "fields": ["value"]
+      },
 
-    "deleteOwnerSignature": {
-      "label": "Delete Owner Signature",
-      "template": "The signature of {value} as owner on the {form} is incorrect and hereby deleted."
-    },
+      "insuredAddressCorrection": {
+        "label": "Insured Address Correction",
+        "category": "Global Amendments",
+        "template": "The insured's address reflected on all forms in the application should read {value}.",
+        "fields": ["value"]
+      },
 
-    "ownerSignedDate": {
-      "label": "Owner Signed Date",
-      "template": "The {form} was signed by the Owner on {value}."
-    },
+      "signature": {
+  "label": "Signature",
+  "category": "Signatures",
+  "template": "The signature of {signer} on the {form} is {value}.",
+  "fields": ["signer", "form", "value"]
+},
 
-    "insuredSignedDate": {
-      "label": "Insured Signed Date",
-      "template": "The {form} was signed by the Insured on {value}."
-    },
+      "signedDate": {
+        "label": "Signed Date",
+        "category": "Signatures",
+        "template": "The {form} was signed by the {party} on {date}.",
+        "fields": ["form", "party", "date"]
+      },
 
-    "ownerSignedLocation": {
-      "label": "Owner Signed Location",
-      "template": "The {form} was signed by the Owner in {value}."
-    },
+      "signedLocation": {
+        "label": "Signed Location",
+        "category": "Signatures",
+        "template": "The {form} was signed by the {party} in {location}.",
+        "fields": ["form", "party", "location"]
+      },
 
-    "insuredSignedLocation": {
-      "label": "Insured Signed Location",
-      "template": "The {form} was signed by the Insured in {value}."
-    },
+      "ownerBeneficiaryMatchPolicy": {
+        "label": "Owner And Beneficiary Match Policy",
+        "category": "Owner/Beneficiary",
+        "template": "Beneficiary and Owner to be the same as specified on the policy specification pages of the policy.",
+        "fields": []
+      },
 
-    "ownerMatchPolicy": {
-      "label": "Owner Matches Policy",
-      "template": "Owner to be the same as specified on the policy specification pages of the policy."
-    },
+      "ownerMatchPolicy": {
+        "label": "Owner Match Policy",
+        "category": "Owner/Beneficiary",
+        "template": "Owner to be the same as specified on the policy specification pages of the policy.",
+        "fields": []
+      },
 
-    "beneficiaryMatchPolicy": {
-      "label": "Beneficiary Matches Policy",
-      "template": "Beneficiary to be the same as specified on the policy specification pages of the policy."
-    },
+      "beneficiaryMatchPolicy": {
+        "label": "Beneficiary Match Policy",
+        "category": "Owner/Beneficiary",
+        "template": "Beneficiary to be the same as specified on the policy specification pages of the policy.",
+        "fields": []
+      },
 
-    "ownerBeneficiaryMatchPolicy": {
-      "label": "Owner And Beneficiary Match Policy",
-      "template": "Beneficiary and Owner to be the same as specified on the policy specification pages of the policy."
-    },
+      "custodianDesignation": {
+  "label": "Custodian Designation",
+  "category": "Owner/Beneficiary",
+  "template": "Question {question} of the Part 1 is during the minority of the named {childType}, {custodian} shall be custodian for said {childType} under the {state} Uniform Transfers/Gifts to Minors Act.",
+  "fields": [
+    "question",
+    "childType",
+    "custodian",
+    "state"
+  ]
+},
 
-    "qualifiedPlan": {
-      "label": "Qualified Plan",
-      "template": "Question {question} of the {form} is yes, tax qualified employer-sponsored plan."
-    },
+      "deleteAdditionalInsured": {
+        "label": "Delete Additional Insured",
+        "category": "Deletion",
+        "template": "The information listed for Insured {insuredNumber} in the Part 1 application is hereby deleted and not applicable. All references to Insured {oldInsured} in the Part 1 application now pertains to Insured {newInsured}. There is only 1 Insured, {insuredName}.",
+        "fields": ["insuredNumber", "oldInsured", "newInsured", "insuredName"]
+      },
 
-    "nonQualifiedPlan": {
-      "label": "Non Qualified Plan",
-      "template": "Question {question} of the {form} is no, non-qualified employer-sponsored plan."
-    },
+      "deleteSignature": {
+        "label": "Delete Signature",
+        "category": "Deletion",
+        "template": "The signature of {signer} on the {form} is incorrect and hereby deleted.",
+        "fields": ["signer", "form"]
+      },
 
-    "minorCustodian": {
-      "label": "Minor Custodian",
-      "template": "Question {question} of the {form} is during the minority of the named child, {custodian} shall be custodian for said child under the {state} Uniform Transfers Gifts to Minors Act."
-    },
+      "illustrationConforms": {
+        "label": "Illustration Conforms",
+        "category": "Illustration",
+        "template": "Question N1 of Part 1 is, The sales illustration used for the proposed insured conforms to the policy as applied for.",
+        "fields": []
+      },
 
-    "multipleMinorCustodian": {
-      "label": "Multiple Minor Custodian",
-      "template": "Question {question} of the {form} is during the minority of the named children, {custodian} shall be custodian for said children under the {state} Uniform Transfers Gifts to Minors Act."
-    },
+      "illustrationNoIllustration": {
+        "label": "No Illustration Used",
+        "category": "Illustration",
+        "template": "Question N1 of Part 1 is, No sales illustration was used in the sale of the policy.",
+        "fields": []
+      },
 
-    "replacementGrid": {
-      "label": "Replacement Grid Entry",
-      "template": "Question {question} of the {form} should include: Policy {policyNumber}, {company}, {status}, Replacement {replacementStatus}."
-    },
-
-    "trustNameCorrection": {
-      "label": "Trust Name",
-      "template": "The trust name of the owner and or beneficiary of the policy should be reflected on all forms in the application package as {value}."
-    },
-
-    "additionalInsuredDeletion": {
-      "label": "Delete Additional Insured",
-      "template": "The information listed for Insured {insuredNumber} in the {form} is hereby deleted and not applicable. All references to Insured {oldInsured} in the {form} now pertains to Insured {newInsured}. There is only 1 Insured, {insuredName}."
-    },
-
-    "planChange": {
-      "label": "Plan Change",
-      "template": "Questions {questionRange} of the {form} are not applicable."
-    },
-
-    "beneficiaryPrimary": {
-      "label": "Primary Beneficiary",
-      "template": "Question {question} of the {form} should include: Primary, {value}."
-    },
-
-    "beneficiaryContingent": {
-      "label": "Contingent Beneficiary",
-      "template": "Question {question} of the {form} should include: Secondary Contingent, {value}."
-    },
-
-    "estateProtectionRider": {
-      "label": "Estate Protection Rider",
-      "template": "Section {section} of the {form} should include: Estate Protection Rider: {value}."
-    },
-
-    "wholeLifePrimaryTermAdditional": {
-      "label": "Whole Life Primary Term Additional",
-      "template": "Section {section} of the {form} should include Whole Life, Primary and Term, Additional."
-    },
-
-    "universalLifePrimaryTermAdditional": {
-      "label": "Universal Life Primary Term Additional",
-      "template": "Section {section} of the {form} should include Universal Life, Primary and Term, Additional."
-    },
-
-    "genericRequirement": {
-      "label": "Requirement",
-      "template": "Please provide a completed and signed {documentName}."
-    },
-
-    "genericClarification": {
-      "label": "Clarification",
-      "template": "Please clarify {detail}."
-    },
-    "insurerDesignation": {
-      "label": "Insurer Designation",
-      "category": "Application",
-      "template": "The {form} should read: The Insurer is {insurerName}.",
-      "fields": ["form", "insurerName"],
-      "defaults": {
-        "form": "Part 1 Application",
-        "insurerName": "C.M. Life Insurance Company"
+      "illustrationDoesNotConform": {
+        "label": "Illustration Does Not Conform",
+        "category": "Illustration",
+        "template": "Question N1 of Part 1 is, The sales illustration used for the proposed insured does not conform to the policy as applied for.",
+        "fields": []
       }
     },
 
-    "sectionShouldInclude": {
-      "label": "Section Should Include",
-      "category": "General",
-      "template": "Section {section} of the {form} should include {value}.",
-      "fields": ["section", "form", "value"]
-    },
-
-    "questionWithDetails": {
-      "label": "Question Answer With Details",
-      "category": "General",
-      "template": "Question {question} of the {form} is {answer}. Details: {details}.",
-      "fields": ["question", "form", "answer", "details"]
-    },
-
-    "groupedQuestionsValue": {
-      "label": "Grouped Questions Same Answer",
-      "category": "General",
-      "template": "Questions {questionRange} of the {form} are {value}.",
-      "fields": ["questionRange", "form", "value"]
-    },
-
-    "groupedQuestionPartsValue": {
-      "label": "Grouped Question Parts Same Answer",
-      "category": "General",
-      "template": "Questions {questionParts} of the {form} are {value}.",
-      "fields": ["questionParts", "form", "value"],
-      "example": "Questions N2a, b, and c of the Part 1 are Yes."
-    },
-
-    "conversionNotApplicableNoSignature": {
-      "label": "Conversion Not Applicable Due To Missing Insured Signature",
-      "category": "Conversion",
-      "template": "Question {question} of the {form} is not applicable due to {insuredName} not signing the application as insured.",
-      "fields": ["question", "form", "insuredName"]
-    },
-
-    "avocationExclusion": {
-      "label": "Avocation Exclusion",
-      "category": "Underwriting",
-      "template": "This policy is being issued with an exclusion rider for {avocation}.",
-      "fields": ["avocation"]
-    },
-
-    "avocationFullCoverage": {
-      "label": "Avocation Full Coverage",
-      "category": "Underwriting",
-      "template": "This policy is being issued with full coverage for {avocation}.",
-      "fields": ["avocation"]
-    },
-
-    "civilianAviationExclusion": {
-      "label": "Civilian Aviation Exclusion",
-      "category": "Underwriting",
-      "template": "This policy is being issued with an exclusion for civilian aviation.",
-      "fields": []
-    },
-
-    "militaryAviationExclusion": {
-      "label": "Military Aviation Exclusion",
-      "category": "Underwriting",
-      "template": "This policy is being issued with an exclusion rider for military aviation.",
-      "fields": []
-    },
-
-    "civilianAviationFullCoverage": {
-      "label": "Civilian Aviation Full Coverage",
-      "category": "Underwriting",
-      "template": "This policy is being issued with full coverage for civilian aviation.",
-      "fields": []
-    },
-
-    "militaryAviationFullCoverage": {
-      "label": "Military Aviation Full Coverage",
-      "category": "Underwriting",
-      "template": "This policy is being issued with full coverage for military aviation.",
-      "fields": []
-    },
-
-    "planNameCorrection": {
-      "label": "Plan Name Correction",
-      "category": "Product",
-      "template": "Question {question} of the {form} is {planName}.",
-      "fields": ["question", "form", "planName"]
-    },
-
-    "riderValue": {
-      "label": "Rider Selection Or Amount",
-      "category": "Rider",
-      "template": "Question {question} of the {form} is {riderValue}.",
-      "fields": ["question", "form", "riderValue"]
-    },
-
-    "riderComponent": {
-      "label": "Missing Rider Component",
-      "category": "Rider",
-      "template": "Question {question} of the {form} should include {component}: {value}.",
-      "fields": ["question", "form", "component", "value"]
-    },
-
-    "riderComponentWithoutLabel": {
-      "label": "Missing Rider Value",
-      "category": "Rider",
-      "template": "Question {question} of the {form} should include {value}.",
-      "fields": ["question", "form", "value"]
-    },
-
-    "riderFullDetails": {
-      "label": "Complete Rider Details",
-      "category": "Rider",
-      "template": "Question {question} of the {form} is {details}.",
-      "fields": ["question", "form", "details"]
-    },
-
-    "otherRiderNotApplicable": {
-      "label": "Remove Other Rider",
-      "category": "Rider",
-      "template": "Question {question} of the {form} is not applicable.",
-      "fields": ["question", "form"]
-    },
-
-    "enhancedSurrenderValueRider": {
-      "label": "Enhanced Surrender Value Rider",
-      "category": "Rider",
-      "template": "Question {question} of the {form} should include: Enhanced Surrender Value Rider.",
-      "fields": ["question", "form"]
-    },
-
-    "alternateAdditionalComponent": {
-      "label": "Alternate Or Additional Policy Component",
-      "category": "Product",
-      "template": "Question {question} of the {form} should include {value}.",
-      "fields": ["question", "form", "value"]
-    },
-
-    "replacementGridComplete": {
-      "label": "Complete Replacement Grid Entry",
-      "category": "Replacement",
-      "template": "Question {question} of the {form} is: Policy {policyNumber}, Company, {company}, {policyStatus}, Replacement {replacementStatus}.",
-      "fields": [
-        "question",
-        "form",
-        "policyNumber",
-        "company",
-        "policyStatus",
-        "replacementStatus"
-      ]
-    },
-
-    "replacementGridAddComponent": {
-      "label": "Add Replacement Grid Information",
-      "category": "Replacement",
-      "template": "Question {question} of the {form} should include: Policy {policyNumber}, {company}, {policyStatus}, Replacement {replacementStatus}.",
-      "fields": [
-        "question",
-        "form",
-        "policyNumber",
-        "company",
-        "policyStatus",
-        "replacementStatus"
-      ]
-    },
-
-    "qualifiedPlanOtherBeneficiary": {
-      "label": "Qualified Plan Beneficiary",
-      "category": "Beneficiary",
-      "template": "Question {question} of the {form} is Other, {planName}.",
-      "fields": ["question", "form", "planName"]
-    },
-
-    "ownerArrangementInsuredOnly": {
-      "label": "Insured Is Only Owner",
-      "category": "Ownership",
-      "template": "Question {question} of the {form} is proposed insured is the only owner.",
-      "fields": ["question", "form"]
-    },
-
-    "ownerArrangementMultipleInsureds": {
-      "label": "Proposed Insureds Are Only Owners",
-      "category": "Ownership",
-      "template": "Question {question} of the {form} is proposed insureds are the only owners.",
-      "fields": ["question", "form"]
-    },
-
-    "ownerArrangementOther": {
-      "label": "Other Ownership Arrangement",
-      "category": "Ownership",
-      "template": "Question {question} of the {form} is Other, {ownerName}.",
-      "fields": ["question", "form", "ownerName"]
-    },
-
-    "beneficiaryArrangement": {
-      "label": "Beneficiary Arrangement",
-      "category": "Beneficiary",
-      "template": "Question {question} of the {form} is {arrangement}.",
-      "fields": ["question", "form", "arrangement"]
-    },
-
-    "beneficiaryComponent": {
-      "label": "Beneficiary Component",
-      "category": "Beneficiary",
-      "template": "Question {question} of the {form} should include: {beneficiaryType}, {beneficiaryName}, {relationship}.",
-      "fields": [
-        "question",
-        "form",
-        "beneficiaryType",
-        "beneficiaryName",
-        "relationship"
-      ]
-    },
-
-    "policyDate": {
-      "label": "Policy Date",
-      "category": "Policy Dating",
-      "template": "Question {question} of the {form} is {policyDate}.",
-      "fields": ["question", "form", "policyDate"]
-    },
-
-    "policyDateNotApplicable": {
-      "label": "Policy Date Not Applicable",
-      "category": "Policy Dating",
-      "template": "Question {question} of the {form} is not applicable.",
-      "fields": ["question", "form"]
-    },
-
-    "nonForfeitureReducedPaidUp": {
-      "label": "Reduced Paid Up Non-Forfeiture Option",
-      "category": "Conversion",
-      "template": "This policy was issued with a Non-Forfeiture Option of Reduced Paid Up.",
-      "fields": []
-    },
-
-    "illustrationNoIllustrationUsed": {
-      "label": "No Illustration Used",
-      "category": "Illustration",
-      "template": "Question {question} of the {form} is {policyType}, No illustration was used in the sale of this policy.",
-      "fields": ["question", "form", "policyType"]
-    },
-
-    "illustrationConforms": {
-      "label": "Illustration Conforms",
-      "category": "Illustration",
-      "template": "Question {question} of the {form} is {policyType}, the sales illustration conforms to the policy as applied for.",
-      "fields": ["question", "form", "policyType"]
-    },
-
-    "illustrationDoesNotConform": {
-      "label": "Illustration Does Not Conform",
-      "category": "Illustration",
-      "template": "Question {question} of the {form} is {policyType}, the sales illustration used for the Proposed Insured does not conform to the policy as applied for.",
-      "fields": ["question", "form", "policyType"]
-    },
-
-    "illustrationShownOnScreen": {
-      "label": "Illustration Shown On Computer Screen",
-      "category": "Illustration",
-      "template": "Question {question} of the {form} is {policyType}, the sales illustration for the Proposed Insured was shown on a computer screen. The illustration conforms to the policy as applied for, however, no hard copy was furnished.",
-      "fields": ["question", "form", "policyType"]
-    },
-
-    "illustrationSectionConforms": {
-      "label": "Illustration Section Conforms",
-      "category": "Illustration",
-      "template": "The sales illustration used for the Proposed Insured conforms to the policy as applied for.",
-      "fields": []
-    },
-
-    "illustrationSectionDoesNotConform": {
-      "label": "Illustration Section Does Not Conform",
-      "category": "Illustration",
-      "template": "The sales illustration used for the Proposed Insured does not conform to the policy as applied for.",
-      "fields": []
-    },
-
-    "illustrationSectionNoIllustration": {
-      "label": "Illustration Section No Illustration Used",
-      "category": "Illustration",
-      "template": "No sales illustration was used in the sale of this life insurance policy.",
-      "fields": []
-    },
-
-    "illustrationSectionShownOnScreen": {
-      "label": "Illustration Section Shown On Screen",
-      "category": "Illustration",
-      "template": "The sales illustration for the Proposed Insured was shown on a computer screen.",
-      "fields": []
-    },
-
-    "taxpayerStatementComponent": {
-      "label": "Taxpayer Statement Component",
-      "category": "Taxpayer Identification",
-      "template": "Question {question} of the {form} should include {statement}: {answer}.",
-      "fields": ["question", "form", "statement", "answer"]
-    },
-
-    "taxpayerQuestionParts": {
-      "label": "Taxpayer Question Parts",
-      "category": "Taxpayer Identification",
-      "template": "Questions {questionParts} of the {form} are {answer}.",
-      "fields": ["questionParts", "form", "answer"]
-    },
-
-    "insuredSignedDateGeneric": {
-      "label": "Insured Signature Date",
-      "category": "Signature",
-      "template": "The {form} was signed by the Insured on {signedDate}.",
-      "fields": ["form", "signedDate"]
-    },
-
-    "insuredSignedLocationGeneric": {
-      "label": "Insured Signature Location",
-      "category": "Signature",
-      "template": "The {form} was signed by the Insured in {cityState}.",
-      "fields": ["form", "cityState"]
-    },
-
-    "ownerSignedDateGeneric": {
-      "label": "Owner Signature Date",
-      "category": "Signature",
-      "template": "The {form} was signed by the Owner on {signedDate}.",
-      "fields": ["form", "signedDate"]
-    },
-
-    "ownerSignedLocationGeneric": {
-      "label": "Owner Signature Location",
-      "category": "Signature",
-      "template": "The {form} was signed by the Owner in {cityState}.",
-      "fields": ["form", "cityState"]
-    },
-
-    "businessOwnerSignature": {
-      "label": "Business Owner Signature",
-      "category": "Signature",
-      "template": "The signature of Owner on the {form} is {signerName}, {title}.",
-      "fields": ["form", "signerName", "title"]
-    },
-
-    "requireNewForm": {
-      "label": "New Form Required",
-      "category": "Requirement",
-      "template": "Please provide a new completed and signed {documentName}.",
-      "fields": ["documentName"]
-    },
-
-    "requireSupplement": {
-      "label": "Supplement Required",
-      "category": "Requirement",
-      "template": "Please provide a completed and signed {supplementName}.",
-      "fields": ["supplementName"]
-    },
-
-    "requireSignedIllustration": {
-      "label": "Signed Illustration Required",
-      "category": "Requirement",
-      "template": "Please provide a complete illustration signed and dated by the owner and producer.",
-      "fields": []
-    },
-
-    "requireIllustrationOrCertification": {
-      "label": "Illustration Or Certification Required",
-      "category": "Requirement",
-      "template": "Please provide a complete illustration signed and dated by the owner and producer, the applicable illustration certification form, or confirmation of the correct Sales Illustration Certification response.",
-      "fields": []
-    }
-  },
-"approvedPlanNames": [
-  "Whole Life 100",
-  "Whole Life 8 Pay",
-  "Whole Life 65",
-  "Whole Life 10 Pay",
-  "Whole Life 20 Pay",
-  "Whole Life 12 Pay",
-  "Universal Life Guard",
-  "SUL Guard",
-  "Whole Life HECV",
-  "Whole Life 95",
-  "Whole Life Guard 10 Pay",
-  "Whole Life 15 Pay",
-  "Apex VUL",
-  "Survivorship 100",
-  "Survivorship Whole Life 100",
-  "Survivorship 12",
-  "Survivorship Whole Life 12",
-  "CareChoice",
-  "Vantage Term ART",
-  "Vantage Term 10",
-  "Vantage Term 15",
-  "Vantage Term 15 ECP",
-  "Vantage Term 20",
-  "Vantage Term 20 ECP",
-  "Vantage Term 25",
-  "Vantage Term 25 ECP",
-  "Vantage Term 30",
-  "Vantage Term 30 ECP"
-]
-}
+    "approvedPlanNames": [
+      "Whole Life 100",
+      "Whole Life 8 Pay",
+      "Whole Life 65",
+      "Whole Life 10 Pay",
+      "Whole Life 20 Pay",
+      "Whole Life 12 Pay",
+      "Universal Life Guard",
+      "SUL Guard",
+      "Whole Life HECV",
+      "Whole Life 95",
+      "Whole Life Guard 10 Pay",
+      "Whole Life 15 Pay",
+      "Apex VUL",
+      "Survivorship 100",
+      "Survivorship Whole Life 100",
+      "Survivorship 12",
+      "Survivorship Whole Life 12",
+      "CareChoice",
+      "Vantage Term ART",
+      "Vantage Term 10",
+      "Vantage Term 15",
+      "Vantage Term 15 ECP",
+      "Vantage Term 20",
+      "Vantage Term 20 ECP",
+      "Vantage Term 25",
+      "Vantage Term 25 ECP",
+      "Vantage Term 30",
+      "Vantage Term 30 ECP"
+    ]
+  }
