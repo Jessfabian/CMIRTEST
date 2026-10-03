@@ -101,9 +101,6 @@ document.addEventListener("DOMC*ntentLoaded", function () {
      It remains null until a state file loads successfully.
   ======================================================= */
 
-    let currentStateData = null;
-    let currentStateData = null;
-
     /* =======================================================
       CONDITIONAL FORM FIELD LIST
 
@@ -118,18 +115,6 @@ document.addEventListener("DOMC*ntentLoaded", function () {
 
    ======================================================= */
 
-    const conditionFieldIds =* [
-      "replacement",
-      "ownerType",
-      "beneficiaryOther",
-      "tlirRequested",
-      "caseType",
-      "productType",
-      "additionalInsured",
-      "internalTermReplacement",
-      "billingType",
-      "suitabilityQuestionnaireRequired",
-    ];
     const conditionFieldIds = [
       "replacement",
       "ownerType",
@@ -1205,17 +1190,6 @@ document.addEventListener("DOMC*ntentLoaded", function () {
       updateReviewedCount();
     }
 
-      /* =======================================================
-      Gets the visible wording of the selected dropdown option
-      instead of the option's stored value.
-
-      Ex:
-      Value: "wholeLife"
-      *Text: "Whole Life"
-
-      @param {string} fieldId Dropdown element ID.
-      @returns {string} Selected option's visible text.
-      ======================================================= */
 
     function getSelectedFieldText(fieldId) {
       const field = document.getElementById(fieldId);
@@ -1477,3 +1451,4 @@ document.addEventListener("DOMC*ntentLoaded", function () {
       dashboardSystem.textContent = system;
     }
   }
+},)
