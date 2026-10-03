@@ -1,15 +1,54 @@
-// Required forms
+/* =========================================================
+   STATE REQUIREMENTS LOADER
+   File: stateLoader.js
+
+   PURPOSE:
+   Controls the State Requirements portion of the
+   Full Initial Review page.
+
+   MAIN RESPONSIBILITIES:
+   1. Loads the selected state's JSON file.
+   2. Determines which state forms apply to the case.
+   3. Creates the IGO/NIGO review controls.
+   4. Displays state-specific notes and checklist items.
+   5. Updates state and page dashboard counts.
+   6. Creates NIGO amendment and requirement workspaces.
+   7. Notifies amendment-engine.js when forms change.
+
+   DATA SOURCE:
+   data/[STATE].json
+
+   CONNECTED SCRIPTS:
+   - amendment-engine.js
+   - initial-review.js
+   - review-output-package.js
+========================================================= */
+
+document.addEventListener("DOMC*ntentLoaded", function () {
+  "use*strict";
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
+  /* ==============*==================================*=====
+     HTML ELEMENT REFERENCES*
+     Finds and stores the page el*ments that this script
+     needs *o read from or update.
+
+     Using*constants here prevents the script*from repeatedly
+     searching the*HTML document for the same element*.
+  ==============================*======================== */
+
+  // Main Contract State dropdown
   const contractState = document.getElementById("contractState");
 
+// Containers populated with state JSON information
   const requiredFormsContainer = document.getElementById("requiredForms");
 
   const specialNotesContainer = document.getElementById("specialNotes");
 
   const reviewChecklistContainer = document.getElementById("reviewChecklist");
 
+// State Requirements heading and summary elements
   const contractStateBanner = document.getElementById("contractStateBanner");
 
   const stateRequirementSummary = document.getElementById(
@@ -19,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const applicableFormCount = document.getElementById("applicableFormCount");
 
   const specialNoteCount = document.getElementById("specialNoteCount");
+
+  // State Requirements dashboard cards
   const requiredFormCountCard = document.getElementById(
     "requiredFormCountCard",
   );
@@ -33,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const specialNoteCountCard = document.getElementById("specialNoteCountCard");
 
+// Main page dashboard values
   const dashboardState = document.getElementById("dashboardState");
 
   const dashboardSystem = document.getElementById("dashboardSystem");
@@ -40,18 +82,55 @@ document.addEventListener("DOMContentLoaded", function () {
   const dashboardProduct = document.getElementById("dashboardProduct");
 
   const dashboardFormCount = document.getElementById("dashboardFormCount");
+
   const dashboardIssueCount = document.getElementById("dashboardIssueCount");
 
   const dashboardReviewedCount = document.getElementById(
     "dashboardReviewedCount",
   );
 
+
+    /* =======================================================
+     CURRENT STATE DATA
+
+     Stores the JSON object for the currently selected state.
+
+     Example:
+     If New York is selected, this holds the contents of
+     data/NY.json.
+
+     It remains null until a state file loads successfully.
+  ======================================================= */
+
+  let currentStateData = null;
   let currentStateData = null;
 
-  /*
-   * Foreign Activity, Paper Part 2 Required,
-   * and Source of Funds have been removed.
-   */
+   /* =======================================================
+     CONDITIONAL FORM FIELD LIST
+
+     These Case Setup fields can affect which state forms
+     apply to the current case.
+
+     When one of these fields changes, the script filters the
+     state forms again without reloading the JSON file.
+
+     IMPORTANT:
+     Every ID listed here should match an element ID in HTML.
+
+  ======================================================= */
+
+  const conditionFieldIds =*[
+    "replacement",
+    "ownerType",
+    "beneficiaryOther",
+    "tlirRequested",
+    "caseType",
+    "productType",
+    "additionalInsured",
+    "internalTermReplacement",
+    "billingType",
+    "suitabilityQuestionnaireRequired",
+  ];
   const conditionFieldIds = [
     "replacement",
     "ownerType",
@@ -65,6 +144,16 @@ document.addEventListener("DOMContentLoaded", function () {
     "suitabilityQuestionnaireRequired",
   ];
 
+  /* ======================================================
+     REQUIRED ELEMENT SAFETY CHECKS
+
+     Stops the script if critical HTML elements are missing.
+
+     This prevents later functions from failing with errors
+
+     Ex:"Cannot set properties of null"
+  ======================================================= */
+
   if (!contractState) {
     console.error('The field with id="contractState" was not found.');
 
@@ -77,7 +166,17 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+/* =======================================================
+PAGE EVENT LISTENERS
+ 
+Watches the Contract State and conditional Case Setup
+fields for user changes.
+======================================================= */
+
+  // Load a new state JSON file when Contract State changes.
   contractState.addEventListener("change", loadStateRequirements);
+
+  // Reevaluate applicable forms whenever a conditional Case Setup field changes.
 
   conditionFieldIds.forEach(function (fieldId) {
     const field = document.getElementById(fieldId);
@@ -91,12 +190,14 @@ document.addEventListener("DOMContentLoaded", function () {
     field.addEventListener("input", refreshApplicableForms);
   });
 
+  // The system field is handled separately, its not included in conditionFieldIds.
   const systemField = document.getElementById("system");
 
   if (systemField) {
     systemField.addEventListener("change", refreshApplicableForms);
   }
 
+// Refilters and redraws the applicable forms using the state JSON thatd already loaded. This does not fetch the JSON file again.
   function refreshApplicableForms() {
     if (!currentStateData) {
       return;
@@ -105,15 +206,37 @@ document.addEventListener("DOMContentLoaded", function () {
     renderApplicableForms(currentStateData);
   }
 
+  /* ======================================================
+    LOAD SELECTED STATE REQUIREMENTS
+     
+    Runs when the Contract State dropdown changes.
+     
+    PROCESS:
+
+    1. Reads the selected state abbreviation.
+    2. Clears the previous state's information.
+    3. Fetches data/[STATE].json.
+    4. Converts the response into a JavaScript object.
+    5. Renders forms, notes, and checklist items.
+    6. Updates dashboard counts.
+    7. Displays an error if the JSON cannot be loaded.
+    ======================================================= */
+
   async function loadStateRequirements() {
+
+    // Get the state abbreviation selected by the user.
     const selectedState = contractState.value;
 
+   // Remove the previously stored state data.
     currentStateData = null;
 
+    // Clear forms, notes, checklist items, and counts.
     clearStateDisplay();
     if (dashboardIssueCount) {
       dashboardIssueCount.textContent = "0";
     }
+
+    // Stop here if the user cleared the Contract State field.
     if (!selectedState) {
       if (contractStateBanner) {
         contractStateBanner.textContent = "Select a Contract State";
@@ -129,11 +252,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "Loading " + selectedState + " requirements...";
     }
 
+      // Load the state JSON without using a cached copy. Ex: data/NY.json
     try {
       const response = await fetch("data/" + selectedState + ".json", {
         cache: "no-store",
       });
 
+      // Treat an unsuccessful HTTP response as an error.
       if (!response.ok) {
         throw new Error(
           "Unable to load data/" +
@@ -143,10 +268,12 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       }
 
+      // Convert the JSON response into a JavaScript object.
       const stateData = await response.json();
 
       currentStateData = stateData;
 
+      // Send the loaded state data to each page-rendering function.
       console.log("Loaded state data:", stateData);
 
       renderStateBanner(stateData);
@@ -154,7 +281,9 @@ document.addEventListener("DOMContentLoaded", function () {
       renderSpecialNotes(stateData);
       renderReviewChecklist(stateData);
       updateStateDashboardCards();
-    } catch (error) {
+    }
+      //Display a user-friendly message if the file is missing, the JSON is invalid, or the request otherwise fails.
+    catch (error) {
       console.error("Unable to load state requirements:", error);
 
       if (contractStateBanner) {
@@ -171,6 +300,15 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
     }
   }
+
+  /* =======================================================
+    CLEAR PREVIOUS STATE DISPLAY
+     
+    Removes information from the previously selected state
+    and resets all state-related co*nts to zero.
+     
+    This runs before a new state JSON file is rendered
+    ===============================*======================= */
 
   function clearStateDisplay() {
     requiredFormsContainer.innerHTML = "";
@@ -207,6 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Resets the main dashboard when no Contract State is currently selected.
   function updateDashboardForNoState() {
     if (dashboardState) {
       dashboardState.textContent = "--";
@@ -226,6 +365,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+    /* =======================================
+     Displays the selected state's name in:
+
+    1. The State Requirements banner
+    2. The main dashboard State card
+
+    @param {Object} stateData loaded state JSON object.
+    ==========================================*/
+
   function renderStateBanner(stateData) {
     const displayName =
       stateData.displayName || stateData.state || contractState.value;
@@ -242,6 +390,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+    /* ====================================================
+    FIELD VALUE HELPER
+     
+    Return a standardized value from an HTML field.
+     
+    CHECKBOX:
+    Checked -> "yes"
+    Unchecked -> "no"
+
+    OTHER FIELD TYPES:
+    Returns the field's trimmed value.
+     
+    Missing fields return an empty stiing.
+    ====================================================== */
+
   function getFieldValue(fieldId) {
     const field = document.getElementById(fieldId);
 
@@ -255,6 +418,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return String(field.value).trim();
   }
+
+    /* =============================================
+     Creates one object containing the current Case Setup
+     selections used by the form-condition engine.
+
+    The property names must match the "field" values used
+    by conditions in the state JSON files.
+
+    @returns {Object} Current conditional case values.
+    ================================================= */
 
   function getCaseValues() {
     return {
@@ -282,27 +455,54 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
+
+    /* =======================================================
+    FORM CONDITION EVALUATOR
+     
+    Determines whether one state form applies to the
+    current case.
+     
+    If a form has no conditions, it automatically applies.
+     
+    Supported JSON operators:
+    - equals
+    - notEquals
+    - includes
+    - notIncludes
+     
+    All conditions must pass, this function uses Array.every().
+    ======================================================= */
+
   function formApplies(form, caseValues) {
+
+    // Forms without conditions are always applicable.
     if (!Array.isArray(form.conditions) || form.conditions.length === 0) {
       return true;
     }
 
+    // Every condition must be true for the form to apply
     return form.conditions.every(function (rule) {
       const actualValue = caseValues[rule.field];
 
       switch (rule.operator) {
+
+    // Case field must exactly match the JSON value.
         case "equals":
           return actualValue === rule.value;
 
+    // Case field must not match the JSON value.
         case "notEquals":
           return actualValue !== rule.value;
 
+    // Case field must appear in the JSON value array.
         case "includes":
           return Array.isArray(rule.value) && rule.value.includes(actualValue);
 
+     // Case field must not appear in the JSON value array.
         case "notIncludes":
           return Array.isArray(rule.value) && !rule.value.includes(actualValue);
 
+    // Unknown operators fail safely.
         default:
           console.warn("Unknown form condition:", rule);
 
@@ -311,32 +511,73 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  /* ====================================================
+    RENDER APPLICABLE S*ATE FORMS
+     
+    Filters and displays forms from the selected states JSON file.
+     
+    FILTER PROCESS:
+
+    1. Read all forms from stateData.forms.
+    2. Keep only forms with reviewRequired: true.
+    3* Apply the current Case Setup conditions.
+    4. Separate always-required and conditional forms.
+    5* Create an IGO/NIGO row for each applicable form.
+    6. Update dashsoard totals.
+    7. Notify amendment-engine.js that rows were created.
+    ==============================*======================== */
+
   function renderApplicableForms(stateData) {
+
+    // Remove previously generated form rows and headings.
     requiredFormsContainer.innerHTML = "";
 
+    // Safely retrieve the forms array from the state JSON.
     const allForms = Array.isArray(stateData.forms) ? stateData.forms : [];
 
+    // Keep only forms that require initial review.
     const reviewableForms = allForms.filter(function (form) {
       return form.reviewRequired === true;
     });
 
+    // Capture the user's current Case Setup selections.
     const caseValues = getCaseValues();
 
+    // Keep only the forms whose conditions currently pass.
     const applicableForms = reviewableForms.filter(function (form) {
       return formApplies(form, caseValues);
     });
 
+    // Forms without conditions apply to every applicable case.
     const alwaysRequiredForms = applicableForms.filter(function (form) {
       return !Array.isArray(form.conditions) || form.conditions.length === 0;
     });
 
+    // Forms with conditions apply only to certain cases.
     const conditionalForms = applicableForms.filter(function (form) {
+
       return Array.isArray(form.conditions) && form.conditions.length > 0;
     });
 
+      /* ================================================
+      Creates a heading inside the required forms container.
+
+      @param {string} text Heading to display.
+      ================================================== */
+
     addGroupHeading("Required for All Applicable Cases");
 
+
+
     if (alwaysRequiredForms.length === 0) {
+
+      /* ================================================
+      Displays a message when a form group has no matching
+      forms.
+
+      @param {string} text Message to display
+      ================================================== */
+
       addEmptyMessage("No always-required forms are configured.");
     } else {
       alwaysRequiredForms.forEach(function (form) {
@@ -360,10 +601,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateDashboard(stateData, applicableForms);
 
-    /*
-     * This tells amendment-engine.js that
-     * new NIGO panels have been created.
-     */
+    /* ================================================
+      Notify amendment-engine.js that new form rows and NIGO
+      panels now exist in the page.
+
+      The amendment engine can then initialize template
+      dropdowns and dynamic fields inside those panels.
+       ================================================== */
+
     document.dispatchEvent(
       new CustomEvent("stateFormsUpdated", {
         detail: {
@@ -394,11 +639,45 @@ document.addEventListener("DOMContentLoaded", function () {
     requiredFormsContainer.appendChild(message);
   }
 
+      /* =======================================================
+      CREATE REQUIRED FORM REVIEW ROW
+       
+      Creates one complete HTML row for a state form.
+       
+      EACH ROW CONTAINS:
+      - Form number
+      - Form description
+      - Required or Conditional badge
+      - IGO button
+      - NIGO button
+      - Hidden NIGO workspace
+      - Amendment template controls
+      - Saved amendments
+      - Generated amendment output
+      - Requirement template controls
+      - Generated requirement output
+       
+      The row starts with no review status.
+      Selecting NIGO opens its hidden NIGO workspace.
+       
+      @param {Object} form
+      Form information from the state JSON.
+       
+      @param {string} badgeText
+      Either "Always Required" or "Conditional".
+       
+      @returns {HTMLElement}
+      Completed required-form row.
+      ======================================================= */
+
   function createFormRow(form, badgeText) {
+
+    // Create the outer container for this form.
     const row = document.createElement("div");
 
     row.className = "required-form-row";
 
+    // Read the form's information with safe fallback values.
     const formId = form.form || "Unknown Form";
 
     const description = form.description || "";
@@ -407,13 +686,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const applicationForm = form.applicationForm || form.formType || "Part 1";
 
+    // Store form information directly on the HTML row. Other scripts can read these values using row.dataset
     row.dataset.formId = formId;
 
     row.dataset.formStatus = "";
 
     row.dataset.applicationForm = applicationForm;
 
-    row.innerHTML = `
+    /* ==============================================
+     NIGO ISSUE WORKSPACE
+
+     Hidden until the NIGO button is selected.
+    ============================================== */
+
+      row.innerHTML = `
+
+
       <div class="state-form-main">
 
         <div class="state-form-content">
@@ -724,7 +1012,7 @@ document.addEventListener("DOMContentLoaded", function () {
               ></textarea>
 
             </div>
-            
+
             <div
               class="generated-output-block"
             >

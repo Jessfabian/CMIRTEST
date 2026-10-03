@@ -1,917 +1,831 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+<!-- =====================================================
+					FULL INITIAL REVIEW WORKBENCH
+					Main review workflow for MMSD Initial Review Process
+					Connected Scripts:
+          stateLoader.js
+          amendment-engine.js
+          initial-review.js
+          review-output-package.js
+      ===================================================== -->
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Full Initial Review</title>
-    <link rel="stylesheet" href="styles.css" />
+	<!-- ============================================
+					PAGE METADATA & STYLES
+					Loads page title, viewport settings,
+					and main stylesheet.
+			============================================ -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Full Initial Review</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header class="top">
-        <div class="shell head"><a href="index.html">← Main Menu</a>
-            <div>
-                <p class="eyebrow">CASE MANAGER WORKBENCH</p>
-                <h1>Full Initial Review</h1>
-                <p>Guided checklist with connected requirement and amendment wording</p>
-            </div>
-        </div>
-    </header>
-
-
-    <main class="review-workspace">
-
-        <!-- HEADER -->
-
-        <div class="review-header">
-
-            <h1>Full Initial Review</h1>
-
-            <div class="progress-panel">
-
-                <div class="progress-label">
-                    Initial Review Progress
-                </div>
-
-                <div class="progress-bar">
-                    <div id="progressFill"></div>
-                </div>
-
-                <span id="progressText">
-                    0 of 0 steps complete
-                </span>
-
-            </div>
-
-        </div>
-        <!-- DASHBOARD STATUS STRIP -->
-
-        <section id="dashboardStrip" class="dashboard-strip">
-
-            <div class="dashboard-card">
-
-                <span class="dashboard-label">
-                    Contract State
-                </span>
-
-                <span id="dashboardState" class="dashboard-value">
-                    --
-                </span>
-
-            </div>
-
-            <div class="dashboard-card">
-
-                <span class="dashboard-label">
-                    Product
-                </span>
-
-                <span id="dashboardProduct" class="dashboard-value">
-                    --
-                </span>
-
-            </div>
-
-            <div class="dashboard-card">
-
-                <span class="dashboard-label">
-                    Applicable Forms
-                </span>
-
-                <span id="dashboardFormCount" class="dashboard-value">
-                    0
-                </span>
-
-            </div>
-
-            <div class="dashboard-card">
-
-                <span class="dashboard-label">
-                    Open Issues
-                </span>
-
-                <span id="dashboardIssueCount" class="dashboard-value danger">
-                    0
-                </span>
-
-            </div>
-
-        </section>
-        <!-- MAIN LAYOUT -->
-
-        <div class="review-layout">
-
-            <!-- LEFT SIDEBAR -->
-
-            <aside class="review-sidebar">
-
-                <button class="step-btn active">
-                    Case Setup
-                </button>
-
-                <button class="step-btn">
-                    State Requirements
-                </button>
-
-                <button class="step-btn">
-                    Application Review
-                </button>
-
-                <button class="step-btn">
-                    Requirements
-                </button>
-
-                <button class="step-btn">
-                    Amendments
-                </button>
-
-                <button class="step-btn">
-                    Email
-                </button>
-
-            </aside>
-
-            <!-- RIGHT CONTENT -->
-
-            <section id="reviewContent">
-
-                <section id="caseSetupSection" class="card case-setup-card">
-
-                    <div class="section-title-row">
-
-                        <div>
-                            <h2>MMSD INITIAL REVIEW</h2>
-                        </div>
-
-                        <span id="caseSetupStatus" class="setup-status">
-                            In Progress
-                        </span>
-
-                    </div>
-
-                    <!-- ROW 1 -->
-
-                    <div class="case-setup-grid-equal">
-
-                        <div class="case-field">
-                            <label for="policyNumber">
-                                Policy Number
-                            </label>
-
-                            <input id="policyNumber" type="text" autocomplete="off">
-                        </div>
-
-                        <div class="case-field">
-                            <label for="insuredName">
-                                Insured
-                            </label>
-
-                            <input id="insuredName" type="text" autocomplete="off">
-                        </div>
-
-                        <div class="case-field">
-                            <label for="contractState">
-                                Contract State
-                            </label>
-
-                            <select id="contractState">
-                                <option value="">Select State</option>
-                                <option value="NY">New York</option>
-                                <option value="CA">California</option>
-                                <option value="TX">Texas</option>
-                                <option value="FL">Florida</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="WA">Washington</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="CO">Colorado</option>
-                            </select>
-
-                        </div>
-
-                    </div>
-
-                    <BR>
-
-                    <div class="case-indicator-row">
-
-                        <label class="indicator-checkbox">
-                            <input type="checkbox" id="replacement">
-                            Replacement
-                        </label>
-
-                        <label class="indicator-checkbox">
-                            <input type="checkbox" id="tlirRequested">
-                            TLIR
-                        </label>
-
-                        <label class="indicator-checkbox">
-                            <input type="checkbox" id="additionalInsured">
-                            Additional Insured
-                        </label>
-
-                        <label class="indicator-checkbox">
-                            <input type="checkbox" id="internalTermReplacement">
-                            Internal Replacement
-                        </label>
-
-                    </div>
-
-                    <!-- ROW 2 -->
-
-                    <div class="case-setup-grid-equal">
-
-                        <div class="case-field">
-                            <label for="ownerType">
-                                Owner
-                            </label>
-
-                            <select id="ownerType">
-                                <option value="insured">Insured</option>
-                                <option value="otherIndividual">
-                                    Other Individual
-                                </option>
-                                <option value="trust">
-                                    Trust
-                                </option>
-                                <option value="business">
-                                    Business or Entity
-                                </option>
-                            </select>
-
-                        </div>
-
-                        <div class="case-field">
-                            <label for="beneficiaryOther">
-                                Beneficiary
-                            </label>
-
-                            <select id="beneficiaryOther">
-                                <option value="no">
-                                    Part 1 Beneficiary Information
-                                </option>
-                                <option value="yes">
-                                    E-2 Other Selected
-                                </option>
-                            </select>
-
-                        </div>
-
-                        <div class="case-field">
-                            <label for="purposeOfInsurance">
-                                Purpose of Insurance
-                            </label>
-
-                            <input id="purposeOfInsurance" type="text" placeholder="Enter the purpose of insurance"
-                                autocomplete="off">
-                        </div>
-
-                    </div>
-
-                    <!-- ROW 3 -->
-
-                    <div class="case-setup-grid-equal">
-
-                        <div class="case-field">
-                            <label for="riskClass">
-                                Risk Class
-                            </label>
-
-                            <select id="riskClass">
-
-                                <option value="">
-                                    Select Risk Class
-                                </option>
-
-                                <option value="Ultra Preferred Non-Tobacco">
-                                    Ultra Preferred Non-Tobacco
-                                </option>
-
-                                <option value="Select Preferred Non-Tobacco/Preferred Non-Smoker">
-                                    Select Preferred Non-Tobacco/Preferred Non-Smoker
-                                </option>
-
-                                <option value="Standard Non-Tobacco/Juvenile">
-                                    Standard Non-Tobacco/Juvenile
-                                </option>
-
-                                <option value="Select Preferred Tobacco">
-                                    Select Preferred Tobacco
-                                </option>
-
-                                <option value="Tobacco">
-                                    Tobacco
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                        <div class="case-field">
-                            <label for="policyDating">
-                                Policy Dating
-                            </label>
-
-                            <select id="policyDating">
-                                <option value="">
-                                    Select Policy Dating
-                                </option>
-
-                                <option value="saveAge">
-                                    Save Age
-                                </option>
-
-                                <option value="currentDate">
-                                    Current Date
-                                </option>
-
-                                <option value="specificDate">
-                                    Specific Date
-                                </option>
-                            </select>
-
-                        </div>
-                        <div class="case-field">
-                            <label for="polarisCheck">
-                                Polaris Check
-                            </label>
-
-                            <select id="polarisCheck">
-
-                                <option value="">
-                                    Select Status
-                                </option>
-
-                                <option value="notApplicable">
-                                    Not Applicable
-                                </option>
-
-                                <option value="completedClear">
-                                    Completed, Clear
-                                </option>
-
-                                <option value="completedMatch">
-                                    Completed, Match Found
-                                </option>
-
-                                <option value="pending">
-                                    Pending
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-                    <div class="case-field">
-                        <label for="illustrationStatus">
-                            Signed Illustration as Applied For?
-                        </label>
-
-                        <select id="illustrationStatus">
-
-                            <option value="">
-                                Select
-                            </option>
-
-                            <option value="yes">
-                                Yes
-                            </option>
-
-                            <option value="no">
-                                No
-                            </option>
-
-                            <option value="notReceived">
-                                Not Received
-                            </option>
-
-                        </select>
-
-                        <small id="illustrationGuidance" class="field-guidance">
-                        </small>
-
-                    </div>
-
-        </div>
-
-        </section>
-
-        <!-- SAVE AGE CONDITIONAL FIELDS -->
-
-        <div id="saveAgeFields" class="save-age-panel" hidden>
-
-            <div class="save-age-heading">
-                <div>
-                    <h3>Save Age Calculator</h3>
-
-                    <p>
-                        Enter the insured's birth month and day and the
-                        Part 1 signature date.
-                    </p>
-                </div>
-            </div>
-
-            <div id="saveAgeEligibilityWarning" class="save-age-alert" hidden>
-            </div>
-
-            <div class="save-age-grid">
-
-                <div class="case-field">
-                    <label for="birthMonth">
-                        Birth Month
-                    </label>
-
-                    <select id="birthMonth">
-                        <option value="">Select Month</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-
-                <div class="case-field">
-                    <label for="birthDay">
-                        Birth Day
-                    </label>
-                    <select id="birthDay">
-                        <option value="">Select Day</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
-                </div>
-
-                <div class="case-field">
-                    <label for="part1SignDate">
-                        Part 1 Sign Date
-                    </label>
-
-                    <input id="part1SignDate" type="date">
-                </div>
-
-                <div class="case-field">
-                    <label for="saveAge1035">
-                        1035 Exchange
-                    </label>
-
-                    <select id="saveAge1035">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
-                    </select>
-                </div>
-
-                <div class="case-field">
-                    <label for="saveAgeDate">
-                        Calculated Save Age Date
-                    </label>
-
-                    <input id="saveAgeDate" type="text" readonly placeholder="Calculated automatically">
-                </div>
-
-                <div class="case-field">
-                    <label for="saveAgeEligibility">
-                        Eligibility
-                    </label>
-
-                    <input id="saveAgeEligibility" type="text" readonly placeholder="Calculated automatically">
-                </div>
-
-            </div>
-
-            <div class="save-age-results">
-
-                <div>
-                    <span class="save-age-result-label">
-                        Age Changes After
-                    </span>
-
-                    <strong id="ageChangeDate">
-                        --
-                    </strong>
-                </div>
-
-                <div>
-                    <span class="save-age-result-label">
-                        Backdating Duration
-                    </span>
-
-                    <strong id="saveAgeDuration">
-                        --
-                    </strong>
-                </div>
-
-                <div>
-                    <span class="save-age-result-label">
-                        Processing Guidance
-                    </span>
-
-                    <strong id="saveAgeGuidance">
-                        Enter the Save Age information.
-                    </strong>
-                </div>
-
-            </div>
-
-            <p id="saveAgeMessage" class="save-age-message">
-                Enter the insured's birth month and day and the Part 1
-                signature date.
-            </p>
-
-        </div>
-
-        <!-- SPECIFIC DATE CONDITIONAL FIELD -->
-
-        <div id="specificDateFields" class="save-age-panel" hidden>
-
-            <div class="case-field">
-                <label for="specificPolicyDate">
-                    Requested Policy Date
-                </label>
-
-                <input id="specificPolicyDate" type="date">
-            </div>
-
-        </div>
-
-
-
-        </section>
-
-        <!-- COLLAPSIBLE STATE REQUIREMENTS -->
-
-        <details id="stateRequirements" class="card collapsible-card" open>
-
-            <summary class="collapsible-summary">
-
-                <span class="summary-heading">
-
-                    <span class="summary-icon" aria-hidden="true">
-
-                    </span>
-
-                    <span>
-                        <span class="summary-title">
-                            State Requirements
-                        </span>
-
-                        <span id="stateRequirementSummary" class="summary-subtitle">
-                            Select a Contract State
-                        </span>
-                    </span>
-
-                </span>
-
-                <span class="collapse-indicator" aria-hidden="true">
-                    ▼
-                </span>
-
-            </summary>
-
-            <div class="collapsible-content">
-
-                <div id="contractStateBanner" class="state-banner">
-                    Select a Contract State
-                </div>
-
-                <!-- STATE DASHBOARD -->
-
-                <div class="state-dashboard">
-
-                    <div class="state-stat-card">
-                        <span>Required Forms</span>
-                        <strong id="requiredFormCountCard">0</strong>
-                    </div>
-
-                    <div class="state-stat-card">
-                        <span>Reviewed</span>
-                        <strong id="reviewedFormCountCard">0</strong>
-                    </div>
-
-                    <div class="state-stat-card">
-                        <span>Remaining</span>
-                        <strong id="remainingFormCountCard">0</strong>
-                    </div>
-
-                    <div class="state-stat-card">
-                        <span>Special Notes</span>
-                        <strong id="specialNoteCountCard">0</strong>
-                    </div>
-
-                </div>
-
-                <!-- REQUIRED FORMS -->
-
-                <section class="state-subsection">
-
-                    <div class="subsection-heading">
-
-                        <span id="applicableFormCount" class="section-count">
-                            0 forms
-                        </span>
-
-                    </div>
-
-                    <div id="requiredForms"></div>
-
-                </section>
-
-                <details class="state-subsection">
-
-                    
-
-                    <summary class="state-collapse-summary">
-
-                        <span>
-                            Special Notes
-                        </span>
-
-                        <span id="specialNoteCount" class="section-count note-count">
-                            0 notes
-                        </span>
-
-                    </summary>
-
-                    <div class="collapsible-inner">
-
-                        <div id="specialNotes"></div>
-
-                    </div>
-
-                </details>
-
-                <details class="state-subsection">
-
-                    <summary class="state-collapse-summary">
-
-                        <span>
-                            Initial Review Checklist
-                        </span>
-
-                    </summary>
-
-                    <div class="collapsible-inner">
-
-                        <div id="reviewChecklist"></div>
-
-                    </div>
-
-                </details>
-
-            </div>
-
-        </details>
-
-
-
-        <!-- APPLICATION REVIEW -->
-
-        <section id="applicationReview" class="card">
-            <h2>Application Review</h2>
-        </section>
-
-        <!-- REQUIREMENTS -->
-
-        <section id="requirementsSection" class="card">
-            <h2>Contractual Requirements</h2>
-            <div id="requirementList"></div>
-        </section>
-
-        <!-- AMENDMENTS -->
-
-        <section id="amendmentsSection" class="card">
-            <h2>Amendments Applied</h2>
-            <div id="amendmentList"></div>
-        </section>
-
-        <!-- REVIEW OUTPUT PACKAGE -->
-
-        <section id="reviewOutputPackage" class="card review-output-package">
-
-            <div class="review-output-header">
-
-                <div>
-                    <p class="section-eyebrow">
-                        FINAL DELIVERABLES
-                    </p>
-
-                    <h2>Review Output Package</h2>
-
-                    <p class="section-description">
-                        Generated amendments and agency requirements
-                        from all NIGO forms are collected here.
-                    </p>
-                </div>
-
-                <span id="reviewOutputStatus" class="setup-status">
-                    No Outputs
-                </span>
-
-            </div>
-
-            <div class="review-output-summary">
-
-                <div class="output-summary-card">
-                    <span>Amendments</span>
-
-                    <strong id="compiledAmendmentCount">
-                        0
-                    </strong>
-                </div>
-
-                <div class="output-summary-card">
-                    <span>Requirements</span>
-
-                    <strong id="compiledRequirementCount">
-                        0
-                    </strong>
-                </div>
-
-                <div class="output-summary-card">
-                    <span>Total Outputs</span>
-
-                    <strong id="compiledTotalCount">
-                        0
-                    </strong>
-                </div>
-
-            </div>
-            <div class="compiled-output-grid">
-                <!-- COMPILED AMENDMENTS -->
-
-                <details id="compiledAmendmentsDetails" class="compiled-output-section" open>
-
-                    <summary class="compiled-output-summary">
-
-                        <span>
-                            Generated Policy Amendments
-                        </span>
-
-                        <span id="compiledAmendmentBadge" class="section-count">
-                            0 amendments
-                        </span>
-
-                    </summary>
-
-                    <div class="compiled-output-content">
-
-                        <div class="compiled-output-actions">
-
-                            <button type="button" id="copyAllAmendments" class="secondary-button" disabled>
-                                Copy All
-                            </button>
-
-                        </div>
-
-                        <textarea id="compiledAmendments" class="compiled-output-textarea" rows="10" readonly
-                            placeholder="Generated policy amendments will appear here."></textarea>
-
-                    </div>
-
-                </details>
-
-                <!-- COMPILED REQUIREMENTS -->
-
-                <details id="compiledRequirementsDetails" class="compiled-output-section" open>
-
-                    <summary class="compiled-output-summary">
-
-                        <span>
-                            Generated Agency Requirements
-                        </span>
-
-                        <span id="compiledRequirementBadge" class="section-count">
-                            0 requirements
-                        </span>
-
-                    </summary>
-
-                    <div class="compiled-output-content">
-
-                        <div class="compiled-output-actions">
-
-                            <button type="button" id="copyAllRequirements" class="secondary-button" disabled>
-                                Copy All
-                            </button>
-
-                        </div>
-
-                        <textarea id="compiledRequirements" class="compiled-output-textarea" rows="10" readonly
-                            placeholder="Generated agency requirements will appear here."></textarea>
-
-                    </div>
-
-                </details>
-            </div>
-
-            <p id="reviewOutputCopyStatus" class="copy-status" aria-live="polite"></p>
-            <!-- AUTO GENERATED NOTES -->
-
-            <section class="generated-notes-section">
-
-                <div class="generated-notes-header">
-
-                    <div>
-                        <p class="section-eyebrow">
-                            COPY-READY
-                        </p>
-
-                        <h3>Initial Review Notes</h3>
-
-                        <p>
-                            Notes update automatically based on Case Setup.
-                        </p>
-                    </div>
-
-                    <button type="button" id="copyInitialReviewNotes" class="primary-button">
-                        Copy Notes
-                    </button>
-
-                </div>
-
-                <textarea id="initialReviewNotes" class="initial-review-notes" readonly></textarea>
-
-                <p id="initialReviewNotesStatus" class="copy-status" aria-live="polite">
-                </p>
-
-            </section>
-        </section>
-
-
-
-        <!-- EMAIL -->
-
-        <section id="emailSection" class="card">
-
-            <h2>Initial Review Email</h2>
-
-            <textarea id="emailOutput"></textarea>
-
-            <button id="generateEmail">
-                Generate Email
-            </button>
-
-            <button id="copyEmail">
-                Copy Email
-            </button>
-
-        </section>
-
-        </section>
-
-        </div>
-
-    </main>
-
-    <script src="scripts/stateLoader.js"></script>
-    <script src="scripts/amendment-engine.js"></script>
-    <script src="scripts/initial-review.js"></script>
-    <script src="scripts/library.js"></script>
-    <script src="review-output-package.js"></script>
-</body>
-<footer>
-    By:Jessie Fabian ©2026 Massachusetts Mutual Life Insurance Company (MassMutual®), Springfield, MA 01111-0001. All
-    rights reserved.
-</footer>
+	<!-- ============================================
+					GLOBAL PAGE HEADER
+					Back navigation and page branding
+				============================================ -->
+
+	<body>
+
+		<header class="top">
+			<div class="shell head"><a href="index.html">← Main Menu</a>
+				<div>
+					<p class="eyebrow">CASE MANAGER WORKBENCH</p>
+					<h1>Full Initial Review</h1>
+					<p>Guided checklist with connected requirement and amendment wording</p>
+				</div>
+			</div>
+		</header>
+		<!-- =====================================================
+					MAIN REVIEW WORKSPACE
+					Contains all sections of the Full Initial Review.
+			  ===================================================== -->
+		<main class="review-workspace">
+			<!-- =====================================================
+					REVIEW HEADER
+					Displays review title and completion progress.
+					JS Updates:
+          progressFill
+          progressText
+          ===================================================== -->
+			<div class="review-header">
+				<h1>Full Initial Review</h1>
+				<div class="progress-panel">
+					<div class="progress-label">
+						Initial Review Progress
+					</div>
+					<div class="progress-bar">
+						<div id="progressFill"></div>
+					</div>
+					<span id="progressText">
+						0 of 0 steps complete
+					</span>
+				</div>
+			</div>
+			<!-- =====================================================
+					 CASE DASHBOARD
+					 Real-time case summary:
+           Contract State
+           Product
+           Applicable Forms
+           Open Issues
+					 Updated by:
+					 stateLoader.js
+					 initial-review.js
+			     ===================================================== -->
+			<section id="dashboardStrip" class="dashboard-strip">
+				<div class="dashboard-card">
+					<span class="dashboard-label">
+						Contract State
+					</span>
+					<span id="dashboardState" class="dashboard-value">
+						--
+					</span>
+				</div>
+				<div class="dashboard-card">
+					<span class="dashboard-label">
+						Product
+					</span>
+					<span id="dashboardProduct" class="dashboard-value">
+						--
+					</span>
+				</div>
+				<div class="dashboard-card">
+					<span class="dashboard-label">
+						Applicable Forms
+					</span>
+					<span id="dashboardFormCount" class="dashboard-value">
+						0
+					</span>
+				</div>
+				<div class="dashboard-card">
+					<span class="dashboard-label">
+						Open Issues
+					</span>
+					<span id="dashboardIssueCount" class="dashboard-value danger">
+						0
+					</span>
+				</div>
+			</section>
+			<!-- MAIN LAYOUT -->
+			<div class="review-layout">
+				<!-- =====================================================
+						 REVIEW STEP NAVIGATION
+						 Acts as workflow menu.
+						 Allows users to jump between:
+            Case Setup
+            State Requirements
+            Application Review
+            Requirements
+            Amendments
+            Email
+            ===================================================== -->
+				<aside class="review-sidebar">
+					<button class="step-btn active">
+						Case Setup
+					</button>
+					<button class="step-btn">
+						State Requirements
+					</button>
+					<button class="step-btn">
+						Application Review
+					</button>
+					<button class="step-btn">
+						Requirements
+					</button>
+					<button class="step-btn">
+						Amendments
+					</button>
+					<button class="step-btn">
+						Email
+					</button>
+				</aside>
+				<!-- =====================================================
+						 CASE SETUP SECTION
+						 Captures:
+            Policy Information
+            Insured Information
+            Contract State
+            Ownership Details
+            Risk Class
+            Policy Dating
+                        Drives:
+            Initial Review Notes
+            State Requirements
+            Dashboard Values
+            ===================================================== -->
+				<section id="caseSetupSection" <section id="reviewContent">
+					<section id="caseSetupSection" class="card case-setup-card">
+						<div class="section-title-row">
+							<div>
+								<h2>MMSD INITIAL REVIEW</h2>
+							</div>
+							<span id="caseSetupStatus" class="setup-status">
+								In Progress
+							</span>
+						</div>
+						<!-- =====================================================
+								 CASE SETUP ROW 1
+								 Core policy identification information
+						===================================================== -->
+						<div class="case-setup-grid-equal">
+							<div class="case-field">
+								<label for="policyNumber">
+									Policy Number
+								</label>
+								<input id="policyNumber" type="text" autocomplete="off">
+							</div>
+							<div class="case-field">
+								<label for="insuredName">
+									Insured
+								</label>
+								<input id="insuredName" type="text" autocomplete="off">
+							</div>
+							<div class="case-field">
+								<label for="contractState">
+									Contract State
+								</label>
+								<select id="contractState">
+									<option value="">Select State</option>
+									<option value="NY">New York</option>
+									<option value="CA">California</option>
+									<option value="TX">Texas</option>
+									<option value="FL">Florida</option>
+									<option value="PA">Pennsylvania</option>
+									<option value="WA">Washington</option>
+									<option value="NJ">New Jersey</option>
+									<option value="MA">Massachusetts</option>
+									<option value="CT">Connecticut</option>
+									<option value="CO">Colorado</option>
+								</select>
+							</div>
+						</div>
+						<BR>
+						<div class="case-indicator-row">
+							<label class="indicator-checkbox">
+								<input type="checkbox" id="replacement">
+								Replacement
+							</label>
+							<label class="indicator-checkbox">
+								<input type="checkbox" id="tlirRequested">
+								TLIR
+							</label>
+							<label class="indicator-checkbox">
+								<input type="checkbox" id="additionalInsured">
+								Additional Insured
+							</label>
+							<label class="indicator-checkbox">
+								<input type="checkbox" id="internalTermReplacement">
+								Internal Replacement
+							</label>
+						</div>
+						<!-- =====================================================
+								 CASE SETUP ROW 2
+								 Ownership, Beneficiary and Insurance Purpose
+						===================================================== -->
+						<div class="case-setup-grid-equal">
+							<div class="case-field">
+								<label for="ownerType">
+									Owner
+								</label>
+								<select id="ownerType">
+									<option value="insured">Insured</option>
+									<option value="otherIndividual">
+										Other Individual
+									</option>
+									<option value="trust">
+										Trust
+									</option>
+									<option value="business">
+										Business or Entity
+									</option>
+								</select>
+							</div>
+							<div class="case-field">
+								<label for="beneficiaryOther">
+									Beneficiary
+								</label>
+								<select id="beneficiaryOther">
+									<option value="no">
+										Part 1 Beneficiary Information
+									</option>
+									<option value="yes">
+										E-2 Other Selected
+									</option>
+								</select>
+							</div>
+							<div class="case-field">
+								<label for="purposeOfInsurance">
+									Purpose of Insurance
+								</label>
+								<input id="purposeOfInsurance" type="text" placeholder="Enter the purpose of insurance"
+									autocomplete="off">
+							</div>
+						</div>
+						<!-- =====================================================
+								 CASE SETUP ROW 3
+								 Risk Class, Policy Dating and Polaris Status
+						===================================================== -->
+						<div class="case-setup-grid-equal">
+							<div class="case-field">
+								<label for="riskClass">
+									Risk Class
+								</label>
+								<select id="riskClass">
+									<option value="">
+										Select Risk Class
+									</option>
+									<option value="Ultra Preferred Non-Tobacco">
+										Ultra Preferred Non-Tobacco
+									</option>
+									<option value="Select Preferred Non-Tobacco/Preferred Non-Smoker">
+										Select Preferred Non-Tobacco/Preferred Non-Smoker
+									</option>
+									<option value="Standard Non-Tobacco/Juvenile">
+										Standard Non-Tobacco/Juvenile
+									</option>
+									<option value="Select Preferred Tobacco">
+										Select Preferred Tobacco
+									</option>
+									<option value="Tobacco">
+										Tobacco
+									</option>
+								</select>
+							</div>
+							<div class="case-field">
+								<label for="policyDating">
+									Policy Dating
+								</label>
+								<select id="policyDating">
+									<option value="">
+										Select Policy Dating
+									</option>
+									<option value="saveAge">
+										Save Age
+									</option>
+									<option value="currentDate">
+										Current Date
+									</option>
+									<option value="specificDate">
+										Specific Date
+									</option>
+								</select>
+							</div>
+							<div class="case-field">
+								<label for="polarisCheck">
+									Polaris Check
+								</label>
+								<select id="polarisCheck">
+									<option value="">
+										Select Status
+									</option>
+									<option value="notApplicable">
+										Not Applicable
+									</option>
+									<option value="completedClear">
+										Completed, Clear
+									</option>
+									<option value="completedMatch">
+										Completed, Match Found
+									</option>
+									<option value="pending">
+										Pending
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="case-field">
+							<label for="illustrationStatus">
+								Signed Illustration as Applied For?
+							</label>
+							<select id="illustrationStatus">
+								<option value="">
+									Select
+								</option>
+								<option value="yes">
+									Yes
+								</option>
+								<option value="no">
+									No
+								</option>
+								<option value="notReceived">
+									Not Received
+								</option>
+							</select>
+							<small id="illustrationGuidance" class="field-guidance">
+							</small>
+						</div>
+			</div>
+			</section>
+			<!-- =====================================================
+					 SAVE AGE CALCULATOR
+					 Displayed Only When:
+					 Policy Dating = Save Age
+					 Calculates:
+Eligibility
+Save Age Date
+Backdating Duration
+Processing Guidance
+					 Controlled By:
+					 initial-review.js
+			===================================================== -->
+			<div id="saveAgeFields" class="save-age-panel" hidden>
+				<div class="save-age-heading">
+					<div>
+						<h3>Save Age Calculator</h3>
+						<p>
+							Enter the insured's birth month and day and the
+							Part 1 signature date.
+						</p>
+					</div>
+				</div>
+				<div id="saveAgeEligibilityWarning" class="save-age-alert" hidden>
+				</div>
+				<div class="save-age-grid">
+					<div class="case-field">
+						<label for="birthMonth">
+							Birth Month
+						</label>
+						<select id="birthMonth">
+							<option value="">Select Month</option>
+							<option value="1">January</option>
+							<option value="2">February</option>
+							<option value="3">March</option>
+							<option value="4">April</option>
+							<option value="5">May</option>
+							<option value="6">June</option>
+							<option value="7">July</option>
+							<option value="8">August</option>
+							<option value="9">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</div>
+					<div class="case-field">
+						<label for="birthDay">
+							Birth Day
+						</label>
+						<select id="birthDay">
+							<option value="">Select Day</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+					</div>
+					<div class="case-field">
+						<label for="part1SignDate">
+							Part 1 Sign Date
+						</label>
+						<input id="part1SignDate" type="date">
+					</div>
+					<div class="case-field">
+						<label for="saveAge1035">
+							1035 Exchange
+						</label>
+						<select id="saveAge1035">
+							<option value="no">No</option>
+							<option value="yes">Yes</option>
+						</select>
+					</div>
+					<div class="case-field">
+						<label for="saveAgeDate">
+							Calculated Save Age Date
+						</label>
+						<input id="saveAgeDate" type="text" readonly placeholder="Calculated automatically">
+					</div>
+					<div class="case-field">
+						<label for="saveAgeEligibility">
+							Eligibility
+						</label>
+						<input id="saveAgeEligibility" type="text" readonly placeholder="Calculated automatically">
+					</div>
+				</div>
+				<div class="save-age-results">
+					<div>
+						<span class="save-age-result-label">
+							Age Changes After
+						</span>
+						<strong id="ageChangeDate">
+							--
+						</strong>
+					</div>
+					<div>
+						<span class="save-age-result-label">
+							Backdating Duration
+						</span>
+						<strong id="saveAgeDuration">
+							--
+						</strong>
+					</div>
+					<div>
+						<span class="save-age-result-label">
+							Processing Guidance
+						</span>
+						<strong id="saveAgeGuidance">
+							Enter the Save Age information.
+						</strong>
+					</div>
+				</div>
+				<p id="saveAgeMessage" class="save-age-message">
+					Enter the insured's birth month and day and the Part 1
+					signature date.
+				</p>
+			</div>
+			<!-- =====================================================
+					 SPECIFIC POLICY DATE
+					 Displayed Only When:
+					 Policy Dating = Specific Date
+			===================================================== -->
+			<div id="specificDateFields" class="save-age-panel" hidden>
+				<div class="case-field">
+					<label for="specificPolicyDate">
+						Requested Policy Date
+					</label>
+					<input id="specificPolicyDate" type="date">
+				</div>
+			</div>
+
+			</section>
+			<!-- =====================================================
+											 STATE REQUIREMENTS
+											 Dynamically loaded from:
+									/states/[STATE].json
+											 Contains:
+Required Forms
+Special Notes
+Review Checklist
+											 Controlled By:
+											 stateLoader.js
+									===================================================== -->
+			<details id="stateRequirements" class="card collapsible-card" open>
+				<summary class="collapsible-summary">
+					<span class="summary-heading">
+						<span class="summary-icon" aria-hidden="true">
+						</span>
+						<span>
+							<span class="summary-title">
+								State Requirements
+							</span>
+							<span id="stateRequirementSummary" class="summary-subtitle">
+								Select a Contract State
+							</span>
+						</span>
+					</span>
+					<span class="collapse-indicator" aria-hidden="true">
+						▼
+					</span>
+				</summary>
+				<div class="collapsible-content">
+					<div id="contractStateBanner" class="state-banner">
+						Select a Contract State
+					</div>
+					<!-- =====================================================
+						 STATE REQUIREMENT SUMMARY
+						 Displays:
+Required Form Count
+Reviewed Form Count
+Remaining Forms
+Special Notes Count
+===================================================== -->
+					<div class="state-dashboard">
+						<div class="state-stat-card">
+							<span>Required Forms</span>
+							<strong id="requiredFormCountCard">0</strong>
+						</div>
+						<div class="state-stat-card">
+							<span>Reviewed</span>
+							<strong id="reviewedFormCountCard">0</strong>
+						</div>
+						<div class="state-stat-card">
+							<span>Remaining</span>
+							<strong id="remainingFormCountCard">0</strong>
+						</div>
+						<div class="state-stat-card">
+							<span>Special Notes</span>
+							<strong id="specialNoteCountCard">0</strong>
+						</div>
+					</div>
+					<!-- =====================================================
+							 DYNAMIC REQUIRED FORMS LIST
+							 Generated from selected state JSON.
+							 Target Container:
+							 #requiredForms
+					===================================================== -->
+					<section class="state-subsection">
+						<div class="subsection-heading">
+							<span id="applicableFormCount" class="section-count">
+								0 forms
+							</span>
+						</div>
+						<div id="requiredForms"></div>
+					</section>
+					<details class="state-subsection">
+
+						<summary class="state-collapse-summary">
+							<span>
+								Special Notes
+							</span>
+							<span id="specialNoteCount" class="section-count note-count">
+								0 notes
+							</span>
+						</summary>
+						<div class="collapsible-inner">
+							<div id="specialNotes"></div>
+						</div>
+					</details>
+					<details class="state-subsection">
+						<summary class="state-collapse-summary">
+							<span>
+								Initial Review Checklist
+							</span>
+						</summary>
+						<div class="collapsible-inner">
+							<div id="reviewChecklist"></div>
+						</div>
+					</details>
+				</div>
+			</details>
+
+			<!-- =====================================================
+					 APPLICATION REVIEW
+					 Main NIGO Review Area
+					 Form review panels are dynamically
+					 injected here.
+					 Supports:
+Questions
+NIGO Tracking
+Amendment Generation
+Requirement Generation
+===================================================== -->
+			<section id="applicationReview" class="card">
+				<h2>Application Review</h2>
+			</section>
+			<!-- =====================================================
+					 GENERATED REQUIREMENTS
+					 Displays all contractual requirements
+					 generated during review.
+			===================================================== -->
+			<section id="requirementsSection" class="card">
+				<h2>Contractual Requirements</h2>
+				<div id="requirementList"></div>
+			</section>
+			<!-- =====================================================
+					 GENERATED AMENDMENTS
+					 Displays all amendments generated
+					 during application review.
+			===================================================== -->
+			<section id="amendmentsSection" class="card">
+				<h2>Amendments Applied</h2>
+				<div id="amendmentList"></div>
+			</section>
+			<!-- =====================================================
+				 REVIEW OUTPUT PACKAGE
+				 Final compiled review deliverables.
+				 Collects:
+All generated amendments
+All generated requirements
+				 Provides:
+Copy All functionality
+Final review counts
+Initial Review Notes
+				 Controlled By:
+				 review-output-package.js
+		===================================================== -->
+			<section id="reviewOutputPackage" class="card review-output-package">
+				<div class="review-output-header">
+					<div>
+						<p class="section-eyebrow">
+							FINAL DELIVERABLES
+						</p>
+						<h2>Review Output Package</h2>
+						<p class="section-description">
+							Generated amendments and agency requirements
+							from all NIGO forms are collected here.
+						</p>
+					</div>
+					<span id="reviewOutputStatus" class="setup-status">
+						No Outputs
+					</span>
+				</div>
+				<div class="review-output-summary">
+					<div class="output-summary-card">
+						<span>Amendments</span>
+						<strong id="compiledAmendmentCount">
+							0
+						</strong>
+					</div>
+					<div class="output-summary-card">
+						<span>Requirements</span>
+						<strong id="compiledRequirementCount">
+							0
+						</strong>
+					</div>
+					<div class="output-summary-card">
+						<span>Total Outputs</span>
+						<strong id="compiledTotalCount">
+							0
+						</strong>
+					</div>
+				</div>
+				<div class="compiled-output-grid">
+					<!-- =====================================================
+							 COMPILED POLICY AMENDMENTS
+							 Aggregates all amendment output
+							 from every reviewed form.
+							 Copy Ready
+					===================================================== -->
+					<details id="compiledAmendmentsDetails" class="compiled-output-section" open>
+						<summary class="compiled-output-summary">
+							<span>
+								Generated Policy Amendments
+							</span>
+							<span id="compiledAmendmentBadge" class="section-count">
+								0 amendments
+							</span>
+						</summary>
+						<div class="compiled-output-content">
+							<div class="compiled-output-actions">
+								<button type="button" id="copyAllAmendments" class="secondary-button" disabled>
+									Copy All
+								</button>
+							</div>
+							<textarea id="compiledAmendments" class="compiled-output-textarea" rows="10" readonly
+								placeholder="Generated policy amendments will appear here."></textarea>
+						</div>
+					</details>
+					<!-- =====================================================
+							 COMPILED AGENCY REQUIREMENTS
+							 Aggregates all requirement output
+							 from every reviewed form.
+							 Copy Ready
+					===================================================== -->
+					<details id="compiledRequirementsDetails" class="compiled-output-section" open>
+						<summary class="compiled-output-summary">
+							<span>
+								Generated Agency Requirements
+							</span>
+							<span id="compiledRequirementBadge" class="section-count">
+								0 requirements
+							</span>
+						</summary>
+						<div class="compiled-output-content">
+							<div class="compiled-output-actions">
+								<button type="button" id="copyAllRequirements" class="secondary-button" disabled>
+									Copy All
+								</button>
+							</div>
+							<textarea id="compiledRequirements" class="compiled-output-textarea" rows="10" readonly
+								placeholder="Generated agency requirements will appear here."></textarea>
+						</div>
+					</details>
+				</div>
+				<p id="reviewOutputCopyStatus" class="copy-status" aria-live="polite"></p>
+				<!-- =====================================================
+						 AUTO-GENERATED INITIAL REVIEW NOTES
+						 Created from:
+Case Setup selections
+State selections
+Policy Dating selections
+						 Designed for:
+						 MMSD Workbench Notes
+				===================================================== -->
+				<section class="generated-notes-section">
+					<div class="generated-notes-header">
+						<div>
+							<p class="section-eyebrow">
+								COPY-READY
+							</p>
+							<h3>Initial Review Notes</h3>
+							<p>
+								Notes update automatically based on Case Setup.
+							</p>
+						</div>
+						<button type="button" id="copyInitialReviewNotes" class="primary-button">
+							Copy Notes
+						</button>
+					</div>
+					<textarea id="initialReviewNotes" class="initial-review-notes" readonly></textarea>
+					<p id="initialReviewNotesStatus" class="copy-status" aria-live="polite">
+					</p>
+				</section>
+			</section>
+			<!-- =====================================================
+INITIAL REVIEW EMAIL GENERATOR
+Produces agency-facing review email.
+Features:
+Generate Email
+Copy Email
+Output Target:
+#emailOutput
+===================================================== -->
+			<section id="emailSection" class="card">
+				<h2>Initial Review Email</h2>
+				<textarea id="emailOutput"></textarea>
+				<button id="generateEmail">
+					Generate Email
+				</button>
+				<button id="copyEmail">
+					Copy Email
+				</button>
+			</section>
+			</section>
+			</div>
+		</main>
+		<!-- =====================================================
+SCRIPT LOAD ORDER
+stateLoader.js
+Loads state JSON requirements.
+amendment-engine.js
+Handles amendment and requirement generation.
+initial-review.js
+Controls page behavior and calculations.
+library.js
+Shared utility functions.
+review-output-package.js
+Compiles final review outputs.
+===================================================== -->
+		<script src="scripts/stateLoader.js"></script>
+		<script src="scripts/amendment-engine.js"></script>
+		<script src="scripts/initial-review.js"></script>
+		<script src="scripts/library.js"></script>
+		<script src="review-output-package.js"></script>
+	</body>
+	<footer>
+		By:Jessie Fabian ©2026 Massachusetts Mutual Life Insurance Company (MassMutual®), Springfield, MA 01111-0001.
+		All
+		rights reserved.
+	</footer>
 
 </html>
