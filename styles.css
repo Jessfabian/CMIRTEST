@@ -26,7 +26,11 @@
 * {
   box-sizing: border-box;
 }
+
+html,
 body {
+width: 100%;
+overflow-x: hidden;
   background: var(--page-bg);
   color: var(--text-dark);
 
@@ -215,6 +219,8 @@ label {
 input,
 select,
 textarea {
+  max-width: 100%;
+width: 100%;
   width: 100%;
   margin-top: 7px;
   padding: 10px 11px;
@@ -235,12 +241,15 @@ textarea {
   line-height: 1.55;
 }
 .buttons {
+
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
   margin-top: 15px;
 }
 button {
+  max-width: 100%;
+width: 100%;
   padding: 10px 14px;
   border: 0;
   border-radius: 10px;
@@ -1950,4 +1959,106 @@ textarea.amendment-field-input {
   border-top: 1px solid #dce5ed;
 
   margin: 16px 0;
+}
+
+@media (max-width: 1024px) {
+
+    .review-layout {
+        flex-direction: column;
+    }
+
+    .review-sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .step-btn {
+        flex: 1 1 150px;
+    }
+
+    #reviewContent {
+        width: 100%;
+    }
+
+    .nigo-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .compiled-output-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .review-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .progress-panel {
+        width: 100%;
+    }
+
+    .dashboard-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .case-setup-grid-equal {
+        grid-template-columns: 1fr;
+    }
+
+    .save-age-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .state-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .review-output-summary {
+        grid-template-columns: 1fr;
+    }
+
+    textarea {
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .dashboard-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .state-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .form-status-actions {
+        flex-direction: column;
+    }
+
+    .saved-amendment-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .delete-amendment {
+        width: 100%;
+    }
+
+    .form-status-button,
+    .secondary-button,
+    .primary-button {
+        width: 100%;
+    }
+}
+
+.form-status-button,
+.secondary-button,
+.primary-button {
+    width: auto;
 }
