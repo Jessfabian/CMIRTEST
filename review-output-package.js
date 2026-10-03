@@ -59,22 +59,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const results = [];
 
     getFormRows().forEach(function (row) {
-      const output = row.querySelector(".generated-amendment");
-
-      const text = cleanText(output ? output.value : "");
-
-      if (!text) {
-        return;
-      }
-
       const form = getFormInformation(row);
 
-      results.push({
-        formId: form.formId,
+      const panel = row.querySelector(".form-nigo-panel");
 
-        description: form.description,
+      const amendments = JSON.parse(panel?.dataset.amendments || "[]");
 
-        text: text,
+      amendments.forEach(function (amendment) {
+        results.push({
+          formId: form.formId,
+
+          description: form.description,
+
+          text: amendment.wording,
+        });
       });
     });
 

@@ -411,8 +411,8 @@
           ".";
       }
 
-    buildAmendmentFields(panel);
-    generateOutputs(panel);
+      buildAmendmentFields(panel);
+      generateOutputs(panel);
     } else if (status) {
       status.textContent =
         "No automatic mapping found. " + "Select the applicable template.";
@@ -804,6 +804,202 @@
     }
   }
 
+ function getSavedAmendments(panel) {
+   if (!panel) {
+     return [];
+   }
+
+   try {
+     return JSON.parse(panel.dataset.amendments || "[]");
+   } catch (error) {
+     console.error("Unable to read saved amendments:", error);
+
+     return [];
+   }
+ }
+
+ function saveSavedAmendments(panel, amendments) {
+   panel.dataset.amendments = JSON.stringify(amendments);
+ }
+
+ function saveCurrentAmendment(panel) {
+   if (!panel) {
+     return;
+   }
+
+   const questionInput = panel.querySelector(".amendment-question");
+
+   const question = questionInput ? questionInput.value.trim() : "";
+
+   const templateDropdown = panel.querySelector(".amendment-template");
+
+   const templateKey = templateDropdown ? templateDropdown.value : "";
+
+   if (!question) {
+     window.alert("Enter the question or section before adding the amendment.");
+
+     if (questionInput) {
+       questionInput.focus();
+     }
+
+     return;
+   }
+
+   if (!templateKey) {
+     window.alert("Select an amendment template before adding the amendment.");
+
+     if (templateDropdown) {
+       templateDropdown.focus();
+     }
+
+     return;
+   }
+
+   const wording = generateAmendment(panel).trim();
+
+   if (!wording) {
+     window.alert("Complete the amendment fields before adding the amendment.");
+
+     return;
+   }
+
+   const amendments = getSavedAmendments(panel);
+
+   amendments.push({
+     question: question,
+     formName: getFormName(panel),
+     templateKey: templateKey,
+     wording: wording,
+   });
+
+   saveSavedAmendments(panel, amendments);
+
+   renderSavedAmendments(panel);
+   clearAmendmentEntry(panel);
+
+   document.dispatchEvent(
+     new CustomEvent("savedAmendmentsUpdated", {
+       detail: {
+         panel: panel,
+         count: amendments.length,
+       },
+     }),
+   );
+ }
+
+ function renderSavedAmendments(panel) {
+   const container = panel.querySelector(".saved-amendment-list");
+
+   if (!container) {
+     return;
+   }
+
+   const amendments = getSavedAmendments(panel);
+
+   container.innerHTML = "";
+
+   amendments.forEach(function (amendment, index) {
+     const savedRow = document.createElement("div");
+
+     savedRow.className = "saved-amendment-row";
+
+     const savedText = document.createElement("div");
+
+     savedText.className = "saved-amendment-text";
+
+     const questionLabel = document.createElement("strong");
+
+     questionLabel.textContent = amendment.question
+       ? "Question " + amendment.question
+       : "Saved Amendment";
+
+     const wordingPreview = document.createElement("span");
+
+     wordingPreview.textContent = amendment.wording;
+
+     const removeButton = document.createElement("button");
+
+     removeButton.type = "button";
+
+     removeButton.className = "delete-amendment";
+
+     removeButton.dataset.index = String(index);
+
+     removeButton.textContent = "Remove";
+
+     savedText.appendChild(questionLabel);
+
+     savedText.appendChild(wordingPreview);
+
+     savedRow.appendChild(savedText);
+
+     savedRow.appendChild(removeButton);
+
+     container.appendChild(savedRow);
+   });
+ }
+
+ function removeSavedAmendment(panel, index) {
+   const amendments = getSavedAmendments(panel);
+
+   if (!Number.isInteger(index) || index < 0 || index >= amendments.length) {
+     return;
+   }
+
+   amendments.splice(index, 1);
+
+   saveSavedAmendments(panel, amendments);
+
+   renderSavedAmendments(panel);
+
+   document.dispatchEvent(
+     new CustomEvent("savedAmendmentsUpdated", {
+       detail: {
+         panel: panel,
+         count: amendments.length,
+       },
+     }),
+   );
+ }
+
+ function clearAmendmentEntry(panel) {
+   const questionInput = panel.querySelector(".amendment-question");
+
+   if (questionInput) {
+     questionInput.value = "";
+   }
+
+   const templateDropdown = panel.querySelector(".amendment-template");
+
+   if (templateDropdown) {
+     templateDropdown.value = "";
+   }
+
+   const dynamicContainer = panel.querySelector(".amendment-dynamic-fields");
+
+   if (dynamicContainer) {
+     dynamicContainer.innerHTML = "";
+   }
+
+   const amendmentOutput = panel.querySelector(".generated-amendment");
+
+   if (amendmentOutput) {
+     amendmentOutput.value = "";
+
+     amendmentOutput.placeholder = "Select an amendment template.";
+   }
+
+   const status = panel.querySelector(".amendment-template-status");
+
+   if (status) {
+     status.textContent =
+       Object.keys(amendmentTemplates).length + " templates available.";
+   }
+
+   if (questionInput) {
+     questionInput.focus();
+   }
+ }
   function showEngineError(message) {
     document.querySelectorAll(".form-nigo-panel").forEach(function (panel) {
       const status = panel.querySelector(".amendment-template-status");
@@ -906,7 +1102,27 @@
 
     generateOutputs(panel);
   });
+document.addEventListener("click", function (event) {
+  const saveButton = event.target.closest(".save-amendment");
 
+  if (saveButton) {
+    const panel = saveButton.closest(".form-nigo-panel");
+
+    saveCurrentAmendment(panel);
+
+    return;
+  }
+
+  const deleteButton = event.target.closest(".delete-amendment");
+
+  if (deleteButton) {
+    const panel = deleteButton.closest(".form-nigo-panel");
+
+    const index = Number(deleteButton.dataset.index);
+
+    removeSavedAmendment(panel, index);
+  }
+});
   function startEngine() {
     loadEngineData();
   }

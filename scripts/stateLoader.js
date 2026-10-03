@@ -111,9 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
     currentStateData = null;
 
     clearStateDisplay();
-if (dashboardIssueCount) {
-  dashboardIssueCount.textContent = "0";
-}
+    if (dashboardIssueCount) {
+      dashboardIssueCount.textContent = "0";
+    }
     if (!selectedState) {
       if (contractStateBanner) {
         contractStateBanner.textContent = "Select a Contract State";
@@ -601,81 +601,86 @@ if (dashboardIssueCount) {
             </div>
 
             <div class="case-field">
+<hr class="amendment-divider">
+  <label>
+    Amendment Template
+  </label>
 
-              <label>
-                Amendment Template
-              </label>
+  <select
+    class="amendment-template"
+  >
 
-              <select
-                class="amendment-template"
-              >
+    <option value="">
+      Loading templates...
+    </option>
 
-                <option value="">
-                  Loading templates...
-                </option>
+  </select>
 
-              </select>
+  <small
+    class="amendment-template-status"
+    aria-live="polite"
+  >
+    Amendment templates are loading.
+  </small>
 
-              <small
-                class="amendment-template-status"
-                aria-live="polite"
-              >
-                Amendment templates are loading.
-              </small>
+</div>
 
-            </div>
+<div
+  class="amendment-dynamic-fields"
+></div>
 
-            <div
-              class="amendment-dynamic-fields"
-            ></div>
+<div class="saved-amendments">
 
-            <div
-              class="generated-output-block"
-            >
+    <label>
+        Saved Amendments
+    </label>
 
-              <label>
-                Generated Amendment
-              </label>
+    <div class="saved-amendment-list">
+    </div>
 
-              <textarea
-                class="generated-amendment"
-                rows="6"
-                readonly
-                placeholder="The generated amendment will appear here."
-              ></textarea>
+    <button
+        type="button"
+        class="secondary-button save-amendment"
+    >
+        Add Amendment
+    </button>
 
-              <button
-                type="button"
-                class="secondary-button"
-                data-copy-output="amendment"
-              >
-                Copy Amendment
-              </button>
+</div>
 
-            </div>
+<div
+    class="generated-output-block"
+>
 
-          </section>
+    <label>
+        Generated Amendment
+    </label>
 
-          <!-- RIGHT COLUMN: AGENCY REQUIREMENT -->
+    <textarea
+        class="generated-amendment"
+        rows="6"
+        readonly
+        placeholder="The generated amendment will appear here."
+    ></textarea>
 
-          <section
-            class="nigo-workspace-column requirement-column"
-          >
+    <button
+        type="button"
+        class="secondary-button"
+        data-copy-output="amendment"
+    >
+        Copy Amendment
+    </button>
 
-            <div class="nigo-column-heading">
+</div>
 
-              <h4>
-                Agency Requirement
-              </h4>
+</section>
 
-              <p>
-                Generate the request that will
-                be sent to the agency or firm.
-              </p>
+<!-- RIGHT COLUMN: AGENCY REQUIREMENT -->
 
-            </div>
+<section
+    class="nigo-workspace-column requirement-column"
+>
 
-            <div class="case-field">
+<div class="case-field">
 
               <label>
                 Requirement Template
@@ -719,7 +724,7 @@ if (dashboardIssueCount) {
               ></textarea>
 
             </div>
-
+            
             <div
               class="generated-output-block"
             >
@@ -901,13 +906,13 @@ if (dashboardIssueCount) {
     ).length;
 
     const remainingForms = Math.max(totalForms - reviewedForms, 0);
-const openIssues = requiredFormsContainer.querySelectorAll(
-  '.required-form-row[data-form-status="nigo"]',
-).length;
+    const openIssues = requiredFormsContainer.querySelectorAll(
+      '.required-form-row[data-form-status="nigo"]',
+    ).length;
 
-if (dashboardIssueCount) {
-  dashboardIssueCount.textContent = String(openIssues);
-}
+    if (dashboardIssueCount) {
+      dashboardIssueCount.textContent = String(openIssues);
+    }
     const totalNotes = specialNotesContainer
       ? specialNotesContainer.querySelectorAll(".warning-note").length
       : 0;

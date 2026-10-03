@@ -580,7 +580,7 @@
 
         <!-- COLLAPSIBLE STATE REQUIREMENTS -->
 
-        <details id="stateRequirements" class="card collapsible-card">
+        <details id="stateRequirements" class="card collapsible-card" open>
 
             <summary class="collapsible-summary">
 
@@ -658,6 +658,8 @@
 
                 <details class="state-subsection">
 
+                    
+
                     <summary class="state-collapse-summary">
 
                         <span>
@@ -723,159 +725,159 @@
         </section>
 
         <!-- REVIEW OUTPUT PACKAGE -->
-        
+
         <section id="reviewOutputPackage" class="card review-output-package">
-        
+
             <div class="review-output-header">
-        
+
                 <div>
                     <p class="section-eyebrow">
                         FINAL DELIVERABLES
                     </p>
-        
+
                     <h2>Review Output Package</h2>
-        
+
                     <p class="section-description">
                         Generated amendments and agency requirements
                         from all NIGO forms are collected here.
                     </p>
                 </div>
-        
+
                 <span id="reviewOutputStatus" class="setup-status">
                     No Outputs
                 </span>
-        
+
             </div>
-        
+
             <div class="review-output-summary">
-        
+
                 <div class="output-summary-card">
                     <span>Amendments</span>
-        
+
                     <strong id="compiledAmendmentCount">
                         0
                     </strong>
                 </div>
-        
+
                 <div class="output-summary-card">
                     <span>Requirements</span>
-        
+
                     <strong id="compiledRequirementCount">
                         0
                     </strong>
                 </div>
-        
+
                 <div class="output-summary-card">
                     <span>Total Outputs</span>
-        
+
                     <strong id="compiledTotalCount">
                         0
                     </strong>
                 </div>
-        
+
             </div>
-        <div class="compiled-output-grid"></div>
-            <!-- COMPILED AMENDMENTS -->
-        
-            <details id="compiledAmendmentsDetails" class="compiled-output-section" open>
-        
-                <summary class="compiled-output-summary">
-        
-                    <span>
-                        Generated Policy Amendments
-                    </span>
-        
-                    <span id="compiledAmendmentBadge" class="section-count">
-                        0 amendments
-                    </span>
-        
-                </summary>
-        
-                <div class="compiled-output-content">
-        
-                    <div class="compiled-output-actions">
-        
-                        <button type="button" id="copyAllAmendments" class="secondary-button" disabled>
-                            Copy All Amendments
-                        </button>
-        
+            <div class="compiled-output-grid">
+                <!-- COMPILED AMENDMENTS -->
+
+                <details id="compiledAmendmentsDetails" class="compiled-output-section" open>
+
+                    <summary class="compiled-output-summary">
+
+                        <span>
+                            Generated Policy Amendments
+                        </span>
+
+                        <span id="compiledAmendmentBadge" class="section-count">
+                            0 amendments
+                        </span>
+
+                    </summary>
+
+                    <div class="compiled-output-content">
+
+                        <div class="compiled-output-actions">
+
+                            <button type="button" id="copyAllAmendments" class="secondary-button" disabled>
+                                Copy All
+                            </button>
+
+                        </div>
+
+                        <textarea id="compiledAmendments" class="compiled-output-textarea" rows="10" readonly
+                            placeholder="Generated policy amendments will appear here."></textarea>
+
                     </div>
-        
-                    <textarea id="compiledAmendments" class="compiled-output-textarea" rows="10" readonly
-                        placeholder="Generated policy amendments will appear here."></textarea>
-        
-                </div>
-        
-            </details>
-        
-            <!-- COMPILED REQUIREMENTS -->
-        
-            <details id="compiledRequirementsDetails" class="compiled-output-section" open>
-        
-                <summary class="compiled-output-summary">
-        
-                    <span>
-                        Generated Agency Requirements
-                    </span>
-        
-                    <span id="compiledRequirementBadge" class="section-count">
-                        0 requirements
-                    </span>
-        
-                </summary>
-        
-                <div class="compiled-output-content">
-        
-                    <div class="compiled-output-actions">
-        
-                        <button type="button" id="copyAllRequirements" class="secondary-button" disabled>
-                            Copy All Requirements
-                        </button>
-        
+
+                </details>
+
+                <!-- COMPILED REQUIREMENTS -->
+
+                <details id="compiledRequirementsDetails" class="compiled-output-section" open>
+
+                    <summary class="compiled-output-summary">
+
+                        <span>
+                            Generated Agency Requirements
+                        </span>
+
+                        <span id="compiledRequirementBadge" class="section-count">
+                            0 requirements
+                        </span>
+
+                    </summary>
+
+                    <div class="compiled-output-content">
+
+                        <div class="compiled-output-actions">
+
+                            <button type="button" id="copyAllRequirements" class="secondary-button" disabled>
+                                Copy All
+                            </button>
+
+                        </div>
+
+                        <textarea id="compiledRequirements" class="compiled-output-textarea" rows="10" readonly
+                            placeholder="Generated agency requirements will appear here."></textarea>
+
                     </div>
-        
-                    <textarea id="compiledRequirements" class="compiled-output-textarea" rows="10" readonly
-                        placeholder="Generated agency requirements will appear here."></textarea>
-        
-                </div>
-        
-            </details>
+
+                </details>
             </div>
-        
+
             <p id="reviewOutputCopyStatus" class="copy-status" aria-live="polite"></p>
-        
-        </section>
+            <!-- AUTO GENERATED NOTES -->
 
-        <!-- AUTO GENERATED NOTES -->
+            <section class="generated-notes-section">
 
-        <section class="generated-notes-section">
+                <div class="generated-notes-header">
 
-            <div class="generated-notes-header">
+                    <div>
+                        <p class="section-eyebrow">
+                            COPY-READY
+                        </p>
 
-                <div>
-                    <p class="section-eyebrow">
-                        COPY-READY
-                    </p>
+                        <h3>Initial Review Notes</h3>
 
-                    <h3>Initial Review Notes</h3>
+                        <p>
+                            Notes update automatically based on Case Setup.
+                        </p>
+                    </div>
 
-                    <p>
-                        Notes update automatically based on Case Setup.
-                    </p>
+                    <button type="button" id="copyInitialReviewNotes" class="primary-button">
+                        Copy Notes
+                    </button>
+
                 </div>
 
-                <button type="button" id="copyInitialReviewNotes" class="primary-button">
-                    Copy Notes
-                </button>
+                <textarea id="initialReviewNotes" class="initial-review-notes" readonly></textarea>
 
-            </div>
+                <p id="initialReviewNotesStatus" class="copy-status" aria-live="polite">
+                </p>
 
-            <textarea id="initialReviewNotes" class="initial-review-notes" readonly></textarea>
-
-            <p id="initialReviewNotesStatus" class="copy-status" aria-live="polite">
-            </p>
-
+            </section>
         </section>
+
+
 
         <!-- EMAIL -->
 
@@ -905,7 +907,11 @@
     <script src="scripts/amendment-engine.js"></script>
     <script src="scripts/initial-review.js"></script>
     <script src="scripts/library.js"></script>
-    <script src=""></script>
+    <script src="review-output-package.js"></script>
 </body>
+<footer>
+    By:Jessie Fabian ©2026 Massachusetts Mutual Life Insurance Company (MassMutual®), Springfield, MA 01111-0001. All
+    rights reserved.
+</footer>
 
 </html>
