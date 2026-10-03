@@ -105,20 +105,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return results;
   }
 
-  function formatCompiledItems(items, label) {
+  function formatCompiledItems(items) {
     if (items.length === 0) {
       return "";
     }
 
     return items
-      .map(function (item, index) {
-        const heading = item.description
-          ? item.formId + " | " + item.description
-          : item.formId;
-
-        return label + " " + (index + 1) + "\n" + heading + "\n\n" + item.text;
+      .map(function (item) {
+        return item.text;
       })
-      .join("\n\n" + "----------------------------------------" + "\n\n");
+      .join("\n");
   }
 
   function updateOutputReadiness() {
@@ -144,12 +140,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const requirements = collectGeneratedRequirements();
 
-    const amendmentText = formatCompiledItems(amendments, "POLICY AMENDMENT");
+    const amendmentText =
+  formatCompiledItems(amendments);
 
-    const requirementText = formatCompiledItems(
-      requirements,
-      "AGENCY REQUIREMENT",
-    );
+const requirementText =
+  formatCompiledItems(requirements);
 
     if (compiledAmendments) {
       compiledAmendments.value = amendmentText;

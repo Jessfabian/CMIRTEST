@@ -887,57 +887,49 @@
    );
  }
 
- function renderSavedAmendments(panel) {
-   const container = panel.querySelector(".saved-amendment-list");
+function renderSavedAmendments(panel) {
+  const container = panel.querySelector(".saved-amendment-list");
 
-   if (!container) {
-     return;
-   }
+  if (!container) {
+    return;
+  }
 
-   const amendments = getSavedAmendments(panel);
+  const amendments = getSavedAmendments(panel);
 
-   container.innerHTML = "";
+  container.innerHTML = "";
 
-   amendments.forEach(function (amendment, index) {
-     const savedRow = document.createElement("div");
+  amendments.forEach(function (amendment, index) {
+    const savedRow = document.createElement("div");
 
-     savedRow.className = "saved-amendment-row";
+    savedRow.className = "saved-amendment-row";
 
-     const savedText = document.createElement("div");
+    const savedText = document.createElement("div");
 
-     savedText.className = "saved-amendment-text";
+    savedText.className = "saved-amendment-text";
 
-     const questionLabel = document.createElement("strong");
+    const wordingPreview = document.createElement("span");
 
-     questionLabel.textContent = amendment.question
-       ? "Question " + amendment.question
-       : "Saved Amendment";
+    wordingPreview.textContent = amendment.wording;
 
-     const wordingPreview = document.createElement("span");
+    const removeButton = document.createElement("button");
 
-     wordingPreview.textContent = amendment.wording;
+    removeButton.type = "button";
 
-     const removeButton = document.createElement("button");
+    removeButton.className = "delete-amendment";
 
-     removeButton.type = "button";
+    removeButton.dataset.index = String(index);
 
-     removeButton.className = "delete-amendment";
+    removeButton.textContent = "Remove";
 
-     removeButton.dataset.index = String(index);
+    savedText.appendChild(wordingPreview);
 
-     removeButton.textContent = "Remove";
+    savedRow.appendChild(savedText);
 
-     savedText.appendChild(questionLabel);
+    savedRow.appendChild(removeButton);
 
-     savedText.appendChild(wordingPreview);
-
-     savedRow.appendChild(savedText);
-
-     savedRow.appendChild(removeButton);
-
-     container.appendChild(savedRow);
-   });
- }
+    container.appendChild(savedRow);
+  });
+}
 
  function removeSavedAmendment(panel, index) {
    const amendments = getSavedAmendments(panel);
@@ -1103,25 +1095,44 @@
     generateOutputs(panel);
   });
 document.addEventListener("click", function (event) {
-  const saveButton = event.target.closest(".save-amendment");
+
+  const saveButton =
+    event.target.closest(".save-amendment");
 
   if (saveButton) {
-    const panel = saveButton.closest(".form-nigo-panel");
+
+    const panel =
+      saveButton.closest(
+        ".form-nigo-panel"
+      );
 
     saveCurrentAmendment(panel);
 
     return;
   }
 
-  const deleteButton = event.target.closest(".delete-amendment");
+  const deleteButton =
+    event.target.closest(
+      ".delete-amendment"
+    );
 
   if (deleteButton) {
-    const panel = deleteButton.closest(".form-nigo-panel");
 
-    const index = Number(deleteButton.dataset.index);
+    const panel =
+      deleteButton.closest(
+        ".form-nigo-panel"
+      );
 
-    removeSavedAmendment(panel, index);
+    const index = Number(
+      deleteButton.dataset.index
+    );
+
+    removeSavedAmendment(
+      panel,
+      index
+    );
   }
+
 });
   function startEngine() {
     loadEngineData();
