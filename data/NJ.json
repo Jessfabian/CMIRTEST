@@ -1,0 +1,246 @@
+{
+  "state": "NY",
+  "displayName": "New York",
+
+  "reviewProcesses": {
+    "reg74": true,
+    "reg187": true,
+    "replacementReview": true,
+    "suitabilityReview": true
+  },
+
+  "specialNotes": [
+    "Signed matching illustration required",
+    "FR2361 required for all cases",
+    "F5500NY is not acceptable",
+    "Preliminary Information Sales Presentation required",
+    "F6512 required for replacement cases",
+    "Trust Certificate must use F6734NY",
+    "FR1126NY required for Internal Term-to-Term replacements",
+    "N201-NY-399 required for Variable Life applications",
+    "F3669 required for New York Variable Life applications"
+  ],
+
+  "forms": [
+    {
+      "form": "A2000NY",
+      "description": "Application for Individual Life Insurance Part 1",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "All Cases"
+    },
+    {
+      "form": "FR2361",
+      "description": "Authorization of Proposed Insured to Obtain and Disclose Information",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "All Cases"
+    },
+    {
+      "form": "F8186GEN",
+      "description": "HIPAA Authorization",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "All Cases"
+    },
+    {
+      "form": "FR3120",
+      "description": "Producer Statement",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "All Cases"
+    },
+    {
+      "form": "N201NY",
+      "description": "HIV Consent Form",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "All Cases"
+    },
+    {
+      "form": "FR2282",
+      "description": "Life Products Suitability Questionnaire",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Owner is not a business and not an irrevocable trust using trust assets"
+    },
+    {
+      "form": "FR2193",
+      "description": "Source of Funds Questionnaire",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Career Agent or MMLIS fiduciary rule cases"
+    },
+
+    {
+      "form": "A50NY",
+      "description": "Application Part 2",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Medical underwriting required"
+    },
+
+    {
+      "form": "F6484",
+      "description": "Replacement Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Replacement Cases"
+    },
+
+    {
+      "form": "F6512",
+      "description": "NY Regulation 60 Pre-Sale Disclosure",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Replacement Cases"
+    },
+
+    {
+      "form": "F5159NY",
+      "description": "Beneficiary Designation Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "E2 Other Selected"
+    },
+
+    {
+      "form": "F5248NY",
+      "description": "Owner Designation Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Other Ownership Arrangement"
+    },
+
+    {
+      "form": "F6445",
+      "description": "Pre-Authorized Check Authorization",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "PAC or EFT Billing"
+    },
+
+    {
+      "form": "R20NY",
+      "description": "Temporary Life Insurance Receipt",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Premium Submitted With Application"
+    },
+
+    {
+      "form": "F6734NY",
+      "description": "New York Trust Certificate",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Trust Owner"
+    },
+
+    {
+      "form": "FR2089NY",
+      "description": "Conversion and Insurability Option Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Conversion or IPR Cases"
+    },
+
+    {
+      "form": "A1001NY",
+      "description": "Additional Insured Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Additional Insured Requested"
+    },
+
+    {
+      "form": "A1002P-NY",
+      "description": "Application for Simplified Conversion",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Conversion Case"
+    },
+
+    {
+      "form": "A1500P-NY",
+      "description": "CareChoice Application",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "CareChoice Case"
+    },
+
+    {
+      "form": "LTCR-NY",
+      "description": "LTC Access Rider Package",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "LTCR Elected"
+    },
+
+    {
+      "form": "F6290NY-US",
+      "description": "Foreign Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Foreign Travel Residency Or Activity"
+    },
+
+    {
+      "form": "FR2118",
+      "description": "Long Term Care Personal Worksheet",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "LTCR or CareChoice Case"
+    },
+
+    {
+      "form": "N201-NY-399",
+      "description": "Minimum Death Benefit Disclosure",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Variable Life Applications"
+    },
+
+    {
+      "form": "F3669",
+      "description": "Supplement To Application For Variable Life Insurance",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Variable Life Applications"
+    },
+
+    {
+      "form": "FR1126NY",
+      "description": "Internal Term To Term Replacement Authorization",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Internal Term To Term Replacement Requested"
+    }
+  ],
+
+  "campirTriggers": [
+    "Place Of Birth Unknown",
+    "PO Box Address",
+    "Trust Owner",
+    "Entity Owner",
+    "Group Bill",
+    "Alternate Policy",
+    "Premium Financing",
+    "Loan Carryover",
+    "Sales Illustration",
+    "Employee Sponsored Plan",
+    "Viatical",
+    "SPIA",
+    "Beneficiary Dollar Amounts",
+    "Unadmitted Replacement",
+    "Source Of Funds Review"
+  ],
+
+  "generalNoteFields": [
+    "Purpose Of Insurance",
+    "Risk Class",
+    "Policy Dating",
+    "Illustration",
+    "Alternate Additional",
+    "Polaris Check"
+  ]
+}

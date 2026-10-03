@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verbiage Only</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="top">
+    <div class="shell head"><a href="index.html">← Main Menu</a>
+      <div>
+        <p class="eyebrow">CASE MANAGER WORKBENCH</p>
+        <h1>Verbiage Only</h1>
+        <p>Requirement and amendment generator</p>
+      </div>
+    </div>
+  </header>
+  <main class="shell app">
+    <section class="card">
+      <h2>Case Information</h2>
+      <div class="grid four"><label>Insured Name<input id="insured"></label><label>Policy Number<input
+            id="policy"></label><label>Communication<select id="comm">
+            <option>Initial Review</option>
+            <option>Interim Review</option>
+            <option>Contractual Follow-Up</option>
+            <option>Requirements Only</option>
+          </select></label><label>Contract State<input id="state" maxlength="2"></label></div>
+    </section>
+    <div class="split">
+      <div>
+        <section class="card">
+          <h2>Add Requirement</h2>
+          <div class="grid two"><label>Category<select id="category"></select></label><label>Issue<select
+                id="issue"></select></label></div>
+          <div class="grid three"><label>Question / Form / Item<input id="item"></label><label>Application / Current
+              Value<input id="value1"></label><label>Correct / Illustration Value<input id="value2"></label></div>
+          <label>Additional Detail<textarea id="detail" rows="3"></textarea></label>
+          <div class="buttons"><button id="addReq">Add Requirement</button><button class="secondary"
+              id="removeReq">Remove Last</button><button class="quiet" id="clearReq">Clear</button></div>
+        </section>
+        <section class="card">
+          <h2>Add Amendment</h2>
+          <div class="grid two"><label>Amendment Type<select id="amendType"></select></label><label>Question /
+              Section<input id="amendItem"></label></div><label>Correct Wording / Value<textarea id="amendValue"
+              rows="3"></textarea></label>
+          <div class="buttons"><button id="addAmend">Add Amendment</button><button class="secondary"
+              id="removeAmend">Remove Last</button><button class="quiet" id="clearAmend">Clear</button></div>
+        </section>
+      </div>
+      <aside class="sticky">
+        <section class="card">
+          <h2>Requirements Added <span id="count" class="badge">0</span></h2>
+          <ol id="reqList" class="list">
+            <li class="empty">No requirements added yet.</li>
+          </ol>
+        </section>
+        <section class="card">
+          <h2>Generated Email</h2><textarea id="output" class="output"></textarea>
+          <div class="buttons"><button id="generate">Generate Email</button><button class="secondary" id="copy">Copy
+              Email</button><button class="quiet" id="clearOutput">Clear</button></div>
+          <p id="copyStatus" class="status"></p>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <script src="scripts/library.js"></script>
+  <script src="scripts/verbiage.js"></script>
+</body>
+
+</html>
