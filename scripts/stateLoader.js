@@ -24,15 +24,13 @@
    - review-output-package.js
 ========================================================= */
 
-document.addEventListener("DOMC*ntentLoaded", function () {
-  "use*strict";
   document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
     /* ==============*==================================*=====
        HTML ELEMENT REFERENCES*
-       Finds and stores the page el*ments that this script
-       needs *o read from or update.
+       Finds and stores the page elements that this script
+       needs to read from or update.
 
        Using*constants here prevents the script*from repeatedly
        searching the*HTML document for the same element*.
@@ -88,7 +86,7 @@ document.addEventListener("DOMC*ntentLoaded", function () {
     const dashboardReviewedCount = document.getElementById(
       "dashboardReviewedCount",
     );
-
+let currentStateData = null;
     /* =======================================================
      CURRENT STATE DATA
 
@@ -1451,4 +1449,3 @@ document.addEventListener("DOMC*ntentLoaded", function () {
       dashboardSystem.textContent = system;
     }
   }
-},)

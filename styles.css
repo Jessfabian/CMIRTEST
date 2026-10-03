@@ -181,7 +181,7 @@ footer {
   padding: 20px 0;
 }
 
-.head>a {
+.head > a {
   padding: 10px 13px;
   border: 1px solid #ffffff44;
   border-radius: 10px;
@@ -527,7 +527,7 @@ dialog::backdrop {
   border-color: #eed09a;
 }
 
-.warning>b {
+.warning > b {
   display: grid;
   place-items: center;
   flex: 0 0 34px;
@@ -543,7 +543,6 @@ dialog::backdrop {
 }
 
 @media (max-width: 900px) {
-
   .cards,
   .split,
   .review-layout,
@@ -570,7 +569,6 @@ dialog::backdrop {
 }
 
 @media (max-width: 600px) {
-
   .grid.two,
   .grid.three,
   .grid.four {
@@ -1036,8 +1034,7 @@ dialog::backdrop {
 .case-setup-grid {
   display: grid;
 
-  grid-template-columns:
-    220px 1fr 180px;
+  grid-template-columns: 220px 1fr 180px;
 
   gap: 16px;
 
@@ -1190,7 +1187,6 @@ dialog::backdrop {
 }
 
 @media (max-width: 900px) {
-
   .case-setup-grid,
   .save-age-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1198,7 +1194,6 @@ dialog::backdrop {
 }
 
 @media (max-width: 620px) {
-
   .case-setup-grid,
   .save-age-grid {
     grid-template-columns: 1fr;
@@ -1378,7 +1373,7 @@ dialog::backdrop {
   margin-top: 16px;
 }
 
-.save-age-results>div {
+.save-age-results > div {
   padding: 14px;
 
   background: #ffffff;
@@ -1593,8 +1588,7 @@ textarea.amendment-field-input {
 .nigo-workspace {
   display: grid;
 
-  grid-template-columns:
-    minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
   align-items: start;
   margin-top: 16px;
@@ -1626,27 +1620,20 @@ textarea.amendment-field-input {
 
 .case-indicator-row {
   display: flex;
-
   gap: 28px;
-
   align-items: center;
-
   margin-bottom: 18px;
-
   padding: 10px 14px;
-
   background: #f5f8fc;
-
   border: 1px solid #d6dee8;
-
   border-radius: 10px;
+}
 
-  @media (max-width: 768px) {
-    .case-indicator-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
+@media (max-width: 768px) {
+  .case-indicator-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
 
@@ -1654,16 +1641,15 @@ textarea.amendment-field-input {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-
   color: var(--mm-blue);
   font-size: 13px;
   font-weight: 700;
+}
 
-  .indicator-checkbox input {
-    width: 16px;
-    height: 16px;
-    margin: 0;
-  }
+.indicator-checkbox input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
 }
 
 .indicator-checkbox input {
@@ -1676,6 +1662,17 @@ textarea.amendment-field-input {
   display: grid;
   grid-template-columns: 220px 1fr 180px;
   gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .case-setup-grid-top,
+  .case-setup-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-setup-secondary {
+    grid-template-columns: 1fr;
+  }
 }
 
 .case-indicator-row h4 {
