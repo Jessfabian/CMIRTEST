@@ -13,7 +13,7 @@ window.formReviewStatus = {};
          cache: "no-store",
        });
 
-       console.log("Loading state:", response.url);
+      console.log("Loading state:", `./data/States/${stateCode}.json`);
 
        console.log("Status:", response.status);
 
@@ -87,7 +87,7 @@ window.formReviewStatus = {};
 
     container.hidden = false;
   }
- 
+
 
 
 
