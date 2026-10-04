@@ -17,11 +17,11 @@ document
   });
 
 console.log("STATE LOADER LOADED");
-() => {
-  "use strict";
 
-  const STATE_PATH = "./data/states";
-  const stateCache = new Map();
+"use strict";
+
+const STATE_PATH = "./data/states";
+const stateCache = new Map();
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -123,23 +123,9 @@ console.log("STATE LOADER LOADED");
     container.hidden = false;
   }
   window.loadStateData = loadStateData;
-  window.initializeStateLoader = initializeStateLoader;
-};
-document
-  .getElementById("contractState")
-  .addEventListener("change", async (e) => {
-    const stateCode = e.target.value;
+  
 
-    if (!stateCode) return;
 
-    const stateData = await fetch(`./data/states/${stateCode}.json`).then((r) =>
-      r.json(),
-    );
-
-    window.currentStateData = stateData;
-
-    renderStateGuidance(stateData);
-  });
 
 const FORM_LABELS = {
   additionalInsured: "Additional Insured Supplement",

@@ -2335,3 +2335,9 @@ textarea.amendment-field-input {
     grid-template-columns: 1fr;
   }
 }
+#amendmentSaveStatus {
+    margin-top: 8px;
+    color: var(--mm-green);
+    font-size: 12px;
+    font-weight: 700;
+}

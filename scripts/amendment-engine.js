@@ -213,7 +213,69 @@
     }
 
     globalSidebarEventsBound = true;
+    const addAmendmentButton = document.getElementById("addGlobalAmendment");
 
+    if (addAmendmentButton) {
+      addAmendmentButton.addEventListener("click", function () {
+        const amendmentText = document
+          .getElementById("globalGeneratedAmendment")
+          ?.value.trim();
+
+        if (!amendmentText) {
+          return;
+        }
+
+        const output = document.getElementById("compiledAmendments");
+
+        if (!output) {
+          return;
+        }
+
+        // prevent duplicates
+
+        const existing = output.value.split("\n\n").map((x) => x.trim());
+
+        if (existing.includes(amendmentText)) {
+          const status = document.getElementById("amendmentSaveStatus");
+
+          if (status) {
+            status.textContent = "Already added.";
+          }
+
+          return;
+        }
+
+        output.value = output.value.trim()
+          ? output.value + "\n\n" + amendmentText
+          : amendmentText;
+
+        const amendmentCount = output.value
+          .split("\n\n")
+          .filter(Boolean).length;
+
+        document.getElementById("compiledAmendmentCount").textContent =
+          amendmentCount;
+
+        document.getElementById("compiledAmendmentBadge").textContent =
+          amendmentCount +
+          (amendmentCount === 1 ? " amendment" : " amendments");
+
+        document.getElementById("compiledTotalCount").textContent =
+          amendmentCount;
+
+        const status = document.getElementById("amendmentSaveStatus");
+
+        if (status) {
+          status.textContent = "✅ Amendment Added";
+
+          setTimeout(() => {
+            status.textContent = "";
+          }, 2000);
+        }
+
+        document.getElementById("globalGeneratedAmendment").value = "";
+      });
+    }
     const amendmentDropdown = document.getElementById(
       "globalAmendmentTemplate",
     );
@@ -1537,3 +1599,8 @@ document.addEventListener("stateDataCleared", () => {
 });
 
 //Testend
+status.innerHTML = "✅ Amendment Added";
+
+setTimeout(() => {
+  status.innerHTML = "";
+}, 2000);

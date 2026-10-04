@@ -114,8 +114,6 @@
 
             <button class="step-btn">State Requirements</button>
 
-            <button class="step-btn">Application Review</button>
-
             <button class="step-btn">Review Output Package</button>
 
             <button class="step-btn">Email</button>
@@ -160,12 +158,23 @@
                 readonly></textarea>
             </div>
 
-            <button
-              type="button"
-              class="secondary-button"
-              id="copyGlobalAmendment">
-              Copy
-            </button>
+           <div class="buttons">
+
+  <button
+    type="button"
+    class="primary-button"
+    id="addGlobalAmendment">
+    Add Amendment
+  </button>
+
+  <button
+    type="button"
+    class="secondary-button"
+    id="copyGlobalAmendment">
+    Copy
+  </button>
+<div id="amendmentSaveStatus"></div>
+</div>
           </details>
 
           <!-- REQUIREMENT WORKSPACE -->
@@ -648,9 +657,7 @@ NIGO Tracking
 Amendment Generation
 Requirement Generation
 ===================================================== -->
-          <section id="applicationReview" class="card">
-            <h2>Application Review</h2>
-          </section>
+
           <!-- =====================================================
 					 GENERATED REQUIREMENTS
 					 Displays all contractual requirements
@@ -665,10 +672,7 @@ Requirement Generation
 					 Displays all amendments generated
 					 during application review.
 			===================================================== -->
-          <section id="amendmentsSection" class="card">
-            <h2>Amendments Applied</h2>
-            <div id="amendmentList"></div>
-          </section>
+
           <!-- =====================================================
 				 REVIEW OUTPUT PACKAGE
 				 Final compiled review deliverables.
