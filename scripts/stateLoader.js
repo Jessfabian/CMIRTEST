@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const requiredFormsContainer = document.getElementById("requiredForms");
 
-  const specialNotesContainer = document.getElementById("specialNotes");
+
 
   const reviewChecklistContainer = document.getElementById("reviewChecklist");
 
