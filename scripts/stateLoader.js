@@ -1,35 +1,34 @@
 window.formReviewStatus = {};
 
-document
  document
    .getElementById("contractState")
    .addEventListener("change", async (e) => {
      const stateCode = e.target.value;
 
-     console.log("Loading state:", `./data/states/${stateCode}.json`);
+     if (!stateCode) return;
 
-     const response = await fetch(`./data/states/${stateCode}.json`);
+     try {
+       const response = await fetch(`./data/states/${stateCode}.json`, {
+         cache: "no-store",
+       });
 
-     console.log("Status:", response.status);
+       console.log("Loading state:", response.url);
 
-     console.log("URL:", response.url);
+       console.log("Status:", response.status);
+
+       if (!response.ok) {
+         throw new Error(`${stateCode}.json not found`);
+       }
+
+       const stateData = await response.json();
+
+       window.currentStateData = stateData;
+
+       renderStateGuidance(stateData);
+     } catch (error) {
+       console.error("State load failed:", error);
+     }
    });
-
-console.log("STATE LOADER LOADED");
-
-"use strict";
-
-const STATE_PATH = "./data/states";
-const stateCache = new Map();
-
-  function escapeHTML(value) {
-    return String(value ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
 
   function normalizeFormValues(value) {
     if (value === null || value === undefined || value === "") {
