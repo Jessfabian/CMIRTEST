@@ -402,4 +402,4 @@ function updateStateDashboard() {
 
   document.getElementById("dashboardState").textContent =
     document.getElementById("contractState")?.value || "--";
-}
+}//test
