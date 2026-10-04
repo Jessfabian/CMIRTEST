@@ -1,61 +1,62 @@
 window.formReviewStatus = {};
 
- document
-   .getElementById("contractState")
-   .addEventListener("change", async (e) => {
-     const stateCode = e.target.value;
+document
+  .getElementById("contractState")
+  .addEventListener("change", async (e) => {
+    const stateCode = e.target.value;
 
-     if (!stateCode) return;
+    if (!stateCode) return;
 
-     try {
-       console.log("Loading state:", `./data/States/${stateCode}.json`);
-       const response = await fetch(`./data/States/${stateCode}.json`, {
-         cache: "no-store",
-       });
+    try {
+      console.log("Loading state:", `./data/States/${stateCode}.json`);
+      const response = await fetch(`./data/States/${stateCode}.json`, {
+        cache: "no-store",
+      });
 
-       console.log("Status:", response.status);
+      console.log("Status:", response.status);
 
-       if (!response.ok) {
-         throw new Error(`${stateCode}.json not found`);
-       }
+      if (!response.ok) {
+        throw new Error(`${stateCode}.json not found`);
+      }
 
-       const stateData = await response.json();
+      const stateData = await response.json();
 
-       window.currentStateData = stateData;
-
-       renderStateGuidance(stateData);
-     } catch (error) {
-       console.error("State load failed:", error);
-     }
-   });
-
-  function normalizeFormValues(value) {
-    if (value === null || value === undefined || value === "") {
-      return [];
+      window.currentStateData = stateData;
+      console.log(
+        "Forms loaded:",
+        document.getElementById("globalAmendmentForm")?.options.length,
+      );
+      renderStateGuidance(stateData);
+    } catch (error) {
+      console.error("State load failed:", error);
     }
+  });
 
-    return Array.isArray(value) ? value : [value];
+function normalizeFormValues(value) {
+  if (value === null || value === undefined || value === "") {
+    return [];
   }
 
-  function renderNotices(stateData) {
-    const container = document.getElementById("stateImportantNotices");
+  return Array.isArray(value) ? value : [value];
+}
 
-    if (!container) {
-      return;
-    }
+function renderNotices(stateData) {
+  const container = document.getElementById("stateImportantNotices");
 
-    const notices = Array.isArray(stateData.important)
-      ? stateData.important
-      : [];
+  if (!container) {
+    return;
+  }
 
-    if (!notices.length) {
-      container.innerHTML = "";
-      container.hidden = true;
-      return;
-    }
+  const notices = Array.isArray(stateData.important) ? stateData.important : [];
 
-    container.hidden = false;
-    container.innerHTML = `
+  if (!notices.length) {
+    container.innerHTML = "";
+    container.hidden = true;
+    return;
+  }
+
+  container.hidden = false;
+  container.innerHTML = `
       <div class="state-notice state-notice-important">
         <h3>Important</h3>
 
@@ -64,29 +65,25 @@ window.formReviewStatus = {};
         </ul>
       </div>
     `;
+}
+
+function renderNotes(stateData) {
+  const container = document.getElementById("stateNotes");
+
+  if (!container) {
+    return;
   }
 
-  function renderNotes(stateData) {
-    const container = document.getElementById("stateNotes");
+  const notes = Array.isArray(stateData.notes) ? stateData.notes : [];
 
-    if (!container) {
-      return;
-    }
-
-    const notes = Array.isArray(stateData.notes) ? stateData.notes : [];
-
-    if (!notes.length) {
-      container.innerHTML = "";
-      container.hidden = true;
-      return;
-    }
-
-    container.hidden = false;
+  if (!notes.length) {
+    container.innerHTML = "";
+    container.hidden = true;
+    return;
   }
 
-
-
-
+  container.hidden = false;
+}
 
 const FORM_LABELS = {
   additionalInsured: "Additional Insured Supplement",
@@ -171,198 +168,144 @@ function evaluateConditions(conditions) {
   });
 }
 function renderStateGuidance(stateData) {
-  const requiredForms = document.getElementById("requiredForms");
 
-  const specialNotes = document.getElementById("specialNotes");
+  const requiredForms =
+    document.getElementById("requiredForms");
 
-  const summary = document.getElementById("stateRequirementSummary");
+  const specialNotes =
+    document.getElementById("specialNotes");
 
-  if (!requiredForms) return;
+  const summary =
+    document.getElementById("stateRequirementSummary");
 
-  summary.textContent = `${stateData.displayName} Requirements`;
+  const applicableForms =
+    stateData.forms.filter((form) => {
 
-  const applicableForms = stateData.forms.filter((form) => {
-    if (form.required === true) {
-      return true;
-    }
+      if (form.required === true) {
+        return true;
+      }
 
-    return evaluateConditions(form.conditions || []);
-  });
+      return evaluateConditions(
+        form.conditions || []
+      );
 
-  requiredForms.innerHTML = applicableForms
-    .map(
-      (form) => `
+    });
 
-<div class="required-form-row">
-
-    <div class="state-form-main">
-
-        <div class="state-form-content">
-
-            <div class="state-form-header">
-                <strong>${form.description}</strong>
-            </div>
-
-            <div class="form-description">
-                ${form.form}
-            </div>
-
-            ${
-              form.condition
-                ? `<div class="form-condition">${form.condition}</div>`
-                : ""
-            }
-
-        </div>
-
-        <div class="form-status-actions">
-
-            <button
-                type="button"
-                class="form-status-button igo-button"
-                data-form="${form.form}">
-                IGO
-            </button>
-
-            <button
-                type="button"
-                class="form-status-button nigo-button"
-                data-form="${form.form}">
-                NIGO
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-`,
-    )
-
-
-    .join("");
-
-  const globalFormDropdown = document.getElementById("globalAmendmentForm");
+  const globalFormDropdown =
+    document.getElementById("globalAmendmentForm");
 
   if (globalFormDropdown) {
-    globalFormDropdown.innerHTML = '<option value="">Select Form</option>';
+
+    globalFormDropdown.innerHTML =
+      '<option value="">Select Form</option>';
 
     applicableForms.forEach((form) => {
-      const option = document.createElement("option");
+
+      const option =
+        document.createElement("option");
 
       option.value = form.form;
-      option.textContent = `${form.form} - ${form.description}`;
+
+      option.textContent =
+        `${form.form} - ${form.description}`;
 
       globalFormDropdown.appendChild(option);
+
     });
+
+    console.log(
+      "Dropdown options:",
+      globalFormDropdown.options.length
+    );
   }
 
-  // RESTORE PREVIOUS IGO/NIGO SELECTIONS
-
-  Object.entries(window.formReviewStatus).forEach(([formId, status]) => {
-    const row = document
-      .querySelector(`[data-form="${formId}"]`)
-      ?.closest(".required-form-row");
-
-    if (!row) return;
-
-    const igo = row.querySelector(".igo-button");
-
-    const nigo = row.querySelector(".nigo-button");
-
-    if (status === "IGO") {
-      igo?.classList.add("selected");
-    }
-
-    if (status === "NIGO") {
-      nigo?.classList.add("selected");
-    }
-  });
-
-  document.getElementById("requiredFormCountCard").textContent =
-    applicableForms.length;
-
-  document.getElementById("applicableFormCount").textContent =
-    `${applicableForms.length} forms`;
-
-  document.getElementById("dashboardFormCount").textContent =
-    applicableForms.length;
-
-  specialNotes.innerHTML = (stateData.specialNotes || [])
-    .map((note) => `<div class="special-note">${note}</div>`)
-    .join("");
-
-  updateStateDashboard();
-}
-["replacement", "ownerType", "beneficiaryOther"].forEach((id) => {
-  document.getElementById(id)?.addEventListener("change", () => {
-    if (window.currentStateData) {
-      renderStateGuidance(window.currentStateData);
-    }
-  });
-});
-
-document.addEventListener("click", (event) => {
-  if (
-    !event.target.classList.contains("igo-button") &&
-    !event.target.classList.contains("nigo-button")
-  ) {
+  if (!requiredForms) {
     return;
   }
 
-  const formId = event.target.dataset.form;
+  summary.textContent =
+    `${stateData.displayName} Requirements`;
 
-  const row = event.target.closest(".required-form-row");
+  // leave the rest of your code exactly as it is
+  ["replacement", "ownerType", "beneficiaryOther"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("change", () => {
+      if (window.currentStateData) {
+        renderStateGuidance(window.currentStateData);
+      }
+    });
+  });
 
-  const igoButton = row.querySelector(".igo-button");
+  document.addEventListener("click", (event) => {
+    if (
+      !event.target.classList.contains("igo-button") &&
+      !event.target.classList.contains("nigo-button")
+    ) {
+      return;
+    }
 
-  const nigoButton = row.querySelector(".nigo-button");
+    const formId = event.target.dataset.form;
 
-  if (event.target.classList.contains("igo-button")) {
-    igoButton.classList.add("selected");
-    nigoButton.classList.remove("selected");
+    const row = event.target.closest(".required-form-row");
 
-    window.formReviewStatus[formId] = "IGO";
-  }
+    const igoButton = row.querySelector(".igo-button");
 
-  if (event.target.classList.contains("nigo-button")) {
-    nigoButton.classList.add("selected");
-    igoButton.classList.remove("selected");
+    const nigoButton = row.querySelector(".nigo-button");
 
-    window.formReviewStatus[formId] = "NIGO";
+    if (event.target.classList.contains("igo-button")) {
+      igoButton.classList.add("selected");
+      nigoButton.classList.remove("selected");
 
-    document
-      .getElementById("amendmentsSection")
-      ?.style.setProperty("display", "block");
+      window.formReviewStatus[formId] = "IGO";
+    }
 
-    document
-      .getElementById("requirementsSection")
-      ?.style.setProperty("display", "block");
-  }
+    if (event.target.classList.contains("nigo-button")) {
+      nigoButton.classList.add("selected");
+      igoButton.classList.remove("selected");
 
-  console.log(window.formReviewStatus);
+      window.formReviewStatus[formId] = "NIGO";
 
-  updateStateDashboard();
-});
+      document
+        .getElementById("amendmentsSection")
+        ?.style.setProperty("display", "block");
 
-function updateStateDashboard() {
-  const total = document.querySelectorAll(".required-form-row").length;
+      document
+        .getElementById("requirementsSection")
+        ?.style.setProperty("display", "block");
+    }
 
-  const reviewed = Object.keys(window.formReviewStatus).length;
+    console.log(window.formReviewStatus);
 
-  const issues = Object.values(window.formReviewStatus).filter(
-    (status) => status === "NIGO",
-  ).length;
+    updateStateDashboard();
+  });
 
-  const remaining = total - reviewed;
+  function updateStateDashboard() {
+    const total = document.querySelectorAll(".required-form-row").length;
 
-  document.getElementById("reviewedCountCard").textContent = reviewed;
+    const reviewed = Object.keys(window.formReviewStatus).length;
 
-  document.getElementById("remainingCountCard").textContent = remaining;
+    const issues = Object.values(window.formReviewStatus).filter(
+      (status) => status === "NIGO",
+    ).length;
 
-  document.getElementById("dashboardIssueCount").textContent = issues;
+    const remaining = total - reviewed;
 
-  document.getElementById("dashboardState").textContent =
-    document.getElementById("contractState")?.value || "--";
-}//test
+    document.getElementById("reviewedCountCard").textContent = reviewed;
+
+    document.getElementById("remainingCountCard").textContent = remaining;
+
+    document.getElementById("dashboardIssueCount").textContent = issues;
+
+    document.getElementById("dashboardState").textContent =
+      document.getElementById("contractState")?.value || "--";
+  } //test
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const stateDropdown = document.getElementById("contractState");
+
+    if (!stateDropdown) return;
+
+    if (stateDropdown.value) {
+      stateDropdown.dispatchEvent(new Event("change"));
+    }
+  });
+}
