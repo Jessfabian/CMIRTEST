@@ -1255,7 +1255,7 @@ z-index: 900;
 .form-nigo-panel {
   margin-top: 16px;
   padding-top: 16px;
-  display: none;
+
   border-top: 1px solid #d6dee8;
 }
 
@@ -2237,12 +2237,13 @@ textarea.amendment-field-input {
 
 .saved-amendments label,
 .saved-amendment-list {
-  display: none;
+  display: ;
 }
 
 .saved-amendments,
 .generated-output-block {
-  display: none;
+  display:
+  ;
 }
 .review-header {
     display: flex;
