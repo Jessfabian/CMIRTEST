@@ -13,7 +13,8 @@
   let requirementFormMappings = {};
   let engineLoaded = false;
   let observerStarted = false;
-
+  let globalSavedAmendments = [];
+  let globalSavedRequirements = [];
   const fieldLabels = {
     value: "Correct or Missing Information",
     answer: "Answer",
@@ -217,15 +218,14 @@
 
     if (addAmendmentButton) {
       addAmendmentButton.addEventListener("click", function () {
-        const amendmentText = document
-          .getElementById("globalGeneratedAmendment")
-          ?.value.trim();
+        const amendmentOutput = document.getElementById(
+          "globalGeneratedAmendment",
+        );
 
-        if (!amendmentText) {
-          return;
-        }
+        const amendmentText = amendmentOutput?.value.trim() || "";
 
-        const output = document.getElementById("compiledAmendments");
+        const amendmentStatus = document.getElementById("amendmentSaveStatus");
+
 
         if (!output) {
           return;
@@ -234,46 +234,27 @@
         // prevent duplicates
 
         const existing = output.value.split("\n\n").map((x) => x.trim());
-
-        if (existing.includes(amendmentText)) {
-          const status = document.getElementById("amendmentSaveStatus");
-
-          if (status) {
-            status.textContent = "Already added.";
+        if (globalSavedAmendments.includes(amendmentText)) {
+          if (amendmentStatus) {
+            amendmentStatus.textContent =
+              "This amendment has already been added.";
           }
 
           return;
         }
 
-        output.value = output.value.trim()
-          ? output.value + "\n\n" + amendmentText
-          : amendmentText;
+        globalSavedAmendments.push(amendmentText);
 
-        const amendmentCount = output.value
-          .split("\n\n")
-          .filter(Boolean).length;
+        renderGlobalSavedAmendments();
+        clearGlobalAmendmentDraft();
 
-        document.getElementById("compiledAmendmentCount").textContent =
-          amendmentCount;
+        if (amendmentStatus) {
+          amendmentStatus.textContent = "✓ Amendment added";
 
-        document.getElementById("compiledAmendmentBadge").textContent =
-          amendmentCount +
-          (amendmentCount === 1 ? " amendment" : " amendments");
-
-        document.getElementById("compiledTotalCount").textContent =
-          amendmentCount;
-
-        const status = document.getElementById("amendmentSaveStatus");
-
-        if (status) {
-          status.textContent = "✅ Amendment Added";
-
-          setTimeout(() => {
-            status.textContent = "";
-          }, 2000);
+          window.setTimeout(function () {
+            amendmentStatus.textContent = "";
+          }, 2500);
         }
-
-        document.getElementById("globalGeneratedAmendment").value = "";
       });
     }
     const amendmentDropdown = document.getElementById(
@@ -357,7 +338,84 @@
       });
     }
   }
+function renderGlobalSavedAmendments() {
+  const compiledOutput = document.getElementById("compiledAmendments");
 
+  const compiledCount = document.getElementById("compiledAmendmentCount");
+
+  const compiledBadge = document.getElementById("compiledAmendmentBadge");
+
+  const compiledTotal = document.getElementById("compiledTotalCount");
+
+  const copyAllButton = document.getElementById("copyAllAmendments");
+
+  const reviewOutputStatus = document.getElementById("reviewOutputStatus");
+
+  const amendmentCount = globalSavedAmendments.length;
+  const requirementCount = globalSavedRequirements.length;
+  const totalCount = amendmentCount + requirementCount;
+
+  if (compiledOutput) {
+    compiledOutput.value = globalSavedAmendments
+      .map(function (amendment, index) {
+        return `${index + 1}. ${amendment}`;
+      })
+      .join("\n\n");
+  }
+
+  if (compiledCount) {
+    compiledCount.textContent = String(amendmentCount);
+  }
+
+  if (compiledBadge) {
+    compiledBadge.textContent =
+      amendmentCount === 1 ? "1 amendment" : `${amendmentCount} amendments`;
+  }
+
+  if (compiledTotal) {
+    compiledTotal.textContent = String(totalCount);
+  }
+
+  if (copyAllButton) {
+    copyAllButton.disabled = amendmentCount === 0;
+  }
+
+  if (reviewOutputStatus) {
+    reviewOutputStatus.textContent =
+      totalCount === 0 ? "No Outputs" : `${totalCount} Saved`;
+  }
+}
+
+function clearGlobalAmendmentDraft() {
+  const questionInput = document.getElementById("globalQuestion");
+
+  const templateDropdown = document.getElementById("globalAmendmentTemplate");
+
+  const dynamicFields = document.getElementById("globalAmendmentFields");
+
+  const generatedOutput = document.getElementById("globalGeneratedAmendment");
+
+  if (questionInput) {
+    questionInput.value = "";
+  }
+
+  if (templateDropdown) {
+    templateDropdown.value = "";
+  }
+
+  if (dynamicFields) {
+    dynamicFields.innerHTML = "";
+  }
+
+  if (generatedOutput) {
+    generatedOutput.value = "";
+    generatedOutput.placeholder = "Select an amendment template.";
+  }
+
+  if (questionInput) {
+    questionInput.focus();
+  }
+}
   async function loadEngineData() {
     try {
       const amendmentData = await fetchJson(
@@ -1570,37 +1628,3 @@
     startEngine();
   }
 })();
-
-//Test
-
-document.addEventListener("stateDataLoaded", (event) => {
-  const stateData = event.detail;
-
-  console.log("Amendment engine received state:", stateData.state);
-
-  /*
-    Call any existing functions here that need to refresh
-    after the contract state changes.
-
-    For example:
-
-    populateStateForms(stateData);
-    refreshReviewPanels(stateData);
-    updateDashboardCounts();
-  */
-});
-
-document.addEventListener("stateDataCleared", () => {
-  console.log("State selection cleared");
-
-  /*
-    Clear any state-specific amendment or review content here.
-  */
-});
-
-//Testend
-status.innerHTML = "✅ Amendment Added";
-
-setTimeout(() => {
-  status.innerHTML = "";
-}, 2000);
