@@ -1,0 +1,86 @@
+.verbiage-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.generator-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: start;
+}
+
+.amendment-card,
+.requirement-card {
+    height: 100%;
+}
+
+.verbiage-page .grid.two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.verbiage-page .case-field {
+    margin-bottom: 12px;
+}
+
+.verbiage-page .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.verbiage-page .primary-button,
+.verbiage-page .secondary-button,
+.verbiage-page .quiet {
+    min-width: 120px;
+}
+
+#globalGeneratedAmendment,
+#globalGeneratedRequirement {
+    min-height: 100px;
+}
+
+.compiled-output-textarea {
+    min-height: 160px;
+}
+
+@media (max-width: 900px) {
+    .generator-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .verbiage-page .grid.two {
+        grid-template-columns: 1fr;
+    }
+}
+
+.generator-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.amendment-card,
+.requirement-card {
+    margin-bottom: 0;
+}
+
+.generated-output-textarea {
+    min-height: 140px;
+}
+
+.verbiage-page .amendment-card,
+.verbiage-page .requirement-card {
+    margin-top: 0;
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border);
+}

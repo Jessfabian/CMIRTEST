@@ -2341,3 +2341,34 @@ textarea.amendment-field-input {
     font-size: 12px;
     font-weight: 700;
 }
+.generator-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.amendment-card,
+.requirement-card {
+    min-width: 0;
+}
+
+.generator-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.amendment-card,
+.requirement-card {
+    min-width: 0;
+}
+
+.compiled-output-textarea {
+    min-height: 180px;
+}
+
+#globalGeneratedAmendment,
+#globalGeneratedRequirement {
+    min-height: 100px;
+}
+

@@ -226,14 +226,15 @@
 
         const amendmentStatus = document.getElementById("amendmentSaveStatus");
 
+        if (!amendmentText) {
+          if (amendmentStatus) {
+            amendmentStatus.textContent =
+              "Generate an amendment before adding it.";
+          }
 
-        if (!output) {
           return;
         }
 
-        // prevent duplicates
-
-        const existing = output.value.split("\n\n").map((x) => x.trim());
         if (globalSavedAmendments.includes(amendmentText)) {
           if (amendmentStatus) {
             amendmentStatus.textContent =
