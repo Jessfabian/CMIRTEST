@@ -1,5 +1,21 @@
 window.formReviewStatus = {};
 
+document
+  .getElementById("contractState")
+  .addEventListener("change", async (e) => {
+    const stateCode = e.target.value;
+
+    if (!stateCode) return;
+
+    const stateData = await fetch(`./data/states/${stateCode}.json`).then((r) =>
+      r.json(),
+    );
+
+    window.currentStateData = stateData;
+
+    renderStateGuidance(stateData);
+  });
+
 console.log("STATE LOADER LOADED");
 () => {
   "use strict";
@@ -125,7 +141,6 @@ document
     renderStateGuidance(stateData);
   });
 
-
 const FORM_LABELS = {
   additionalInsured: "Additional Insured Supplement",
   part1: "Application for Life Insurance Part 1",
@@ -228,12 +243,9 @@ function renderStateGuidance(stateData) {
   });
 
   requiredForms.innerHTML = applicableForms
-    .map((form) => {
-      const displayLabel = form.description;
+    .map(
+      (form) => `
 
-      const displayValue = form.form;
-
-      return `
 <div class="required-form-row">
 
     <div class="state-form-main">
@@ -277,34 +289,39 @@ function renderStateGuidance(stateData) {
     </div>
 
 </div>
-`;
-      updateStateDashboard();
-    })
+
+`,
+    )
     .join("");
-Object.entries(window.formReviewStatus).forEach(([formId, status]) => {
-  const row = document
-    .querySelector(`[data-form="${formId}"]`)
-    ?.closest(".required-form-row");
 
-  if (!row) return;
+  // RESTORE PREVIOUS IGO/NIGO SELECTIONS
 
-  const igo = row.querySelector(".igo-button");
+  Object.entries(window.formReviewStatus).forEach(([formId, status]) => {
+    const row = document
+      .querySelector(`[data-form="${formId}"]`)
+      ?.closest(".required-form-row");
 
-  const nigo = row.querySelector(".nigo-button");
+    if (!row) return;
 
-  if (status === "IGO") {
-    igo?.classList.add("selected");
-  }
+    const igo = row.querySelector(".igo-button");
 
-  if (status === "NIGO") {
-    nigo?.classList.add("selected");
-  }
-});
+    const nigo = row.querySelector(".nigo-button");
+
+    if (status === "IGO") {
+      igo?.classList.add("selected");
+    }
+
+    if (status === "NIGO") {
+      nigo?.classList.add("selected");
+    }
+  });
+
   document.getElementById("requiredFormCountCard").textContent =
     applicableForms.length;
 
   document.getElementById("applicableFormCount").textContent =
     `${applicableForms.length} forms`;
+
   document.getElementById("dashboardFormCount").textContent =
     applicableForms.length;
 
@@ -312,39 +329,16 @@ Object.entries(window.formReviewStatus).forEach(([formId, status]) => {
     .map((note) => `<div class="special-note">${note}</div>`)
     .join("");
 
-  const FORM_CONDITIONS = {
-    replacementForm: () => document.getElementById("replacement")?.checked,
-
-    ownerDesignation: () =>
-      document.getElementById("ownerType")?.value !== "insured",
-
-    beneficiaryDesignation: () =>
-      document.getElementById("beneficiaryOther")?.value === "yes",
-
-    ltcPackage: () =>
-      document
-        .getElementById("policyNumber")
-        ?.value.toUpperCase()
-        .includes("CC"),
-
-    part1: () => true,
-
-    part2: () => true,
-
-    hipaaAuthorization: () => true,
-
-    additionalInsured: () =>
-      document.getElementById("additionalInsured")?.checked,
-  };
-
-  ["replacement", "ownerType", "beneficiaryOther"].forEach((id) => {
-    document.getElementById(id)?.addEventListener("change", () => {
-      if (window.currentStateData) {
-        renderStateGuidance(window.currentStateData);
-      }
-    });
-  });
+  updateStateDashboard();
 }
+["replacement", "ownerType", "beneficiaryOther"].forEach((id) => {
+  document.getElementById(id)?.addEventListener("change", () => {
+    if (window.currentStateData) {
+      renderStateGuidance(window.currentStateData);
+    }
+  });
+});
+
 document.addEventListener("click", (event) => {
   if (
     !event.target.classList.contains("igo-button") &&
@@ -373,6 +367,7 @@ document.addEventListener("click", (event) => {
     igoButton.classList.remove("selected");
 
     window.formReviewStatus[formId] = "NIGO";
+
     document
       .getElementById("amendmentsSection")
       ?.style.setProperty("display", "block");
@@ -382,8 +377,11 @@ document.addEventListener("click", (event) => {
       ?.style.setProperty("display", "block");
   }
 
+  console.log(window.formReviewStatus);
+
   updateStateDashboard();
 });
+
 function updateStateDashboard() {
   const total = document.querySelectorAll(".required-form-row").length;
 
@@ -400,4 +398,7 @@ function updateStateDashboard() {
   document.getElementById("remainingCountCard").textContent = remaining;
 
   document.getElementById("dashboardIssueCount").textContent = issues;
+
+  document.getElementById("dashboardState").textContent =
+    document.getElementById("contractState")?.value || "--";
 }
