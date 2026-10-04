@@ -13,8 +13,6 @@ window.formReviewStatus = {};
          cache: "no-store",
        });
 
-      console.log("Loading state:", `./data/States/${stateCode}.json`);
-
        console.log("Status:", response.status);
 
        if (!response.ok) {
@@ -38,8 +36,6 @@ window.formReviewStatus = {};
 
     return Array.isArray(value) ? value : [value];
   }
-
-
 
   function renderNotices(stateData) {
     const container = document.getElementById("stateImportantNotices");
