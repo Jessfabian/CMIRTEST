@@ -8,7 +8,7 @@ window.formReviewStatus = {};
      if (!stateCode) return;
 
      try {
-       const response = await fetch(`./data/States/${stateCode}.json`, {
+       const response = await fetch(`/data/States/${stateCode}.json`, {
          cache: "no-store",
        });
 
