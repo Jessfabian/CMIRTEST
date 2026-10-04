@@ -1,20 +1,19 @@
 window.formReviewStatus = {};
 
 document
-  .getElementById("contractState")
-  .addEventListener("change", async (e) => {
-    const stateCode = e.target.value;
+ document
+   .getElementById("contractState")
+   .addEventListener("change", async (e) => {
+     const stateCode = e.target.value;
 
-    if (!stateCode) return;
+     console.log("Loading state:", `./data/states/${stateCode}.json`);
 
-    const stateData = await fetch(`./data/states/${stateCode}.json`).then((r) =>
-      r.json(),
-    );
+     const response = await fetch(`./data/states/${stateCode}.json`);
 
-    window.currentStateData = stateData;
+     console.log("Status:", response.status);
 
-    renderStateGuidance(stateData);
-  });
+     console.log("URL:", response.url);
+   });
 
 console.log("STATE LOADER LOADED");
 
