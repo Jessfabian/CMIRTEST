@@ -1,0 +1,204 @@
+{
+  "state": "WA",
+  "displayName": "Washington",
+  "extends": "washington",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-WA",
+    "part2": "ICC12A50",
+    "simplifiedConversion": "A1002P-WA",
+    "beneficiaryDesignation": "ICC13F5159",
+    "careChoicePart1": "A1500P-WA",
+    "conversionSupplement": "ICC13FR2089",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": "ICC18F8186",
+    "hivForm": "N201WA",
+    "ltcWorksheet": "ICC19FR2118",
+    "ltcPackage": "LTCR-GE",
+    "ownerDesignation": "ICC15F5248",
+    "policyChange": "A11WA",
+    "replacementForm": [
+      "F5436WA",
+      "You Did Not Receive the F5436WA with the Application"
+    ],
+    "abrDisclosure": "F7011WA"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
+        {
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-WA NOTE: All cross-outs must be amended on the Part 1 application, even on non-amendable questions.",
+      "forms": [
+        {
+          "formId": "A2000P-WA",
+          "url": "https://compass.massmutual.com/download/file/blt237e1a3471031f70"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2 - ICC",
+      "text": "Application Part 2 - ICC: ICC12A50",
+      "forms": [
+        {
+          "formId": "ICC12A50",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-WA",
+      "forms": [
+        {
+          "formId": "A1002P-WA",
+          "url": "https://compass.massmutual.com/api/assets/file/blt3ce1b09e45794165"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation Form",
+      "text": "Beneficiary Designation Form: ICC13F5159",
+      "forms": [
+        {
+          "formId": "ICC13F5159",
+          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice One Application (Part 1)",
+      "text": "CareChoice One Application (Part 1): A1500P-WA",
+      "forms": [
+        {
+          "formId": "A1500P-WA",
+          "url": "https://compass.massmutual.com/download/file/bltd864d99f33b0788d"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
+        {
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186",
+      "forms": [
+        {
+          "formId": "ICC18F8186",
+          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+        }
+      ]
+    },
+    {
+      "label": "HIV form, if applicable",
+      "text": "HIV form, if applicable: N201WA (Based on the resident state.)",
+      "forms": [
+        {
+          "formId": "N201WA",
+          "url": "https://compass.massmutual.com/download/file/bltee8e7fa1634c69e0"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
+      "forms": [
+        {
+          "formId": "ICC19FR2118",
+          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package Form ID",
+      "text": "LTC Access Rider Application Package Form ID: LTCR-GE",
+      "forms": [
+        {
+          "formId": "LTCR-GE",
+          "url": "https://compass.massmutual.com/download/file/blte93e8ae76dc076c4"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248",
+      "forms": [
+        {
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11WA",
+      "forms": [
+        {
+          "formId": "A11WA",
+          "url": "https://compass.massmutual.com/download/file/blt90c80b7b5f74ddac"
+        }
+      ]
+    },
+    {
+      "label": "Replacement Form",
+      "text": "Replacement Form: F5436WA IMPORTANT: Mail replacement information within 3 days. NOTE: If you do not receive the F5436WA with the application, underwriting cannot begin per the Washington State Insurance Commissioners. See You Did Not Receive the F5436WA with the Application .",
+      "forms": [
+        {
+          "formId": "F5436WA",
+          "url": "https://compass.massmutual.com/download/file/blt05d319d1858d7d05"
+        },
+        {
+          "formId": "You Did Not Receive the F5436WA with the Application",
+          "url": "../../Replacements/State/lnbs_washington_replacements.htm#Not_received"
+        }
+      ]
+    },
+    {
+      "label": "ABR Disclosure",
+      "text": "ABR Disclosure: F7011WA NOTE: The F7011 form is not required with the Survivorship Whole Life (SWL) product.",
+      "forms": [
+        {
+          "formId": "F7011WA",
+          "url": "https://compass.massmutual.com/download/file/blt1263d505d5f4faa6"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Mail replacement information within 3 days."
+  ],
+  "notes": [
+    "NOTE: All cross-outs must be amended on the Part 1 application, even on non-amendable questions.",
+    "NOTE: If you do not receive the F5436WA with the application, underwriting cannot begin per the Washington State Insurance Commissioners. See You Did Not Receive the F5436WA with the Application .",
+    "NOTE: The F7011 form is not required with the Survivorship Whole Life (SWL) product."
+  ],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

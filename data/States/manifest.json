@@ -1,0 +1,316 @@
+{
+  "states": [
+    {
+      "state": "AL",
+      "displayName": "Alabama",
+      "extends": "standardICC",
+      "file": "AL.json"
+    },
+    {
+      "state": "AK",
+      "displayName": "Alaska",
+      "extends": "standardICC",
+      "file": "AK.json"
+    },
+    {
+      "state": "AZ",
+      "displayName": "Arizona",
+      "extends": "standardICC_HIV",
+      "file": "AZ.json"
+    },
+    {
+      "state": "AR",
+      "displayName": "Arkansas",
+      "extends": "standardICC_HIV",
+      "file": "AR.json"
+    },
+    {
+      "state": "CA",
+      "displayName": "California",
+      "extends": "california",
+      "file": "CA.json"
+    },
+    {
+      "state": "CO",
+      "displayName": "Colorado",
+      "extends": "standardICC_HIV",
+      "file": "CO.json"
+    },
+    {
+      "state": "CT",
+      "displayName": "Connecticut",
+      "extends": "ct_nj",
+      "file": "CT.json"
+    },
+    {
+      "state": "DE",
+      "displayName": "Delaware",
+      "extends": "generic",
+      "file": "DE.json"
+    },
+    {
+      "state": "DC",
+      "displayName": "District of Columbia",
+      "extends": "districtOfColumbia",
+      "file": "DC.json"
+    },
+    {
+      "state": "FL",
+      "displayName": "Florida",
+      "extends": "florida",
+      "file": "FL.json"
+    },
+    {
+      "state": "GA",
+      "displayName": "Georgia",
+      "extends": "standardICC_HIV",
+      "file": "GA.json"
+    },
+    {
+      "state": "HI",
+      "displayName": "Hawaii",
+      "extends": "standardICC_HIV",
+      "file": "HI.json"
+    },
+    {
+      "state": "ID",
+      "displayName": "Idaho",
+      "extends": "standardICC",
+      "file": "ID.json"
+    },
+    {
+      "state": "IL",
+      "displayName": "Illinois",
+      "extends": "standardICC",
+      "file": "IL.json"
+    },
+    {
+      "state": "IN",
+      "displayName": "Indiana",
+      "extends": "standardICC_HIV",
+      "file": "IN.json"
+    },
+    {
+      "state": "IA",
+      "displayName": "Iowa",
+      "extends": "standardICC_HIV",
+      "file": "IA.json"
+    },
+    {
+      "state": "KS",
+      "displayName": "Kansas",
+      "extends": "standardICC_HIV",
+      "file": "KS.json"
+    },
+    {
+      "state": "KY",
+      "displayName": "Kentucky",
+      "extends": "standardICC_HIV",
+      "file": "KY.json"
+    },
+    {
+      "state": "LA",
+      "displayName": "Louisiana",
+      "extends": "standardICC",
+      "file": "LA.json"
+    },
+    {
+      "state": "ME",
+      "displayName": "Maine",
+      "extends": "standardICC_HIV",
+      "file": "ME.json"
+    },
+    {
+      "state": "MD",
+      "displayName": "Maryland",
+      "extends": "standardICC",
+      "file": "MD.json"
+    },
+    {
+      "state": "MA",
+      "displayName": "Massachusetts",
+      "extends": "massachusetts",
+      "file": "MA.json"
+    },
+    {
+      "state": "MI",
+      "displayName": "Michigan",
+      "extends": "standardICC_HIV",
+      "file": "MI.json"
+    },
+    {
+      "state": "MN",
+      "displayName": "Minnesota",
+      "extends": "minnesota",
+      "file": "MN.json"
+    },
+    {
+      "state": "MS",
+      "displayName": "Mississippi",
+      "extends": "standardICC",
+      "file": "MS.json"
+    },
+    {
+      "state": "MO",
+      "displayName": "Missouri",
+      "extends": "standardICC_HIV",
+      "file": "MO.json"
+    },
+    {
+      "state": "MT",
+      "displayName": "Montana",
+      "extends": "generic",
+      "file": "MT.json"
+    },
+    {
+      "state": "NE",
+      "displayName": "Nebraska",
+      "extends": "standardICC_HIV",
+      "file": "NE.json"
+    },
+    {
+      "state": "NV",
+      "displayName": "Nevada",
+      "extends": "standardICC",
+      "file": "NV.json"
+    },
+    {
+      "state": "NH",
+      "displayName": "New Hampshire",
+      "extends": "standardICC_HIV",
+      "file": "NH.json"
+    },
+    {
+      "state": "NJ",
+      "displayName": "New Jersey",
+      "extends": "ct_nj",
+      "file": "NJ.json"
+    },
+    {
+      "state": "NM",
+      "displayName": "New Mexico",
+      "extends": "standardICC",
+      "file": "NM.json"
+    },
+    {
+      "state": "NY",
+      "displayName": "New York",
+      "extends": "newYork",
+      "file": "NY.json"
+    },
+    {
+      "state": "NC",
+      "displayName": "North Carolina",
+      "extends": "standardICC",
+      "file": "NC.json"
+    },
+    {
+      "state": "ND",
+      "displayName": "North Dakota",
+      "extends": "generic",
+      "file": "ND.json"
+    },
+    {
+      "state": "OH",
+      "displayName": "Ohio",
+      "extends": "standardICC_HIV",
+      "file": "OH.json"
+    },
+    {
+      "state": "OK",
+      "displayName": "Oklahoma",
+      "extends": "standardICC",
+      "file": "OK.json"
+    },
+    {
+      "state": "OR",
+      "displayName": "Oregon",
+      "extends": "standardICC_HIV",
+      "file": "OR.json"
+    },
+    {
+      "state": "PA",
+      "displayName": "Pennsylvania",
+      "extends": "pennsylvania",
+      "file": "PA.json"
+    },
+    {
+      "state": "PR",
+      "displayName": "Puerto Rico",
+      "extends": "standardICC",
+      "file": "PR.json"
+    },
+    {
+      "state": "RI",
+      "displayName": "Rhode Island",
+      "extends": "standardICC_HIV",
+      "file": "RI.json"
+    },
+    {
+      "state": "SC",
+      "displayName": "South Carolina",
+      "extends": "standardICC",
+      "file": "SC.json"
+    },
+    {
+      "state": "SD",
+      "displayName": "South Dakota",
+      "extends": "southDakota",
+      "file": "SD.json"
+    },
+    {
+      "state": "TN",
+      "displayName": "Tennessee",
+      "extends": "standardICC",
+      "file": "TN.json"
+    },
+    {
+      "state": "TX",
+      "displayName": "Texas",
+      "extends": "standardICC_HIV",
+      "file": "TX.json"
+    },
+    {
+      "state": "UT",
+      "displayName": "Utah",
+      "extends": "standardICC_HIV",
+      "file": "UT.json"
+    },
+    {
+      "state": "VT",
+      "displayName": "Vermont",
+      "extends": "standardICC_HIV",
+      "file": "VT.json"
+    },
+    {
+      "state": "VA",
+      "displayName": "Virginia",
+      "extends": "standardICC_HIV",
+      "file": "VA.json"
+    },
+    {
+      "state": "WA",
+      "displayName": "Washington",
+      "extends": "washington",
+      "file": "WA.json"
+    },
+    {
+      "state": "WV",
+      "displayName": "West Virginia",
+      "extends": "standardICC_HIV",
+      "file": "WV.json"
+    },
+    {
+      "state": "WI",
+      "displayName": "Wisconsin",
+      "extends": "standardICC_HIV",
+      "file": "WI.json"
+    },
+    {
+      "state": "WY",
+      "displayName": "Wyoming",
+      "extends": "standardICC",
+      "file": "WY.json"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "state": "MN",
+  "displayName": "Minnesota",
+  "extends": "minnesota",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-MN",
+    "part2": "ICC12A50",
+    "simplifiedConversion": "A1002P-MN",
+    "beneficiaryDesignation": "ICC13F5159",
+    "careChoicePart1": "A1500P-MN",
+    "conversionSupplement": "ICC13FR2089",
+    "disclosureAuthorization": "A61MN",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": "ICC18F8186",
+    "ltcWorksheet": "ICC19FR2118",
+    "ltcPackage": "LTCR-GE",
+    "ownerDesignation": "ICC15F5248",
+    "policyChange": "A11MN",
+    "replacementForm": "F5436MN",
+    "abrDisclosure": "F7011GEN"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
+        {
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-MN",
+      "forms": [
+        {
+          "formId": "A2000P-MN",
+          "url": "https://compass.massmutual.com/download/file/blt4ed945d9576a7ece"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2 - ICC",
+      "text": "Application Part 2 - ICC: ICC12A50",
+      "forms": [
+        {
+          "formId": "ICC12A50",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-MN",
+      "forms": [
+        {
+          "formId": "A1002P-MN",
+          "url": "https://compass.massmutual.com/api/assets/file/bltda8382d901e7dbc3"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: ICC13F5159",
+      "forms": [
+        {
+          "formId": "ICC13F5159",
+          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice Series Application (Part 1)",
+      "text": "CareChoice Series Application (Part 1): A1500P-MN",
+      "forms": [
+        {
+          "formId": "A1500P-MN",
+          "url": "https://compass.massmutual.com/download/file/blt5bc44b62a07de716"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Disclosure Authorization",
+      "text": "Disclosure Authorization: A61MN Conversions, required when being underwritten.",
+      "forms": [
+        {
+          "formId": "A61MN",
+          "url": "https://compass.massmutual.com/download/file/bltc45917a3cbc574bf"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
+        {
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186",
+      "forms": [
+        {
+          "formId": "ICC18F8186",
+          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
+      "forms": [
+        {
+          "formId": "ICC19FR2118",
+          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package",
+      "text": "LTC Access Rider Application Package: LTCR-GE",
+      "forms": [
+        {
+          "formId": "LTCR-GE",
+          "url": "https://compass.massmutual.com/download/file/blte93e8ae76dc076c4"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248",
+      "forms": [
+        {
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11MN",
+      "forms": [
+        {
+          "formId": "A11MN",
+          "url": "https://compass.massmutual.com/download/file/blte0d6e5a84cad8518"
+        }
+      ]
+    },
+    {
+      "label": "Replacement form",
+      "text": "Replacement form: F5436MN IMPORTANT: Mail replacement information within five days.",
+      "forms": [
+        {
+          "formId": "F5436MN",
+          "url": "https://compass.massmutual.com/download/file/bltcc18fc00bba98b30"
+        }
+      ]
+    },
+    {
+      "label": "ABR Disclosure",
+      "text": "ABR Disclosure: F7011GEN",
+      "forms": [
+        {
+          "formId": "F7011GEN",
+          "url": "https://compass.massmutual.com/download/file/blt9815139e869f553a"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Mail replacement information within five days."
+  ],
+  "notes": [
+    "NOTE: MNGA - this form is no longer required effective August 2018. Requirement for the form can be Cancelled in the system at Initial Review."
+  ],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

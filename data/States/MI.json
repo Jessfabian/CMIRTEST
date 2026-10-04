@@ -1,0 +1,194 @@
+{
+  "state": "MI",
+  "displayName": "Michigan",
+  "extends": "standardICC_HIV",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-MI",
+    "part2": "ICC12A50",
+    "simplifiedConversion": "A1002P-MI",
+    "beneficiaryDesignation": "ICC13F5159",
+    "careChoicePart1": "A1500P-MI",
+    "conversionSupplement": "ICC13FR2089",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": "ICC18F8186",
+    "hivForm": "N201MI",
+    "ltcWorksheet": "ICC19FR2118",
+    "ltcPackage": "LTCR-GE",
+    "ownerDesignation": "ICC15F5248",
+    "policyChange": "A11MI",
+    "replacementForm": "F5436MI",
+    "abrDisclosure": "F7011MI"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
+        {
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-MI IMPORTANT: All Michigan UL applications require a signed illustration or presentation at the time of application. The signed illustration must match exactly the UL policy applied for. The option to complete the Sales Illustration Certification section of the Part 1 cannot be done in lieu of submitting the signed illustration. The illustration does not have to be signed on or before the Part 1, however, if it is not submitted with the application, it must be signed and submitted to the Home Office within 15 working days of the Part 1 signature date.",
+      "forms": [
+        {
+          "formId": "A2000P-MI",
+          "url": "https://compass.massmutual.com/download/file/blt140b5db13c4c19d3"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2 - ICC",
+      "text": "Application Part 2 - ICC: ICC12A50",
+      "forms": [
+        {
+          "formId": "ICC12A50",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-MI",
+      "forms": [
+        {
+          "formId": "A1002P-MI",
+          "url": "https://compass.massmutual.com/download/file/bltdbc9dd13d3e7dec1"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: ICC13F5159",
+      "forms": [
+        {
+          "formId": "ICC13F5159",
+          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice Series Application (Part 1)",
+      "text": "CareChoice Series Application (Part 1): A1500P-MI",
+      "forms": [
+        {
+          "formId": "A1500P-MI",
+          "url": "https://compass.massmutual.com/download/file/blt0505982bb8f88775"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
+        {
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186",
+      "forms": [
+        {
+          "formId": "ICC18F8186",
+          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+        }
+      ]
+    },
+    {
+      "label": "HIV form, if applicable",
+      "text": "HIV form, if applicable: N201MI (Based on the contract state.)",
+      "forms": [
+        {
+          "formId": "N201MI",
+          "url": "https://compass.massmutual.com/download/file/bltf809708225e08da8"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
+      "forms": [
+        {
+          "formId": "ICC19FR2118",
+          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package",
+      "text": "LTC Access Rider Application Package: LTCR-GE",
+      "forms": [
+        {
+          "formId": "LTCR-GE",
+          "url": "https://compass.massmutual.com/download/file/blte93e8ae76dc076c4"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248",
+      "forms": [
+        {
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11MI",
+      "forms": [
+        {
+          "formId": "A11MI",
+          "url": "https://compass.massmutual.com/download/file/bltff868fca7c8b09a8"
+        }
+      ]
+    },
+    {
+      "label": "Replacement form",
+      "text": "Replacement form: F5436MI IMPORTANT: Mail replacement information within three days.",
+      "forms": [
+        {
+          "formId": "F5436MI",
+          "url": "https://compass.massmutual.com/download/file/blt027aae37e5be8edf"
+        }
+      ]
+    },
+    {
+      "label": "ABR Disclosure",
+      "text": "ABR Disclosure: F7011MI",
+      "forms": [
+        {
+          "formId": "F7011MI",
+          "url": "https://compass.massmutual.com/download/file/blta2dff15c76a024a2"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: All Michigan UL applications require a signed illustration or presentation at the time of application. The signed illustration must match exactly the UL policy applied for. The option to complete the Sales Illustration Certification section of the Part 1 cannot be done in lieu of submitting the signed illustration. The illustration does not have to be signed on or before the Part 1, however, if it is not submitted with the application, it must be signed and submitted to the Home Office within 15 working days of the Part 1 signature date.",
+    "IMPORTANT: Mail replacement information within three days."
+  ],
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

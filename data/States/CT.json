@@ -1,379 +1,232 @@
 {
-  "state": "NY",
-  "displayName": "New York",
-  "reviewProcesses": {
-    "reg74": true,
-    "reg187": true,
-    "replacementReview": true,
-    "suitabilityReview": true
+  "state": "CT",
+  "displayName": "Connecticut",
+  "extends": "ct_nj",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-CT",
+    "part2": "1CC12A50",
+    "simplifiedConversion": "A1002P-CT",
+    "beneficiaryDesignation": [
+      "ICC13F5159",
+      "F5159GEN"
+    ],
+    "careChoicePart1": "A1500P-CT",
+    "conversionSupplement": "ICC13FR2089",
+    "disclosureAuthorization": "A1894-8900",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": [
+      "ICC18F8186",
+      "F8186GEN"
+    ],
+    "hivForm": "N201CT",
+    "ltcWorksheet": "FR2118GEN",
+    "ltcPackage": "LTCR-CT",
+    "ownerDesignation": [
+      "ICC15F5248",
+      "F5248GEN"
+    ],
+    "policyChange": "A11CT",
+    "replacementForm": "F6487"
   },
-  "specialNotes": [
-    "Signed matching illustration required",
-    "FR2361 required for all cases",
-    "F5500NY is not acceptable",
-    "Preliminary Information Sales Presentation required",
-    "F6512 required for replacement cases",
-    "Trust Certificate must use F6734NY",
-    "FR1126NY required for Internal Term-to-Term replacements",
-    "N201-NY-399 required for Variable Life applications",
-    "F3669 required for New York Variable Life applications"
-  ],
-  "forms": [
+  "requirements": [
     {
-      "form": "A2000NY",
-      "description": "Application for Individual Life Insurance Part 1",
-      "required": true,
-      "reviewRequired": true,
-      "condition": "Required for all cases",
-      "conditions": []
-    },
-    {
-      "form": "FR2361",
-      "description": "Authorization of Proposed Insured to Obtain and Disclose Information",
-      "required": true,
-      "reviewRequired": true,
-      "condition": "Required for all cases",
-      "conditions": []
-    },
-    {
-      "form": "F8186GEN",
-      "description": "HIPAA Authorization",
-      "required": true,
-      "reviewRequired": true,
-      "condition": "Required for all cases",
-      "conditions": []
-    },
-    {
-      "form": "FR3120",
-      "description": "Producer Statement",
-      "required": true,
-      "reviewRequired": true,
-      "condition": "Required for all cases",
-      "conditions": []
-    },
-    {
-      "form": "N201NY",
-      "description": "HIV Consent Form",
-      "required": true,
-      "reviewRequired": true,
-      "condition": "Required for all cases",
-      "conditions": []
-    },
-    {
-      "form": "FR2282",
-      "description": "Life Products Suitability Questionnaire",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Use unless the owner is an irrevocable trust whose trust assets are paying the premium, or the owner is a business",
-      "conditions": [
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
         {
-          "field": "suitabilityQuestionnaireRequired",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
         }
       ]
     },
     {
-      "form": "FR2193",
-      "description": "Source of Funds Questionnaire",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for applicable non-Term Life cases submitted by MassMutual Career Agents or MMLIS Registered Representatives",
-      "conditions": [
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-CT",
+      "forms": [
         {
-          "field": "sourceOfFundsRequired",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "A2000P-CT",
+          "url": "https://compass.massmutual.com/download/file/bltdc15644cdd1e0bb4"
         }
       ]
     },
     {
-      "form": "A50NY",
-      "description": "Application Part 2",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when medical underwriting requires the paper Part 2 instead of an online CMI or Tele-CMI",
-      "conditions": [
+      "label": "Application Part 2",
+      "text": "Application Part 2: 1CC12A50",
+      "forms": [
         {
-          "field": "paperPart2Required",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "1CC12A50",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
         }
       ]
     },
     {
-      "form": "F6484",
-      "description": "Replacement Form",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for Life replacement cases",
-      "conditions": [
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-CT",
+      "forms": [
         {
-          "field": "replacement",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "A1002P-CT",
+          "url": "https://compass.massmutual.com/download/file/blt16ca816dc21d7e4a"
         }
       ]
     },
     {
-      "form": "F6512",
-      "description": "New York Regulation 60 Pre-Sale Disclosure",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for applicable Life replacement cases",
-      "conditions": [
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: ICC13F5159 (Required if A2000 is submitted.)",
+      "forms": [
         {
-          "field": "replacement",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "ICC13F5159",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt4558fec07372c14a&PAGEURL=Search%20Result%20Page&LINKTEXT=Beneficiary+Designation+Form+New+Business++ICC&DOCGUID=57b6ee643e974410VgnVCM200000d37106aaRCRD"
         }
       ]
     },
     {
-      "form": "F5159NY",
-      "description": "Beneficiary Designation Form",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when Other is selected in Part 1 Section E-2",
-      "conditions": [
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: F5159GEN (Required if A1500 is submitted.)",
+      "forms": [
         {
-          "field": "beneficiaryOther",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "F5159GEN",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltbc4e1b3e62ecaa16&PAGEURL=Search%20Result%20Page&LINKTEXT=Beneficiary+Designation+Form+New+Business++Generic&DOCGUID=60a6ee643e974410VgnVCM200000d37106aaRCRD"
         }
       ]
     },
     {
-      "form": "F5248NY",
-      "description": "Owner Designation Form",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when the owner is anyone other than the insured",
-      "conditions": [
+      "label": "CareChoice Series Application (Part 1)",
+      "text": "CareChoice Series Application (Part 1): A1500P-CT",
+      "forms": [
         {
-          "field": "ownerType",
-          "operator": "notEquals",
-          "value": "insured"
+          "formId": "A1500P-CT",
+          "url": "https://compass.massmutual.com/download/file/bltccbf1731ac3841f7"
         }
       ]
     },
     {
-      "form": "F6445",
-      "description": "Pre-Authorized Check Premium Payment Service",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when the billing type is PAC or EFT",
-      "conditions": [
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
         {
-          "field": "billingType",
-          "operator": "includes",
-          "value": ["pac", "eft"]
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
         }
       ]
     },
     {
-      "form": "R20NY",
-      "description": "Temporary Life Insurance Receipt",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when temporary life insurance is requested",
-      "conditions": [
+      "label": "Disclosure Authorization",
+      "text": "Disclosure Authorization: A1894-8900 Conversions, required when being underwritten.",
+      "forms": [
         {
-          "field": "tlirRequested",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "A1894-8900",
+          "url": "https://compass.massmutual.com/download/file/bltbefb753112033796"
         }
       ]
     },
     {
-      "form": "F6734NY",
-      "description": "New York Trust Certificate",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when the owner is a trust",
-      "conditions": [
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
         {
-          "field": "ownerType",
-          "operator": "equals",
-          "value": "trust"
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
         }
       ]
     },
     {
-      "form": "FR2089NY",
-      "description": "Conversion and Insurability Option Supplement",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for Conversion or IPR cases",
-      "conditions": [
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186 (Required if A2000, A1002 or A11 is submitted.)",
+      "forms": [
         {
-          "field": "caseType",
-          "operator": "includes",
-          "value": ["conversion", "ipr"]
+          "formId": "ICC18F8186",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt3a353349498b94a6&PAGEURL=Search%20Result%20Page&LINKTEXT=Authorization+for+Release+of+Personal+HealthRelated+Information+HIPAA++ICC&DOCGUID=eab25316ba447410VgnVCM200000d37106aaRCRD"
         }
       ]
     },
     {
-      "form": "A1001NY",
-      "description": "Additional Insured Supplement",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when an additional insured is requested",
-      "conditions": [
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: F8186GEN (Required if A1500 is submitted.)",
+      "forms": [
         {
-          "field": "additionalInsured",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "F8186GEN",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb2bab6b3d7d80976&PAGEURL=Search%20Result%20Page&LINKTEXT=Authorization+for+Release+of+Personal+HealthRelated+Information+HIPAA++Generic&DOCGUID=c680615722377210VgnVCM100000bf6a06aaRCRD"
         }
       ]
     },
     {
-      "form": "A1002P-NY",
-      "description": "Application for Simplified Conversion",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for a simplified Conversion case",
-      "conditions": [
+      "label": "HIV form, if applicable",
+      "text": "HIV form, if applicable: N201CT (Based on the contract state.)",
+      "forms": [
         {
-          "field": "caseType",
-          "operator": "equals",
-          "value": "conversion"
+          "formId": "N201CT",
+          "url": "https://compass.massmutual.com/download/file/blt41befd1618c79a50"
         }
       ]
     },
     {
-      "form": "A1500P-NY",
-      "description": "CareChoice Application",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for a CareChoice case",
-      "conditions": [
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: FR2118GEN",
+      "forms": [
         {
-          "field": "productType",
-          "operator": "equals",
-          "value": "careChoice"
+          "formId": "FR2118GEN",
+          "url": "https://compass.massmutual.com/download/file/blt62089f1e268a3eee"
         }
       ]
     },
     {
-      "form": "LTCR-NY",
-      "description": "LTC Access Rider Application Package",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when the LTC Access Rider is elected",
-      "conditions": [
+      "label": "LTC Access Rider Application Package",
+      "text": "LTC Access Rider Application Package: LTCR-CT",
+      "forms": [
         {
-          "field": "productType",
-          "operator": "equals",
-          "value": "ltcr"
+          "formId": "LTCR-CT",
+          "url": "https://compass.massmutual.com/download/file/blt3ac7a231c4622e3c"
         }
       ]
     },
     {
-      "form": "F6290NY-US",
-      "description": "Foreign Supplement",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when applicable foreign travel, residency, or activity is indicated",
-      "conditions": [
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248 (Required if A2000 is submitted.)",
+      "forms": [
         {
-          "field": "foreignActivity",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
         }
       ]
     },
     {
-      "form": "FR2118",
-      "description": "Long Term Care Personal Worksheet",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for an LTC Access Rider or CareChoice case",
-      "conditions": [
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: F5248GEN (Required if A1500 is submitted.)",
+      "forms": [
         {
-          "field": "productType",
-          "operator": "includes",
-          "value": ["ltcr", "careChoice"]
+          "formId": "F5248GEN",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt586ecd67eaede5ca&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++Generic&DOCGUID=751be14b18674410VgnVCM100000d47106aaRCRD"
         }
       ]
     },
     {
-      "form": "N201-NY-399",
-      "description": "Minimum Death Benefit Disclosure",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for Variable Life applications",
-      "conditions": [
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11CT",
+      "forms": [
         {
-          "field": "productType",
-          "operator": "equals",
-          "value": "variableLife"
+          "formId": "A11CT",
+          "url": "https://compass.massmutual.com/download/file/blt5d27ac26da46550a"
         }
       ]
     },
     {
-      "form": "F3669",
-      "description": "Supplement to Application for Variable Life Insurance",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required for Variable Life applications",
-      "conditions": [
+      "label": "Replacement form",
+      "text": "Replacement form: F6487 IMPORTANT: Mail Replacement information within five business days.",
+      "forms": [
         {
-          "field": "productType",
-          "operator": "equals",
-          "value": "variableLife"
-        }
-      ]
-    },
-    {
-      "form": "FR1126NY",
-      "description": "Internal Term-to-Term Replacement Authorization",
-      "required": false,
-      "reviewRequired": true,
-      "condition": "Required when an Internal Term-to-Term replacement is requested",
-      "conditions": [
-        {
-          "field": "internalTermReplacement",
-          "operator": "equals",
-          "value": "yes"
+          "formId": "F6487",
+          "url": "https://compass.massmutual.com/download/file/bltc8b0fa2aa512d92f"
         }
       ]
     }
   ],
-  "initialReviewChecks": [
-    "Review Reg 74 requirements",
-    "Review Reg 187 requirements",
-    "Review the signed matching illustration",
-    "Review FR2361",
-    "Review the Producer Statement",
-    "Review applicable replacement forms",
-    "Review applicable ownership documents",
-    "Review applicable trust documents",
-    "Review applicable beneficiary documents"
+  "important": [
+    "IMPORTANT: Mail Replacement information within five business days."
   ],
-  "campirTriggers": [
-    "Place Of Birth Unknown",
-    "PO Box Address",
-    "Trust Owner",
-    "Entity Owner",
-    "Group Bill",
-    "Alternate Policy",
-    "Premium Financing",
-    "Loan Carryover",
-    "Sales Illustration",
-    "Employee Sponsored Plan",
-    "Viatical",
-    "SPIA",
-    "Beneficiary Dollar Amounts",
-    "Unadmitted Replacement",
-    "Source Of Funds Review"
-  ],
-  "generalNoteFields": [
-    "Purpose Of Insurance",
-    "Risk Class",
-    "Policy Dating",
-    "Illustration",
-    "Alternate Additional",
-    "Polaris Check"
-  ]
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
 }

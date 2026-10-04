@@ -1,0 +1,185 @@
+{
+  "state": "DC",
+  "displayName": "District of Columbia",
+  "extends": "districtOfColumbia",
+  "forms": {
+    "additionalInsured": "A1001DC",
+    "part1": "A2000P-DC",
+    "part2": "A50DC",
+    "simplifiedConversion": "A1002P-DC",
+    "beneficiaryDesignation": "F5159DC",
+    "careChoicePart1": "A1500P-DC",
+    "conversionSupplement": "ICC13FR2089",
+    "foreignSupplement": "F6290DC-US 0317",
+    "hipaaAuthorization": "F8186GEN",
+    "hivForm": "N201DC",
+    "ltcWorksheet": "FR2118GEN",
+    "ltcPackage": "LTCR-DC",
+    "ownerDesignation": "F5248DC",
+    "policyChange": "A11DC",
+    "replacementForm": null,
+    "abrDisclosure": "F7011GEN"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: A1001DC",
+      "forms": [
+        {
+          "formId": "A1001DC",
+          "url": "https://compass.massmutual.com/download/file/bltaf6228a058ac3235"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-DC",
+      "forms": [
+        {
+          "formId": "A2000P-DC",
+          "url": "https://compass.massmutual.com/download/file/bltd0d5849734ed40d9"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2",
+      "text": "Application Part 2: A50DC",
+      "forms": [
+        {
+          "formId": "A50DC",
+          "url": "https://compass.massmutual.com/download/file/bltd3c8dd16e9f9d471"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-DC",
+      "forms": [
+        {
+          "formId": "A1002P-DC",
+          "url": "https://compass.massmutual.com/api/assets/file/blt7fd9e134a49f7a08"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: F5159DC",
+      "forms": [
+        {
+          "formId": "F5159DC",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt4097c29865e89ca9&PAGEURL=Search%20Result%20Page&LINKTEXT=Beneficiary+Designation+Form+New+Business++District+of+Columbia&DOCGUID=28aae14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice Series Application (Part 1)",
+      "text": "CareChoice Series Application (Part 1): A1500P-DC",
+      "forms": [
+        {
+          "formId": "A1500P-DC",
+          "url": "https://compass.massmutual.com/download/file/blt828c8295ed622725"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Supplement",
+      "text": "Conversion & Insurability Option Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/public/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: F6290DC-US 0317",
+      "forms": [
+        {
+          "formId": "F6290DC-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt6ee702a8b8126aba&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++District+of+Columbia&DOCGUID=0fe943693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: F8186GEN",
+      "forms": [
+        {
+          "formId": "F8186GEN",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb2bab6b3d7d80976&PAGEURL=Search%20Result%20Page&LINKTEXT=Authorization+for+Release+of+Personal+HealthRelated+Information+HIPAA++Generic&DOCGUID=c680615722377210VgnVCM100000bf6a06aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIV form, if applicable",
+      "text": "HIV form, if applicable: N201DC (Based on the contract state.)",
+      "forms": [
+        {
+          "formId": "N201DC",
+          "url": "https://compass.massmutual.com/download/file/blt2ad5e017aadacb95"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: FR2118GEN",
+      "forms": [
+        {
+          "formId": "FR2118GEN",
+          "url": "https://compass.massmutual.com/download/file/blt62089f1e268a3eee"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package",
+      "text": "LTC Access Rider Application Package: LTCR-DC",
+      "forms": [
+        {
+          "formId": "LTCR-DC",
+          "url": "https://compass.massmutual.com/download/file/blt74d51a78e8a6e5c8"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: F5248DC",
+      "forms": [
+        {
+          "formId": "F5248DC",
+          "url": "https://compass.massmutual.com/download/file/bltf942ed90a1d81241"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11DC",
+      "forms": [
+        {
+          "formId": "A11DC",
+          "url": "https://compass.massmutual.com/download/file/bltd9cd40b553227a42"
+        }
+      ]
+    },
+    {
+      "label": "Replacement form",
+      "text": "Replacement form: Exempt"
+    },
+    {
+      "label": "ABR Disclosure",
+      "text": "ABR Disclosure: F7011GEN",
+      "forms": [
+        {
+          "formId": "F7011GEN",
+          "url": "https://compass.massmutual.com/download/file/blt9815139e869f553a"
+        }
+      ]
+    }
+  ],
+  "important": [],
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

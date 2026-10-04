@@ -1,0 +1,171 @@
+{
+  "state": "TN",
+  "displayName": "Tennessee",
+  "extends": "standardICC",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-TN",
+    "part2": "ICC12A50",
+    "simplifiedConversion": "A1002P-TN",
+    "beneficiaryDesignation": "ICC13F5159",
+    "careChoicePart1": "A1500P-TN",
+    "conversionSupplement": "ICC13FR2089",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": "ICC18F8186",
+    "ltcWorksheet": "ICC19FR2118",
+    "ltcPackage": "LTCR-TN",
+    "ownerDesignation": "ICC15F5248",
+    "policyChange": "A11TN",
+    "replacementForm": "F5436TN"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
+        {
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-TN",
+      "forms": [
+        {
+          "formId": "A2000P-TN",
+          "url": "https://compass.massmutual.com/download/file/blt55047ddcf46764df"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2 - ICC",
+      "text": "Application Part 2 - ICC: ICC12A50",
+      "forms": [
+        {
+          "formId": "ICC12A50",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-TN",
+      "forms": [
+        {
+          "formId": "A1002P-TN",
+          "url": "https://compass.massmutual.com/download/file/bltef82bc4a14eaf0df"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation Form",
+      "text": "Beneficiary Designation Form: ICC13F5159",
+      "forms": [
+        {
+          "formId": "ICC13F5159",
+          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice One Application (Part 1)",
+      "text": "CareChoice One Application (Part 1): A1500P-TN",
+      "forms": [
+        {
+          "formId": "A1500P-TN",
+          "url": "https://compass.massmutual.com/download/file/bltef82bc4a14eaf0df"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
+        {
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186",
+      "forms": [
+        {
+          "formId": "ICC18F8186",
+          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
+      "forms": [
+        {
+          "formId": "ICC19FR2118",
+          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package Form ID",
+      "text": "LTC Access Rider Application Package Form ID: LTCR-TN",
+      "forms": [
+        {
+          "formId": "LTCR-TN",
+          "url": "https://compass.massmutual.com/download/file/blt53cfb0bf22d443b5"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248",
+      "forms": [
+        {
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Appliction",
+      "text": "Policy Change Appliction: A11TN",
+      "forms": [
+        {
+          "formId": "A11TN",
+          "url": "https://compass.massmutual.com/download/file/blt4ca7be1f42b953e8"
+        }
+      ]
+    },
+    {
+      "label": "Replacement Form",
+      "text": "Replacement Form: F5436TN IMPORTANT: Mail replacement information within 5 days. Letter must be sent via Certified Mail.",
+      "forms": [
+        {
+          "formId": "F5436TN",
+          "url": "https://compass.massmutual.com/download/file/blt76acfe8581297967"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Mail replacement information within 5 days. Letter must be sent via Certified Mail."
+  ],
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "state": "PR",
+  "displayName": "Puerto Rico",
+  "extends": "standardICC",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-PR",
+    "part2": "ICC12A50",
+    "simplifiedConversion": "A1002P-PR",
+    "beneficiaryDesignation": "ICC13F5159",
+    "careChoicePart1": "A1500P-PR",
+    "conversionSupplement": "ICC13FR2089",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": "ICC18F8186",
+    "ltcWorksheet": "ICC19FR2118",
+    "ltcPackage": "LTCR-GE",
+    "ownerDesignation": "ICC15F5248",
+    "policyChange": "A11PR",
+    "replacementForm": "F5436PR"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
+        {
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-PR",
+      "forms": [
+        {
+          "formId": "A2000P-PR",
+          "url": "https://compass.massmutual.com/download/file/blt3174bf6ec7372c36"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2 - ICC",
+      "text": "Application Part 2 - ICC: ICC12A50",
+      "forms": [
+        {
+          "formId": "ICC12A50",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-PR",
+      "forms": [
+        {
+          "formId": "A1002P-PR",
+          "url": "https://compass.massmutual.com/api/assets/file/blt737f75c448da8ca5"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation Form",
+      "text": "Beneficiary Designation Form: ICC13F5159",
+      "forms": [
+        {
+          "formId": "ICC13F5159",
+          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice One Application (Part 1)",
+      "text": "CareChoice One Application (Part 1): A1500P-PR",
+      "forms": [
+        {
+          "formId": "A1500P-PR",
+          "url": "https://compass.massmutual.com/download/file/blt1529fb8fc9d53a54"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
+        {
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186",
+      "forms": [
+        {
+          "formId": "ICC18F8186",
+          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
+      "forms": [
+        {
+          "formId": "ICC19FR2118",
+          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package Form ID",
+      "text": "LTC Access Rider Application Package Form ID: LTCR-GE",
+      "forms": [
+        {
+          "formId": "LTCR-GE",
+          "url": "https://compass.massmutual.com/download/file/blte93e8ae76dc076c4"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248",
+      "forms": [
+        {
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11PR",
+      "forms": [
+        {
+          "formId": "A11PR",
+          "url": "https://compass.massmutual.com/download/file/blt391ee9a76053e4c7"
+        }
+      ]
+    },
+    {
+      "label": "Replacement Form",
+      "text": "Replacement Form: F5436PR (Retained only in the Agency) NOTES:",
+      "forms": [
+        {
+          "formId": "F5436PR",
+          "url": "https://compass.massmutual.com/download/file/bltc9d783dad500dd65"
+        }
+      ]
+    },
+    {
+      "label": "Puerto Rico addresses are formatted differently than a standard US Address. The",
+      "text": "Puerto Rico addresses are formatted differently than a standard US Address. The address formats are specific to the location of the residence, and there are exceptions within these formats. See Knowledge Center for more information on handling addresses in Puerto Rico.",
+      "forms": [
+        {
+          "formId": "Knowledge Center",
+          "url": "../Knowledge Center/Knowledge_Center.htm"
+        }
+      ]
+    },
+    {
+      "label": "MVRs for Puerto Rico's Insureds are not obtained through the MVR vendor that ser",
+      "text": "MVRs for Puerto Rico's Insureds are not obtained through the MVR vendor that services the 50 states. The MVR image that populates in TreX are not reflect a valid MVR. MVRs are provided manually by the firm. For this reason, the MVR requirement must be handled differently for these policies. See the Knowledge Center for more information.",
+      "forms": [
+        {
+          "formId": "Knowledge Center",
+          "url": "../Knowledge Center/Knowledge_Center.htm"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Risk-located state. Agent must be licensed in PR if the insured is a resident, regardless of where the Part 1 was signed."
+  ],
+  "notes": [
+    "NOTES:"
+  ],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "state": "SD",
+  "displayName": "South Dakota",
+  "extends": "southDakota",
+  "forms": {
+    "additionalInsured": "A1001SD",
+    "part1": "A2000P-SD",
+    "part2": "A50SD",
+    "simplifiedConversion": "A1002P-SD",
+    "beneficiaryDesignation": "F5159SD",
+    "careChoicePart1": "A1500P-SD",
+    "conversionSupplement": "FR2089SD",
+    "foreignSupplement": "F6290GEN-US 0317",
+    "hipaaAuthorization": "F8186GEN",
+    "hivForm": "N201GEN",
+    "ltcWorksheet": "FR2118SD",
+    "ltcPackage": "LTCR-SD",
+    "ownerDesignation": "F5248SD",
+    "policyChange": "A11SD",
+    "replacementForm": "F6487"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: A1001SD",
+      "forms": [
+        {
+          "formId": "A1001SD",
+          "url": "https://compass.massmutual.com/download/file/blt989be8863e1c2a56"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-SD",
+      "forms": [
+        {
+          "formId": "A2000P-SD",
+          "url": "https://compass.massmutual.com/download/file/bltadf5b671a751ac9e"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2",
+      "text": "Application Part 2: A50SD",
+      "forms": [
+        {
+          "formId": "A50SD",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt97ace709e0037566&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++South+Dakota&DOCGUID=7b57578b49d1e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-SD",
+      "forms": [
+        {
+          "formId": "A1002P-SD",
+          "url": "https://compass.massmutual.com/download/file/blt9259ee6a697a21c3"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation Form",
+      "text": "Beneficiary Designation Form: F5159SD",
+      "forms": [
+        {
+          "formId": "F5159SD",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blta97582b6ff5ede52&PAGEURL=Search%20Result%20Page&LINKTEXT=Beneficiary+Designation+Form+New+Business++South+Dakota&DOCGUID=f6eae14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice One Application (Part 1)",
+      "text": "CareChoice One Application (Part 1): A1500P-SD",
+      "forms": [
+        {
+          "formId": "A1500P-SD",
+          "url": "https://compass.massmutual.com/download/file/blt04f5f23dd4d6b96e"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Supplement",
+      "text": "Conversion & Insurability Option Supplement: FR2089SD",
+      "forms": [
+        {
+          "formId": "FR2089SD",
+          "url": "https://compass.massmutual.com/download/file/bltd4880fbb1c4e38f8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: F6290GEN-US 0317",
+      "forms": [
+        {
+          "formId": "F6290GEN-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt13589d08742d79dc&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++Generic&DOCGUID=332a43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: F8186GEN",
+      "forms": [
+        {
+          "formId": "F8186GEN",
+          "url": "https://compass.massmutual.com/download/file/bltb2bab6b3d7d80976"
+        }
+      ]
+    },
+    {
+      "label": "HIV form, if applicable",
+      "text": "HIV form, if applicable: N201GEN (Based on the residence state.)",
+      "forms": [
+        {
+          "formId": "N201GEN",
+          "url": "https://compass.massmutual.com/download/file/bltad060ef1916c499c"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: FR2118SD",
+      "forms": [
+        {
+          "formId": "FR2118SD",
+          "url": "https://compass.massmutual.com/download/file/bltad77782df9b0e960"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package Form ID",
+      "text": "LTC Access Rider Application Package Form ID: LTCR-SD",
+      "forms": [
+        {
+          "formId": "LTCR-SD",
+          "url": "https://compass.massmutual.com/download/file/blt820af3d8ea5e55e6"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation Form",
+      "text": "Owner Designation Form: F5248SD",
+      "forms": [
+        {
+          "formId": "F5248SD",
+          "url": "https://compass.massmutual.com/download/file/bltc85b05482d339aac"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11SD",
+      "forms": [
+        {
+          "formId": "A11SD",
+          "url": "https://compass.massmutual.com/download/file/bltaba35e351522fb21"
+        }
+      ]
+    },
+    {
+      "label": "Replacement Form",
+      "text": "Replacement Form: F6487 IMPORTANT: Mail replacement information within 5 business days.",
+      "forms": [
+        {
+          "formId": "F6487",
+          "url": "https://compass.massmutual.com/download/file/bltc8b0fa2aa512d92f"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Mail replacement information within 5 business days."
+  ],
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "state": "IA",
+  "displayName": "Iowa",
+  "extends": "standardICC_HIV",
+  "forms": {
+    "additionalInsured": "ICC17A1001",
+    "part1": "A2000P-IA",
+    "part2": "ICC12A50",
+    "simplifiedConversion": "A1002P-IA",
+    "beneficiaryDesignation": "ICC13F5159",
+    "careChoicePart1": "A1500P-IA",
+    "conversionSupplement": "ICC13FR2089",
+    "foreignSupplement": "ICC17F6290-US 0317",
+    "hipaaAuthorization": "ICC18F8186",
+    "hivForm": "N201IA",
+    "ltcWorksheet": "ICC19FR2118",
+    "ltcPackage": "LTCR-GE",
+    "ownerDesignation": "ICC15F5248",
+    "policyChange": "A11IA",
+    "replacementForm": "F6487"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: ICC17A1001",
+      "forms": [
+        {
+          "formId": "ICC17A1001",
+          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-IA",
+      "forms": [
+        {
+          "formId": "A2000P-IA",
+          "url": "https://compass.massmutual.com/download/file/bltc681456fd6072910"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2 - ICC",
+      "text": "Application Part 2 - ICC: ICC12A50",
+      "forms": [
+        {
+          "formId": "ICC12A50",
+          "url": "https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-IA",
+      "forms": [
+        {
+          "formId": "A1002P-IA",
+          "url": "https://compass.massmutual.com/api/assets/file/bltf1c650f5d096e87f"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: ICC13F5159",
+      "forms": [
+        {
+          "formId": "ICC13F5159",
+          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice Series Application (Part 1)",
+      "text": "CareChoice Series Application (Part 1): A1500P-IA",
+      "forms": [
+        {
+          "formId": "A1500P-IA",
+          "url": "https://compass.massmutual.com/download/file/bltea4d8ebef6280b6b"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Life Insurance Supplement",
+      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
+      "forms": [
+        {
+          "formId": "ICC13FR2089",
+          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: ICC17F6290-US 0317",
+      "forms": [
+        {
+          "formId": "ICC17F6290-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: ICC18F8186",
+      "forms": [
+        {
+          "formId": "ICC18F8186",
+          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+        }
+      ]
+    },
+    {
+      "label": "HIV form, if applicable",
+      "text": "HIV form, if applicable: N201IA (Based on the contract state.)",
+      "forms": [
+        {
+          "formId": "N201IA",
+          "url": "https://compass.massmutual.com/download/file/bltbf37122688d645bd"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
+      "forms": [
+        {
+          "formId": "ICC19FR2118",
+          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package",
+      "text": "LTC Access Rider Application Package: LTCR-GE",
+      "forms": [
+        {
+          "formId": "LTCR-GE",
+          "url": "https://compass.massmutual.com/download/file/blte93e8ae76dc076c4"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: ICC15F5248",
+      "forms": [
+        {
+          "formId": "ICC15F5248",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11IA",
+      "forms": [
+        {
+          "formId": "A11IA",
+          "url": "https://compass.massmutual.com/download/file/blta46658421a56f281"
+        }
+      ]
+    },
+    {
+      "label": "Replacement form",
+      "text": "Replacement form: F6487 IMPORTANT: Mail replacement information within five business days.",
+      "forms": [
+        {
+          "formId": "F6487",
+          "url": "https://compass.massmutual.com/download/file/bltc8b0fa2aa512d92f"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Mail replacement information within five business days."
+  ],
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}

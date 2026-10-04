@@ -2237,12 +2237,12 @@ textarea.amendment-field-input {
 
 .saved-amendments label,
 .saved-amendment-list {
-  display: ;
+  display: none;
 }
 
 .saved-amendments,
 .generated-output-block {
-  display:
+  display: none
   ;
 }
 .review-header {
@@ -2251,4 +2251,94 @@ textarea.amendment-field-input {
     align-items: center;
     gap: 24px;
     margin-bottom: 20px;
+}
+
+
+#stateRequirementsSection {
+  margin-top: 1rem;
+}
+
+.state-guidance-header {
+  margin-bottom: 1rem;
+}
+
+.state-guidance-header h2 {
+  margin: 0;
+  color: #002f6c;
+}
+
+#stateFamilyName {
+  margin: 0.25rem 0 0;
+  color: #5f6b7a;
+  font-size: 0.875rem;
+}
+
+.state-form-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(230px, 1fr)
+  );
+  gap: 0.75rem;
+}
+
+.state-form-card {
+  padding: 0.875rem;
+  border: 1px solid #d6dde6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.state-form-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #44546a;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.state-form-number {
+  color: #002f6c;
+}
+
+.state-notice {
+  margin-bottom: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+}
+
+.state-notice h3 {
+  margin-top: 0;
+}
+
+.state-notice ul {
+  margin-bottom: 0;
+  padding-left: 1.25rem;
+}
+
+.state-notice-important {
+  border-left: 5px solid #c62828;
+  background: #fff1f1;
+}
+
+.state-notice-note {
+  border-left: 5px solid #d99a00;
+  background: #fff8df;
+}
+
+.state-load-error {
+  padding: 1rem;
+  border-left: 5px solid #c62828;
+  background: #fff1f1;
+  color: #8b1e1e;
+}
+
+.state-data-loading {
+  cursor: progress;
+}
+
+@media (max-width: 600px) {
+  .state-form-grid {
+    grid-template-columns: 1fr;
+  }
 }

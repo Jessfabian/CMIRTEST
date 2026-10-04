@@ -1,0 +1,182 @@
+{
+  "state": "MT",
+  "displayName": "Montana",
+  "extends": "generic",
+  "forms": {
+    "additionalInsured": "A1001GEN",
+    "part1": "A2000P-MT",
+    "part2": "A50GEN",
+    "simplifiedConversion": "A1002P-MT",
+    "beneficiaryDesignation": "F5159GEN",
+    "careChoicePart1": "A1500P-MT",
+    "conversionSupplement": "FR2089GEN",
+    "disclosureAuthorization": "A1894MT",
+    "foreignSupplement": "F6290GEN-US 0317",
+    "hipaaAuthorization": "F8186GEN",
+    "ltcWorksheet": "FR2118MT",
+    "ltcPackage": "LTCR-MT",
+    "ownerDesignation": "F5248GEN",
+    "policyChange": "A11MT",
+    "replacementForm": "F6487"
+  },
+  "requirements": [
+    {
+      "label": "Additional Insured Supplement",
+      "text": "Additional Insured Supplement: A1001GEN",
+      "forms": [
+        {
+          "formId": "A1001GEN",
+          "url": "https://compass.massmutual.com/download/file/blt6445015b7a6c6ece"
+        }
+      ]
+    },
+    {
+      "label": "Application for Life Insurance (Part 1)",
+      "text": "Application for Life Insurance (Part 1): A2000P-MT",
+      "forms": [
+        {
+          "formId": "A2000P-MT",
+          "url": "https://compass.massmutual.com/download/file/blt2cfaeae30ab937e8"
+        }
+      ]
+    },
+    {
+      "label": "Application Part 2",
+      "text": "Application Part 2: A50GEN",
+      "forms": [
+        {
+          "formId": "A50GEN",
+          "url": "https://compass.massmutual.com/download/file/bltd01595a45318904f"
+        }
+      ]
+    },
+    {
+      "label": "Application for Simplified Conversion",
+      "text": "Application for Simplified Conversion: A1002P-MT",
+      "forms": [
+        {
+          "formId": "A1002P-MT",
+          "url": "https://compass.massmutual.com/download/file/bltae3c0c18ce003aa2"
+        }
+      ]
+    },
+    {
+      "label": "Beneficiary Designation form",
+      "text": "Beneficiary Designation form: F5159GEN",
+      "forms": [
+        {
+          "formId": "F5159GEN",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltbc4e1b3e62ecaa16&PAGEURL=Search%20Result%20Page&LINKTEXT=Beneficiary+Designation+Form+New+Business++Generic&DOCGUID=60a6ee643e974410VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "CareChoice Series Application (Part 1)",
+      "text": "CareChoice Series Application (Part 1): A1500P-MT",
+      "forms": [
+        {
+          "formId": "A1500P-MT",
+          "url": "https://compass.massmutual.com/download/file/bltfa5df21a3359ce11"
+        }
+      ]
+    },
+    {
+      "label": "Conversion & Insurability Option Supplement",
+      "text": "Conversion & Insurability Option Supplement: FR2089GEN",
+      "forms": [
+        {
+          "formId": "FR2089GEN",
+          "url": "https://compass.massmutual.com/download/file/bltb1f7767fdf5f2a07"
+        }
+      ]
+    },
+    {
+      "label": "Disclosure Authorization",
+      "text": "Disclosure Authorization: A1894MT Conversions, required when being underwritten.",
+      "forms": [
+        {
+          "formId": "A1894MT",
+          "url": "https://compass.massmutual.com/download/file/blt700bb14384b809fc"
+        }
+      ]
+    },
+    {
+      "label": "Foreign Supplement",
+      "text": "Foreign Supplement: F6290GEN-US 0317",
+      "forms": [
+        {
+          "formId": "F6290GEN-US 0317",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt13589d08742d79dc&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++Generic&DOCGUID=332a43693f22e310VgnVCM200000d37106aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "HIPAA Authorization",
+      "text": "HIPAA Authorization: F8186GEN",
+      "forms": [
+        {
+          "formId": "F8186GEN",
+          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb2bab6b3d7d80976&PAGEURL=Search%20Result%20Page&LINKTEXT=Authorization+for+Release+of+Personal+HealthRelated+Information+HIPAA++Generic&DOCGUID=c680615722377210VgnVCM100000bf6a06aaRCRD"
+        }
+      ]
+    },
+    {
+      "label": "Long Term Care Personal Worksheet",
+      "text": "Long Term Care Personal Worksheet: FR2118MT",
+      "forms": [
+        {
+          "formId": "FR2118MT",
+          "url": "https://compass.massmutual.com/download/file/blt65521f73223b258e"
+        }
+      ]
+    },
+    {
+      "label": "LTC Access Rider Application Package",
+      "text": "LTC Access Rider Application Package: LTCR-MT",
+      "forms": [
+        {
+          "formId": "LTCR-MT",
+          "url": "https://compass.massmutual.com/download/file/blt940cf804c81ba49b"
+        }
+      ]
+    },
+    {
+      "label": "Owner Designation form",
+      "text": "Owner Designation form: F5248GEN",
+      "forms": [
+        {
+          "formId": "F5248GEN",
+          "url": "https://compass.massmutual.com/download/file/blt586ecd67eaede5ca"
+        }
+      ]
+    },
+    {
+      "label": "Policy Change Application",
+      "text": "Policy Change Application: A11MT",
+      "forms": [
+        {
+          "formId": "A11MT",
+          "url": "https://compass.massmutual.com/download/file/bltfcf4309168983dff"
+        }
+      ]
+    },
+    {
+      "label": "Replacement form",
+      "text": "Replacement form: F6487 IMPORTANT: Mail replacement information within five business days.",
+      "forms": [
+        {
+          "formId": "F6487",
+          "url": "https://compass.massmutual.com/download/file/bltc8b0fa2aa512d92f"
+        }
+      ]
+    }
+  ],
+  "important": [
+    "IMPORTANT: Mail replacement information within five business days."
+  ],
+  "notes": [],
+  "source": {
+    "title": "State Requirements Chart",
+    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
+  }
+}
