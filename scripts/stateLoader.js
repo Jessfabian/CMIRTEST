@@ -39,41 +39,7 @@ window.formReviewStatus = {};
     return Array.isArray(value) ? value : [value];
   }
 
-  async function loadStateData(stateCode) {
-    const code = String(stateCode || "")
-      .trim()
-      .toUpperCase();
 
-    if (!code) {
-      return null;
-    }
-
-    if (stateCache.has(code)) {
-      return stateCache.get(code);
-    }
-
-    const url = `${STATE_PATH}/${encodeURIComponent(code)}.json`;
-    const response = await fetch(url, {
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Unable to load ${code}.json. HTTP status: ${response.status}`,
-      );
-    }
-
-    const stateData = await response.json();
-
-    if (!stateData || stateData.state !== code) {
-      throw new Error(
-        `${code}.json loaded, but its state property does not match ${code}.`,
-      );
-    }
-
-    stateCache.set(code, stateData);
-    return stateData;
-  }
 
   function renderNotices(stateData) {
     const container = document.getElementById("stateImportantNotices");
@@ -121,7 +87,7 @@ window.formReviewStatus = {};
 
     container.hidden = false;
   }
-  window.loadStateData = loadStateData;
+ 
 
 
 
