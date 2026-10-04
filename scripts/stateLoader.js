@@ -8,7 +8,7 @@ window.formReviewStatus = {};
      if (!stateCode) return;
 
      try {
-       console.log("loadStateData URL:", url);
+       console.log("Loading state:", `./data/States/${stateCode}.json`);
        const response = await fetch(`./data/States/${stateCode}.json`, {
          cache: "no-store",
        });
