@@ -123,7 +123,7 @@ const stateCache = new Map();
     container.hidden = false;
   }
   window.loadStateData = loadStateData;
-  
+
 
 
 
@@ -278,7 +278,24 @@ function renderStateGuidance(stateData) {
 
 `,
     )
+
+
     .join("");
+
+  const globalFormDropdown = document.getElementById("globalAmendmentForm");
+
+  if (globalFormDropdown) {
+    globalFormDropdown.innerHTML = '<option value="">Select Form</option>';
+
+    applicableForms.forEach((form) => {
+      const option = document.createElement("option");
+
+      option.value = form.form;
+      option.textContent = `${form.form} - ${form.description}`;
+
+      globalFormDropdown.appendChild(option);
+    });
+  }
 
   // RESTORE PREVIOUS IGO/NIGO SELECTIONS
 
