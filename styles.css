@@ -784,9 +784,9 @@ dialog::backdrop {
 ======================================== */
 
 .dashboard-strip {
-position: sticky;
-top: 10px;
-z-index: 900;
+  position: sticky;
+  top: 10px;
+  z-index: 900;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -808,8 +808,6 @@ z-index: 900;
   position: relative;
   min-width: 0;
   padding: 12px 14px;
-
-
 
   background: #ffffff;
   border: 1px solid #d6dee8;
@@ -1227,16 +1225,16 @@ z-index: 900;
 
 .igo-button:hover,
 .igo-button.selected {
-  color: #ffffff;
-  background: var(--mm-green);
-  border-color: var(--mm-green);
+  background: #43b02a !important;
+  color: white !important;
+  border-color: #43b02a !important;
 }
 
 .nigo-button:hover,
 .nigo-button.selected {
-  color: #ffffff;
-  background: var(--mm-orange);
-  border-color: var(--mm-orange);
+  background: #ff671f !important;
+  color: white !important;
+  border-color: #ff671f !important;
 }
 
 .form-review-result {
@@ -2085,16 +2083,16 @@ textarea.amendment-field-input {
 }
 
 .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
 }
 @media (max-width: 768px) {
   .review-header {
-      flex-direction: column;
-      gap: 15px;
+    flex-direction: column;
+    gap: 15px;
   }
 }
 
@@ -2194,15 +2192,15 @@ textarea.amendment-field-input {
 }
 
 .review-sidebar {
-    position: sticky;
-    top: 90px;
+  position: sticky;
+  top: 90px;
 
-    align-self: start;
-    height: fit-content;
+  align-self: start;
+  height: fit-content;
 
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .workspace-summary {
@@ -2242,17 +2240,15 @@ textarea.amendment-field-input {
 
 .saved-amendments,
 .generated-output-block {
-  display: none
-  ;
+  display: none;
 }
 .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
 }
-
 
 #stateRequirementsSection {
   margin-top: 1rem;
@@ -2275,10 +2271,7 @@ textarea.amendment-field-input {
 
 .state-form-grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(230px, 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 0.75rem;
 }
 

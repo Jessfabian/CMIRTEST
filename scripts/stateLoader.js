@@ -1,3 +1,5 @@
+window.formReviewStatus = {};
+
 console.log("STATE LOADER LOADED");
 () => {
   "use strict";
@@ -123,6 +125,7 @@ document
     renderStateGuidance(stateData);
   });
 
+
 const FORM_LABELS = {
   additionalInsured: "Additional Insured Supplement",
   part1: "Application for Life Insurance Part 1",
@@ -231,64 +234,83 @@ function renderStateGuidance(stateData) {
       const displayValue = form.form;
 
       return `
-                <div class="form-review-card">
+<div class="required-form-row">
 
-                    <div class="form-review-main">
+    <div class="state-form-main">
 
-                        <div class="form-review-details">
+        <div class="state-form-content">
 
-                            <div class="form-review-title">
-                                ${displayLabel}
-                            </div>
+            <div class="state-form-header">
+                <strong>${form.description}</strong>
+            </div>
 
-                            <div class="form-review-id">
-                                ${displayValue}
-                            </div>
+            <div class="form-description">
+                ${form.form}
+            </div>
 
-                        </div>
+            ${
+              form.condition
+                ? `<div class="form-condition">${form.condition}</div>`
+                : ""
+            }
 
-                        <div class="form-review-actions">
+        </div>
 
-                            <button
-    type="button"
-    class="igo-btn"
-    data-form="${form.form}">
-    IGO
-</button>
+        <div class="form-status-actions">
 
-<button
-    type="button"
-    class="nigo-btn"
-    data-form="${form.form}">
-    NIGO
-</button>
+            <button
+                type="button"
+                class="form-status-button igo-button"
+                data-form="${form.form}">
+                IGO
+            </button>
 
-                        </div>
+            <button
+                type="button"
+                class="form-status-button nigo-button"
+                data-form="${form.form}">
+                NIGO
+            </button>
 
-                    </div>
+        </div>
 
-                </div>
-            `;
+    </div>
+
+</div>
+`;
+      updateStateDashboard();
     })
     .join("");
+Object.entries(window.formReviewStatus).forEach(([formId, status]) => {
+  const row = document
+    .querySelector(`[data-form="${formId}"]`)
+    ?.closest(".required-form-row");
 
+  if (!row) return;
+
+  const igo = row.querySelector(".igo-button");
+
+  const nigo = row.querySelector(".nigo-button");
+
+  if (status === "IGO") {
+    igo?.classList.add("selected");
+  }
+
+  if (status === "NIGO") {
+    nigo?.classList.add("selected");
+  }
+});
   document.getElementById("requiredFormCountCard").textContent =
     applicableForms.length;
 
   document.getElementById("applicableFormCount").textContent =
     `${applicableForms.length} forms`;
+  document.getElementById("dashboardFormCount").textContent =
+    applicableForms.length;
 
   specialNotes.innerHTML = (stateData.specialNotes || [])
-    .map(note =>
-      `<div class="special-note">${note}</div>`
-    )
+    .map((note) => `<div class="special-note">${note}</div>`)
     .join("");
-
-  const contractState = document.getElementById("contractState");
-
-  if (contractState.value) {
-    contractState.dispatchEvent(new Event("change"));
-  }
 
   const FORM_CONDITIONS = {
     replacementForm: () => document.getElementById("replacement")?.checked,
@@ -300,7 +322,10 @@ function renderStateGuidance(stateData) {
       document.getElementById("beneficiaryOther")?.value === "yes",
 
     ltcPackage: () =>
-      document.getElementById("policyNumber")?.value.toUpperCase().includes("CC"),
+      document
+        .getElementById("policyNumber")
+        ?.value.toUpperCase()
+        .includes("CC"),
 
     part1: () => true,
 
@@ -319,20 +344,60 @@ function renderStateGuidance(stateData) {
       }
     });
   });
+}
+document.addEventListener("click", (event) => {
+  if (
+    !event.target.classList.contains("igo-button") &&
+    !event.target.classList.contains("nigo-button")
+  ) {
+    return;
+  }
 
-  document.addEventListener("click", (event) => {
-    if (!event.target.classList.contains("nigo-btn")) {
-      return;
-    }
+  const formId = event.target.dataset.form;
 
-    const form = event.target.dataset.form;
+  const row = event.target.closest(".required-form-row");
 
-    const target = document.getElementById("globalAmendmentForm");
+  const igoButton = row.querySelector(".igo-button");
 
-    if (target) {
-      target.value = form;
+  const nigoButton = row.querySelector(".nigo-button");
 
-      target.dispatchEvent(new Event("change"));
-    }
-  });
+  if (event.target.classList.contains("igo-button")) {
+    igoButton.classList.add("selected");
+    nigoButton.classList.remove("selected");
+
+    window.formReviewStatus[formId] = "IGO";
+  }
+
+  if (event.target.classList.contains("nigo-button")) {
+    nigoButton.classList.add("selected");
+    igoButton.classList.remove("selected");
+
+    window.formReviewStatus[formId] = "NIGO";
+    document
+      .getElementById("amendmentsSection")
+      ?.style.setProperty("display", "block");
+
+    document
+      .getElementById("requirementsSection")
+      ?.style.setProperty("display", "block");
+  }
+
+  updateStateDashboard();
+});
+function updateStateDashboard() {
+  const total = document.querySelectorAll(".required-form-row").length;
+
+  const reviewed = Object.keys(window.formReviewStatus).length;
+
+  const issues = Object.values(window.formReviewStatus).filter(
+    (status) => status === "NIGO",
+  ).length;
+
+  const remaining = total - reviewed;
+
+  document.getElementById("reviewedCountCard").textContent = reviewed;
+
+  document.getElementById("remainingCountCard").textContent = remaining;
+
+  document.getElementById("dashboardIssueCount").textContent = issues;
 }
