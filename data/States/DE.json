@@ -1,182 +1,214 @@
 {
   "state": "DE",
   "displayName": "Delaware",
-  "extends": "generic",
-  "forms": {
-    "additionalInsured": "A1001GEN",
-    "part1": "A2000P-DE",
-    "part2": "A50GEN",
-    "simplifiedConversion": "A1002P-DE",
-    "beneficiaryDesignation": "F5159GEN",
-    "careChoicePart1": "A1500P-DE",
-    "conversionSupplement": "FR2089GEN",
-    "foreignSupplement": "ICC17F6290-US 0317",
-    "hipaaAuthorization": "F8186GEN",
-    "hivForm": "N201DE",
-    "ltcWorksheet": "FR2118GEN",
-    "ltcPackage": "LTCR-DE",
-    "ownerDesignation": "F5248GEN",
-    "policyChange": "A11DE",
-    "replacementForm": "F5436DE"
+  "reviewProcesses": {
+    "replacementReview": false
   },
-  "requirements": [
+  "specialNotes": [],
+  "forms": [
     {
-      "label": "Additional Insured Supplement",
-      "text": "Additional Insured Supplement: A1001GEN",
-      "forms": [
+      "form": "ICC17A2000",
+      "description": "Application for Individual Life and Disability Insurance Part 1",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "ICC18F8186",
+      "description": "HIPAA Authorization",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "N201DE",
+      "description": "HIV Consent Form",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "FR3120",
+      "description": "Producer Statement",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "FR2193",
+      "description": "Source of Funds Questionnaire",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required for applicable non-Term Life cases submitted under the Department of Labor fiduciary rule",
+      "conditions": [
         {
-          "formId": "A1001GEN",
-          "url": "https://compass.massmutual.com/download/file/blt6445015b7a6c6ece"
+          "field": "sourceOfFundsRequired",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Application for Life Insurance (Part 1)",
-      "text": "Application for Life Insurance (Part 1): A2000P-DE",
-      "forms": [
+      "form": "FR2339",
+      "description": "Disclosure Statement for Accelerated Death Benefit for Chronic Illness Rider",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required for applicable Apex and UL Guard cases with issue age between 18 and 65",
+      "conditions": [
         {
-          "formId": "A2000P-DE",
-          "url": "https://compass.massmutual.com/download/file/blta876ad0e96d1fba6"
+          "field": "chronicIllnessDisclosureRequired",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Application Part 2",
-      "text": "Application Part 2: A50GEN",
-      "forms": [
+      "form": "ICC13F5159",
+      "description": "Beneficiary Designation Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when Other is selected for beneficiary information",
+      "conditions": [
         {
-          "formId": "A50GEN",
-          "url": "https://compass.massmutual.com/download/file/bltd01595a45318904f"
+          "field": "beneficiaryOther",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Application for Simplified Conversion",
-      "text": "Application for Simplified Conversion: A1002P-DE",
-      "forms": [
+      "form": "F6445",
+      "description": "Pre-Authorized Check Premium Payment Service",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when billing type is PAC or EFT",
+      "conditions": [
         {
-          "formId": "A1002P-DE",
-          "url": "https://compass.massmutual.com/api/assets/file/blte95b2f921c3eddf4"
+          "field": "billingType",
+          "operator": "includes",
+          "value": [
+            "pac",
+            "eft"
+          ]
         }
       ]
     },
     {
-      "label": "Beneficiary Designation form",
-      "text": "Beneficiary Designation form: F5159GEN",
-      "forms": [
+      "form": "ICC23R20",
+      "description": "Temporary Life Insurance Receipt",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when premium is submitted with a Life application",
+      "conditions": [
         {
-          "formId": "F5159GEN",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltbc4e1b3e62ecaa16&PAGEURL=Search%20Result%20Page&LINKTEXT=Beneficiary+Designation+Form+New+Business++Generic&DOCGUID=60a6ee643e974410VgnVCM200000d37106aaRCRD"
+          "field": "tlirRequested",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "CareChoice Series Application (Part 1)",
-      "text": "CareChoice Series Application (Part 1): A1500P-DE",
-      "forms": [
+      "form": "ICC12A50",
+      "description": "Application Part 2",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when required for medical underwriting",
+      "conditions": [
         {
-          "formId": "A1500P-DE",
-          "url": "https://compass.massmutual.com/download/file/blt5f1e70cab125ae81"
+          "field": "paperPart2Required",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Conversion & Insurability Option Supplement",
-      "text": "Conversion & Insurability Option Supplement: FR2089GEN",
-      "forms": [
+      "form": "ICC15FR1133",
+      "description": "Temporary Individual Disability Insurance Agreement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when premium is submitted with a Disability application",
+      "conditions": [
         {
-          "formId": "FR2089GEN",
-          "url": "https://compass.massmutual.com/download/file/bltb1f7767fdf5f2a07"
+          "field": "tidiaRequested",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Foreign Supplement",
-      "text": "Foreign Supplement: ICC17F6290-US 0317",
-      "forms": [
+      "form": "ICC15FR2168",
+      "description": "Student Loan Rider Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when the Student Loan Rider is selected",
+      "conditions": [
         {
-          "formId": "ICC17F6290-US 0317",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+          "field": "studentLoanRider",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "HIPAA Authorization",
-      "text": "HIPAA Authorization: F8186GEN",
-      "forms": [
+      "form": "FR2133",
+      "description": "Contract State Situs Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when contract state differs from owner resident state and situs criteria are met",
+      "conditions": [
         {
-          "formId": "F8186GEN",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb2bab6b3d7d80976&PAGEURL=Search%20Result%20Page&LINKTEXT=Authorization+for+Release+of+Personal+HealthRelated+Information+HIPAA++Generic&DOCGUID=c680615722377210VgnVCM100000bf6a06aaRCRD"
+          "field": "contractStateSitusRequired",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "HIV form, if applicable",
-      "text": "HIV form, if applicable: N201DE (Resident state)",
-      "forms": [
+      "form": "ICC17A1001",
+      "description": "Additional Insured Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required when additional insured is requested",
+      "conditions": [
         {
-          "formId": "N201DE",
-          "url": "https://compass.massmutual.com/download/file/blt5f1f1b808ca12bc3"
+          "field": "additionalInsured",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Long Term Care Personal Worksheet",
-      "text": "Long Term Care Personal Worksheet: FR2118GEN",
-      "forms": [
+      "form": "ICC15F5248",
+      "description": "Owner Designation Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required when owner is not the insured",
+      "conditions": [
         {
-          "formId": "FR2118GEN",
-          "url": "https://compass.massmutual.com/download/file/blt62089f1e268a3eee"
-        }
-      ]
-    },
-    {
-      "label": "LTC Access Rider Application Package",
-      "text": "LTC Access Rider Application Package: LTCR-DE",
-      "forms": [
-        {
-          "formId": "LTCR-DE",
-          "url": "https://compass.massmutual.com/download/file/blt1085db695ca64e52"
-        }
-      ]
-    },
-    {
-      "label": "Owner Designation form",
-      "text": "Owner Designation form: F5248GEN",
-      "forms": [
-        {
-          "formId": "F5248GEN",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt586ecd67eaede5ca&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++Generic&DOCGUID=751be14b18674410VgnVCM100000d47106aaRCRD"
-        }
-      ]
-    },
-    {
-      "label": "Policy Change Application",
-      "text": "Policy Change Application: A11DE",
-      "forms": [
-        {
-          "formId": "A11DE",
-          "url": "https://compass.massmutual.com/download/file/blt4fedb57864e4dfe6"
-        }
-      ]
-    },
-    {
-      "label": "Replacement form",
-      "text": "Replacement form: F5436DE IMPORTANT: Mail Replacement information within seven days.",
-      "forms": [
-        {
-          "formId": "F5436DE",
-          "url": "https://compass.massmutual.com/download/file/blt15b9e6a0b97badff"
+          "field": "ownerType",
+          "operator": "notEquals",
+          "value": "insured"
         }
       ]
     }
   ],
-  "important": [
-    "IMPORTANT: Mail Replacement information within seven days."
+  "initialReviewChecks": [
+    "Review all required forms",
+    "Review applicable conditional forms",
+    "Review signatures, dates, and complete pages",
+    "Review applicable replacement and ownership documents"
   ],
-  "notes": [],
-  "source": {
-    "title": "State Requirements Chart",
-    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
-  }
+  "campirTriggers": [],
+  "generalNoteFields": [
+    "Purpose Of Insurance",
+    "Risk Class",
+    "Policy Dating",
+    "Illustration",
+    "Polaris Check"
+  ],
+  "sourceStatus": "application-package-and-state-chart"
 }

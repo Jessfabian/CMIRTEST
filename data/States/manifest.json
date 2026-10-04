@@ -3,314 +3,366 @@
     {
       "state": "AL",
       "displayName": "Alabama",
-      "extends": "standardICC",
-      "file": "AL.json"
+      "file": "AL.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "AK",
       "displayName": "Alaska",
-      "extends": "standardICC",
-      "file": "AK.json"
+      "file": "AK.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "AZ",
       "displayName": "Arizona",
-      "extends": "standardICC_HIV",
-      "file": "AZ.json"
+      "file": "AZ.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "AR",
       "displayName": "Arkansas",
-      "extends": "standardICC_HIV",
-      "file": "AR.json"
+      "file": "AR.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "CA",
       "displayName": "California",
-      "extends": "california",
-      "file": "CA.json"
+      "file": "CA.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "CO",
       "displayName": "Colorado",
-      "extends": "standardICC_HIV",
-      "file": "CO.json"
+      "file": "CO.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "CT",
       "displayName": "Connecticut",
-      "extends": "ct_nj",
-      "file": "CT.json"
+      "file": "CT.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "DE",
       "displayName": "Delaware",
-      "extends": "generic",
-      "file": "DE.json"
+      "file": "DE.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "DC",
       "displayName": "District of Columbia",
-      "extends": "districtOfColumbia",
-      "file": "DC.json"
+      "file": "DC.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "FL",
       "displayName": "Florida",
-      "extends": "florida",
-      "file": "FL.json"
+      "file": "FL.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "GA",
       "displayName": "Georgia",
-      "extends": "standardICC_HIV",
-      "file": "GA.json"
+      "file": "GA.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "HI",
       "displayName": "Hawaii",
-      "extends": "standardICC_HIV",
-      "file": "HI.json"
+      "file": "HI.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "ID",
       "displayName": "Idaho",
-      "extends": "standardICC",
-      "file": "ID.json"
+      "file": "ID.json",
+      "formCount": 14,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "IL",
       "displayName": "Illinois",
-      "extends": "standardICC",
-      "file": "IL.json"
+      "file": "IL.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "IN",
       "displayName": "Indiana",
-      "extends": "standardICC_HIV",
-      "file": "IN.json"
+      "file": "IN.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "IA",
       "displayName": "Iowa",
-      "extends": "standardICC_HIV",
-      "file": "IA.json"
+      "file": "IA.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "KS",
       "displayName": "Kansas",
-      "extends": "standardICC_HIV",
-      "file": "KS.json"
+      "file": "KS.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "KY",
       "displayName": "Kentucky",
-      "extends": "standardICC_HIV",
-      "file": "KY.json"
+      "file": "KY.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "LA",
       "displayName": "Louisiana",
-      "extends": "standardICC",
-      "file": "LA.json"
+      "file": "LA.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "ME",
       "displayName": "Maine",
-      "extends": "standardICC_HIV",
-      "file": "ME.json"
+      "file": "ME.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MD",
       "displayName": "Maryland",
-      "extends": "standardICC",
-      "file": "MD.json"
+      "file": "MD.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MA",
       "displayName": "Massachusetts",
-      "extends": "massachusetts",
-      "file": "MA.json"
+      "file": "MA.json",
+      "formCount": 18,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MI",
       "displayName": "Michigan",
-      "extends": "standardICC_HIV",
-      "file": "MI.json"
+      "file": "MI.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MN",
       "displayName": "Minnesota",
-      "extends": "minnesota",
-      "file": "MN.json"
+      "file": "MN.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MS",
       "displayName": "Mississippi",
-      "extends": "standardICC",
-      "file": "MS.json"
+      "file": "MS.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MO",
       "displayName": "Missouri",
-      "extends": "standardICC_HIV",
-      "file": "MO.json"
+      "file": "MO.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "MT",
       "displayName": "Montana",
-      "extends": "generic",
-      "file": "MT.json"
+      "file": "MT.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NE",
       "displayName": "Nebraska",
-      "extends": "standardICC_HIV",
-      "file": "NE.json"
+      "file": "NE.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NV",
       "displayName": "Nevada",
-      "extends": "standardICC",
-      "file": "NV.json"
+      "file": "NV.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NH",
       "displayName": "New Hampshire",
-      "extends": "standardICC_HIV",
-      "file": "NH.json"
+      "file": "NH.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NJ",
       "displayName": "New Jersey",
-      "extends": "ct_nj",
-      "file": "NJ.json"
+      "file": "NJ.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NM",
       "displayName": "New Mexico",
-      "extends": "standardICC",
-      "file": "NM.json"
+      "file": "NM.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NY",
       "displayName": "New York",
-      "extends": "newYork",
-      "file": "NY.json"
+      "file": "NY.json",
+      "formCount": 22,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "NC",
       "displayName": "North Carolina",
-      "extends": "standardICC",
-      "file": "NC.json"
+      "file": "NC.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "ND",
       "displayName": "North Dakota",
-      "extends": "generic",
-      "file": "ND.json"
+      "file": "ND.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "OH",
       "displayName": "Ohio",
-      "extends": "standardICC_HIV",
-      "file": "OH.json"
+      "file": "OH.json",
+      "formCount": 18,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "OK",
       "displayName": "Oklahoma",
-      "extends": "standardICC",
-      "file": "OK.json"
+      "file": "OK.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "OR",
       "displayName": "Oregon",
-      "extends": "standardICC_HIV",
-      "file": "OR.json"
+      "file": "OR.json",
+      "formCount": 18,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "PA",
       "displayName": "Pennsylvania",
-      "extends": "pennsylvania",
-      "file": "PA.json"
+      "file": "PA.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "PR",
       "displayName": "Puerto Rico",
-      "extends": "standardICC",
-      "file": "PR.json"
+      "file": "PR.json",
+      "formCount": 14,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "RI",
       "displayName": "Rhode Island",
-      "extends": "standardICC_HIV",
-      "file": "RI.json"
+      "file": "RI.json",
+      "formCount": 17,
+      "sourceStatus": "state-chart-baseline"
     },
     {
       "state": "SC",
       "displayName": "South Carolina",
-      "extends": "standardICC",
-      "file": "SC.json"
+      "file": "SC.json",
+      "formCount": 14,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "SD",
       "displayName": "South Dakota",
-      "extends": "southDakota",
-      "file": "SD.json"
+      "file": "SD.json",
+      "formCount": 14,
+      "sourceStatus": "state-chart-baseline"
     },
     {
       "state": "TN",
       "displayName": "Tennessee",
-      "extends": "standardICC",
-      "file": "TN.json"
+      "file": "TN.json",
+      "formCount": 14,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "TX",
       "displayName": "Texas",
-      "extends": "standardICC_HIV",
-      "file": "TX.json"
+      "file": "TX.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "UT",
       "displayName": "Utah",
-      "extends": "standardICC_HIV",
-      "file": "UT.json"
+      "file": "UT.json",
+      "formCount": 15,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "VT",
       "displayName": "Vermont",
-      "extends": "standardICC_HIV",
-      "file": "VT.json"
+      "file": "VT.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "VA",
       "displayName": "Virginia",
-      "extends": "standardICC_HIV",
-      "file": "VA.json"
+      "file": "VA.json",
+      "formCount": 18,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "WA",
       "displayName": "Washington",
-      "extends": "washington",
-      "file": "WA.json"
+      "file": "WA.json",
+      "formCount": 16,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "WV",
       "displayName": "West Virginia",
-      "extends": "standardICC_HIV",
-      "file": "WV.json"
+      "file": "WV.json",
+      "formCount": 17,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "WI",
       "displayName": "Wisconsin",
-      "extends": "standardICC_HIV",
-      "file": "WI.json"
+      "file": "WI.json",
+      "formCount": 18,
+      "sourceStatus": "application-package-and-state-chart"
     },
     {
       "state": "WY",
       "displayName": "Wyoming",
-      "extends": "standardICC",
-      "file": "WY.json"
+      "file": "WY.json",
+      "formCount": 14,
+      "sourceStatus": "application-package-and-state-chart"
     }
   ]
 }

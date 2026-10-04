@@ -1,204 +1,222 @@
 {
   "state": "WA",
   "displayName": "Washington",
-  "extends": "washington",
-  "forms": {
-    "additionalInsured": "ICC17A1001",
-    "part1": "A2000P-WA",
-    "part2": "ICC12A50",
-    "simplifiedConversion": "A1002P-WA",
-    "beneficiaryDesignation": "ICC13F5159",
-    "careChoicePart1": "A1500P-WA",
-    "conversionSupplement": "ICC13FR2089",
-    "foreignSupplement": "ICC17F6290-US 0317",
-    "hipaaAuthorization": "ICC18F8186",
-    "hivForm": "N201WA",
-    "ltcWorksheet": "ICC19FR2118",
-    "ltcPackage": "LTCR-GE",
-    "ownerDesignation": "ICC15F5248",
-    "policyChange": "A11WA",
-    "replacementForm": [
-      "F5436WA",
-      "You Did Not Receive the F5436WA with the Application"
-    ],
-    "abrDisclosure": "F7011WA"
+  "reviewProcesses": {
+    "replacementReview": false
   },
-  "requirements": [
+  "specialNotes": [],
+  "forms": [
     {
-      "label": "Additional Insured Supplement",
-      "text": "Additional Insured Supplement: ICC17A1001",
-      "forms": [
+      "form": "ICC17A2000",
+      "description": "Application for Individual Life and Disability Insurance Part 1",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "ICC18F8186",
+      "description": "HIPAA Authorization",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "N201WA",
+      "description": "HIV Consent Form",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "F7011WA",
+      "description": "Disclosure Statement for Accelerated Death Benefit for Terminal Illness Rider",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all Life cases",
+      "conditions": []
+    },
+    {
+      "form": "FR3120",
+      "description": "Producer Statement",
+      "required": true,
+      "reviewRequired": true,
+      "condition": "Required for all cases",
+      "conditions": []
+    },
+    {
+      "form": "FR2193",
+      "description": "Source of Funds Questionnaire",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required for applicable non-Term Life cases submitted under the Department of Labor fiduciary rule",
+      "conditions": [
         {
-          "formId": "ICC17A1001",
-          "url": "https://compass.massmutual.com/download/file/blt79e64d2c4ef6f59f"
+          "field": "sourceOfFundsRequired",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Application for Life Insurance (Part 1)",
-      "text": "Application for Life Insurance (Part 1): A2000P-WA NOTE: All cross-outs must be amended on the Part 1 application, even on non-amendable questions.",
-      "forms": [
+      "form": "FR2339",
+      "description": "Disclosure Statement for Accelerated Death Benefit for Chronic Illness Rider",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required for applicable Apex and UL Guard cases with issue age between 18 and 65",
+      "conditions": [
         {
-          "formId": "A2000P-WA",
-          "url": "https://compass.massmutual.com/download/file/blt237e1a3471031f70"
+          "field": "chronicIllnessDisclosureRequired",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Application Part 2 - ICC",
-      "text": "Application Part 2 - ICC: ICC12A50",
-      "forms": [
+      "form": "ICC13F5159",
+      "description": "Beneficiary Designation Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when Other is selected for beneficiary information",
+      "conditions": [
         {
-          "formId": "ICC12A50",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltaa5e3212d7f08c42&PAGEURL=Search%20Result%20Page&LINKTEXT=Application+Part+2++ICC&DOCGUID=6f6b43693f22e310VgnVCM200000d37106aaRCRD"
+          "field": "beneficiaryOther",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Application for Simplified Conversion",
-      "text": "Application for Simplified Conversion: A1002P-WA",
-      "forms": [
+      "form": "F6445",
+      "description": "Pre-Authorized Check Premium Payment Service",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when billing type is PAC or EFT",
+      "conditions": [
         {
-          "formId": "A1002P-WA",
-          "url": "https://compass.massmutual.com/api/assets/file/blt3ce1b09e45794165"
+          "field": "billingType",
+          "operator": "includes",
+          "value": [
+            "pac",
+            "eft"
+          ]
         }
       ]
     },
     {
-      "label": "Beneficiary Designation Form",
-      "text": "Beneficiary Designation Form: ICC13F5159",
-      "forms": [
+      "form": "ICC23R20",
+      "description": "Temporary Life Insurance Receipt",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when premium is submitted with a Life application",
+      "conditions": [
         {
-          "formId": "ICC13F5159",
-          "url": "https://compass.massmutual.com/download/file/blt4558fec07372c14a"
+          "field": "tlirRequested",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "CareChoice One Application (Part 1)",
-      "text": "CareChoice One Application (Part 1): A1500P-WA",
-      "forms": [
+      "form": "ICC12A50",
+      "description": "Application Part 2",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when required for medical underwriting",
+      "conditions": [
         {
-          "formId": "A1500P-WA",
-          "url": "https://compass.massmutual.com/download/file/bltd864d99f33b0788d"
+          "field": "paperPart2Required",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Conversion & Insurability Option Life Insurance Supplement",
-      "text": "Conversion & Insurability Option Life Insurance Supplement: ICC13FR2089",
-      "forms": [
+      "form": "ICC15FR1133",
+      "description": "Temporary Individual Disability Insurance Agreement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when premium is submitted with a Disability application",
+      "conditions": [
         {
-          "formId": "ICC13FR2089",
-          "url": "https://compass.massmutual.com/api/assets/file/bltb49dc6b2e8504bc8"
+          "field": "tidiaRequested",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Foreign Supplement",
-      "text": "Foreign Supplement: ICC17F6290-US 0317",
-      "forms": [
+      "form": "ICC15FR2168",
+      "description": "Student Loan Rider Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when the Student Loan Rider is selected",
+      "conditions": [
         {
-          "formId": "ICC17F6290-US 0317",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/blt33e30ad64f933f0f&PAGEURL=Search%20Result%20Page&LINKTEXT=Foreign+Supplement++ICC&DOCGUID=cffb43693f22e310VgnVCM200000d37106aaRCRD"
+          "field": "studentLoanRider",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "HIPAA Authorization",
-      "text": "HIPAA Authorization: ICC18F8186",
-      "forms": [
+      "form": "FR2133",
+      "description": "Contract State Situs Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Use when contract state differs from owner resident state and situs criteria are met",
+      "conditions": [
         {
-          "formId": "ICC18F8186",
-          "url": "https://compass.massmutual.com/download/file/blt3a353349498b94a6"
+          "field": "contractStateSitusRequired",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "HIV form, if applicable",
-      "text": "HIV form, if applicable: N201WA (Based on the resident state.)",
-      "forms": [
+      "form": "ICC17A1001",
+      "description": "Additional Insured Supplement",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required when additional insured is requested",
+      "conditions": [
         {
-          "formId": "N201WA",
-          "url": "https://compass.massmutual.com/download/file/bltee8e7fa1634c69e0"
+          "field": "additionalInsured",
+          "operator": "equals",
+          "value": "yes"
         }
       ]
     },
     {
-      "label": "Long Term Care Personal Worksheet",
-      "text": "Long Term Care Personal Worksheet: ICC19FR2118",
-      "forms": [
+      "form": "ICC15F5248",
+      "description": "Owner Designation Form",
+      "required": false,
+      "reviewRequired": true,
+      "condition": "Required when owner is not the insured",
+      "conditions": [
         {
-          "formId": "ICC19FR2118",
-          "url": "https://compass.massmutual.com/download/file/blt0706464d1d58d79a"
-        }
-      ]
-    },
-    {
-      "label": "LTC Access Rider Application Package Form ID",
-      "text": "LTC Access Rider Application Package Form ID: LTCR-GE",
-      "forms": [
-        {
-          "formId": "LTCR-GE",
-          "url": "https://compass.massmutual.com/download/file/blte93e8ae76dc076c4"
-        }
-      ]
-    },
-    {
-      "label": "Owner Designation form",
-      "text": "Owner Designation form: ICC15F5248",
-      "forms": [
-        {
-          "formId": "ICC15F5248",
-          "url": "https://fieldnet.massmutual.com/fldnet/document/display.html?DOCURL=https://compass.massmutual.com/download/file/bltb0942d9ad836c893&PAGEURL=Search%20Result%20Page&LINKTEXT=Owner+Designation+Form+New+Business++ICC&DOCGUID=208be14b18674410VgnVCM100000d47106aaRCRD"
-        }
-      ]
-    },
-    {
-      "label": "Policy Change Application",
-      "text": "Policy Change Application: A11WA",
-      "forms": [
-        {
-          "formId": "A11WA",
-          "url": "https://compass.massmutual.com/download/file/blt90c80b7b5f74ddac"
-        }
-      ]
-    },
-    {
-      "label": "Replacement Form",
-      "text": "Replacement Form: F5436WA IMPORTANT: Mail replacement information within 3 days. NOTE: If you do not receive the F5436WA with the application, underwriting cannot begin per the Washington State Insurance Commissioners. See You Did Not Receive the F5436WA with the Application .",
-      "forms": [
-        {
-          "formId": "F5436WA",
-          "url": "https://compass.massmutual.com/download/file/blt05d319d1858d7d05"
-        },
-        {
-          "formId": "You Did Not Receive the F5436WA with the Application",
-          "url": "../../Replacements/State/lnbs_washington_replacements.htm#Not_received"
-        }
-      ]
-    },
-    {
-      "label": "ABR Disclosure",
-      "text": "ABR Disclosure: F7011WA NOTE: The F7011 form is not required with the Survivorship Whole Life (SWL) product.",
-      "forms": [
-        {
-          "formId": "F7011WA",
-          "url": "https://compass.massmutual.com/download/file/blt1263d505d5f4faa6"
+          "field": "ownerType",
+          "operator": "notEquals",
+          "value": "insured"
         }
       ]
     }
   ],
-  "important": [
-    "IMPORTANT: Mail replacement information within 3 days."
+  "initialReviewChecks": [
+    "Review all required forms",
+    "Review applicable conditional forms",
+    "Review signatures, dates, and complete pages",
+    "Review applicable replacement and ownership documents"
   ],
-  "notes": [
-    "NOTE: All cross-outs must be amended on the Part 1 application, even on non-amendable questions.",
-    "NOTE: If you do not receive the F5436WA with the application, underwriting cannot begin per the Washington State Insurance Commissioners. See You Did Not Receive the F5436WA with the Application .",
-    "NOTE: The F7011 form is not required with the Survivorship Whole Life (SWL) product."
+  "campirTriggers": [],
+  "generalNoteFields": [
+    "Purpose Of Insurance",
+    "Risk Class",
+    "Policy Dating",
+    "Illustration",
+    "Polaris Check"
   ],
-  "source": {
-    "title": "State Requirements Chart",
-    "retrievedFrom": "lnbs_state_requirements_chart.html.docx"
-  }
+  "sourceStatus": "application-package-and-state-chart"
 }
