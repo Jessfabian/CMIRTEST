@@ -2842,3 +2842,36 @@ textarea.amendment-field-input {
   color: #9a6500;
   white-space: nowrap;
 }
+
+.nigo-dashboard-card {
+  min-height: 180px;
+}
+
+.nigo-issue-list {
+  margin-top: 10px;
+}
+
+.nigo-issue-item {
+  padding: 8px;
+  margin-bottom: 8px;
+
+  background: #fff8f3;
+
+  border-left: 4px solid #f28b32;
+  border-radius: 6px;
+}
+
+.nigo-issue-form {
+  font-weight: 700;
+  color: var(--mm-blue);
+}
+
+.nigo-issue-reason {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.nigo-empty {
+  color: #888;
+  font-style: italic;
+}

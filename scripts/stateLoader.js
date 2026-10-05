@@ -566,8 +566,51 @@ function renderStateGuidance(stateData) {
       stateCard.textContent =
         document.getElementById("contractState")?.value || "--";
     }
+    updateNigoDashboard();
+  }
+function updateNigoDashboard() {
+  const issueContainer = document.getElementById("openNigoList");
+
+  const countElement = document.getElementById("openNigoCount");
+
+  if (!issueContainer || !countElement) {
+    return;
   }
 
+  const nigos = Object.values(window.formReviewStatus).filter((item) => {
+    return item?.status === "NIGO";
+  });
+
+  countElement.textContent = String(nigos.length);
+
+  if (!nigos.length) {
+    issueContainer.innerHTML = `
+      <div class="nigo-empty">
+        No documented NIGOs
+      </div>
+    `;
+
+    return;
+  }
+
+  issueContainer.innerHTML = nigos
+    .map(
+      (item) => `
+        <div class="nigo-issue-item">
+
+          <div class="nigo-issue-form">
+            ${item.formId}
+          </div>
+
+          <div class="nigo-issue-reason">
+            ${item.issueLabel}
+          </div>
+
+        </div>
+      `,
+    )
+    .join("");
+}
   document.addEventListener("DOMContentLoaded", () => {
     const stateDropdown = document.getElementById("contractState");
 
