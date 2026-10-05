@@ -2400,3 +2400,46 @@ textarea.amendment-field-input {
     color: white;
     border-color: var(--mm-orange);
 }
+
+.requirement-template-row {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  gap: 8px;
+  align-items: center;
+}
+
+.favorite-requirement-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+  margin: 0;
+
+  background: #ffffff;
+  border: 1px solid #d7e0ea;
+  border-radius: 10px;
+
+  color: #7b8794;
+  font-size: 18px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.favorite-requirement-button:hover {
+  color: #0057b8;
+  background: #f4f8ff;
+  border-color: #0057b8;
+  transform: translateY(-1px);
+}
+
+.favorite-requirement-button.selected {
+  color: #d6a600;
+  background: #fffbea;
+  border-color: #f4c430;
+}

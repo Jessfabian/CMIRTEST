@@ -5,11 +5,11 @@ const $ = id => document.getElementById(id), L = window.requirementLibrary, A = 
 
 Amendments Applied:
     ${
-      M.map(x => `• ${x}`).join("
+    M.map(x => `• ${x}`).join("
 
 ")}`:"";output.value=`${insured.value||"[Insured Name]"} | ${policy.value||"[Policy Number]"}
 
 ${ intro }
 
 Contractual Requirements:
-        ${ req }${ am }`}category.onchange=issues;addReq.onclick=()=>{R.push(fillTemplate(L[category.value][+issue.value][1],values()));render()};removeReq.onclick=()=>{R.pop();render()};clearReq.onclick=()=>{R=[];render()};addAmend.onclick=()=>{M.push(fillTemplate(A[+amendType.value][1],{item:amendItem.value,value2:amendValue.value}));build()};removeAmend.onclick=()=>{M.pop();build()};clearAmend.onclick=()=>{M=[];build()};generate.onclick=build;clearOutput.onclick=()=>output.value="";copy.onclick=async()=>{await navigator.clipboard.writeText(output.value);copyStatus.textContent="Email copied."};categories();render();
+      ${ req }${ am }`}category.onchange=issues;addReq.onclick=()=>{R.push(fillTemplate(L[category.value][+issue.value][1],values()));render()};removeReq.onclick=()=>{R.pop();render()};clearReq.onclick=()=>{R=[];render()};addAmend.onclick=()=>{M.push(fillTemplate(A[+amendType.value][1],{item:amendItem.value,value2:amendValue.value}));build()};removeAmend.onclick=()=>{M.pop();build()};clearAmend.onclick=()=>{M=[];build()};generate.onclick=build;clearOutput.onclick=()=>output.value="";copy.onclick=async()=>{await navigator.clipboard.writeText(output.value);copyStatus.textContent="Email copied."};categories();render();

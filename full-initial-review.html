@@ -180,34 +180,59 @@
 
           <!-- REQUIREMENT WORKSPACE -->
 
-          <details class="sidebar-workspace">
-            <summary class="workspace-summary">Agency Requirement</summary>
-            <div class="case-field">
-              <label>Requirement Template</label>
+<details class="sidebar-workspace">
+  <summary class="workspace-summary">Agency Requirement</summary>
 
-              <select id="globalRequirementTemplate">
-                <option value="">Select Requirement</option>
-              </select>
-            </div>
+  <div class="case-field">
+    <label for="globalRequirementTemplate">Requirement Template</label>
 
-            <div id="globalRequirementFields"></div>
+    <div class="requirement-template-row">
+      <select id="globalRequirementTemplate">
+        <option value="">Select Requirement</option>
+      </select>
 
-            <div class="case-field">
-              <label>Generated Requirement</label>
+      <button
+        type="button"
+        id="favoriteRequirementButton"
+        class="favorite-requirement-button"
+        title="Add selected requirement to favorites"
+        aria-label="Add selected requirement to favorites"
+        aria-pressed="false">
+        ☆
+      </button>
+    </div>
+  </div>
 
-              <textarea
-                id="globalGeneratedRequirement"
-                rows="8"
-                readonly></textarea>
-            </div>
+  <div id="globalRequirementFields"></div>
 
-            <button
-              type="button"
-              class="secondary-button"
-              id="copyGlobalRequirement">
-              Copy
-            </button>
-          </details>
+  <div class="case-field">
+    <label for="globalGeneratedRequirement">Generated Requirement</label>
+
+    <textarea
+      id="globalGeneratedRequirement"
+      rows="8"
+      readonly></textarea>
+  </div>
+   <div class="buttons">
+ <button
+    type="button"
+    class="primary-button"
+    id="addGlobalRequirement">
+    Add Requirement
+  </button>
+
+  <button
+    type="button"
+    class="secondary-button"
+    id="copyGlobalRequirement">
+    Copy
+  </button>
+</div>
+
+</details>
+
+
+
         </aside>
         <!-- =====================================================
 						 CASE SETUP SECTION
