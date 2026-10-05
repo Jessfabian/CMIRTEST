@@ -231,35 +231,48 @@ function renderStateGuidance(stateData) {
 requiredForms.innerHTML = applicableForms
   .map(
     (form) => `
-      <div class="required-form-row">
+     <div class="required-form-row">
 
-        <div class="required-form-info">
-          <div class="required-form-code">
-            ${form.form}
-          </div>
+    <div class="state-form-main">
 
-          <div class="required-form-description">
-            ${form.description}
-          </div>
+        <div class="state-form-content">
+
+            <strong class="state-form-id">
+                ${form.form}
+            </strong>
+
+            <strongclass="form-description">
+                ${form.description}
+            </strong>
+
         </div>
 
-        <div class="required-form-actions">
-          <button
-            type="button"
-            class="igo-button"
-            data-form="${form.form}">
-            IGO
-          </button>
+        <div class="form-status-actions">
+  <span
+                class="form-review-result"
+                data-result="${form.form}">
+            </span>
+            <button
+                type="button"
+                class="form-status-button igo-button"
+                data-form="${form.form}">
+                IGO
+            </button>
 
-          <button
-            type="button"
-            class="nigo-button"
-            data-form="${form.form}">
-            NIGO
-          </button>
+            <button
+                type="button"
+                class="form-status-button nigo-button"
+                data-form="${form.form}">
+                NIGO
+            </button>
+
+
+
         </div>
 
-      </div>
+    </div>
+
+</div>
     `,
   )
   .join("");
@@ -294,7 +307,7 @@ console.log(
     const row = event.target.closest(".required-form-row");
 
     const igoButton = row.querySelector(".igo-button");
-
+const resultText = row.querySelector(".form-review-result");
     const nigoButton = row.querySelector(".nigo-button");
 
     if (event.target.classList.contains("igo-button")) {
@@ -302,13 +315,19 @@ console.log(
       nigoButton.classList.remove("selected");
 
       window.formReviewStatus[formId] = "IGO";
+
+      resultText.textContent = "Reviewed";
+      resultText.className = "form-review-result result-igo";
     }
 
     if (event.target.classList.contains("nigo-button")) {
       nigoButton.classList.add("selected");
       igoButton.classList.remove("selected");
 
-      window.formReviewStatus[formId] = "NIGO";
+     window.formReviewStatus[formId] = "NIGO";
+
+     resultText.textContent = "NIGO Identified";
+     resultText.className = "form-review-result result-nigo";
 
       document
         .getElementById("amendmentsSection")

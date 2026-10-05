@@ -588,11 +588,17 @@ dialog::backdrop {
 }
 
 .required-form-row {
-  background: white;
-  border: 1px solid #d8dfe6;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
 }
 
 .warning-note {
@@ -642,17 +648,7 @@ dialog::backdrop {
   font-weight: 700;
 }
 
-.required-form-row {
-  background: white;
 
-  border: 1px solid var(--border);
-
-  border-radius: 10px;
-
-  padding: 12px;
-
-  margin-bottom: 10px;
-}
 
 .state-form-label {
   display: flex;
@@ -1197,10 +1193,11 @@ dialog::backdrop {
 }
 
 .state-form-main {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
 }
 
 .form-status-actions {
@@ -1238,8 +1235,12 @@ dialog::backdrop {
 }
 
 .form-review-result {
-  font-size: 0.7rem;
-  font-weight: 800;
+    min-width: 95px;
+    margin-right: 8px;
+    text-align: right;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
 }
 
 .result-igo {
@@ -2372,22 +2373,7 @@ textarea.amendment-field-input {
     min-height: 100px;
 }
 
-.required-form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-}
 
-.required-form-info {
-    flex: 1;
-}
-
-.required-form-actions {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-}
 
 .igo-button,
 .nigo-button {
