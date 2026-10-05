@@ -2,60 +2,70 @@
   "templates": {
     "completedSignedForm": {
       "label": "Completed and Signed Form",
+       "category": "General",
       "template": "Please provide a completed and signed {documentName}.",
       "fields": ["documentName"]
     },
 
     "correctedForm": {
       "label": "Corrected Form",
+       "category": "General",
       "template": "Please provide a corrected, completed, and signed {documentName}.",
       "fields": ["documentName"]
     },
 
     "newForm": {
       "label": "New Form Required",
+       "category": "General",
       "template": "Please provide a new completed and signed {documentName}.",
       "fields": ["documentName"]
     },
 
     "completedForm": {
       "label": "Completed Form",
+       "category": "General",
       "template": "Please provide a completed {documentName}.",
       "fields": ["documentName"]
     },
 
     "missingInformation": {
       "label": "Missing Information",
+
       "template": "Please provide the missing information for {documentName}: {detail}.",
       "fields": ["documentName", "detail"]
     },
 
     "clarification": {
       "label": "Clarification",
+       "category": "General",
       "template": "Please clarify {detail}.",
       "fields": ["detail"]
     },
 
     "confirmInformation": {
       "label": "Confirm Information",
+       "category": "General",
       "template": "Please confirm {detail}.",
       "fields": ["detail"]
     },
 
     "signedIllustration": {
       "label": "Signed Illustration",
+       "category": "General",
       "template": "Please provide a complete illustration signed and dated by the owner and producer.",
       "fields": []
     },
 
     "ownerDesignation": {
       "label": "Owner Designation Form",
+       "category": "General",
       "template": "Please provide a completed and signed Owner Designation Form.",
       "fields": []
     },
 
     "beneficiaryDesignation": {
       "label": "Beneficiary Designation Form",
+       "category": "General",
       "template": "Please provide a completed and signed Beneficiary Designation Form.",
       "fields": []
     },
@@ -256,7 +266,7 @@
   "fields": ["signerName"]
 },
 
-  
+
   "formMappings": {
     "A2000": {
       "template": "completedSignedForm",
