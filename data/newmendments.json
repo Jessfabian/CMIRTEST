@@ -1,0 +1,358 @@
+{
+  "templates": {
+    "newSignedForm": {
+      "label": "Newly Signed Form",
+      "category": "Forms",
+      "template": "Please submit a newly signed {formName} with updated signatures and dates because {reason}.",
+      "fields": ["formName", "reason"]
+    },
+
+    "completedSignedForm": {
+      "label": "Completed and Signed Form",
+      "category": "Forms",
+      "template": "Please submit a completed and signed {formName}.",
+      "fields": ["formName"]
+    },
+
+    "missingForm": {
+      "label": "Missing Form",
+      "category": "Forms",
+      "template": "Please submit the {formName}, as it was not provided. {additionalDetail}",
+      "fields": ["formName", "additionalDetail"]
+    },
+
+    "requiredFormReason": {
+      "label": "Required Form With Reason",
+      "category": "Forms",
+      "template": "Please submit a completed and signed {formName}. This form is required because {reason}.",
+      "fields": ["formName", "reason"]
+    },
+
+    "correctedForm": {
+      "label": "Corrected Form",
+      "category": "Forms",
+      "template": "Please submit a corrected, completed, and signed {formName} reflecting {correctionDetail}.",
+      "fields": ["formName", "correctionDetail"]
+    },
+
+    "blankForm": {
+      "label": "Blank Form Submitted",
+      "category": "Forms",
+      "template": "Please resubmit the {formName}, as the form submitted was blank.",
+      "fields": ["formName"]
+    },
+
+    "unsignedForm": {
+      "label": "Unsigned Form",
+      "category": "Forms",
+      "template": "Please resubmit the {formName} with the required signatures and dates, as the form submitted was unsigned.",
+      "fields": ["formName"]
+    },
+
+    "outdatedForm": {
+      "label": "Outdated Form",
+      "category": "Forms",
+      "template": "The {formName} submitted is an outdated version. {acceptanceDetail} Please use the current version of the form moving forward.",
+      "fields": ["formName", "acceptanceDetail"]
+    },
+
+    "unauthorizedDigitalSignature": {
+      "label": "Unauthorized Digital Signature",
+      "category": "Forms",
+      "template": "Please resubmit the following forms with updated signatures and dates, as an unauthorized digital signature was used. We accept approved agency DocuSign, MassMutual DocuSign, or hand-signed signatures only.\n\nForms requiring correction:\n{forms}",
+      "fields": ["forms"]
+    },
+
+    "multipleFormsRequired": {
+      "label": "Multiple Forms Required",
+      "category": "Forms",
+      "template": "Please submit the following forms:\n{forms}\n\nThese forms are required because {reason}.",
+      "fields": ["forms", "reason"]
+    },
+
+    "newHipaaAuthorization": {
+      "label": "New HIPAA Authorization",
+      "category": "Forms",
+      "template": "Please submit a newly signed HIPAA Authorization, as the form submitted is {reason}. A HIPAA Authorization cannot be amended, corrected, altered, or contain crossouts.",
+      "fields": ["reason"]
+    },
+
+    "formSignatureLocation": {
+      "label": "Form Signature Location",
+      "category": "Forms",
+      "template": "Please provide the city and state in which the {formName} was signed by the {signer}.",
+      "fields": ["formName", "signer"]
+    },
+
+    "formTimingIssue": {
+      "label": "Form Signature Date or Timing Issue",
+      "category": "Forms",
+      "template": "Please resubmit the {formName}, as it must be signed and dated {timingRequirement}.",
+      "fields": ["formName", "timingRequirement"]
+    },
+
+    "questionNotAnswered": {
+      "label": "Question Not Answered",
+      "category": "Questions",
+      "template": "Please provide an answer for question {questionNumber} of the {formName}, as it was not answered.",
+      "fields": ["questionNumber", "formName"]
+    },
+
+    "questionsNotAnswered": {
+      "label": "Multiple Questions Not Answered",
+      "category": "Questions",
+      "template": "Please provide answers for questions {questionNumbers} of the {formName}, as they were not answered.",
+      "fields": ["questionNumbers", "formName"]
+    },
+
+    "questionConflict": {
+      "label": "Conflicting Question Responses",
+      "category": "Questions",
+      "template": "Please confirm {subject}. Question {questionOne} indicates {answerOne}; however, question {questionTwo} indicates {answerTwo}.",
+      "fields": [
+        "subject",
+        "questionOne",
+        "answerOne",
+        "questionTwo",
+        "answerTwo"
+      ]
+    },
+
+    "questionCorrection": {
+      "label": "Question Requires Correction",
+      "category": "Questions",
+      "template": "Please update question {questionNumber} of the {formName} to reflect {correctResponse}, and have the appropriate signer initial and date the change.",
+      "fields": ["questionNumber", "formName", "correctResponse"]
+    },
+
+    "missingPersonInformation": {
+      "label": "Missing Person Information",
+      "category": "Questions",
+      "template": "Please provide the {personType}'s {informationNeeded}, as it was not provided.",
+      "fields": ["personType", "informationNeeded"]
+    },
+
+    "missingEntityInformation": {
+      "label": "Missing Entity Information",
+      "category": "Questions",
+      "template": "Please provide the owner entity's {informationNeeded}.",
+      "fields": ["informationNeeded"]
+    },
+
+    "signerTitleRequired": {
+      "label": "Entity Signer Title Required",
+      "category": "Questions",
+      "template": "Please provide the title of the individual signing on behalf of the {entityName}.",
+      "fields": ["entityName"]
+    },
+
+    "policyDesignMismatch": {
+      "label": "Policy Design Mismatch",
+      "category": "Policy Design",
+      "template": "{designElement}: The Part 1 indicates {applicationValue}; however, the illustration indicates {illustrationValue}. Please confirm the intended policy design.",
+      "fields": ["designElement", "applicationValue", "illustrationValue"]
+    },
+
+    "multiplePolicyDesignIssues": {
+      "label": "Multiple Policy Design Issues",
+      "category": "Policy Design",
+      "template": "Please confirm the intended policy design for the following items:\n{designIssues}",
+      "fields": ["designIssues"]
+    },
+
+    "planTypeMissing": {
+      "label": "Plan Type Not Answered",
+      "category": "Policy Design",
+      "template": "Please confirm the plan type, as question {questionNumber} of the Part 1 was not answered.",
+      "fields": ["questionNumber"]
+    },
+
+    "paymentFrequencyInvalid": {
+      "label": "Invalid Payment Frequency",
+      "category": "Policy Design",
+      "template": "Please confirm the intended payment frequency. The Part 1 indicates {selectedFrequency}; however, that selection is unavailable. The available options are {availableOptions}.",
+      "fields": ["selectedFrequency", "availableOptions"]
+    },
+
+    "riderIllustrationRequired": {
+      "label": "Rider Illustration Required",
+      "category": "Policy Design",
+      "template": "Please submit an unsigned illustration reflecting the selected {riderName}.",
+      "fields": ["riderName"]
+    },
+
+    "beneficiaryMismatch": {
+      "label": "Beneficiary Mismatch",
+      "category": "Clarification",
+      "template": "Please confirm the intended beneficiary designation. The Part 1 indicates {partOneValue}; however, the Beneficiary Designation Form indicates {beneficiaryFormValue}.",
+      "fields": ["partOneValue", "beneficiaryFormValue"]
+    },
+
+    "beneficiaryRelationship": {
+      "label": "Beneficiary Relationship",
+      "category": "Clarification",
+      "template": "Please provide the relationship of the beneficiary or beneficiaries to the insured.",
+      "fields": []
+    },
+
+    "beneficiaryPercentageMissing": {
+      "label": "Beneficiary Percentage Missing",
+      "category": "Clarification",
+      "template": "Please confirm the beneficiary percentage, as it was not provided.",
+      "fields": []
+    },
+
+    "beneficiaryPercentageInvalid": {
+      "label": "Beneficiary Percentage Invalid",
+      "category": "Clarification",
+      "template": "Please confirm the intended beneficiary percentage. The form indicates {currentValue}; however, the total beneficiary allocation must equal 100%.",
+      "fields": ["currentValue"]
+    },
+
+    "beneficiaryPerStirpes": {
+      "label": "Beneficiary Per Stirpes Confirmation",
+      "category": "Clarification",
+      "template": "Please confirm whether the beneficiary designation should include a per stirpes provision.",
+      "fields": []
+    },
+
+    "confirmInformation": {
+      "label": "Confirm Information",
+      "category": "Clarification",
+      "template": "Please confirm the {personType}'s {informationType}.",
+      "fields": ["personType", "informationType"]
+    },
+
+    "generalClarification": {
+      "label": "General Clarification",
+      "category": "Clarification",
+      "template": "Please clarify {detail}.",
+      "fields": ["detail"]
+    },
+
+    "sourceMismatch": {
+      "label": "Information Mismatch Between Sources",
+      "category": "Clarification",
+      "template": "Please confirm the correct {informationType}. The {firstSource} indicates {firstValue}; however, the {secondSource} indicates {secondValue}.",
+      "fields": [
+        "informationType",
+        "firstSource",
+        "firstValue",
+        "secondSource",
+        "secondValue"
+      ]
+    },
+
+    "mvrAddressMismatch": {
+      "label": "MVR Address Mismatch",
+      "category": "Clarification",
+      "template": "Please confirm the client's address, as it does not match the Motor Vehicle Report. Has the client recently moved?",
+      "fields": []
+    },
+
+    "mvrNameMismatch": {
+      "label": "MVR Name Mismatch",
+      "category": "Clarification",
+      "template": "Please submit a copy of the client's photo identification, as the client's name does not match the Motor Vehicle Report. Has the client recently changed their name?",
+      "fields": []
+    },
+
+    "mvrDobMismatch": {
+      "label": "MVR Date of Birth Mismatch",
+      "category": "Clarification",
+      "template": "Please submit a copy of the client's photo identification, as the date of birth provided on the {formName} does not match the Motor Vehicle Report.",
+      "fields": ["formName"]
+    },
+
+    "mvrSsnMismatch": {
+      "label": "MVR SSN Mismatch",
+      "category": "Clarification",
+      "template": "Please submit a copy of the client's Social Security card, as the Social Security number provided on the {formName} does not match the Motor Vehicle Report.",
+      "fields": ["formName"]
+    },
+
+    "nyIllustrationIssue": {
+      "label": "New York Illustration Issue",
+      "category": "Forms",
+      "template": "Please submit a signed sales illustration matching the Part 1. The illustration submitted is {illustrationIssue}. This is required for New York policies under Regulation 74.",
+      "fields": ["illustrationIssue"]
+    },
+
+    "nyIllustrationAtApproval": {
+      "label": "New York Illustration Required at Approval",
+      "category": "Forms",
+      "template": "Please submit a signed sales illustration as applied for. This is required before issue.",
+      "fields": []
+    },
+
+    "unsignedIllustration": {
+      "label": "Unsigned Illustration Required",
+      "category": "Forms",
+      "template": "Please submit an unsigned sales illustration {illustrationDetail}.",
+      "fields": ["illustrationDetail"]
+    },
+
+    "producerStatementCommission": {
+      "label": "Producer Statement Commission Information",
+      "category": "Questions",
+      "template": "Please provide the first-year commission and recurring commission percentages, as this information was not provided on the Producer Statement.",
+      "fields": []
+    },
+
+    "saveAgeSelectionMissing": {
+      "label": "Save Age Questions Not Answered",
+      "category": "Policy Design",
+      "template": "Please advise whether the policy should be issued at current age or with saved age, as questions {questionNumbers} of the Part 1 were not answered.",
+      "fields": ["questionNumbers"]
+    },
+
+    "saveAgeBothSelected": {
+      "label": "Both Save Age Options Selected",
+      "category": "Policy Design",
+      "template": "Please advise whether the policy should be issued at current age or with saved age, as both options were selected in questions {questionNumbers} of the Part 1.",
+      "fields": ["questionNumbers"]
+    },
+
+    "ageChangeConfirmation": {
+      "label": "Age Change Confirmation",
+      "category": "Policy Design",
+      "template": "An age change occurred after the application was submitted. Please advise whether the policy should be issued at current age or with saved age.",
+      "fields": []
+    },
+
+    "absoluteAssignment1035": {
+      "label": "1035 Exchange Absolute Assignment",
+      "category": "Forms",
+      "template": "Please submit a fully completed Absolute Assignment Form ({formNumber}) for the 1035 exchange. The form must be wet signed. {deliveryDetail}",
+      "fields": ["formNumber", "deliveryDetail"]
+    },
+
+    "visaRequired": {
+      "label": "Visa Required",
+      "category": "Forms",
+      "template": "Please provide a copy of the insured's visa.",
+      "fields": []
+    },
+
+    "licensingRequirement": {
+      "label": "Licensing Requirement",
+      "category": "General",
+      "template": "Please note that this case currently has an open licensing requirement. Most licensing requirements are resolved before approval; however, if the outstanding requirement affects the signature dates, new paperwork may be required. A follow-up communication will provide the next steps needed to resolve the licensing requirement.",
+      "fields": []
+    },
+
+    "generalRequirement": {
+      "label": "General Requirement",
+      "category": "General",
+      "template": "Please provide {requirementDetail}.",
+      "fields": ["requirementDetail"]
+    },
+
+    "generalNotice": {
+      "label": "General Notice",
+      "category": "General",
+      "template": "{noticeText}",
+      "fields": ["noticeText"]
+    }
+  }
+}

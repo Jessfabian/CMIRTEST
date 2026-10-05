@@ -7,71 +7,33 @@
         "fields": ["question", "form", "value"]
       },
 
-"newSignedForm": {
-  "label": "New Signed Form",
-  "category": "Forms",
-  "template": "Please submit a newly signed {formName} with updated signatures and dates as, {reason}",
-  "fields": ["formName", "reason"]
-},
- "correctedForm": {
-  "label": "Corrected Form - Initials Required",
-  "category": "Forms",
-  "template": "Please resubmit the {formName} reflecting {correctionReason}. Please have the {persom} initial and date by the correction(s).",
-  "fields": ["formName","correctionReason", "person"]
-},
- "correctedsForm": {
-  "label": "Corrected Form - No Initials Required",
-  "category": "Forms",
-  "template": "Please resubmit the {formName} reflecting {correctionReason}.",
-  "fields": ["formName","correctionReason", "person"]
-},
+      "questionIs": {
+        "label": "Question Is",
+        "category": "General",
+        "template": "Question {question} of the {form} is {value}.",
+        "fields": ["question", "form", "value"]
+      },
 
-  "unauthorizedDigitalSignature": {
-  "label": "Unauthorized Digital Signature",
-  "category": "Forms",
-  "template": "Please submit the following forms as an unauthorized digital signature was used. Please note we currently only accept MassMutual DocuSign, Approved Agency DocuSign, and hand-signed signatures. \n\nForms requiring correction:\n{forms}",
-  "fields": ["forms"]
-},
-  "missingForm": {
-  "label": "Missing Form",
-  "category": "Forms",
-  "template": "Please submit the {formName} as it was not included with the application and is required.",
-  "fields": ["formName"]
-},
-"questionMissing": {
-  "label": "Question Not Answered",
-  "category": "Questions",
-  "template": "Please provide a response to question {questionNumber} as it was unanswered.",
-  "fields": ["questionNumber"]
-},
-"questionConflict": {
-  "label": "Conflicting Answers",
-  "category": "Questions",
-  "template": "Please clarify the response to questions {questionOne} and {questionTwo}, as the answers conflict.",
-  "fields": [
-    "questionOne",
-    "questionTwo"
-  ]
-}
+      "questionNotApplicable": {
+        "label": "Question Not Applicable",
+        "category": "General",
+        "template": "Question {question} of the {form} is not applicable.",
+        "fields": ["question", "form"]
+      },
 
+      "questionRangeIs": {
+        "label": "Question Range Is",
+        "category": "General",
+        "template": "Questions {questionRange} of the {form} are {value}.",
+        "fields": ["questionRange", "form", "value"]
+      },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      "questionRangeNotApplicable": {
+        "label": "Question Range Not Applicable",
+        "category": "General",
+        "template": "Questions {questionRange} of the {form} are not applicable.",
+        "fields": ["questionRange", "form"]
+      },
 
       "sectionShouldInclude": {
         "label": "Section Should Include",

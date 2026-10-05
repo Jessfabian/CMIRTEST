@@ -1,31 +1,47 @@
 {
   "templates": {
-    "completedSignedForm": {
-      "label": "Completed and Signed Form",
-       "category": "General",
-      "template": "Please provide a completed and signed {documentName}.",
-      "fields": ["documentName"]
+    "newSignedForm": {
+      "label": "New Signed Form",
+      "category": "Forms",
+      "template": "Please submit a newly signed {formName} with updated signatures and dates as, {reason}",
+      "fields": ["formName", "reason"]
     },
-
     "correctedForm": {
-      "label": "Corrected Form",
-       "category": "General",
-      "template": "Please provide a corrected, completed, and signed {documentName}.",
-      "fields": ["documentName"]
+      "label": "Corrected Form - Initials Required",
+      "category": "Forms",
+      "template": "Please resubmit the {formName} reflecting {correctionReason}. Please have the {persom} initial and date by the correction(s).",
+      "fields": ["formName", "correctionReason", "person"]
+    },
+    "correctedsForm": {
+      "label": "Corrected Form - No Initials Required",
+      "category": "Forms",
+      "template": "Please resubmit the {formName} reflecting {correctionReason}.",
+      "fields": ["formName", "correctionReason", "person"]
     },
 
-    "newForm": {
-      "label": "New Form Required",
-       "category": "General",
-      "template": "Please provide a new completed and signed {documentName}.",
-      "fields": ["documentName"]
+    "unauthorizedDigitalSignature": {
+      "label": "Unauthorized Digital Signature",
+      "category": "Forms",
+      "template": "Please submit the following forms as an unauthorized digital signature was used. Please note we currently only accept MassMutual DocuSign, Approved Agency DocuSign, and hand-signed signatures. \n\nForms requiring correction:\n{forms}",
+      "fields": ["forms"]
     },
-
-    "completedForm": {
-      "label": "Completed Form",
-       "category": "General",
-      "template": "Please provide a completed {documentName}.",
-      "fields": ["documentName"]
+    "missingForm": {
+      "label": "Missing Form",
+      "category": "Forms",
+      "template": "Please submit the {formName} as it was not included with the application and is required.",
+      "fields": ["formName"]
+    },
+    "questionMissing": {
+      "label": "Question Not Answered",
+      "category": "Questions",
+      "template": "Please provide a response to question {questionNumber} as it was unanswered.",
+      "fields": ["questionNumber"]
+    },
+    "questionConflict": {
+      "label": "Conflicting Answers",
+      "category": "Questions",
+      "template": "Please clarify the response to questions {questionOne} and {questionTwo}, as the answers conflict.",
+      "fields": ["questionOne", "questionTwo"]
     },
 
     "missingInformation": {
@@ -37,35 +53,35 @@
 
     "clarification": {
       "label": "Clarification",
-       "category": "General",
+      "category": "General",
       "template": "Please clarify {detail}.",
       "fields": ["detail"]
     },
 
     "confirmInformation": {
       "label": "Confirm Information",
-       "category": "General",
+      "category": "General",
       "template": "Please confirm {detail}.",
       "fields": ["detail"]
     },
 
     "signedIllustration": {
       "label": "Signed Illustration",
-       "category": "General",
+      "category": "General",
       "template": "Please provide a complete illustration signed and dated by the owner and producer.",
       "fields": []
     },
 
     "ownerDesignation": {
       "label": "Owner Designation Form",
-       "category": "General",
+      "category": "General",
       "template": "Please provide a completed and signed Owner Designation Form.",
       "fields": []
     },
 
     "beneficiaryDesignation": {
       "label": "Beneficiary Designation Form",
-       "category": "General",
+      "category": "General",
       "template": "Please provide a completed and signed Beneficiary Designation Form.",
       "fields": []
     },
@@ -125,147 +141,137 @@
     }
   },
 
-"nyUnsignedIllustration": {
-  "label": "NY Illustration Unsigned",
-  "template": "Please submit a signed sales illustration matching the Part 1. The illustration submitted is unsigned. This is required for all New York policies per Regulation 74.",
-  "fields": []
-},
+  "nyUnsignedIllustration": {
+    "label": "NY Illustration Unsigned",
+    "template": "Please submit a signed sales illustration matching the Part 1. The illustration submitted is unsigned. This is required for all New York policies per Regulation 74.",
+    "fields": []
+  },
 
-"pacNotInGoodOrder": {
-  "label": "PAC Not in Good Order",
-  "template": "Please be advised that the PAC form submitted is not in good order. This can be obtained at delivery.",
-  "fields": []
-},
+  "pacNotInGoodOrder": {
+    "label": "PAC Not in Good Order",
+    "template": "Please be advised that the PAC form submitted is not in good order. This can be obtained at delivery.",
+    "fields": []
+  },
 
-"outdatedProducerStatement": {
-  "label": "Outdated Producer Statement",
-  "template": "The Producer Statement submitted is an outdated version of the form. Please submit an updated Producer Statement. (Attached)",
-  "fields": []
-},
+  "outdatedProducerStatement": {
+    "label": "Outdated Producer Statement",
+    "template": "The Producer Statement submitted is an outdated version of the form. Please submit an updated Producer Statement. (Attached)",
+    "fields": []
+  },
 
-"addressVerification": {
-  "label": "Address Verification",
-  "template": "Please confirm the client's address as it does not match the Motor Vehicle Report. Has the client recently moved?",
-  "fields": []
-},
+  "addressVerification": {
+    "label": "Address Verification",
+    "template": "Please confirm the client's address as it does not match the Motor Vehicle Report. Has the client recently moved?",
+    "fields": []
+  },
 
-"ownerDesignationOther": {
-  "label": "Owner Designation Required - Other",
-  "template": "Please submit the Owner Designation Form as it was not submitted. This is required because 'Other' was selected on the Part 1.",
-  "fields": []
-},
+  "ownerDesignationOther": {
+    "label": "Owner Designation Required - Other",
+    "template": "Please submit the Owner Designation Form as it was not submitted. This is required because 'Other' was selected on the Part 1.",
+    "fields": []
+  },
 
-"ownerDesignationJuvenile": {
-  "label": "Owner Designation Required - Juvenile",
-  "template": "Please submit the Owner Designation Form as it was not submitted. This is required because the insured is a juvenile.",
-  "fields": []
-},
+  "ownerDesignationJuvenile": {
+    "label": "Owner Designation Required - Juvenile",
+    "template": "Please submit the Owner Designation Form as it was not submitted. This is required because the insured is a juvenile.",
+    "fields": []
+  },
 
-"policyDesignMismatch": {
-  "label": "Policy Design Mismatch",
-  "template": "Please confirm if the {designElement} should reflect {applicationValue} per the Part 1 application or {illustrationValue} per the illustration.",
-  "fields": [
-    "designElement",
-    "applicationValue",
-    "illustrationValue"
-  ]
-},
+  "policyDesignMismatch": {
+    "label": "Policy Design Mismatch",
+    "template": "Please confirm if the {designElement} should reflect {applicationValue} per the Part 1 application or {illustrationValue} per the illustration.",
+    "fields": ["designElement", "applicationValue", "illustrationValue"]
+  },
 
-"cityStateMissingPart1": {
-  "label": "City and State Missing - Part 1",
-  "template": "Please provide the city and state in which the Part 1 was signed by the owner.",
-  "fields": []
-},
+  "cityStateMissingPart1": {
+    "label": "City and State Missing - Part 1",
+    "template": "Please provide the city and state in which the Part 1 was signed by the owner.",
+    "fields": []
+  },
 
-"cityStateMissingOwnerForm": {
-  "label": "City and State Missing - Owner Form",
-  "template": "Please provide the city and state in which the Owner Designation Form was signed.",
-  "fields": []
-},
+  "cityStateMissingOwnerForm": {
+    "label": "City and State Missing - Owner Form",
+    "template": "Please provide the city and state in which the Owner Designation Form was signed.",
+    "fields": []
+  },
 
-"hipaaIssue": {
-  "label": "HIPAA Issue",
-  "template": "Please submit a new HIPAA form as the one submitted is {reason}. This form cannot be amended, corrected, altered, or contain crossouts. (Attached)",
-  "fields": ["reason"]
-},
+  "hipaaIssue": {
+    "label": "HIPAA Issue",
+    "template": "Please submit a new HIPAA form as the one submitted is {reason}. This form cannot be amended, corrected, altered, or contain crossouts. (Attached)",
+    "fields": ["reason"]
+  },
 
-"saveAgeNotAnswered": {
-  "label": "Save Age - Not Answered",
-  "template": "Please advise if we are issuing current age or saving age as questions G4 and G5 of the Part 1 were not answered.",
-  "fields": []
-},
+  "saveAgeNotAnswered": {
+    "label": "Save Age - Not Answered",
+    "template": "Please advise if we are issuing current age or saving age as questions G4 and G5 of the Part 1 were not answered.",
+    "fields": []
+  },
 
-"saveAgeBothSelected": {
-  "label": "Save Age - Both Selected",
-  "template": "Please advise if we are issuing current age or saving age as questions G4 and G5 of the Part 1 were both checked.",
-  "fields": []
-},
+  "saveAgeBothSelected": {
+    "label": "Save Age - Both Selected",
+    "template": "Please advise if we are issuing current age or saving age as questions G4 and G5 of the Part 1 were both checked.",
+    "fields": []
+  },
 
-"waiverOfPremiumBlank": {
-  "label": "Waiver of Premium Not Answered",
-  "template": "Please advise if Waiver of Premium is desired as the question was left unanswered.",
-  "fields": []
-},
+  "waiverOfPremiumBlank": {
+    "label": "Waiver of Premium Not Answered",
+    "template": "Please advise if Waiver of Premium is desired as the question was left unanswered.",
+    "fields": []
+  },
 
-"licensingRequirement": {
-  "label": "Licensing Requirement",
-  "template": "Please note this case currently has an open licensing requirement. Most licensing requirements are resolved prior to approval; however, if the outstanding requirement results in incorrect signature dates, new paperwork may be required. A follow-up email will be sent with next steps to clear the licensing requirement.",
-  "fields": []
-},
+  "licensingRequirement": {
+    "label": "Licensing Requirement",
+    "template": "Please note this case currently has an open licensing requirement. Most licensing requirements are resolved prior to approval; however, if the outstanding requirement results in incorrect signature dates, new paperwork may be required. A follow-up email will be sent with next steps to clear the licensing requirement.",
+    "fields": []
+  },
 
-"replacementFormMissing": {
-  "label": "Replacement Form Missing",
-  "template": "Please submit the Replacement Form as it was not submitted. (Attached)",
-  "fields": []
-},
+  "replacementFormMissing": {
+    "label": "Replacement Form Missing",
+    "template": "Please submit the Replacement Form as it was not submitted. (Attached)",
+    "fields": []
+  },
 
-"replacementTimingIssue": {
-  "label": "Replacement Timing Issue",
-  "template": "Please resubmit the Part 1 Application as this form must be signed and dated on or before the Replacement Form.",
-  "fields": []
-},
+  "replacementTimingIssue": {
+    "label": "Replacement Timing Issue",
+    "template": "Please resubmit the Part 1 Application as this form must be signed and dated on or before the Replacement Form.",
+    "fields": []
+  },
 
-"replacementProducerStatementIssue": {
-  "label": "Replacement Producer Statement Issue",
-  "template": "Please resubmit the Producer Statement as the replacement box was not selected and the form must be signed on or before the Replacement Form. (Attached)",
-  "fields": []
-},
+  "replacementProducerStatementIssue": {
+    "label": "Replacement Producer Statement Issue",
+    "template": "Please resubmit the Producer Statement as the replacement box was not selected and the form must be signed on or before the Replacement Form. (Attached)",
+    "fields": []
+  },
 
-"citizenshipConflict": {
-  "label": "Citizenship Conflict",
-  "template": "Please confirm if the insured is a United States citizen. Question {questionOne} indicates {answerOne}; however, question {questionTwo} indicates {answerTwo}.",
-  "fields": [
-    "questionOne",
-    "answerOne",
-    "questionTwo",
-    "answerTwo"
-  ]
-},
+  "citizenshipConflict": {
+    "label": "Citizenship Conflict",
+    "template": "Please confirm if the insured is a United States citizen. Question {questionOne} indicates {answerOne}; however, question {questionTwo} indicates {answerTwo}.",
+    "fields": ["questionOne", "answerOne", "questionTwo", "answerTwo"]
+  },
 
-"questionMissingResponse": {
-  "label": "Question Not Answered",
-  "template": "Please provide a response for question {question}.",
-  "fields": ["question"]
-},
+  "questionMissingResponse": {
+    "label": "Question Not Answered",
+    "template": "Please provide a response for question {question}.",
+    "fields": ["question"]
+  },
 
-"missingSupplement": {
-  "label": "Missing Supplement",
-  "template": "Please submit the {documentName} as it was not submitted. (Attached)",
-  "fields": ["documentName"]
-},
+  "missingSupplement": {
+    "label": "Missing Supplement",
+    "template": "Please submit the {documentName} as it was not submitted. (Attached)",
+    "fields": ["documentName"]
+  },
 
-"unauthorizedDigitalSignature": {
-  "label": "Unauthorized Digital Signature",
-  "template": "Please resubmit the following forms with updated signatures and dates as an unauthorized digital signature was used. We only accept approved agency DocuSign, MassMutual DocuSign, or hand-signed signatures. Forms requiring correction: {documentName}.",
-  "fields": ["documentName"]
-},
+  "unauthorizedDigitalSignature": {
+    "label": "Unauthorized Digital Signature",
+    "template": "Please resubmit the following forms with updated signatures and dates as an unauthorized digital signature was used. We only accept approved agency DocuSign, MassMutual DocuSign, or hand-signed signatures. Forms requiring correction: {documentName}.",
+    "fields": ["documentName"]
+  },
 
-"minorSignatureRequirement": {
-  "label": "Minor Signature Requirement",
-  "template": "Please have {signerName} sign on behalf of the proposed insured as the insured is a minor.",
-  "fields": ["signerName"]
-},
-
+  "minorSignatureRequirement": {
+    "label": "Minor Signature Requirement",
+    "template": "Please have {signerName} sign on behalf of the proposed insured as the insured is a minor.",
+    "fields": ["signerName"]
+  },
 
   "formMappings": {
     "A2000": {
