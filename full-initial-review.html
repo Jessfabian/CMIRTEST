@@ -123,6 +123,26 @@
           <details class="sidebar-workspace">
             <summary class="workspace-summary">Policy Amendment</summary>
 
+  <details class="workspace-help">
+  <summary>How to Use</summary>
+
+
+
+ <div class="workspace-help">
+  <ol>
+    <li>Select the Contract State.</li>
+    <li>Select the form being amended.</li>
+    <li>Enter the applicable question or section.</li>
+    <li>Select an amendment template.</li>
+    <li>Complete any required fields.</li>
+    <li>Review the generated amendment.</li>
+    <li>Click <strong>Add Amendment</strong> to save it to the Review Output Package.</li>
+  </ol>
+</div>
+</details>
+
+
+
             <div class="case-field">
                 <label>Form Being Amended</label>
 
@@ -132,20 +152,19 @@
             </div>
 
             <div class="case-field">
+              <label>Amendment Template</label>
+
+              <select id="globalAmendmentTemplate">
+                <option value="">Select Template</option>
+              </select>
+            </div>
+ <div class="case-field">
               <label>Question / Section</label>
 
               <input
                 type="text"
                 id="globalQuestion"
                 placeholder="Example: C3" />
-            </div>
-
-            <div class="case-field">
-              <label>Amendment Template</label>
-
-              <select id="globalAmendmentTemplate">
-                <option value="">Select Template</option>
-              </select>
             </div>
 
             <div id="globalAmendmentFields"></div>
@@ -175,6 +194,7 @@
     Copy
   </button>
 <div id="amendmentSaveStatus"></div>
+
 </div>
           </details>
 
@@ -182,6 +202,22 @@
 
 <details class="sidebar-workspace">
   <summary class="workspace-summary">Agency Requirement</summary>
+
+<details class="workspace-help">
+   <summary>How to Use</summary>
+
+<div class="workspace-help">
+  <ol>
+     <li>Select a requirement template.</li>
+    <li>Complete any required fields.</li>
+    <li>Review the generated requirement.</li>
+    <li>Copy the wording for case communication.</li>
+    <li>Click Add Requirement to save it to the Review Output Package.</li>
+    <li>Click <strong>♡</strong> to save frequently used requirements as Favorites.</li>
+    </ol>
+</div>
+</details>
+
 
   <div class="case-field">
     <label for="globalRequirementTemplate">Requirement Template</label>
@@ -227,6 +263,7 @@
     id="copyGlobalRequirement">
     Copy
   </button>
+
 </div>
 
 </details>
