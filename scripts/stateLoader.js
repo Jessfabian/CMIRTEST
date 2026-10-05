@@ -20,7 +20,9 @@ document
       }
 
       const stateData = await response.json();
-
+console.log("STATE DATA", stateData);
+console.log("FORMS ARRAY", stateData.forms);
+console.log("FORMS LENGTH", stateData.forms?.length);
       window.currentStateData = stateData;
       console.log(
         "Forms loaded:",
@@ -226,7 +228,51 @@ function renderStateGuidance(stateData) {
   summary.textContent =
     `${stateData.displayName} Requirements`;
 
-  // leave the rest of your code exactly as it is
+requiredForms.innerHTML = applicableForms
+  .map(
+    (form) => `
+      <div class="required-form-row">
+
+        <div class="required-form-info">
+          <div class="required-form-code">
+            ${form.form}
+          </div>
+
+          <div class="required-form-description">
+            ${form.description}
+          </div>
+        </div>
+
+        <div class="required-form-actions">
+          <button
+            type="button"
+            class="igo-button"
+            data-form="${form.form}">
+            IGO
+          </button>
+
+          <button
+            type="button"
+            class="nigo-button"
+            data-form="${form.form}">
+            NIGO
+          </button>
+        </div>
+
+      </div>
+    `,
+  )
+  .join("");
+const formCount = document.getElementById("applicableFormCount");
+
+if (formCount) {
+  formCount.textContent = `${applicableForms.length} forms`;
+}
+console.log(
+  "Rendered Forms:",
+  requiredForms.querySelectorAll(".required-form-row").length
+);
+
   ["replacement", "ownerType", "beneficiaryOther"].forEach((id) => {
     document.getElementById(id)?.addEventListener("change", () => {
       if (window.currentStateData) {

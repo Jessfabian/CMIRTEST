@@ -2372,3 +2372,45 @@ textarea.amendment-field-input {
     min-height: 100px;
 }
 
+.required-form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.required-form-info {
+    flex: 1;
+}
+
+.required-form-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.igo-button,
+.nigo-button {
+    min-width: 70px;
+    padding: 8px 12px;
+    border: 1px solid #c7d2dc;
+    border-radius: 8px;
+    background: #ffffff;
+    color: var(--mm-blue);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.igo-button:hover,
+.igo-button.selected {
+    background: var(--mm-green);
+    color: white;
+    border-color: var(--mm-green);
+}
+
+.nigo-button:hover,
+.nigo-button.selected {
+    background: var(--mm-orange);
+    color: white;
+    border-color: var(--mm-orange);
+}
