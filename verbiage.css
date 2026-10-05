@@ -104,3 +104,63 @@
 #clearAllRequirements:active {
     transform: translateY(1px);
 }
+/* ==========================================
+   VERBIAGE BUTTON OVERRIDES
+========================================== */
+
+.verbiage-page .buttons button {
+    min-width: 110px;
+    height: 40px;
+
+    padding: 0 16px !important;
+
+    margin-top: 0 !important;
+
+    border-radius: 8px !important;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: all .2s ease;
+}
+
+/* Add Buttons */
+
+.verbiage-page .primary-button {
+    background: var(--mm-charge-blue);
+    color: white;
+    border: 1px solid var(--mm-charge-blue);
+}
+
+.verbiage-page .primary-button:hover {
+    background: var(--mm-peacock);
+    border-color: var(--mm-peacock);
+}
+
+/* Copy Buttons */
+
+.verbiage-page .secondary-button {
+    background: #e9f3ff;
+    color: var(--mm-blue);
+    border: 1px solid #b9d5f5;
+}
+
+.verbiage-page .secondary-button:hover {
+    background: var(--mm-peacock);
+    color: white;
+    border-color: var(--mm-peacock);
+}
+
+/* Clear Buttons */
+
+.verbiage-page .quiet {
+    background: #eef2f5;
+    color: #4e5d67;
+    border: 1px solid #d6dee8;
+}
+
+.verbiage-page .quiet:hover {
+    background: var(--mm-orange);
+    color: white;
+    border-color: var(--mm-orange);
+}
