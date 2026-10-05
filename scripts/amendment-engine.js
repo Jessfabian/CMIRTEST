@@ -212,7 +212,38 @@
     if (globalSidebarEventsBound) {
       return;
     }
+const clearAllAmendmentsButton = document.getElementById("clearAllAmendments");
 
+if (clearAllAmendmentsButton) {
+  clearAllAmendmentsButton.addEventListener("click", function () {
+    globalSavedAmendments = [];
+
+    renderGlobalSavedAmendments();
+
+    const status = document.getElementById("amendmentSaveStatus");
+
+    if (status) {
+      status.textContent = "✓ All amendments cleared";
+
+      setTimeout(() => {
+        status.textContent = "";
+      }, 2000);
+    }
+  });
+    }
+    const clearAllRequirementsButton = document.getElementById(
+      "clearAllRequirements",
+    );
+
+    if (clearAllRequirementsButton) {
+      clearAllRequirementsButton.addEventListener("click", function () {
+        globalSavedRequirements = [];
+
+        renderGlobalSavedRequirements();
+
+        console.log("Requirements cleared");
+      });
+    }
     globalSidebarEventsBound = true;
     const addAmendmentButton = document.getElementById("addGlobalAmendment");
 

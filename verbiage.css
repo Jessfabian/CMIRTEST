@@ -84,3 +84,23 @@
     background: var(--panel-bg);
     border: 1px solid var(--border);
 }
+
+/* Clear Buttons */
+
+#clearAllAmendments,
+#clearAllRequirements {
+    transition: all 0.2s ease;
+}
+
+#clearAllAmendments:hover,
+#clearAllRequirements:hover {
+    background: var(--mm-orange);
+    color: white;
+    border-color: var(--mm-orange);
+    transform: translateY(-1px);
+}
+
+#clearAllAmendments:active,
+#clearAllRequirements:active {
+    transform: translateY(1px);
+}
