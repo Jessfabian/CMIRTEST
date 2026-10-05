@@ -2799,3 +2799,46 @@ textarea.amendment-field-input {
     flex-direction: column;
   }
 }
+
+.nigo-template-picker {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+
+  background: #fff8f3;
+  border: 1px solid #f0c6b2;
+  border-left: 4px solid var(--mm-orange);
+  border-radius: 9px;
+}
+
+.nigo-template-picker[hidden] {
+  display: none;
+}
+
+.nigo-template-picker label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: var(--mm-blue);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.nigo-template-select {
+  width: 100%;
+  margin: 0;
+}
+
+.nigo-template-help {
+  display: block;
+  margin-top: 7px;
+
+  color: #667681;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.result-nigo-pending {
+  color: #9a6500;
+  white-space: nowrap;
+}
