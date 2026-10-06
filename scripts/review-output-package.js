@@ -145,7 +145,13 @@ const requirementText =
     if (compiledRequirements) {
       compiledRequirements.value = requirementText;
     }
-
+document.dispatchEvent(
+  new CustomEvent("compiledRequirementsUpdated", {
+    detail: {
+      requirements: compiledRequirements.value,
+    },
+  }),
+);
     if (amendmentCount) {
       amendmentCount.textContent = String(amendments.length);
     }
