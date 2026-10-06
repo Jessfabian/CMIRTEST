@@ -215,12 +215,6 @@
       "template": "Please provide a copy of the insured's visa.",
       "fields": ["personType", "informationNeeded"]
     },
- "generalNotice": {
-      "label": "General Notice",
-      "category": "General",
-      "template": "{noticeText}",
-      "fields": ["noticeText"]
-      },
       "generalRequirement": {
       "label": "General Requirement",
       "category": "General",

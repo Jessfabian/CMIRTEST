@@ -1343,7 +1343,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ">
 
         <p style="margin: 0 0 10px;">
-          Insured:
+          Insured: ${insuredName}
         </p>
 
         <p style="margin: 0 0 10px;">
@@ -1371,9 +1371,9 @@ document.addEventListener("DOMContentLoaded", () => {
           requirements are needed.
         </p>
 
-        <p style="margin: 0 0 8px;">
+        <p style="margin: 0 0 18px;"><strong>
           We await the following requirements:
-        </p>
+        </strong></p>
 
         <ul style="
           margin: 0 0 22px;
@@ -1463,7 +1463,7 @@ document.addEventListener("DOMContentLoaded", () => {
       line-height: 1.4;
     ">
  <p style="margin: 0 0 10px;">
-          Insured:
+          Insured: ${insuredName}
         </p>
 
       <p style="margin: 0 0 15px;">
@@ -1575,49 +1575,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (copyEmailButton) {
-    copyEmailButton.addEventListener("click", async () => {
-      if (!emailOutput || !emailOutput.value.trim()) {
+    copyEmailButton.addEventListener("click", async function () {
+      const plainText = emailOutput?.innerText?.trim() || "";
+
+      const html = emailOutput?.innerHTML?.trim() || "";
+
+      if (!emailOutput || !plainText) {
+        console.warn("There is no email content to copy.");
+
         return;
       }
 
+      const originalText = copyEmailButton.textContent;
+
       try {
-        const html = emailOutput.innerHTML;
+        if (navigator.clipboard && window.ClipboardItem) {
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              "text/html": new Blob([html], {
+                type: "text/html",
+              }),
 
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            "text/html": new Blob([html], {
-              type: "text/html",
+              "text/plain": new Blob([plainText], {
+                type: "text/plain",
+              }),
             }),
-            "text/plain": new Blob([emailOutput.innerText], {
-              type: "text/plain",
-            }),
-          }),
-        ]);
-
-        const originalText = copyEmailButton.textContent;
+          ]);
+        } else {
+          await navigator.clipboard.writeText(plainText);
+        }
 
         copyEmailButton.textContent = "Copied";
 
-        setTimeout(() => {
+        window.setTimeout(function () {
           copyEmailButton.textContent = originalText;
         }, 1500);
       } catch (error) {
-        emailOutput.select();
+        const range = document.createRange();
+
+        const selection = window.getSelection();
+
+        range.selectNodeContents(emailOutput);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+
         document.execCommand("copy");
 
-        console.error(
-          "Unable to use Clipboard API. Fallback copy attempted.",
-          error,
-        );
+        selection.removeAllRanges();
+
+        copyEmailButton.textContent = "Copied";
+
+        window.setTimeout(function () {
+          copyEmailButton.textContent = originalText;
+        }, 1500);
+
+        console.warn("Used the fallback email copy method.", error);
       }
     });
   }
-
-  /*
-   * ====================================================
-   * INITIAL PAGE SETUP
-   * ====================================================
-   */
 
   handlePolicyDatingDisplay();
   updateIllustrationGuidance();
