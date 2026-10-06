@@ -405,7 +405,7 @@
         globalSavedAmendments = [];
 
         renderGlobalSavedAmendments();
-
+renderGlobalSavedRequirements();
         const status = document.getElementById("amendmentSaveStatus");
 
         if (status) {
@@ -539,6 +539,8 @@
         updateRequirementFavoriteButton();
         buildGlobalRequirementFields();
         generateGlobalSidebarOutputs();
+        renderGlobalSavedAmendments();
+        renderGlobalSavedRequirements();
       });
     }
     if (formDropdown) {
@@ -684,7 +686,35 @@
         totalCount === 0 ? "No Outputs" : `${totalCount} Saved`;
     }
   }
+  function renderGlobalSavedRequirements() {
+  console.log("Rendering requirements:", window.globalSavedRequirements.length);
+  const compiledOutput = document.getElementById("compiledRequirements");
 
+  const badge = document.getElementById("compiledRequirementBadge");
+
+  const copyButton = document.getElementById("copyAllRequirements");
+
+  const requirementCount = window.globalSavedRequirements.length;
+
+  if (compiledOutput) {
+    compiledOutput.value = window.globalSavedRequirements
+      .map((requirement, index) => {
+        return `${index + 1}. ${requirement.text}`;
+      })
+      .join("\n\n");
+  }
+
+  if (badge) {
+    badge.textContent =
+      requirementCount === 1
+        ? "1 requirement"
+        : `${requirementCount} requirements`;
+  }
+
+  if (copyButton) {
+    copyButton.disabled = requirementCount === 0;
+  }
+}
   function clearGlobalAmendmentDraft() {
     const questionInput = document.getElementById("globalQuestion");
 
@@ -778,6 +808,7 @@
       engineLoaded = true;
 
       initializeGlobalSidebarWorkspace();
+      renderGlobalSavedRequirements();
       initializeAllPanels();
       startPanelObserver();
 
@@ -1878,6 +1909,10 @@
     }
   });
 
+  document.addEventListener("requirementsUpdated", function () {
+    renderGlobalSavedRequirements();
+  });
+
   function startEngine() {
     loadEngineData();
   }
@@ -1890,3 +1925,4 @@
     startEngine();
   }
 })();
+
