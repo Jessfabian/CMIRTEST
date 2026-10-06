@@ -2885,3 +2885,20 @@ textarea.amendment-field-input {
   color: #888;
   font-style: italic;
 }
+
+.email-preview {
+  min-height: 400px;
+  padding: 20px;
+
+  background: white;
+  border: 1px solid #d6dee8;
+  border-radius: 10px;
+
+  overflow-y: auto;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+
+  white-space: normal;
+}
