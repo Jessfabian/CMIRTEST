@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
+  window.savedRequirements = window.savedRequirements || [];
 
   const compiledAmendments = document.getElementById("compiledAmendments");
 
@@ -82,25 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
   function collectGeneratedRequirements() {
     const results = [];
 
-    getFormRows().forEach(function (row) {
-      const output = row.querySelector(".generated-requirement");
-
-      const text = cleanText(output ? output.value : "");
-
-      if (!text) {
-        return;
-      }
-
-      const form = getFormInformation(row);
-
+    window.savedRequirements.forEach(function (requirement) {
       results.push({
-        formId: form.formId,
+        formId: requirement.formId || "",
 
-        description: form.description,
+        description: requirement.description || "",
 
-        text: text,
+        text: requirement.text || "",
       });
-    });
+    }
+    );
 
     return results;
   }

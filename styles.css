@@ -936,12 +936,19 @@ dialog::backdrop {
 .collapse-indicator {
   color: var(--mm-light-blue);
   font-size: 0.85rem;
-
-  transition: transform 180ms ease;
+    flex: 0 0 auto;
+    padding: 7px 11px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    border-radius: 999px;
+        color: #536473;
+    background: #edf1f4;
+     transition: transform 180ms ease;
 }
 
 .collapsible-card[open] .collapse-indicator {
   transform: rotate(180deg);
+
 }
 
 .collapsible-content {
@@ -1576,6 +1583,8 @@ textarea.amendment-field-input {
     grid-template-columns: 1fr;
   }
 }
+
+
 
 .nigo-workspace {
   display: grid;
@@ -2509,9 +2518,10 @@ textarea.amendment-field-input {
 
   font-size: 0.7rem;
   font-weight: 800;
-
   border-radius: 999px;
 }
+
+
 
 .validation-not-started {
   color: #536473;
@@ -2626,7 +2636,7 @@ textarea.amendment-field-input {
   margin-top: 3px;
 
   color: #6a7886;
-  font-size: 0.67rem;
+  font-size: 1em;
   font-weight: 600;
 }
 

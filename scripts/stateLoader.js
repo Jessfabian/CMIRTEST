@@ -373,11 +373,16 @@ function renderStateGuidance(stateData) {
 
       row.dataset.formStatus = "igo";
 
-      window.formReviewStatus[formId] = {
-        status: "IGO",
-        issueLabel: "",
-        templateId: "",
-      };
+     window.formReviewStatus[formId] = {
+       status: "NIGO",
+       issueLabel: selectedTemplateLabel,
+       templateId: selectedTemplateId,
+       formId: formId,
+       formDescription: formDescription,
+
+       requirementGenerated: false,
+       requirementText: "",
+     };
 
       if (resultText) {
         resultText.textContent = "Reviewed";

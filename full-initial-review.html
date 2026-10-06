@@ -476,135 +476,118 @@
      ILLUSTRATION VS PART 1 VALIDATION
 ===================================================== -->
 
-<details
-  id="illustrationValidationSection"
-  class="card illustration-validation-card">
 
-  <summary class="illustration-validation-summary">
-    <div>
-      <span class="validation-eyebrow">
-        POLICY DESIGN VALIDATION
-      </span>
+       <details id="stateRequirements" class="card collapsible-card">
+            <summary class="collapsible-summary">
+              <span class="summary-heading">
+                <span>
+                  <span class="summary-title">llustration Validation</span>
+                </span>
+              </span>
+              <span class="collapse-indicator" aria-hidden="true">▼</span>
+            </summary>
+            <div class="collapsible-content">
 
-      <strong>
-        Illustration vs. Part 1
-      </strong>
+            <details class="workspace-help">
+            <summary><strong> How to use</strong></summary>
 
-      <span class="validation-summary-text">
-        Confirm that the illustration matches the policy as applied for.
-      </span>
-    </div>
+            <ol>
+              <li>
+                Enter the value shown on the Part 1.
+              </li>
 
-    <span
-      id="illustrationValidationBadge"
-      class="validation-badge validation-not-started">
-      Not Started
-    </span>
-  </summary>
+              <li>
+                Enter the corresponding value shown on the illustration.
+              </li>
 
-  <div class="illustration-validation-content">
+              <li>
+                Select Not Applicable for policy-design items that do not apply.
+              </li>
 
-    <div class="validation-instructions">
-      <strong>How to use this validator</strong>
+              <li>
+                Review the validation result and any identified mismatches.
+              </li>
+                </ol>
+              </details>
 
-      <ol>
-        <li>
-          Enter the value shown on the Part 1.
-        </li>
-
-        <li>
-          Enter the corresponding value shown on the illustration.
-        </li>
-
-        <li>
-          Select Not Applicable for policy-design items that do not apply.
-        </li>
-
-        <li>
-          Review the validation result and any identified mismatches.
-        </li>
-      </ol>
-    </div>
-
-    <div class="validation-column-headings">
-      <span>Policy Design Item</span>
-      <span>Part 1</span>
-      <span>Illustration</span>
-      <span>Result</span>
-    </div>
-
-    <div id="illustrationComparisonRows"></div>
-
-    <div class="validation-actions">
-      <button
-        type="button"
-        id="validateIllustration"
-        class="primary-button">
-        Validate Illustration
-      </button>
-
-      <button
-        type="button"
-        id="clearIllustrationValidation"
-        class="secondary-button">
-        Clear
-      </button>
-    </div>
-
-    <section
-      id="illustrationValidationResult"
-      class="illustration-validation-result validation-neutral"
-      aria-live="polite">
-
-      <div class="validation-result-header">
-        <div>
-          <span class="validation-result-label">
-            Validation Result
-          </span>
-
-          <strong id="illustrationValidationTitle">
-            Enter the Part 1 and illustration values.
-          </strong>
+        <div class="validation-column-headings">
+          <span>Policy Design Item</span>
+          <span>Part 1</span>
+          <span>Illustration</span>
+          <span>Result</span>
         </div>
 
-        <span id="illustrationMatchCount">
-          0 of 0 reviewed
-        </span>
-      </div>
+          <div id="illustrationComparisonRows"></div>
 
-      <div id="illustrationValidationDetails"></div>
-    </section>
+          <div class="validation-actions">
+            <button
+              type="button"
+              id="validateIllustration"
+              class="primary-button">
+              Validate Illustration
+            </button>
 
-    <section
-      id="illustrationMismatchRequirementSection"
-      class="illustration-mismatch-output"
-      hidden>
+            <button
+              type="button"
+              id="clearIllustrationValidation"
+              class="secondary-button">
+              Clear
+            </button>
+          </div>
 
-      <label for="illustrationMismatchRequirement">
-        Generated Requirement
-      </label>
+          <section
+            id="illustrationValidationResult"
+            class="illustration-validation-result validation-neutral"
+            aria-live="polite">
 
-      <textarea
-        id="illustrationMismatchRequirement"
-        rows="7"
-        readonly></textarea>
+            <div class="validation-result-header">
+              <div>
+                <span class="validation-result-label">
+                  Validation Result
+                </span>
 
-      <button
-        type="button"
-        id="copyIllustrationMismatchRequirement"
-        class="secondary-button">
-        Copy Requirement
-      </button>
+                <strong id="illustrationValidationTitle">
+                  Enter the Part 1 and illustration values.
+                </strong>
+              </div>
+
+              <span id="illustrationMatchCount">
+                0 of 0 reviewed
+              </span>
+            </div>
+
+                <div id="illustrationValidationDetails"></div>
+              </section>
+              <section
+                id="illustrationMismatchRequirementSection"
+                class="illustration-mismatch-output"
+                hidden>
+
+                <label for="illustrationMismatchRequirement">
+                  Generated Requirement
+                </label>
+
+                <textarea
+                  id="illustrationMismatchRequirement"
+                  rows="7"
+                  readonly></textarea>
+
+                <button
+                  type="button"
+                  id="copyIllustrationMismatchRequirement"
+                  class="secondary-button">
+                  Copy Requirement
+                </button>
 
 
-      <span
-        id="illustrationMismatchCopyStatus"
-        class="copy-status"
-        aria-live="polite">
-      </span>
-    </section>
-  </div>
-</details>
+                    <span
+                      id="illustrationMismatchCopyStatus"
+                      class="copy-status"
+                      aria-live="polite">
+                    </span>
+                  </section>
+                </div>
+       </details>
 
           <!-- =====================================================
 					 SAVE AGE CALCULATOR
@@ -760,15 +743,11 @@ Review Checklist
 											 Controlled By:
 											 stateLoader.js
 									===================================================== -->
-          <details id="stateRequirements" class="card collapsible-card" open>
+          <details id="stateRequirements" class="card collapsible-card">
             <summary class="collapsible-summary">
               <span class="summary-heading">
-
                 <span>
                   <span class="summary-title">State Requirements</span>
-                  <span id="stateRequirementSummary" class="summary-subtitle">
-
-                  </span>
                 </span>
               </span>
               <span class="collapse-indicator" aria-hidden="true">▼</span>
@@ -777,11 +756,11 @@ Review Checklist
               <!-- =====================================================
 						 STATE REQUIREMENT SUMMARY
 						 Displays:
-Required Form Count
-Reviewed Form Count
-Remaining Forms
-Special Notes Count
-===================================================== -->
+              Required Form Count
+              Reviewed Form Count
+              Remaining Forms
+              Special Notes Count
+              ===================================================== -->
               <div class="state-dashboard">
                 <div class="state-stat-card">
 
@@ -805,17 +784,17 @@ Special Notes Count
 
               <div class="open-nigo-dashboard">
 
-  <div class="open-nigo-header">
+              <div class="open-nigo-header">
 
-    <span class="open-nigo-title">
-      Open NIGO Issues
-    </span>
+                <span class="open-nigo-title">
+                  Open NIGO Issues
+                </span>
 
-    <span
-      id="openNigoCount"
-      class="open-nigo-count">
-      0
-    </span>
+                <span
+                  id="openNigoCount"
+                  class="open-nigo-count">
+                  0
+                </span>
 
   </div>
 
@@ -907,22 +886,25 @@ Initial Review Notes
 				 Controlled By:
 				 review-output-package.js
 		===================================================== -->
-          <section id="reviewOutputPackage" class="card review-output-package">
-            <div class="review-output-header">
-              <div>
-                <p class="section-eyebrow">FINAL DELIVERABLES</p>
-                <h2>Review Output Package</h2>
-                <p class="section-description">
-                  Generated amendments and agency requirements from all NIGO
-                  forms are collected here.
-                </p>
-              </div>
-              <span id="reviewOutputStatus" class="setup-status">
-                No Outputs
-              </span>
-            </div>
+
+
+
+
+<details id="reviewOutputPackage" class="card collapsible-card">
+            <summary class="collapsible-summary">
+              <span class="summary-heading">
+
+                  <span class="summary-title">FINAL DELIVERABLES</span>
+
+                </span>
+
+              <span class="collapse-indicator" class="validation-badge validation-not-started"aria-hidden="true">▼</span>
+            </summary>
+            <div class="collapsible-content">
+
             <div class="review-output-summary">
               <div class="output-summary-card">
+
                 <span>Amendments</span>
                 <strong id="compiledAmendmentCount">0</strong>
               </div>
@@ -976,7 +958,15 @@ Initial Review Notes
 							 from every reviewed form.
 							 Copy Ready
 					===================================================== -->
-              <details
+
+
+
+
+
+
+
+
+          <details
                 id="compiledRequirementsDetails"
                 class="compiled-output-section"
                 open>
