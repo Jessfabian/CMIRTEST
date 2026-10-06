@@ -5,7 +5,30 @@ document
   .addEventListener("change", async (e) => {
     const stateCode = e.target.value;
 
-    if (!stateCode) return;
+    const stateRequirementsSection =
+      document.getElementById("stateRequirements");
+
+    const finalDeliverablesSection = document.getElementById(
+      "reviewOutputPackage",
+    );
+
+    if (!stateCode) {
+      if (stateRequirementsSection) {
+        stateRequirementsSection.open = false;
+      }
+
+      return;
+    }
+
+    window.formReviewStatus = {};
+
+    if (stateRequirementsSection) {
+      stateRequirementsSection.open = true;
+    }
+
+    if (finalDeliverablesSection) {
+      finalDeliverablesSection.open = false;
+    }
 
     try {
       console.log("Loading state:", `./data/States/${stateCode}.json`);
@@ -170,20 +193,13 @@ function evaluateConditions(conditions) {
   });
 }
 function populateNigoReasonDropdowns(container = document) {
-  const globalRequirementDropdown =
-    document.getElementById(
-      "globalRequirementTemplate",
-    );
-
-  const nigoDropdowns =
-    container.querySelectorAll(
-      ".nigo-template-select",
-    );
-
-  console.log(
-    "NIGO dropdowns found:",
-    nigoDropdowns.length,
+  const globalRequirementDropdown = document.getElementById(
+    "globalRequirementTemplate",
   );
+
+  const nigoDropdowns = container.querySelectorAll(".nigo-template-select");
+
+  console.log("NIGO dropdowns found:", nigoDropdowns.length);
 
   if (!globalRequirementDropdown) {
     console.warn(
@@ -193,14 +209,11 @@ function populateNigoReasonDropdowns(container = document) {
     return;
   }
 
-  const availableOptions = Array.from(
-    globalRequirementDropdown.options,
-  ).filter((option) => {
-    return Boolean(
-      option.value &&
-        option.value.trim(),
-    );
-  });
+  const availableOptions = Array.from(globalRequirementDropdown.options).filter(
+    (option) => {
+      return Boolean(option.value && option.value.trim());
+    },
+  );
 
   console.log(
     "Requirement options available for NIGO:",
@@ -208,13 +221,11 @@ function populateNigoReasonDropdowns(container = document) {
   );
 
   nigoDropdowns.forEach((nigoDropdown) => {
-    const previousValue =
-      nigoDropdown.value;
+    const previousValue = nigoDropdown.value;
 
     nigoDropdown.innerHTML = "";
 
-    const placeholder =
-      document.createElement("option");
+    const placeholder = document.createElement("option");
 
     placeholder.value = "";
 
@@ -228,63 +239,42 @@ function populateNigoReasonDropdowns(container = document) {
     const addedTemplateIds = new Set();
 
     availableOptions.forEach((option) => {
-      const templateId =
-        option.value.trim();
+      const templateId = option.value.trim();
 
-      if (
-        !templateId ||
-        addedTemplateIds.has(templateId)
-      ) {
+      if (!templateId || addedTemplateIds.has(templateId)) {
         return;
       }
 
-      const nigoOption =
-        document.createElement("option");
+      const nigoOption = document.createElement("option");
 
       nigoOption.value = templateId;
 
-      nigoOption.textContent =
-        option.textContent.trim();
+      nigoOption.textContent = option.textContent.trim();
 
       nigoDropdown.appendChild(nigoOption);
 
       addedTemplateIds.add(templateId);
     });
 
-    if (
-      previousValue &&
-      addedTemplateIds.has(previousValue)
-    ) {
-      nigoDropdown.value =
-        previousValue;
+    if (previousValue && addedTemplateIds.has(previousValue)) {
+      nigoDropdown.value = previousValue;
     }
 
-    nigoDropdown.disabled =
-      addedTemplateIds.size === 0;
+    nigoDropdown.disabled = addedTemplateIds.size === 0;
   });
 }
 
-document.addEventListener(
-  "requirementTemplatesLoaded",
-  () => {
-    const requiredForms =
-      document.getElementById(
-        "requiredForms",
-      );
+document.addEventListener("requirementTemplatesLoaded", () => {
+  const requiredForms = document.getElementById("requiredForms");
 
-    if (!requiredForms) {
-      return;
-    }
+  if (!requiredForms) {
+    return;
+  }
 
-    console.log(
-      "Requirement templates loaded. Repopulating NIGO reasons.",
-    );
+  console.log("Requirement templates loaded. Repopulating NIGO reasons.");
 
-    populateNigoReasonDropdowns(
-      requiredForms,
-    );
-  },
-);
+  populateNigoReasonDropdowns(requiredForms);
+});
 function renderStateGuidance(stateData) {
   const requiredForms = document.getElementById("requiredForms");
 
@@ -476,21 +466,19 @@ function renderStateGuidance(stateData) {
         return;
       }
 
-     const saved = window.saveRequirementToReviewPackage(
-       requirementText,
-       "nigo",
-       formId,
-     );
+      const saved = window.saveRequirementToReviewPackage(
+        requirementText,
+        "nigo",
+        formId,
+      );
 
+      if (statusElement) {
+        statusElement.textContent = saved
+          ? "Requirement added to the Review Output Package."
+          : "This requirement has already been added.";
+      }
 
-     if (statusElement) {
-       statusElement.textContent = saved
-         ? "Requirement added to the Review Output Package."
-         : "This requirement has already been added.";
-     }
-
-     return;
-
+      return;
     }
 
     /*
@@ -580,6 +568,7 @@ function renderStateGuidance(stateData) {
       }
 
       updateStateDashboard();
+      checkReviewCompletion();
 
       document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
 
@@ -816,79 +805,110 @@ function renderStateGuidance(stateData) {
     }, 0);
 
     updateStateDashboard();
-
-    document.dispatchEvent(new CustomEvent("stateFormsUpdated")
-    );
+    checkReviewCompletion();
+    document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
   };
 }
+function checkReviewCompletion() {
+  const totalForms = document.querySelectorAll(".required-form-row").length;
 
-  function updateStateDashboard() {
-    const total = document.querySelectorAll(".required-form-row").length;
+  const reviewedForms = document.querySelectorAll(
+    '.required-form-row[data-form-status="igo"], ' +
+      '.required-form-row[data-form-status="nigo"]',
+  ).length;
 
-    const reviewed = Object.values(window.formReviewStatus).filter((item) => {
-      return item?.status === "IGO" || item?.status === "NIGO";
-    }).length;
-
-    const issues = Object.values(window.formReviewStatus).filter((item) => {
-      return item?.status === "NIGO";
-    }).length;
-
-    const remaining = Math.max(total - reviewed, 0);
-
-    const reviewedCard = document.getElementById("reviewedCountCard");
-
-    const remainingCard = document.getElementById("remainingCountCard");
-
-    const issueCard = document.getElementById("dashboardIssueCount");
-
-    const stateCard = document.getElementById("dashboardState");
-
-    if (reviewedCard) {
-      reviewedCard.textContent = String(reviewed);
-    }
-
-    if (remainingCard) {
-      remainingCard.textContent = String(remaining);
-    }
-
-    if (issueCard) {
-      issueCard.textContent = String(issues);
-    }
-
-    if (stateCard) {
-      stateCard.textContent =
-        document.getElementById("contractState")?.value || "--";
-    }
-    updateNigoDashboard();
+  if (totalForms === 0 || reviewedForms !== totalForms) {
+    return;
   }
-  function updateNigoDashboard() {
-    const issueContainer = document.getElementById("openNigoList");
 
-    const countElement = document.getElementById("openNigoCount");
+  const stateRequirements = document.getElementById("stateRequirements");
 
-    if (!issueContainer || !countElement) {
-      return;
-    }
+  const finalDeliverables = document.getElementById("reviewOutputPackage");
 
-    const nigos = Object.values(window.formReviewStatus).filter((item) => {
-      return item?.status === "NIGO";
-    });
+  if (stateRequirements) {
+    stateRequirements.open = false;
+  }
 
-    countElement.textContent = String(nigos.length);
+  if (finalDeliverables) {
+    finalDeliverables.open = true;
 
-    if (!nigos.length) {
-      issueContainer.innerHTML = `
+    window.setTimeout(function () {
+      finalDeliverables.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 0);
+  }
+
+  console.log("All state forms reviewed. Final Deliverables opened.");
+}
+function updateStateDashboard() {
+  const total = document.querySelectorAll(".required-form-row").length;
+
+  const reviewed = Object.values(window.formReviewStatus).filter((item) => {
+    return item?.status === "IGO" || item?.status === "NIGO";
+  }).length;
+
+  const issues = Object.values(window.formReviewStatus).filter((item) => {
+    return item?.status === "NIGO";
+  }).length;
+
+  const remaining = Math.max(total - reviewed, 0);
+
+  const reviewedCard = document.getElementById("reviewedCountCard");
+
+  const remainingCard = document.getElementById("remainingCountCard");
+
+  const issueCard = document.getElementById("dashboardIssueCount");
+
+  const stateCard = document.getElementById("dashboardState");
+
+  if (reviewedCard) {
+    reviewedCard.textContent = String(reviewed);
+  }
+
+  if (remainingCard) {
+    remainingCard.textContent = String(remaining);
+  }
+
+  if (issueCard) {
+    issueCard.textContent = String(issues);
+  }
+
+  if (stateCard) {
+    stateCard.textContent =
+      document.getElementById("contractState")?.value || "--";
+  }
+  updateNigoDashboard();
+}
+function updateNigoDashboard() {
+  const issueContainer = document.getElementById("openNigoList");
+
+  const countElement = document.getElementById("openNigoCount");
+
+  if (!issueContainer || !countElement) {
+    return;
+  }
+
+  const nigos = Object.values(window.formReviewStatus).filter((item) => {
+    return item?.status === "NIGO";
+  });
+
+  countElement.textContent = String(nigos.length);
+
+  if (!nigos.length) {
+    issueContainer.innerHTML = `
       <div class="nigo-empty">
         No documented NIGOs
       </div>
     `;
 
-      return;
-    }
+    return;
+  }
 
-    issueContainer.innerHTML = nigos
-      .map(
-        (item) => `
+  issueContainer.innerHTML = nigos
+    .map(
+      (item) => `
         <div class="nigo-issue-item">
 
           <div class="nigo-issue-form">
@@ -901,16 +921,15 @@ function renderStateGuidance(stateData) {
 
         </div>
       `,
-      )
-      .join("");
+    )
+    .join("");
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const stateDropdown = document.getElementById("contractState");
+
+  if (!stateDropdown) return;
+
+  if (stateDropdown.value) {
+    stateDropdown.dispatchEvent(new Event("change"));
   }
-  document.addEventListener("DOMContentLoaded", () => {
-    const stateDropdown = document.getElementById("contractState");
-
-    if (!stateDropdown) return;
-
-    if (stateDropdown.value) {
-      stateDropdown.dispatchEvent(new Event("change"));
-    }
-  });
-
+});
