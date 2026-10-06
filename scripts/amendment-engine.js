@@ -13,9 +13,56 @@
   let requirementFormMappings = {};
   let engineLoaded = false;
   let observerStarted = false;
-  let globalSavedAmendments = [];
-  let globalSavedRequirements = [];
+  window.globalSavedRequirements = window.globalSavedRequirements || [];
   const REQUIREMENT_FAVORITES_KEY = "requirementTemplateFavorites";
+
+function saveRequirementToReviewPackage(
+  requirementText,
+  source = "manual",
+  formId = "",
+) {
+  const cleanedText = String(requirementText || "").trim();
+
+  if (!cleanedText) {
+    return false;
+  }
+
+  const duplicateExists = window.globalSavedRequirements.some(
+    (savedRequirement) => {
+      const savedText =
+        typeof savedRequirement === "string"
+          ? savedRequirement
+          : savedRequirement.text;
+
+      return String(savedText || "").trim() === cleanedText;
+    },
+  );
+
+  if (duplicateExists) {
+    return false;
+  }
+
+  window.globalSavedRequirements.push({
+    id: `requirement-${Date.now()}-` + Math.random().toString(36).slice(2, 8),
+
+    text: cleanedText,
+    source,
+    formId,
+  });
+
+  document.dispatchEvent(
+    new CustomEvent("requirementsUpdated", {
+      detail: {
+        requirements: window.globalSavedRequirements,
+      },
+    }),
+  );
+
+  return true;
+}
+
+
+window.saveRequirementToReviewPackage = saveRequirementToReviewPackage;
 
   function getRequirementFavorites() {
     try {
@@ -376,7 +423,25 @@ if (clearAllAmendmentsButton) {
 
    if (clearAllRequirementsButton) {
      clearAllRequirementsButton.addEventListener("click", function () {
-       globalSavedRequirements = [];
+       window.globalSavedRequirements.length = 0;
+
+       document.dispatchEvent(
+         new CustomEvent("requirementsUpdated", {
+           detail: {
+             requirements: window.globalSavedRequirements,
+           },
+         }),
+       );
+
+       const status = document.getElementById("requirementSaveStatus");
+
+       if (status) {
+         status.textContent = "All requirements cleared.";
+
+         window.setTimeout(() => {
+           status.textContent = "";
+         }, 2000);
+       }
 
        console.log("Requirements cleared");
      });
@@ -531,6 +596,45 @@ if (favoriteRequirementButton) {
       });
     }
   }
+
+const addGlobalRequirementButton = document.getElementById(
+  "addGlobalRequirement",
+);
+
+const globalGeneratedRequirementField = document.getElementById(
+  "globalGeneratedRequirement",
+);
+
+const requirementSaveStatus = document.getElementById("requirementSaveStatus");
+
+if (addGlobalRequirementButton) {
+  addGlobalRequirementButton.addEventListener("click", () => {
+    const requirementText =
+      globalGeneratedRequirementField?.value?.trim() || "";
+
+    if (!requirementText) {
+      if (requirementSaveStatus) {
+        requirementSaveStatus.textContent =
+          "Generate a requirement before adding it.";
+      }
+
+      return;
+    }
+
+    const saved = window.saveRequirementToReviewPackage(
+      requirementText,
+      "manual",
+      "",
+    );
+
+    if (requirementSaveStatus) {
+      requirementSaveStatus.textContent = saved
+        ? "Requirement added."
+        : "This requirement has already been added.";
+    }
+  });
+}
+
 function renderGlobalSavedAmendments() {
   const compiledOutput = document.getElementById("compiledAmendments");
 
@@ -545,7 +649,7 @@ function renderGlobalSavedAmendments() {
   const reviewOutputStatus = document.getElementById("reviewOutputStatus");
 
   const amendmentCount = globalSavedAmendments.length;
-  const requirementCount = globalSavedRequirements.length;
+ const requirementCount = window.globalSavedRequirements.length;
   const totalCount = amendmentCount + requirementCount;
 
   if (compiledOutput) {
@@ -665,11 +769,19 @@ function clearGlobalAmendmentDraft() {
         console.error("Requirement templates did not load:", error);
       }
 
-      engineLoaded = true;
+    engineLoaded = true;
 
-      initializeGlobalSidebarWorkspace();
-      initializeAllPanels();
-      startPanelObserver();
+    initializeGlobalSidebarWorkspace();
+    initializeAllPanels();
+    startPanelObserver();
+
+    document.dispatchEvent(
+      new CustomEvent("requirementTemplatesLoaded", {
+        detail: {
+          count: Object.keys(requirementTemplates).length,
+        },
+      }),
+    );
     } catch (error) {
       engineLoaded = false;
 
@@ -1771,4 +1883,4 @@ function populateRequirementDropdown(panel) {
   } else {
     startEngine();
   }
-})();
+})

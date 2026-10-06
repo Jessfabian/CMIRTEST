@@ -1662,11 +1662,11 @@ function getProductAndSystemFromPolicy(policyNumber) {
         system: "WinRisk",
       };
 
-    // VUL Guard
+    // UL Guard
     case "15":
     case "16":
       return {
-        product: "VUL Guard",
+        product: "UL Guard",
         system: "WinRisk",
       };
 
@@ -1706,7 +1706,7 @@ function updatePolicyLookup() {
 
     case "15":
     case "16":
-      product = "VUL Guard";
+      product = "UL Guard";
       break;
   }
 
@@ -1750,7 +1750,7 @@ function updatePolicyLookup() {
 
     case "15":
     case "16":
-      product = "VUL Guard";
+      product = "UL Guard";
       break;
   }
 
