@@ -1294,14 +1294,14 @@ const mmsd = `
      .join("");
 
    emailOutput.innerHTML = `
-    <div
-      style="
-        color: #1c2733;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        line-height: 1.5;
-      "
-    >
+   <div
+  style="
+    color: #000000;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+  "
+>
       <p style="margin: 0 0 18px;">
         <strong>Subject:</strong>
         ${insuredLastName} | ${policyNumber}
@@ -1313,7 +1313,9 @@ const mmsd = `
         Financial Professional: ${financialProfessional}
       </p>
 
-      ${mmsd}
+      <div style="margin-bottom:10px; margin-top:10px;">
+${mmsd}
+</div>
 
       <p style="margin: 0 0 18px;">
         Thank you for submitting the above referenced life application.
@@ -1358,12 +1360,12 @@ const mmsd = `
       <p style="margin: 0 0 18px;">
         Please forward all documents, forms, exams, authorizations,
         etc. to
-        <a
+       <strong> <a
           href="mailto:MMSD_Requirements@MassMutual.com"
           style="color: #002e6b;"
         >
           MMSD_Requirements@MassMutual.com
-        </a>.
+        </a></strong>.
       </p>
 
       <p style="margin: 0 0 18px;">
