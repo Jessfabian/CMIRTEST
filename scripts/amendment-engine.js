@@ -16,53 +16,52 @@
   window.globalSavedRequirements = window.globalSavedRequirements || [];
   const REQUIREMENT_FAVORITES_KEY = "requirementTemplateFavorites";
 
-function saveRequirementToReviewPackage(
-  requirementText,
-  source = "manual",
-  formId = "",
-) {
-  const cleanedText = String(requirementText || "").trim();
+  function saveRequirementToReviewPackage(
+    requirementText,
+    source = "manual",
+    formId = "",
+  ) {
+    const cleanedText = String(requirementText || "").trim();
 
-  if (!cleanedText) {
-    return false;
-  }
+    if (!cleanedText) {
+      return false;
+    }
 
-  const duplicateExists = window.globalSavedRequirements.some(
-    (savedRequirement) => {
-      const savedText =
-        typeof savedRequirement === "string"
-          ? savedRequirement
-          : savedRequirement.text;
+    const duplicateExists = window.globalSavedRequirements.some(
+      (savedRequirement) => {
+        const savedText =
+          typeof savedRequirement === "string"
+            ? savedRequirement
+            : savedRequirement.text;
 
-      return String(savedText || "").trim() === cleanedText;
-    },
-  );
-
-  if (duplicateExists) {
-    return false;
-  }
-
-  window.globalSavedRequirements.push({
-    id: `requirement-${Date.now()}-` + Math.random().toString(36).slice(2, 8),
-
-    text: cleanedText,
-    source,
-    formId,
-  });
-
-  document.dispatchEvent(
-    new CustomEvent("requirementsUpdated", {
-      detail: {
-        requirements: window.globalSavedRequirements,
+        return String(savedText || "").trim() === cleanedText;
       },
-    }),
-  );
+    );
 
-  return true;
-}
+    if (duplicateExists) {
+      return false;
+    }
 
+    window.globalSavedRequirements.push({
+      id: `requirement-${Date.now()}-` + Math.random().toString(36).slice(2, 8),
 
-window.saveRequirementToReviewPackage = saveRequirementToReviewPackage;
+      text: cleanedText,
+      source,
+      formId,
+    });
+
+    document.dispatchEvent(
+      new CustomEvent("requirementsUpdated", {
+        detail: {
+          requirements: window.globalSavedRequirements,
+        },
+      }),
+    );
+
+    return true;
+  }
+
+  window.saveRequirementToReviewPackage = saveRequirementToReviewPackage;
 
   function getRequirementFavorites() {
     try {
@@ -160,144 +159,144 @@ window.saveRequirementToReviewPackage = saveRequirementToReviewPackage;
       throw new Error(label + " contains invalid JSON. " + error.message);
     }
   }
-function populateCategorizedRequirementDropdown(dropdown) {
-  if (!dropdown) {
-    return;
-  }
-
-  const previousValue = dropdown.value;
-  const favorites = getRequirementFavorites();
-
-  dropdown.innerHTML = "";
-  dropdown.disabled = false;
-
-  const placeholder = document.createElement("option");
-
-  placeholder.value = "";
-  placeholder.textContent = "Select Requirement";
-
-  dropdown.appendChild(placeholder);
-
-  const templateKeys = Object.keys(requirementTemplates);
-
-  if (templateKeys.length === 0) {
-    placeholder.textContent = "Requirements unavailable";
-    dropdown.disabled = true;
-    return;
-  }
-
-  /*
-   * Favorites appear first. A requirement can appear here
-   * and under its normal category.
-   */
-  const validFavorites = favorites
-    .filter(function (templateKey) {
-      return Boolean(requirementTemplates[templateKey]);
-    })
-    .sort(function (first, second) {
-      const firstLabel = requirementTemplates[first].label || first;
-
-      const secondLabel = requirementTemplates[second].label || second;
-
-      return firstLabel.localeCompare(secondLabel);
-    });
-
-  if (validFavorites.length > 0) {
-    const favoriteGroup = document.createElement("optgroup");
-
-    favoriteGroup.label = "★ Favorites";
-
-    validFavorites.forEach(function (templateKey) {
-      const template = requirementTemplates[templateKey];
-      const option = document.createElement("option");
-
-      option.value = templateKey;
-      option.textContent = template.label || templateKey;
-
-      favoriteGroup.appendChild(option);
-    });
-
-    dropdown.appendChild(favoriteGroup);
-  }
-
-  /*
-   * Organize every requirement by the category property
-   * in requirementTemplates.json.
-   */
-  const categories = {};
-
-  templateKeys.forEach(function (templateKey) {
-    const template = requirementTemplates[templateKey];
-    const category = template.category || "General";
-
-    if (!categories[category]) {
-      categories[category] = [];
+  function populateCategorizedRequirementDropdown(dropdown) {
+    if (!dropdown) {
+      return;
     }
 
-    categories[category].push({
-      key: templateKey,
-      template: template,
+    const previousValue = dropdown.value;
+    const favorites = getRequirementFavorites();
+
+    dropdown.innerHTML = "";
+    dropdown.disabled = false;
+
+    const placeholder = document.createElement("option");
+
+    placeholder.value = "";
+    placeholder.textContent = "Select Requirement";
+
+    dropdown.appendChild(placeholder);
+
+    const templateKeys = Object.keys(requirementTemplates);
+
+    if (templateKeys.length === 0) {
+      placeholder.textContent = "Requirements unavailable";
+      dropdown.disabled = true;
+      return;
+    }
+
+    /*
+     * Favorites appear first. A requirement can appear here
+     * and under its normal category.
+     */
+    const validFavorites = favorites
+      .filter(function (templateKey) {
+        return Boolean(requirementTemplates[templateKey]);
+      })
+      .sort(function (first, second) {
+        const firstLabel = requirementTemplates[first].label || first;
+
+        const secondLabel = requirementTemplates[second].label || second;
+
+        return firstLabel.localeCompare(secondLabel);
+      });
+
+    if (validFavorites.length > 0) {
+      const favoriteGroup = document.createElement("optgroup");
+
+      favoriteGroup.label = "★ Favorites";
+
+      validFavorites.forEach(function (templateKey) {
+        const template = requirementTemplates[templateKey];
+        const option = document.createElement("option");
+
+        option.value = templateKey;
+        option.textContent = template.label || templateKey;
+
+        favoriteGroup.appendChild(option);
+      });
+
+      dropdown.appendChild(favoriteGroup);
+    }
+
+    /*
+     * Organize every requirement by the category property
+     * in requirementTemplates.json.
+     */
+    const categories = {};
+
+    templateKeys.forEach(function (templateKey) {
+      const template = requirementTemplates[templateKey];
+      const category = template.category || "General";
+
+      if (!categories[category]) {
+        categories[category] = [];
+      }
+
+      categories[category].push({
+        key: templateKey,
+        template: template,
+      });
     });
-  });
 
-  Object.keys(categories)
-    .sort(function (first, second) {
-      return first.localeCompare(second);
-    })
-    .forEach(function (category) {
-      const group = document.createElement("optgroup");
+    Object.keys(categories)
+      .sort(function (first, second) {
+        return first.localeCompare(second);
+      })
+      .forEach(function (category) {
+        const group = document.createElement("optgroup");
 
-      group.label = category;
+        group.label = category;
 
-      categories[category]
-        .sort(function (first, second) {
-          const firstLabel = first.template.label || first.key;
+        categories[category]
+          .sort(function (first, second) {
+            const firstLabel = first.template.label || first.key;
 
-          const secondLabel = second.template.label || second.key;
+            const secondLabel = second.template.label || second.key;
 
-          return firstLabel.localeCompare(secondLabel);
-        })
-        .forEach(function (item) {
-          const option = document.createElement("option");
+            return firstLabel.localeCompare(secondLabel);
+          })
+          .forEach(function (item) {
+            const option = document.createElement("option");
 
-          option.value = item.key;
-          option.textContent = item.template.label || item.key;
+            option.value = item.key;
+            option.textContent = item.template.label || item.key;
 
-          group.appendChild(option);
-        });
+            group.appendChild(option);
+          });
 
-      dropdown.appendChild(group);
-    });
+        dropdown.appendChild(group);
+      });
 
-  if (previousValue && requirementTemplates[previousValue]) {
-    dropdown.value = previousValue;
+    if (previousValue && requirementTemplates[previousValue]) {
+      dropdown.value = previousValue;
+    }
   }
-}
-function updateRequirementFavoriteButton() {
-  const dropdown = document.getElementById("globalRequirementTemplate");
+  function updateRequirementFavoriteButton() {
+    const dropdown = document.getElementById("globalRequirementTemplate");
 
-  const button = document.getElementById("favoriteRequirementButton");
+    const button = document.getElementById("favoriteRequirementButton");
 
-  if (!button) {
-    return;
+    if (!button) {
+      return;
+    }
+
+    const templateKey = dropdown ? dropdown.value : "";
+    const isFavorite = isRequirementFavorite(templateKey);
+
+    button.disabled = !templateKey;
+    button.textContent = isFavorite ? "♥" : "♡";
+    button.classList.toggle("selected", isFavorite);
+    button.setAttribute("aria-pressed", isFavorite ? "true" : "false");
+
+    button.title = !templateKey
+      ? "Select a requirement first"
+      : isFavorite
+        ? "Remove selected requirement from favorites"
+        : "Add selected requirement to favorites";
+
+    button.setAttribute("aria-label", button.title);
   }
-
-  const templateKey = dropdown ? dropdown.value : "";
-  const isFavorite = isRequirementFavorite(templateKey);
-
-  button.disabled = !templateKey;
- button.textContent = isFavorite ? "♥" : "♡";
-  button.classList.toggle("selected", isFavorite);
-  button.setAttribute("aria-pressed", isFavorite ? "true" : "false");
-
-  button.title = !templateKey
-    ? "Select a requirement first"
-    : isFavorite
-      ? "Remove selected requirement from favorites"
-      : "Add selected requirement to favorites";
-
-  button.setAttribute("aria-label", button.title);
-}
   function initializeGlobalSidebarWorkspace() {
     const amendmentDropdown = document.getElementById(
       "globalAmendmentTemplate",
@@ -398,54 +397,55 @@ function updateRequirementFavoriteButton() {
     if (globalSidebarEventsBound) {
       return;
     }
-const clearAllAmendmentsButton = document.getElementById("clearAllAmendments");
+    const clearAllAmendmentsButton =
+      document.getElementById("clearAllAmendments");
 
-if (clearAllAmendmentsButton) {
-  clearAllAmendmentsButton.addEventListener("click", function () {
-    globalSavedAmendments = [];
+    if (clearAllAmendmentsButton) {
+      clearAllAmendmentsButton.addEventListener("click", function () {
+        globalSavedAmendments = [];
 
-    renderGlobalSavedAmendments();
+        renderGlobalSavedAmendments();
 
-    const status = document.getElementById("amendmentSaveStatus");
+        const status = document.getElementById("amendmentSaveStatus");
 
-    if (status) {
-      status.textContent = "✓ All amendments cleared";
+        if (status) {
+          status.textContent = "✓ All amendments cleared";
 
-      setTimeout(() => {
-        status.textContent = "";
-      }, 2000);
-    }
-  });
+          setTimeout(() => {
+            status.textContent = "";
+          }, 2000);
+        }
+      });
     }
     const clearAllRequirementsButton = document.getElementById(
       "clearAllRequirements",
     );
 
-   if (clearAllRequirementsButton) {
-     clearAllRequirementsButton.addEventListener("click", function () {
-       window.globalSavedRequirements.length = 0;
+    if (clearAllRequirementsButton) {
+      clearAllRequirementsButton.addEventListener("click", function () {
+        window.globalSavedRequirements.length = 0;
 
-       document.dispatchEvent(
-         new CustomEvent("requirementsUpdated", {
-           detail: {
-             requirements: window.globalSavedRequirements,
-           },
-         }),
-       );
+        document.dispatchEvent(
+          new CustomEvent("requirementsUpdated", {
+            detail: {
+              requirements: window.globalSavedRequirements,
+            },
+          }),
+        );
 
-       const status = document.getElementById("requirementSaveStatus");
+        const status = document.getElementById("requirementSaveStatus");
 
-       if (status) {
-         status.textContent = "All requirements cleared.";
+        if (status) {
+          status.textContent = "All requirements cleared.";
 
-         window.setTimeout(() => {
-           status.textContent = "";
-         }, 2000);
-       }
+          window.setTimeout(() => {
+            status.textContent = "";
+          }, 2000);
+        }
 
-       console.log("Requirements cleared");
-     });
-   }
+        console.log("Requirements cleared");
+      });
+    }
     globalSidebarEventsBound = true;
     const addAmendmentButton = document.getElementById("addGlobalAmendment");
 
@@ -495,13 +495,13 @@ if (clearAllAmendmentsButton) {
       "globalAmendmentTemplate",
     );
 
-  const requirementDropdown = document.getElementById(
-    "globalRequirementTemplate",
-  );
+    const requirementDropdown = document.getElementById(
+      "globalRequirementTemplate",
+    );
 
-  const favoriteRequirementButton = document.getElementById(
-    "favoriteRequirementButton",
-  );
+    const favoriteRequirementButton = document.getElementById(
+      "favoriteRequirementButton",
+    );
     const formDropdown = document.getElementById("globalAmendmentForm");
 
     const questionInput = document.getElementById("globalQuestion");
@@ -513,34 +513,34 @@ if (clearAllAmendmentsButton) {
       });
     }
 
-   if (requirementDropdown) {
-  requirementDropdown.addEventListener("change", function () {
-    buildGlobalRequirementFields();
-    generateGlobalSidebarOutputs();
-    updateRequirementFavoriteButton();
-  });
-}
-if (favoriteRequirementButton) {
-  favoriteRequirementButton.addEventListener("click", function () {
-    const selectedTemplateKey = requirementDropdown
-      ? requirementDropdown.value
-      : "";
-
-    if (!selectedTemplateKey) {
-      return;
+    if (requirementDropdown) {
+      requirementDropdown.addEventListener("change", function () {
+        buildGlobalRequirementFields();
+        generateGlobalSidebarOutputs();
+        updateRequirementFavoriteButton();
+      });
     }
+    if (favoriteRequirementButton) {
+      favoriteRequirementButton.addEventListener("click", function () {
+        const selectedTemplateKey = requirementDropdown
+          ? requirementDropdown.value
+          : "";
 
-    toggleRequirementFavorite(selectedTemplateKey);
+        if (!selectedTemplateKey) {
+          return;
+        }
 
-    populateCategorizedRequirementDropdown(requirementDropdown);
+        toggleRequirementFavorite(selectedTemplateKey);
 
-    requirementDropdown.value = selectedTemplateKey;
+        populateCategorizedRequirementDropdown(requirementDropdown);
 
-    updateRequirementFavoriteButton();
-    buildGlobalRequirementFields();
-    generateGlobalSidebarOutputs();
-  });
-}
+        requirementDropdown.value = selectedTemplateKey;
+
+        updateRequirementFavoriteButton();
+        buildGlobalRequirementFields();
+        generateGlobalSidebarOutputs();
+      });
+    }
     if (formDropdown) {
       formDropdown.addEventListener("change", generateGlobalSidebarOutputs);
     }
@@ -597,122 +597,124 @@ if (favoriteRequirementButton) {
     }
   }
 
-const addGlobalRequirementButton = document.getElementById(
-  "addGlobalRequirement",
-);
+  const addGlobalRequirementButton = document.getElementById(
+    "addGlobalRequirement",
+  );
 
-const globalGeneratedRequirementField = document.getElementById(
-  "globalGeneratedRequirement",
-);
+  const globalGeneratedRequirementField = document.getElementById(
+    "globalGeneratedRequirement",
+  );
 
-const requirementSaveStatus = document.getElementById("requirementSaveStatus");
+  const requirementSaveStatus = document.getElementById(
+    "requirementSaveStatus",
+  );
 
-if (addGlobalRequirementButton) {
-  addGlobalRequirementButton.addEventListener("click", () => {
-    const requirementText =
-      globalGeneratedRequirementField?.value?.trim() || "";
+  if (addGlobalRequirementButton) {
+    addGlobalRequirementButton.addEventListener("click", () => {
+      const requirementText =
+        globalGeneratedRequirementField?.value?.trim() || "";
 
-    if (!requirementText) {
-      if (requirementSaveStatus) {
-        requirementSaveStatus.textContent =
-          "Generate a requirement before adding it.";
+      if (!requirementText) {
+        if (requirementSaveStatus) {
+          requirementSaveStatus.textContent =
+            "Generate a requirement before adding it.";
+        }
+
+        return;
       }
 
-      return;
+      const saved = window.saveRequirementToReviewPackage(
+        requirementText,
+        "manual",
+        "",
+      );
+
+      if (requirementSaveStatus) {
+        requirementSaveStatus.textContent = saved
+          ? "Requirement added."
+          : "This requirement has already been added.";
+      }
+    });
+  }
+
+  function renderGlobalSavedAmendments() {
+    const compiledOutput = document.getElementById("compiledAmendments");
+
+    const compiledCount = document.getElementById("compiledAmendmentCount");
+
+    const compiledBadge = document.getElementById("compiledAmendmentBadge");
+
+    const compiledTotal = document.getElementById("compiledTotalCount");
+
+    const copyAllButton = document.getElementById("copyAllAmendments");
+
+    const reviewOutputStatus = document.getElementById("reviewOutputStatus");
+
+    const amendmentCount = globalSavedAmendments.length;
+    const requirementCount = window.globalSavedRequirements.length;
+    const totalCount = amendmentCount + requirementCount;
+
+    if (compiledOutput) {
+      compiledOutput.value = globalSavedAmendments
+        .map(function (amendment, index) {
+          return `${index + 1}. ${amendment}`;
+        })
+        .join("\n\n");
     }
 
-    const saved = window.saveRequirementToReviewPackage(
-      requirementText,
-      "manual",
-      "",
-    );
-
-    if (requirementSaveStatus) {
-      requirementSaveStatus.textContent = saved
-        ? "Requirement added."
-        : "This requirement has already been added.";
+    if (compiledCount) {
+      compiledCount.textContent = String(amendmentCount);
     }
-  });
-}
 
-function renderGlobalSavedAmendments() {
-  const compiledOutput = document.getElementById("compiledAmendments");
+    if (compiledBadge) {
+      compiledBadge.textContent =
+        amendmentCount === 1 ? "1 amendment" : `${amendmentCount} amendments`;
+    }
 
-  const compiledCount = document.getElementById("compiledAmendmentCount");
+    if (compiledTotal) {
+      compiledTotal.textContent = String(totalCount);
+    }
 
-  const compiledBadge = document.getElementById("compiledAmendmentBadge");
+    if (copyAllButton) {
+      copyAllButton.disabled = amendmentCount === 0;
+    }
 
-  const compiledTotal = document.getElementById("compiledTotalCount");
-
-  const copyAllButton = document.getElementById("copyAllAmendments");
-
-  const reviewOutputStatus = document.getElementById("reviewOutputStatus");
-
-  const amendmentCount = globalSavedAmendments.length;
- const requirementCount = window.globalSavedRequirements.length;
-  const totalCount = amendmentCount + requirementCount;
-
-  if (compiledOutput) {
-    compiledOutput.value = globalSavedAmendments
-      .map(function (amendment, index) {
-        return `${index + 1}. ${amendment}`;
-      })
-      .join("\n\n");
+    if (reviewOutputStatus) {
+      reviewOutputStatus.textContent =
+        totalCount === 0 ? "No Outputs" : `${totalCount} Saved`;
+    }
   }
 
-  if (compiledCount) {
-    compiledCount.textContent = String(amendmentCount);
+  function clearGlobalAmendmentDraft() {
+    const questionInput = document.getElementById("globalQuestion");
+
+    const templateDropdown = document.getElementById("globalAmendmentTemplate");
+
+    const dynamicFields = document.getElementById("globalAmendmentFields");
+
+    const generatedOutput = document.getElementById("globalGeneratedAmendment");
+
+    if (questionInput) {
+      questionInput.value = "";
+    }
+
+    if (templateDropdown) {
+      templateDropdown.value = "";
+    }
+
+    if (dynamicFields) {
+      dynamicFields.innerHTML = "";
+    }
+
+    if (generatedOutput) {
+      generatedOutput.value = "";
+      generatedOutput.placeholder = "Select an amendment template.";
+    }
+
+    if (questionInput) {
+      questionInput.focus();
+    }
   }
-
-  if (compiledBadge) {
-    compiledBadge.textContent =
-      amendmentCount === 1 ? "1 amendment" : `${amendmentCount} amendments`;
-  }
-
-  if (compiledTotal) {
-    compiledTotal.textContent = String(totalCount);
-  }
-
-  if (copyAllButton) {
-    copyAllButton.disabled = amendmentCount === 0;
-  }
-
-  if (reviewOutputStatus) {
-    reviewOutputStatus.textContent =
-      totalCount === 0 ? "No Outputs" : `${totalCount} Saved`;
-  }
-}
-
-function clearGlobalAmendmentDraft() {
-  const questionInput = document.getElementById("globalQuestion");
-
-  const templateDropdown = document.getElementById("globalAmendmentTemplate");
-
-  const dynamicFields = document.getElementById("globalAmendmentFields");
-
-  const generatedOutput = document.getElementById("globalGeneratedAmendment");
-
-  if (questionInput) {
-    questionInput.value = "";
-  }
-
-  if (templateDropdown) {
-    templateDropdown.value = "";
-  }
-
-  if (dynamicFields) {
-    dynamicFields.innerHTML = "";
-  }
-
-  if (generatedOutput) {
-    generatedOutput.value = "";
-    generatedOutput.placeholder = "Select an amendment template.";
-  }
-
-  if (questionInput) {
-    questionInput.focus();
-  }
-}
   async function loadEngineData() {
     try {
       const amendmentData = await fetchJson(
@@ -762,6 +764,10 @@ function clearGlobalAmendmentDraft() {
           "Loaded requirement templates:",
           Object.keys(requirementTemplates).length,
         );
+        console.log(
+          "Requirement template keys:",
+          Object.keys(requirementTemplates),
+        );
       } catch (error) {
         requirementTemplates = {};
         requirementFormMappings = {};
@@ -769,19 +775,19 @@ function clearGlobalAmendmentDraft() {
         console.error("Requirement templates did not load:", error);
       }
 
-    engineLoaded = true;
+      engineLoaded = true;
 
-    initializeGlobalSidebarWorkspace();
-    initializeAllPanels();
-    startPanelObserver();
+      initializeGlobalSidebarWorkspace();
+      initializeAllPanels();
+      startPanelObserver();
 
-    document.dispatchEvent(
-      new CustomEvent("requirementTemplatesLoaded", {
-        detail: {
-          count: Object.keys(requirementTemplates).length,
-        },
-      }),
-    );
+      document.dispatchEvent(
+        new CustomEvent("requirementTemplatesLoaded", {
+          detail: {
+            count: Object.keys(requirementTemplates).length,
+          },
+        }),
+      );
     } catch (error) {
       engineLoaded = false;
 
@@ -907,26 +913,26 @@ function clearGlobalAmendmentDraft() {
     }
   }
 
-function populateRequirementDropdown(panel) {
-  const dropdown = panel.querySelector(".requirement-template");
+  function populateRequirementDropdown(panel) {
+    const dropdown = panel.querySelector(".requirement-template");
 
-  const status = panel.querySelector(".requirement-template-status");
+    const status = panel.querySelector(".requirement-template-status");
 
-  if (!dropdown) {
-    console.error("Missing .requirement-template.");
-    return;
+    if (!dropdown) {
+      console.error("Missing .requirement-template.");
+      return;
+    }
+
+    populateCategorizedRequirementDropdown(dropdown);
+
+    const templateCount = Object.keys(requirementTemplates).length;
+
+    if (status) {
+      status.textContent = templateCount + " requirement templates available.";
+
+      status.classList.toggle("error", templateCount === 0);
+    }
   }
-
-  populateCategorizedRequirementDropdown(dropdown);
-
-  const templateCount = Object.keys(requirementTemplates).length;
-
-  if (status) {
-    status.textContent = templateCount + " requirement templates available.";
-
-    status.classList.toggle("error", templateCount === 0);
-  }
-}
 
   function normalizeText(value) {
     return String(value || "")
@@ -1883,4 +1889,4 @@ function populateRequirementDropdown(panel) {
   } else {
     startEngine();
   }
-})
+})();

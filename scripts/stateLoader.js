@@ -169,215 +169,6 @@ function evaluateConditions(conditions) {
     return false;
   });
 }
-
-  const formCount = document.getElementById("applicableFormCount");
-
-
-requiredForms.onclick = (event) => {
-  /*
-   * ============================================
-   * ADD GENERATED NIGO REQUIREMENT
-   * ============================================
-   */
-
-  const addRequirementButton = event.target.closest(".add-nigo-requirement");
-
-  if (addRequirementButton) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const row = addRequirementButton.closest(".required-form-row");
-
-    if (!row) {
-      return;
-    }
-
-    const formId = row.dataset.formId || "";
-
-    const outputField = row.querySelector(".generated-requirement-output");
-
-    const statusElement = row.querySelector(".nigo-requirement-save-status");
-
-    /*
-     * Prefer the requirement stored for this form.
-     * Fall back to the hidden form output.
-     */
-    const requirementText =
-      window.formReviewStatus?.[formId]?.requirementText?.trim() ||
-      outputField?.value?.trim() ||
-      "";
-
-    if (!requirementText) {
-      if (statusElement) {
-        statusElement.textContent =
-          "Select a NIGO reason and generate the requirement first.";
-      }
-
-      return;
-    }
-
-    if (typeof window.saveRequirementToReviewPackage !== "function") {
-      console.error("saveRequirementToReviewPackage is not available.");
-
-      if (statusElement) {
-        statusElement.textContent = "Unable to add the requirement.";
-      }
-
-      return;
-    }
-
-    const saved = window.saveRequirementToReviewPackage(
-      requirementText,
-      "nigo",
-      formId,
-    );
-
-    if (statusElement) {
-      statusElement.textContent = saved
-        ? "Requirement added to the Review Output Package."
-        : "This requirement has already been added.";
-    }
-
-    return;
-  }
-
-  /*
-   * ============================================
-   * IGO / NIGO STATUS BUTTONS
-   * ============================================
-   */
-
-  const igoButtonClicked = event.target.closest(".igo-button");
-
-  const nigoButtonClicked = event.target.closest(".nigo-button");
-
-  if (!igoButtonClicked && !nigoButtonClicked) {
-    return;
-  }
-
-  const clickedButton = igoButtonClicked || nigoButtonClicked;
-
-  const row = clickedButton.closest(".required-form-row");
-
-  if (!row) {
-    return;
-  }
-
-  const formId = row.dataset.formId || "";
-
-  const formDescription = row.dataset.formDescription || formId;
-
-  const igoButton = row.querySelector(".igo-button");
-
-  const nigoButton = row.querySelector(".nigo-button");
-
-  const resultText = row.querySelector(".form-review-result");
-
-  const nigoPicker = row.querySelector(".nigo-template-picker");
-
-  const nigoDropdown = row.querySelector(".nigo-template-select");
-
-  const outputField = row.querySelector(".generated-requirement-output");
-
-  const statusElement = row.querySelector(".nigo-requirement-save-status");
-
-  window.formReviewStatus = window.formReviewStatus || {};
-
-  /*
-   * ============================================
-   * IGO SELECTED
-   * ============================================
-   */
-
-  if (igoButtonClicked) {
-    igoButton?.classList.add("selected");
-    nigoButton?.classList.remove("selected");
-
-    if (nigoPicker) {
-      nigoPicker.hidden = true;
-    }
-
-    if (nigoDropdown) {
-      nigoDropdown.value = "";
-    }
-
-    if (outputField) {
-      outputField.value = "";
-    }
-
-    if (statusElement) {
-      statusElement.textContent = "";
-    }
-
-    row.dataset.formStatus = "igo";
-
-    window.formReviewStatus[formId] = {
-      status: "IGO",
-      issueLabel: "",
-      templateId: "",
-      formId,
-      formDescription,
-      requirementGenerated: false,
-      requirementText: "",
-    };
-
-    if (resultText) {
-      resultText.textContent = "Reviewed";
-      resultText.className = "form-review-result result-igo";
-      resultText.title = "";
-    }
-
-    updateStateDashboard();
-
-    document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
-
-    return;
-  }
-
-  /*
-   * ============================================
-   * NIGO SELECTED
-   * ============================================
-   */
-
-  if (nigoButtonClicked) {
-    nigoButton?.classList.add("selected");
-    igoButton?.classList.remove("selected");
-
-    row.dataset.formStatus = "nigo-pending";
-
-    delete window.formReviewStatus[formId];
-
-    if (nigoPicker) {
-      nigoPicker.hidden = false;
-    }
-
-    if (nigoDropdown) {
-      nigoDropdown.value = "";
-      nigoDropdown.focus();
-    }
-
-    if (outputField) {
-      outputField.value = "";
-    }
-
-    if (statusElement) {
-      statusElement.textContent = "";
-    }
-
-    if (resultText) {
-      resultText.textContent = "Select NIGO Reason";
-
-      resultText.className = "form-review-result result-nigo-pending";
-
-      resultText.title = "";
-    }
-
-    updateStateDashboard();
-
-    document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
-  }
-};
 function populateNigoReasonDropdowns(container = document) {
   const globalRequirementDropdown =
     document.getElementById(
@@ -494,193 +285,539 @@ document.addEventListener(
     );
   },
 );
+function renderStateGuidance(stateData) {
+  const requiredForms = document.getElementById("requiredForms");
 
- requiredForms.onchange = (event) => {
-   if (!event.target.matches(".nigo-template-select")) {
-     return;
-   }
+  const summary = document.getElementById("stateRequirementSummary");
 
-   const nigoDropdown = event.target;
+  if (!requiredForms) {
+    console.warn(
+      "Unable to render state forms because #requiredForms was not found.",
+    );
 
-   const row = nigoDropdown.closest(".required-form-row");
+    return;
+  }
 
-   if (!row) {
-     return;
-   }
+  const stateForms = Array.isArray(stateData.forms) ? stateData.forms : [];
 
-   const formId = row.dataset.formId || "";
+  const applicableForms = stateForms.filter((form) => {
+    if (form.required === true) {
+      return true;
+    }
 
-   const formDescription = row.dataset.formDescription || formId;
+    return evaluateConditions(form.conditions || []);
+  });
 
-   const resultText = row.querySelector(".form-review-result");
+  const globalFormDropdown = document.getElementById("globalAmendmentForm");
 
-   const outputField = row.querySelector(".generated-requirement-output");
+  if (globalFormDropdown) {
+    globalFormDropdown.innerHTML = '<option value="">Select Form</option>';
 
-   const statusElement = row.querySelector(".nigo-requirement-save-status");
+    applicableForms.forEach((form) => {
+      const option = document.createElement("option");
 
-   const selectedTemplateId = nigoDropdown.value;
+      option.value = form.form;
 
-   const selectedOption = nigoDropdown.options[nigoDropdown.selectedIndex];
+      option.textContent = `${form.form} - ${form.description}`;
 
-   const selectedTemplateLabel = selectedOption?.textContent?.trim() || "";
+      globalFormDropdown.appendChild(option);
+    });
 
-   window.formReviewStatus = window.formReviewStatus || {};
+    console.log("Dropdown options:", globalFormDropdown.options.length);
+  }
 
-   if (statusElement) {
-     statusElement.textContent = "";
-   }
+  if (summary) {
+    summary.textContent = `${stateData.displayName} Requirements`;
+  }
 
-   /*
-    * ============================================
-    * NIGO REASON CLEARED
-    * ============================================
-    */
+  requiredForms.innerHTML = applicableForms
+    .map((form) => {
+      return `
+          <div
+            class="required-form-row"
+            data-form-id="${form.form}"
+            data-form-description="${form.description}"
+          >
+            <div class="state-form-main">
+              <div class="state-form-content">
+                <strong class="state-form-id">
+                  ${form.form}
+                </strong>
 
-   if (!selectedTemplateId) {
-     row.dataset.formStatus = "nigo-pending";
+                <span class="form-description">
+                  ${form.description}
+                </span>
+              </div>
 
-     delete window.formReviewStatus[formId];
+              <div class="form-status-actions">
+                <span
+                  class="form-review-result"
+                  data-result="${form.form}"
+                ></span>
 
-     if (outputField) {
-       outputField.value = "";
-     }
+                <button
+                  type="button"
+                  class="form-status-button igo-button"
+                  data-form="${form.form}"
+                >
+                  IGO
+                </button>
 
-     if (resultText) {
-       resultText.textContent = "Select NIGO Reason";
+                <button
+                  type="button"
+                  class="form-status-button nigo-button"
+                  data-form="${form.form}"
+                >
+                  NIGO
+                </button>
+              </div>
+            </div>
 
-       resultText.className = "form-review-result result-nigo-pending";
+            <div
+              class="nigo-template-picker"
+              hidden
+            >
+              <label>
+                Why is this form NIGO?
+              </label>
 
-       resultText.title = "";
-     }
+              <select
+                class="nigo-template-select"
+              >
+                <option value="">
+                  Select NIGO Reason
+                </option>
+              </select>
 
-     updateStateDashboard();
+              <small class="nigo-template-help">
+                Select the requirement that explains
+                what is needed to resolve this form.
+              </small>
 
-     document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
+              <textarea
+                class="generated-requirement-output"
+                hidden
+                readonly
+              ></textarea>
 
-     return;
-   }
+              <div class="buttons">
+                <button
+                  type="button"
+                  class="secondary-button add-nigo-requirement"
+                >
+                  Add Requirement
+                </button>
+              </div>
 
-   /*
-    * ============================================
-    * NIGO REASON SELECTED
-    * ============================================
-    */
+              <div
+                class="nigo-requirement-save-status copy-status"
+                aria-live="polite"
+              ></div>
+            </div>
+          </div>
+        `;
+    })
+    .join("");
 
-   row.dataset.formStatus = "nigo";
+  populateNigoReasonDropdowns(requiredForms);
 
-   window.formReviewStatus[formId] = {
-     status: "NIGO",
-     issueLabel: selectedTemplateLabel,
-     templateId: selectedTemplateId,
-     formId,
-     formDescription,
-     requirementGenerated: false,
-     requirementText: "",
-   };
+  const formCount = document.getElementById("applicableFormCount");
 
-   if (resultText) {
-     resultText.textContent = `NIGO: ${selectedTemplateLabel}`;
+  requiredForms.onclick = (event) => {
+    /*
+     * ============================================
+     * ADD GENERATED NIGO REQUIREMENT
+     * ============================================
+     */
 
-     resultText.className = "form-review-result result-nigo";
+    const addRequirementButton = event.target.closest(".add-nigo-requirement");
 
-     resultText.title = selectedTemplateLabel;
-   }
+    if (addRequirementButton) {
+      event.preventDefault();
+      event.stopPropagation();
 
-   /*
-    * Load the selected NIGO template into the
-    * global requirement generator.
-    */
+      const row = addRequirementButton.closest(".required-form-row");
 
-   const globalDropdown = document.getElementById("globalRequirementTemplate");
+      if (!row) {
+        return;
+      }
 
-   if (!globalDropdown) {
-     console.warn("Global requirement dropdown was not found.");
+      const formId = row.dataset.formId || "";
 
-     return;
-   }
+      const outputField = row.querySelector(".generated-requirement-output");
 
-   globalDropdown.value = selectedTemplateId;
+      const statusElement = row.querySelector(".nigo-requirement-save-status");
 
-   globalDropdown.dispatchEvent(
-     new Event("change", {
-       bubbles: true,
-     }),
-   );
+      /*
+       * Prefer the requirement stored for this form.
+       * Fall back to the hidden form output.
+       */
+      const requirementText =
+        window.formReviewStatus?.[formId]?.requirementText?.trim() ||
+        outputField?.value?.trim() ||
+        "";
 
-   /*
-    * Wait for amendment-engine.js to create the
-    * template's dynamic fields.
-    */
+      if (!requirementText) {
+        if (statusElement) {
+          statusElement.textContent =
+            "Select a NIGO reason and generate the requirement first.";
+        }
 
-   window.setTimeout(() => {
-     const requirementFields = document.getElementById(
-       "globalRequirementFields",
-     );
+        return;
+      }
 
-     const globalGeneratedRequirement = document.getElementById(
-       "globalGeneratedRequirement",
-     );
+      if (typeof window.saveRequirementToReviewPackage !== "function") {
+        console.error("saveRequirementToReviewPackage is not available.");
 
-     if (requirementFields) {
-       const formField = requirementFields.querySelector(
-         '[data-requirement-field="formName"], ' +
-           '[data-requirement-field="documentName"]',
-       );
+        if (statusElement) {
+          statusElement.textContent = "Unable to add the requirement.";
+        }
 
-       if (formField) {
-         formField.value = formDescription;
+        return;
+      }
 
-         formField.dispatchEvent(
-           new Event("input", {
-             bubbles: true,
-           }),
-         );
+      const saved = window.saveRequirementToReviewPackage(
+        requirementText,
+        "nigo",
+        formId,
+      );
 
-         formField.dispatchEvent(
-           new Event("change", {
-             bubbles: true,
-           }),
-         );
-       }
-     }
+      if (statusElement) {
+        statusElement.textContent = saved
+          ? "Requirement added to the Review Output Package."
+          : "This requirement has already been added.";
+      }
 
-     /*
-      * Wait one more browser cycle for the generated
-      * requirement textarea to update.
-      */
+      return;
+    }
 
-     window.setTimeout(() => {
-       const requirementText = globalGeneratedRequirement?.value?.trim() || "";
+    /*
+     * ============================================
+     * IGO / NIGO STATUS BUTTONS
+     * ============================================
+     */
 
-       if (outputField) {
-         outputField.value = requirementText;
-       }
+    const igoButtonClicked = event.target.closest(".igo-button");
 
-       window.formReviewStatus[formId] = {
-         ...window.formReviewStatus[formId],
+    const nigoButtonClicked = event.target.closest(".nigo-button");
 
-         requirementGenerated: Boolean(requirementText),
+    if (!igoButtonClicked && !nigoButtonClicked) {
+      return;
+    }
 
-         requirementText,
-       };
+    const clickedButton = igoButtonClicked || nigoButtonClicked;
 
-       if (statusElement) {
-         statusElement.textContent = requirementText
-           ? "Requirement ready to add."
-           : "Complete the requirement fields before adding.";
-       }
+    const row = clickedButton.closest(".required-form-row");
 
-       console.log(
-         "Prepared NIGO requirement:",
-         window.formReviewStatus[formId],
-       );
-     }, 0);
-   }, 0);
+    if (!row) {
+      return;
+    }
 
-   updateStateDashboard();
+    const formId = row.dataset.formId || "";
 
-   document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
- };
+    const formDescription = row.dataset.formDescription || formId;
+
+    const igoButton = row.querySelector(".igo-button");
+
+    const nigoButton = row.querySelector(".nigo-button");
+
+    const resultText = row.querySelector(".form-review-result");
+
+    const nigoPicker = row.querySelector(".nigo-template-picker");
+
+    const nigoDropdown = row.querySelector(".nigo-template-select");
+
+    const outputField = row.querySelector(".generated-requirement-output");
+
+    const statusElement = row.querySelector(".nigo-requirement-save-status");
+
+    window.formReviewStatus = window.formReviewStatus || {};
+
+    /*
+     * ============================================
+     * IGO SELECTED
+     * ============================================
+     */
+
+    if (igoButtonClicked) {
+      igoButton?.classList.add("selected");
+      nigoButton?.classList.remove("selected");
+
+      if (nigoPicker) {
+        nigoPicker.hidden = true;
+      }
+
+      if (nigoDropdown) {
+        nigoDropdown.value = "";
+      }
+
+      if (outputField) {
+        outputField.value = "";
+      }
+
+      if (statusElement) {
+        statusElement.textContent = "";
+      }
+
+      row.dataset.formStatus = "igo";
+
+      window.formReviewStatus[formId] = {
+        status: "IGO",
+        issueLabel: "",
+        templateId: "",
+        formId,
+        formDescription,
+        requirementGenerated: false,
+        requirementText: "",
+      };
+
+      if (resultText) {
+        resultText.textContent = "Reviewed";
+        resultText.className = "form-review-result result-igo";
+        resultText.title = "";
+      }
+
+      updateStateDashboard();
+
+      document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
+
+      return;
+    }
+
+    /*
+     * ============================================
+     * NIGO SELECTED
+     * ============================================
+     */
+
+    if (nigoButtonClicked) {
+      nigoButton?.classList.add("selected");
+      igoButton?.classList.remove("selected");
+
+      row.dataset.formStatus = "nigo-pending";
+
+      delete window.formReviewStatus[formId];
+
+      if (nigoPicker) {
+        nigoPicker.hidden = false;
+      }
+
+      if (nigoDropdown) {
+        nigoDropdown.value = "";
+        nigoDropdown.focus();
+      }
+
+      if (outputField) {
+        outputField.value = "";
+      }
+
+      if (statusElement) {
+        statusElement.textContent = "";
+      }
+
+      if (resultText) {
+        resultText.textContent = "Select NIGO Reason";
+
+        resultText.className = "form-review-result result-nigo-pending";
+
+        resultText.title = "";
+      }
+
+      updateStateDashboard();
+
+      document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
+    }
+  };
+
+  requiredForms.onchange = (event) => {
+    if (!event.target.matches(".nigo-template-select")) {
+      return;
+    }
+
+    const nigoDropdown = event.target;
+
+    const row = nigoDropdown.closest(".required-form-row");
+
+    if (!row) {
+      return;
+    }
+
+    const formId = row.dataset.formId || "";
+
+    const formDescription = row.dataset.formDescription || formId;
+
+    const resultText = row.querySelector(".form-review-result");
+
+    const outputField = row.querySelector(".generated-requirement-output");
+
+    const statusElement = row.querySelector(".nigo-requirement-save-status");
+
+    const selectedTemplateId = nigoDropdown.value;
+
+    const selectedOption = nigoDropdown.options[nigoDropdown.selectedIndex];
+
+    const selectedTemplateLabel = selectedOption?.textContent?.trim() || "";
+
+    window.formReviewStatus = window.formReviewStatus || {};
+
+    if (statusElement) {
+      statusElement.textContent = "";
+    }
+
+    /*
+     * ============================================
+     * NIGO REASON CLEARED
+     * ============================================
+     */
+
+    if (!selectedTemplateId) {
+      row.dataset.formStatus = "nigo-pending";
+
+      delete window.formReviewStatus[formId];
+
+      if (outputField) {
+        outputField.value = "";
+      }
+
+      if (resultText) {
+        resultText.textContent = "Select NIGO Reason";
+
+        resultText.className = "form-review-result result-nigo-pending";
+
+        resultText.title = "";
+      }
+
+      updateStateDashboard();
+
+      document.dispatchEvent(new CustomEvent("stateFormsUpdated"));
+
+      return;
+    }
+
+    /*
+     * ============================================
+     * NIGO REASON SELECTED
+     * ============================================
+     */
+
+    row.dataset.formStatus = "nigo";
+
+    window.formReviewStatus[formId] = {
+      status: "NIGO",
+      issueLabel: selectedTemplateLabel,
+      templateId: selectedTemplateId,
+      formId,
+      formDescription,
+      requirementGenerated: false,
+      requirementText: "",
+    };
+
+    if (resultText) {
+      resultText.textContent = `NIGO: ${selectedTemplateLabel}`;
+
+      resultText.className = "form-review-result result-nigo";
+
+      resultText.title = selectedTemplateLabel;
+    }
+
+    /*
+     * Load the selected NIGO template into the
+     * global requirement generator.
+     */
+
+    const globalDropdown = document.getElementById("globalRequirementTemplate");
+
+    if (!globalDropdown) {
+      console.warn("Global requirement dropdown was not found.");
+
+      return;
+    }
+
+    globalDropdown.value = selectedTemplateId;
+
+    globalDropdown.dispatchEvent(
+      new Event("change", {
+        bubbles: true,
+      }),
+    );
+
+    /*
+     * Wait for amendment-engine.js to create the
+     * template's dynamic fields.
+     */
+
+    window.setTimeout(() => {
+      const requirementFields = document.getElementById(
+        "globalRequirementFields",
+      );
+
+      const globalGeneratedRequirement = document.getElementById(
+        "globalGeneratedRequirement",
+      );
+
+      if (requirementFields) {
+        const formField = requirementFields.querySelector(
+          '[data-requirement-field="formName"], ' +
+          '[data-requirement-field="documentName"]',
+        );
+
+        if (formField) {
+          formField.value = formDescription;
+
+          formField.dispatchEvent(
+            new Event("input", {
+              bubbles: true,
+            }),
+          );
+
+          formField.dispatchEvent(
+            new Event("change", {
+              bubbles: true,
+            }),
+          );
+        }
+      }
+
+      /*
+       * Wait one more browser cycle for the generated
+       * requirement textarea to update.
+       */
+
+      window.setTimeout(() => {
+        const requirementText = globalGeneratedRequirement?.value?.trim() || "";
+
+        if (outputField) {
+          outputField.value = requirementText;
+        }
+
+        window.formReviewStatus[formId] = {
+          ...window.formReviewStatus[formId],
+
+          requirementGenerated: Boolean(requirementText),
+
+          requirementText,
+        };
+
+        if (statusElement) {
+          statusElement.textContent = requirementText
+            ? "Requirement ready to add."
+            : "Complete the requirement fields before adding.";
+        }
+
+        console.log(
+          "Prepared NIGO requirement:",
+          window.formReviewStatus[formId],
+        );
+      }, 0);
+    }, 0);
+
+    updateStateDashboard();
+
+    document.dispatchEvent(new CustomEvent("stateFormsUpdated")
+    );
+  };
+}
+
   function updateStateDashboard() {
     const total = document.querySelectorAll(".required-form-row").length;
 
@@ -720,34 +857,34 @@ document.addEventListener(
     }
     updateNigoDashboard();
   }
-function updateNigoDashboard() {
-  const issueContainer = document.getElementById("openNigoList");
+  function updateNigoDashboard() {
+    const issueContainer = document.getElementById("openNigoList");
 
-  const countElement = document.getElementById("openNigoCount");
+    const countElement = document.getElementById("openNigoCount");
 
-  if (!issueContainer || !countElement) {
-    return;
-  }
+    if (!issueContainer || !countElement) {
+      return;
+    }
 
-  const nigos = Object.values(window.formReviewStatus).filter((item) => {
-    return item?.status === "NIGO";
-  });
+    const nigos = Object.values(window.formReviewStatus).filter((item) => {
+      return item?.status === "NIGO";
+    });
 
-  countElement.textContent = String(nigos.length);
+    countElement.textContent = String(nigos.length);
 
-  if (!nigos.length) {
-    issueContainer.innerHTML = `
+    if (!nigos.length) {
+      issueContainer.innerHTML = `
       <div class="nigo-empty">
         No documented NIGOs
       </div>
     `;
 
-    return;
-  }
+      return;
+    }
 
-  issueContainer.innerHTML = nigos
-    .map(
-      (item) => `
+    issueContainer.innerHTML = nigos
+      .map(
+        (item) => `
         <div class="nigo-issue-item">
 
           <div class="nigo-issue-form">
@@ -760,9 +897,9 @@ function updateNigoDashboard() {
 
         </div>
       `,
-    )
-    .join("");
-}
+      )
+      .join("");
+  }
   document.addEventListener("DOMContentLoaded", () => {
     const stateDropdown = document.getElementById("contractState");
 
@@ -772,4 +909,4 @@ function updateNigoDashboard() {
       stateDropdown.dispatchEvent(new Event("change"));
     }
   });
-}
+
