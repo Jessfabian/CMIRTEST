@@ -50,6 +50,12 @@
       formId,
     });
 
+    /*
+     * Immediately show the newly saved requirement
+     * in the Review Output Package and email.
+     */
+    renderGlobalSavedRequirements();
+
     document.dispatchEvent(
       new CustomEvent("requirementsUpdated", {
         detail: {
@@ -405,7 +411,7 @@
         globalSavedAmendments = [];
 
         renderGlobalSavedAmendments();
-renderGlobalSavedRequirements();
+        renderGlobalSavedRequirements();
         const status = document.getElementById("amendmentSaveStatus");
 
         if (status) {
@@ -687,34 +693,79 @@ renderGlobalSavedRequirements();
     }
   }
   function renderGlobalSavedRequirements() {
-  console.log("Rendering requirements:", window.globalSavedRequirements.length);
-  const compiledOutput = document.getElementById("compiledRequirements");
+    const compiledOutput = document.getElementById("compiledRequirements");
 
-  const badge = document.getElementById("compiledRequirementBadge");
+    const compiledCount = document.getElementById("compiledRequirementCount");
 
-  const copyButton = document.getElementById("copyAllRequirements");
+    const compiledBadge = document.getElementById("compiledRequirementBadge");
 
-  const requirementCount = window.globalSavedRequirements.length;
+    const compiledTotal = document.getElementById("compiledTotalCount");
 
-  if (compiledOutput) {
-    compiledOutput.value = window.globalSavedRequirements
-      .map((requirement, index) => {
-        return `${index + 1}. ${requirement.text}`;
+    const copyButton = document.getElementById("copyAllRequirements");
+
+    const requirements = Array.isArray(window.globalSavedRequirements)
+      ? window.globalSavedRequirements
+      : [];
+
+    const requirementTexts = requirements
+      .map((requirement) => {
+        if (typeof requirement === "string") {
+          return requirement.trim();
+        }
+
+        return String(requirement?.text || "").trim();
       })
-      .join("\n\n");
-  }
+      .filter(Boolean);
 
-  if (badge) {
-    badge.textContent =
-      requirementCount === 1
-        ? "1 requirement"
-        : `${requirementCount} requirements`;
-  }
+    const requirementCount = requirementTexts.length;
 
-  if (copyButton) {
-    copyButton.disabled = requirementCount === 0;
+    const amendmentCount = Array.isArray(window.globalSavedAmendments)
+      ? window.globalSavedAmendments.length
+      : 0;
+
+    if (compiledOutput) {
+      /*
+       * Do not add numbers here.
+       * The email generator creates its own bullet list.
+       */
+      compiledOutput.value = requirementTexts.join("\n");
+    }
+
+    if (compiledCount) {
+      compiledCount.textContent = String(requirementCount);
+    }
+
+    if (compiledBadge) {
+      compiledBadge.textContent =
+        requirementCount === 1
+          ? "1 requirement"
+          : `${requirementCount} requirements`;
+    }
+
+    if (compiledTotal) {
+      compiledTotal.textContent = String(amendmentCount + requirementCount);
+    }
+
+    if (copyButton) {
+      copyButton.disabled = requirementCount === 0;
+    }
+
+    /*
+     * Tell the email generator that the compiled
+     * requirements have changed.
+     */
+    document.dispatchEvent(
+      new CustomEvent("compiledRequirementsUpdated", {
+        detail: {
+          requirements: requirementTexts.join("\n"),
+
+          count: requirementCount,
+        },
+      }),
+    );
+
+    console.log("Rendered saved requirements:", requirementCount);
   }
-}
   function clearGlobalAmendmentDraft() {
     const questionInput = document.getElementById("globalQuestion");
 
@@ -808,9 +859,9 @@ renderGlobalSavedRequirements();
       engineLoaded = true;
 
       initializeGlobalSidebarWorkspace();
-      renderGlobalSavedRequirements();
       initializeAllPanels();
       startPanelObserver();
+      renderGlobalSavedRequirements();
 
       document.dispatchEvent(
         new CustomEvent("requirementTemplatesLoaded", {
@@ -1909,10 +1960,6 @@ renderGlobalSavedRequirements();
     }
   });
 
-  document.addEventListener("requirementsUpdated", function () {
-    renderGlobalSavedRequirements();
-  });
-
   function startEngine() {
     loadEngineData();
   }
@@ -1925,4 +1972,3 @@ renderGlobalSavedRequirements();
     startEngine();
   }
 })();
-
