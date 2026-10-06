@@ -588,17 +588,17 @@ dialog::backdrop {
 }
 
 .required-form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 
-    padding: 12px;
-    margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
 
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
 .warning-note {
@@ -647,8 +647,6 @@ dialog::backdrop {
   font-size: 0.8rem;
   font-weight: 700;
 }
-
-
 
 .state-form-label {
   display: flex;
@@ -936,19 +934,18 @@ dialog::backdrop {
 .collapse-indicator {
   color: var(--mm-light-blue);
   font-size: 0.85rem;
-    flex: 0 0 auto;
-    padding: 7px 11px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    border-radius: 999px;
-        color: #536473;
-    background: #edf1f4;
-     transition: transform 180ms ease;
+  flex: 0 0 auto;
+  padding: 7px 11px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 999px;
+  color: #536473;
+  background: #edf1f4;
+  transition: transform 180ms ease;
 }
 
 .collapsible-card[open] .collapse-indicator {
   transform: rotate(180deg);
-
 }
 
 .collapsible-content {
@@ -1200,11 +1197,11 @@ dialog::backdrop {
 }
 
 .state-form-main {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 16px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
 }
 
 .form-status-actions {
@@ -1242,12 +1239,12 @@ dialog::backdrop {
 }
 
 .form-review-result {
-    min-width: 95px;
-    margin-right: 8px;
-    text-align: right;
-    font-size: 11px;
-    font-weight: 800;
-    white-space: nowrap;
+  min-width: 95px;
+  margin-right: 8px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .result-igo {
@@ -1583,8 +1580,6 @@ textarea.amendment-field-input {
     grid-template-columns: 1fr;
   }
 }
-
-
 
 .nigo-workspace {
   display: grid;
@@ -2346,68 +2341,66 @@ textarea.amendment-field-input {
   }
 }
 #amendmentSaveStatus {
-    margin-top: 8px;
-    color: var(--mm-green);
-    font-size: 12px;
-    font-weight: 700;
+  margin-top: 8px;
+  color: var(--mm-green);
+  font-size: 12px;
+  font-weight: 700;
 }
 .generator-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 .amendment-card,
 .requirement-card {
-    min-width: 0;
+  min-width: 0;
 }
 
 .generator-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .amendment-card,
 .requirement-card {
-    min-width: 0;
+  min-width: 0;
 }
 
 .compiled-output-textarea {
-    min-height: 180px;
+  min-height: 180px;
 }
 
 #globalGeneratedAmendment,
 #globalGeneratedRequirement {
-    min-height: 100px;
+  min-height: 100px;
 }
-
-
 
 .igo-button,
 .nigo-button {
-    min-width: 70px;
-    padding: 8px 12px;
-    border: 1px solid #c7d2dc;
-    border-radius: 8px;
-    background: #ffffff;
-    color: var(--mm-blue);
-    font-weight: 700;
-    cursor: pointer;
+  min-width: 70px;
+  padding: 8px 12px;
+  border: 1px solid #c7d2dc;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--mm-blue);
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .igo-button:hover,
 .igo-button.selected {
-    background: var(--mm-green);
-    color: white;
-    border-color: var(--mm-green);
+  background: var(--mm-green);
+  color: white;
+  border-color: var(--mm-green);
 }
 
 .nigo-button:hover,
 .nigo-button.selected {
-    background: var(--mm-orange);
-    color: white;
-    border-color: var(--mm-orange);
+  background: var(--mm-orange);
+  color: white;
+  border-color: var(--mm-orange);
 }
 
 .requirement-template-row {
@@ -2473,11 +2466,7 @@ textarea.amendment-field-input {
   cursor: pointer;
   list-style: none;
 
-  background: linear-gradient(
-    135deg,
-    var(--mm-dark-blue),
-    var(--mm-blue)
-  );
+  background: linear-gradient(135deg, var(--mm-dark-blue), var(--mm-blue));
 }
 
 .illustration-validation-summary::-webkit-details-marker {
@@ -2520,8 +2509,6 @@ textarea.amendment-field-input {
   font-weight: 800;
   border-radius: 999px;
 }
-
-
 
 .validation-not-started {
   color: #536473;
@@ -2901,4 +2888,31 @@ textarea.amendment-field-input {
   line-height: 1.6;
 
   white-space: normal;
+}
+
+.review-complete-banner {
+  margin-bottom: 15px;
+  padding: 14px 18px;
+
+  background: #ecfdf3;
+  border: 1px solid #8ed6aa;
+
+  border-radius: 10px;
+
+  color: #047857;
+  font-weight: 600;
+
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

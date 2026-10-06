@@ -825,23 +825,36 @@ function checkReviewCompletion() {
 
   const finalDeliverables = document.getElementById("reviewOutputPackage");
 
-  if (stateRequirements) {
-    stateRequirements.open = false;
-  }
 
-  if (finalDeliverables) {
-    finalDeliverables.open = true;
 
-    window.setTimeout(function () {
-      finalDeliverables.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 0);
-  }
+ const completionBanner = document.getElementById("reviewCompletionBanner");
+
+ if (completionBanner) {
+   completionBanner.hidden = false;
+ }
+
+ window.setTimeout(() => {
+   if (stateRequirements) {
+     stateRequirements.open = false;
+   }
+
+   if (finalDeliverables) {
+     finalDeliverables.open = true;
+
+     finalDeliverables.scrollIntoView({
+       behavior: "smooth",
+       block: "start",
+     });
+   }
+
+   if (completionBanner) {
+     completionBanner.hidden = true;
+   }
+ }, 3000);
 
   console.log("All state forms reviewed. Final Deliverables opened.");
 }
+
 function updateStateDashboard() {
   const total = document.querySelectorAll(".required-form-row").length;
 
