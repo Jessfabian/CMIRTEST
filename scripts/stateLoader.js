@@ -821,38 +821,13 @@ function checkReviewCompletion() {
     return;
   }
 
-  const stateRequirements = document.getElementById("stateRequirements");
+  const completionBanner = document.getElementById("reviewCompletionBanner");
 
-  const finalDeliverables = document.getElementById("reviewOutputPackage");
+  if (completionBanner) {
+    completionBanner.hidden = false;
+  }
 
-
-
- const completionBanner = document.getElementById("reviewCompletionBanner");
-
- if (completionBanner) {
-   completionBanner.hidden = false;
- }
-
- window.setTimeout(() => {
-   if (stateRequirements) {
-     stateRequirements.open = false;
-   }
-
-   if (finalDeliverables) {
-     finalDeliverables.open = true;
-
-     finalDeliverables.scrollIntoView({
-       behavior: "smooth",
-       block: "start",
-     });
-   }
-
-   if (completionBanner) {
-     completionBanner.hidden = true;
-   }
- }, 3000);
-
-  console.log("All state forms reviewed. Final Deliverables opened.");
+  console.log("State review complete.");
 }
 
 function updateStateDashboard() {
@@ -945,4 +920,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (stateDropdown.value) {
     stateDropdown.dispatchEvent(new Event("change"));
   }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const openButton = document.getElementById("openFinalDeliverablesButton");
+
+  if (!openButton) {
+    return;
+  }
+
+  openButton.addEventListener("click", () => {
+    const stateRequirements = document.getElementById("stateRequirements");
+
+    const finalDeliverables = document.getElementById("reviewOutputPackage");
+
+    if (stateRequirements) {
+      stateRequirements.open = false;
+    }
+
+    if (finalDeliverables) {
+      finalDeliverables.open = true;
+
+      finalDeliverables.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
 });

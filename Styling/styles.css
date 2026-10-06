@@ -779,8 +779,9 @@ dialog::backdrop {
 
 .dashboard-strip {
   position: sticky;
-  top: 10px;
-  z-index: 900;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 16px;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -794,7 +795,7 @@ dialog::backdrop {
   border-radius: 14px;
 
   box-shadow: 0 8px 24px rgba(0, 23, 53, 0.12);
-
+  transition: all 0.2s ease;
   backdrop-filter: blur(10px);
 }
 
@@ -815,7 +816,7 @@ dialog::backdrop {
 
   width: 4px;
   height: 100%;
-
+  border-radius: 10px;
   content: "";
   background: var(--mm-charge-blue);
 }
@@ -1581,15 +1582,6 @@ textarea.amendment-field-input {
   }
 }
 
-.nigo-workspace {
-  display: grid;
-
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-  margin-top: 16px;
-}
-
 .case-indicators {
   display: flex;
 
@@ -2198,10 +2190,11 @@ textarea.amendment-field-input {
 
 .review-sidebar {
   position: sticky;
-  top: 90px;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
 
   align-self: start;
-  height: fit-content;
 
   display: flex;
   flex-direction: column;
@@ -2246,13 +2239,6 @@ textarea.amendment-field-input {
 .saved-amendments,
 .generated-output-block {
   display: none;
-}
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 20px;
 }
 
 #stateRequirementsSection {
@@ -2891,18 +2877,25 @@ textarea.amendment-field-input {
 }
 
 .review-complete-banner {
-  margin-bottom: 15px;
-  padding: 14px 18px;
+  margin-bottom: 16px;
+  padding: 18px;
 
   background: #ecfdf3;
-  border: 1px solid #8ed6aa;
 
+  border: 1px solid #8ed6aa;
   border-radius: 10px;
 
   color: #047857;
-  font-weight: 600;
+}
 
-  animation: fadeIn 0.35s ease;
+.review-complete-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.review-complete-text {
+  margin-top: 4px;
+  margin-bottom: 14px;
 }
 
 @keyframes fadeIn {
