@@ -966,6 +966,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateIllustrationGuidance() {
+    const illustrationValidationSection = document.getElementById(
+      "Illustration-Validation",
+    );
+
+    const illustrationStatus = getCaseFieldValue("illustrationStatus");
+
+    if (illustrationValidationSection) {
+      illustrationValidationSection.hidden = illustrationStatus !== "yes";
+    }
     const guidance = document.getElementById("illustrationGuidance");
 
     if (!guidance) {
