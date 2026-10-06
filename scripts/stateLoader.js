@@ -760,7 +760,9 @@ function renderStateGuidance(stateData) {
       if (requirementFields) {
         const formField = requirementFields.querySelector(
           '[data-requirement-field="formName"], ' +
-          '[data-requirement-field="documentName"]',
+            '[data-requirement-field="documentName"], ' +
+            '[data-requirement-field="supplementName"], ' +
+            '[data-requirement-field="item"]',
         );
 
         if (formField) {
