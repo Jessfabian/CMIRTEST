@@ -476,19 +476,21 @@ function renderStateGuidance(stateData) {
         return;
       }
 
-      const saved = window.saveRequirementToReviewPackage(
-        requirementText,
-        "nigo",
-        formId,
-      );
+     const saved = window.saveRequirementToReviewPackage(
+       requirementText,
+       "nigo",
+       formId,
+     );
 
-      if (statusElement) {
-        statusElement.textContent = saved
-          ? "Requirement added to the Review Output Package."
-          : "This requirement has already been added.";
-      }
 
-      return;
+     if (statusElement) {
+       statusElement.textContent = saved
+         ? "Requirement added to the Review Output Package."
+         : "This requirement has already been added.";
+     }
+
+     return;
+
     }
 
     /*

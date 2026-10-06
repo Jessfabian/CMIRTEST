@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
-  window.savedRequirements = window.savedRequirements || [];
+  window.globalSavedRequirements = window.globalSavedRequirements || [];
 
   const compiledAmendments = document.getElementById("compiledAmendments");
 
@@ -81,20 +81,31 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function collectGeneratedRequirements() {
-    const results = [];
+    const requirements = Array.isArray(window.globalSavedRequirements)
+      ? window.globalSavedRequirements
+      : [];
 
-    window.savedRequirements.forEach(function (requirement) {
-      results.push({
-        formId: requirement.formId || "",
+    return requirements
+      .map(function (requirement) {
+        if (typeof requirement === "string") {
+          return {
+            formId: "",
+            description: "",
+            text: requirement.trim(),
+          };
+        }
 
-        description: requirement.description || "",
+        return {
+          formId: requirement.formId || "",
 
-        text: requirement.text || "",
+          description: requirement.description || "",
+
+          text: String(requirement.text || "").trim(),
+        };
+      })
+      .filter(function (requirement) {
+        return Boolean(requirement.text);
       });
-    }
-    );
-
-    return results;
   }
 
   function formatCompiledItems(items) {
@@ -132,11 +143,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const requirements = collectGeneratedRequirements();
 
-    const amendmentText =
-  formatCompiledItems(amendments);
+    const amendmentText = formatCompiledItems(amendments);
 
-const requirementText =
-  formatCompiledItems(requirements);
+    const requirementText = formatCompiledItems(requirements);
 
     if (compiledAmendments) {
       compiledAmendments.value = amendmentText;
@@ -145,13 +154,13 @@ const requirementText =
     if (compiledRequirements) {
       compiledRequirements.value = requirementText;
     }
-document.dispatchEvent(
-  new CustomEvent("compiledRequirementsUpdated", {
-    detail: {
-      requirements: compiledRequirements.value,
-    },
-  }),
-);
+    document.dispatchEvent(
+      new CustomEvent("compiledRequirementsUpdated", {
+        detail: {
+          requirements: compiledRequirements.value,
+        },
+      }),
+    );
     if (amendmentCount) {
       amendmentCount.textContent = String(amendments.length);
     }
@@ -268,6 +277,7 @@ document.dispatchEvent(
 
   document.addEventListener("nigoPanelOpened", scheduleCompile);
 
+  document.addEventListener("requirementsUpdated", scheduleCompile);
   /*
    * Watch for stateLoader.js rebuilding
    * the required-form rows.

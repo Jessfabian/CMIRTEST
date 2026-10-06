@@ -42,30 +42,31 @@
       return false;
     }
 
-    window.globalSavedRequirements.push({
-      id: `requirement-${Date.now()}-` + Math.random().toString(36).slice(2, 8),
+   window.globalSavedRequirements.push({
+  id:
+    `requirement-${Date.now()}-` +
+    Math.random().toString(36).slice(2, 8),
 
-      text: cleanedText,
-      source,
-      formId,
-    });
+  text: cleanedText,
+  source,
+  formId,
+});
 
-    /*
-     * Immediately show the newly saved requirement
-     * in the Review Output Package and email.
-     */
-    renderGlobalSavedRequirements();
+document.dispatchEvent(
+  new CustomEvent("requirementsUpdated", {
+    detail: {
+      requirements:
+        window.globalSavedRequirements,
+    },
+  }),
+);
 
-    document.dispatchEvent(
-      new CustomEvent("requirementsUpdated", {
-        detail: {
-          requirements: window.globalSavedRequirements,
-        },
-      }),
-    );
+window.setTimeout(() => {
+  renderGlobalSavedRequirements();
+}, 0);
 
-    return true;
-  }
+return true;
+}
 
   window.saveRequirementToReviewPackage = saveRequirementToReviewPackage;
 
@@ -692,6 +693,9 @@
         totalCount === 0 ? "No Outputs" : `${totalCount} Saved`;
     }
   }
+
+window.renderGlobalSavedRequirements = renderGlobalSavedRequirements;
+
   function renderGlobalSavedRequirements() {
     const compiledOutput = document.getElementById("compiledRequirements");
 
