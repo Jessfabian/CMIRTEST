@@ -54,3 +54,19 @@
   }
 
 }
+
+
+@media (max-width: 1000px) {
+
+  .validation-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .validation-tools-header {
+    grid-template-columns: 1fr;
+  }
+
+  .validation-tools-badge {
+    justify-self: start;
+  }
+}
