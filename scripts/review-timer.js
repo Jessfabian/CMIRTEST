@@ -356,3 +356,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+timerCard.classList.add("is-running");
+timerCard.classList.remove("is-running");

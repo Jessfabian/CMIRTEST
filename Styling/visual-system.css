@@ -1,0 +1,1046 @@
+/* =========================================================
+   MMSD INITIAL REVIEW
+   PAGE-WIDE VISUAL SYSTEM
+
+   Load this stylesheet LAST.
+========================================================= */
+
+/* =========================================================
+   1. DESIGN TOKENS
+========================================================= */
+
+:root {
+  --workbench-navy: #002b5c;
+  --workbench-blue: #004f9f;
+  --workbench-bright-blue: #006dff;
+  --workbench-cyan: #4dc7eb;
+  --workbench-green: #00a76f;
+  --workbench-orange: #ff6b2c;
+  --workbench-yellow: #ffd36a;
+
+  --workbench-page: #f2f7fc;
+  --workbench-surface: #ffffff;
+  --workbench-surface-soft: #f7fbff;
+  --workbench-surface-blue: #eef6ff;
+
+  --workbench-text: #102a43;
+  --workbench-muted: #60758a;
+  --workbench-border: #d4e2ef;
+  --workbench-border-strong: #bdd2e6;
+
+  --workbench-radius-sm: 10px;
+  --workbench-radius-md: 14px;
+  --workbench-radius-lg: 20px;
+  --workbench-radius-xl: 24px;
+
+  --workbench-shadow-xs:
+    0 2px 6px rgba(0, 43, 92, 0.04);
+
+  --workbench-shadow-sm:
+    0 8px 22px rgba(0, 43, 92, 0.07);
+
+  --workbench-shadow-md:
+    0 14px 34px rgba(0, 43, 92, 0.1);
+
+  --workbench-shadow-focus:
+    0 0 0 4px rgba(0, 109, 255, 0.13);
+
+  --workbench-transition:
+    160ms ease;
+}
+
+/* =========================================================
+   2. PAGE FOUNDATION
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  color: var(--workbench-text);
+
+  background:
+    radial-gradient(
+      circle at 93% 12%,
+      rgba(77, 199, 235, 0.14),
+      transparent 230px
+    ),
+    linear-gradient(
+      180deg,
+      #f4f8fc 0%,
+      #eef5fb 100%
+    );
+
+  font-family:
+    "Aptos",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.review-workspace {
+  width: min(100%, 1720px);
+  margin: 0 auto;
+  padding: 24px 34px 60px;
+}
+
+#reviewContent {
+  min-width: 0;
+}
+
+/* =========================================================
+   3. TOP APPLICATION HEADER
+========================================================= */
+
+.top {
+  position: relative;
+  overflow: hidden;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      115deg,
+      #001f49 0%,
+      #003b7d 54%,
+      #0755ad 100%
+    );
+
+  box-shadow: 0 6px 20px rgba(0, 31, 73, 0.14);
+}
+
+.top::after {
+  position: absolute;
+  top: -86px;
+  right: -25px;
+
+  width: 250px;
+  height: 250px;
+
+  border: 38px solid rgba(77, 199, 235, 0.2);
+  border-radius: 50%;
+
+  content: "";
+  pointer-events: none;
+}
+
+.top .head {
+  position: relative;
+  z-index: 1;
+}
+
+.top a {
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 9px;
+
+  text-decoration: none;
+
+  transition:
+    background var(--workbench-transition),
+    border-color var(--workbench-transition);
+}
+
+.top a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.62);
+}
+
+/* =========================================================
+   4. REVIEW HEADER AND PROGRESS
+========================================================= */
+
+.review-header-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+  gap: 30px;
+  align-items: center;
+}
+
+.review-eyebrow {
+  margin: 0 0 7px;
+
+  color: var(--workbench-blue);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.review-header h1 {
+  margin: 0;
+
+  color: var(--workbench-navy);
+
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.progress-panel {
+  position: relative;
+  overflow: hidden;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #ffffff 62%,
+      #eff7ff 100%
+    );
+
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius-lg);
+
+  box-shadow: var(--workbench-shadow-sm);
+}
+
+.progress-panel::before {
+  position: absolute;
+  inset: 0 0 auto 0;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--workbench-cyan),
+      var(--workbench-bright-blue)
+    );
+
+  content: "";
+}
+
+.progress-header,
+.progress-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.progress-title {
+  color: var(--workbench-text);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.progress-percentage {
+  color: var(--workbench-bright-blue);
+
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.progress-bar {
+  height: 12px;
+  margin: 12px 0;
+
+  overflow: hidden;
+
+  background: #dfeaf4;
+
+  border-radius: 999px;
+}
+
+#progressFill {
+  width: 0%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--workbench-cyan),
+      var(--workbench-bright-blue)
+    );
+
+  border-radius: inherit;
+
+  transition: width 300ms ease;
+}
+
+.progress-footer {
+  color: var(--workbench-muted);
+
+  font-size: 12px;
+}
+
+.progress-status {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 26px;
+  padding: 0 10px;
+
+  color: var(--workbench-navy);
+  background: var(--workbench-surface-blue);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   5. DASHBOARD METRICS
+========================================================= */
+
+
+
+/* =========================================================
+   6. MAIN LAYOUT
+========================================================= */
+
+.review-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+
+
+/* =========================================================
+   7. TIMER
+   Preserve the strong visual anchor.
+========================================================= */
+
+.review-timer {
+  box-shadow:
+    0 16px 34px rgba(0, 43, 92, 0.2);
+}
+
+/*
+   The pulse only appears while JavaScript adds:
+   .is-running
+
+   It will not appear while the timer is paused.
+*/
+
+.review-timer.is-running {
+  animation: timerPulse 2.8s ease-out infinite;
+}
+
+@keyframes timerPulse {
+  0% {
+    box-shadow:
+      0 16px 34px rgba(0, 43, 92, 0.2),
+      0 0 0 0 rgba(77, 199, 235, 0.28);
+  }
+
+  70% {
+    box-shadow:
+      0 16px 34px rgba(0, 43, 92, 0.2),
+      0 0 0 12px rgba(77, 199, 235, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 16px 34px rgba(0, 43, 92, 0.2),
+      0 0 0 0 rgba(77, 199, 235, 0);
+  }
+}
+
+/* =========================================================
+   8. SIDEBAR WORKFLOW
+========================================================= */
+
+
+
+.workflow-header {
+  margin-bottom: 10px;
+  padding: 0 0 14px;
+
+  border-bottom: 1px solid var(--workbench-border);
+}
+
+.workflow-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+
+  color: var(--workbench-blue);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+.step-btn {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+
+  width: 100%;
+  min-height: 42px;
+  margin: 0;
+  padding: 8px 10px;
+
+  color: var(--workbench-text);
+  background: transparent;
+
+  border: 0;
+  border-radius: 10px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color var(--workbench-transition),
+    background var(--workbench-transition),
+    transform var(--workbench-transition);
+}
+
+.step-btn:hover {
+  color: var(--workbench-navy);
+  background: rgba(255, 255, 255, 0.82);
+
+  transform: translateX(2px);
+}
+
+.step-btn.active {
+  color: var(--workbench-navy);
+
+  background:
+    linear-gradient(
+      90deg,
+      #e8f3ff,
+      rgba(255, 255, 255, 0.92)
+    );
+
+  box-shadow: var(--workbench-shadow-sm);
+}
+
+.step-btn.active::before {
+  position: absolute;
+  inset: 8px auto 8px 0;
+
+  width: 4px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--workbench-cyan),
+      var(--workbench-bright-blue)
+    );
+
+  border-radius: 999px;
+
+  content: "";
+}
+
+.step-icon {
+  display: grid;
+  place-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  color: transparent;
+  background: #dfeaf4;
+
+  border: 4px solid var(--workbench-page);
+  border-radius: 50%;
+}
+
+.step-btn.active .step-icon {
+  background: var(--workbench-bright-blue);
+}
+
+.step-label {
+  min-width: 0;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+
+.workspace-summary {
+  padding: 9px 4px;
+
+  color: var(--workbench-text);
+
+  font-size: 13px;
+  font-weight: 650;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   9. SHARED WORKSPACE CARD LANGUAGE
+========================================================= */
+
+.card,
+.case-design-panel,
+.validation-tools-panel,
+.requirements-workspace,
+.generated-notes-section,
+#emailSection {
+  border-color: var(--workbench-border);
+  border-radius: var(--workbench-radius-lg);
+
+  box-shadow: var(--workbench-shadow-sm);
+}
+
+.card {
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #ffffff 70%,
+      #f2f8ff 100%
+    );
+}
+
+/* =========================================================
+   10. CASE SETUP
+========================================================= */
+
+.case-setup-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 0 0 24px;
+
+  background: transparent;
+
+  border: 0;
+  border-radius: 0;
+
+  box-shadow: none;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid var(--workbench-border);
+}
+
+.section-title-row h2 {
+  margin: 0;
+
+  color: var(--workbench-navy);
+
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.setup-status {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 28px;
+  padding: 0 11px;
+
+  color: var(--workbench-blue);
+  background: var(--workbench-surface-blue);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.case-group-title {
+  margin: 18px 0 10px;
+
+  color: var(--workbench-navy);
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.case-setup-grid-equal {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+
+  padding: 18px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f8fbff
+    );
+
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius-md);
+
+  box-shadow: var(--workbench-shadow-xs);
+}
+
+/* =========================================================
+   11. SHARED FORM CONTROLS
+========================================================= */
+
+.case-field {
+  min-width: 0;
+}
+
+.case-field label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: var(--workbench-navy);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-field input:not([type="checkbox"]),
+.case-field select,
+.case-field textarea,
+.compiled-output-textarea,
+.initial-review-notes {
+  width: 100%;
+  min-width: 0;
+
+  color: var(--workbench-text);
+  background: white;
+
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius-sm);
+
+  transition:
+    border-color var(--workbench-transition),
+    box-shadow var(--workbench-transition),
+    background var(--workbench-transition);
+}
+
+.case-field input:not([type="checkbox"]),
+.case-field select {
+  min-height: 46px;
+  padding: 0 13px;
+}
+
+.case-field textarea,
+.compiled-output-textarea,
+.initial-review-notes {
+  padding: 15px;
+}
+
+.case-field input:hover,
+.case-field select:hover,
+.case-field textarea:hover {
+  border-color: #8fb8dc;
+}
+
+.case-field input:focus,
+.case-field select:focus,
+.case-field textarea:focus,
+.compiled-output-textarea:focus,
+.initial-review-notes:focus,
+.email-preview:focus {
+  outline: none;
+
+  border-color: var(--workbench-bright-blue);
+
+  box-shadow: var(--workbench-shadow-focus);
+}
+
+/* =========================================================
+   12. CASE INDICATORS
+========================================================= */
+
+.case-indicator-header {
+  margin: 24px 0 10px;
+}
+
+.case-indicator-header h4 {
+  margin: 4px 0 2px;
+
+  color: var(--workbench-navy);
+
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.case-indicator-header p {
+  margin: 0;
+
+  color: var(--workbench-muted);
+
+  font-size: 12px;
+}
+
+.case-indicator-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding: 16px 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f6faff
+    );
+
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius-md);
+
+  box-shadow: var(--workbench-shadow-xs);
+}
+
+.indicator-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  min-height: 38px;
+  padding: 0 13px;
+
+  color: var(--workbench-navy);
+  background: white;
+
+  border: 1px solid var(--workbench-border);
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--workbench-transition),
+    border-color var(--workbench-transition),
+    background var(--workbench-transition),
+    box-shadow var(--workbench-transition);
+}
+
+.indicator-checkbox:hover {
+  transform: translateY(-1px);
+
+  border-color: var(--workbench-bright-blue);
+
+  box-shadow: var(--workbench-shadow-sm);
+}
+
+.indicator-checkbox:has(input:checked) {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--workbench-blue),
+      var(--workbench-bright-blue)
+    );
+
+  border-color: transparent;
+
+  box-shadow: 0 8px 18px rgba(0, 79, 159, 0.18);
+}
+
+.indicator-checkbox input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+
+  accent-color: var(--workbench-bright-blue);
+}
+
+/* =========================================================
+   13. OWNERSHIP AND POLICY PANELS
+========================================================= */
+
+.case-details-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+
+  margin: 22px 0;
+}
+
+.case-design-panel {
+  position: relative;
+  overflow: hidden;
+
+  min-width: 0;
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #ffffff 68%,
+      #f0f7ff 100%
+    );
+
+  transition:
+    transform var(--workbench-transition),
+    border-color var(--workbench-transition),
+    box-shadow var(--workbench-transition);
+}
+
+.case-design-panel::before {
+  position: absolute;
+  inset: 0 0 auto 0;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--workbench-cyan),
+      var(--workbench-bright-blue)
+    );
+
+  content: "";
+}
+
+.policy-design-panel::before {
+  background:
+    linear-gradient(
+      90deg,
+      var(--workbench-blue),
+      var(--workbench-navy)
+    );
+}
+
+.case-design-panel:hover {
+  transform: translateY(-3px);
+
+  border-color: #a9c9e5;
+
+  box-shadow: var(--workbench-shadow-md);
+}
+
+.case-design-panel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  min-height: 84px;
+  margin-bottom: 16px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid var(--workbench-border);
+}
+
+
+
+.case-design-eyebrow,
+.section-eyebrow {
+  display: inline-flex;
+
+  margin-bottom: 6px;
+  padding: 4px 8px;
+
+  color: var(--workbench-blue);
+  background: var(--workbench-surface-blue);
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-design-heading h3 {
+  margin: 0;
+
+  color: var(--workbench-navy);
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.case-design-heading p {
+  margin: 4px 0 0;
+
+  color: var(--workbench-muted);
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   14. BUTTON SYSTEM
+========================================================= */
+
+.primary-button,
+.secondary-button,
+#copyEmail {
+  min-height: 42px;
+  padding: 0 16px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--workbench-transition),
+    border-color var(--workbench-transition),
+    background var(--workbench-transition),
+    box-shadow var(--workbench-transition);
+}
+
+.primary-button,
+#copyEmail {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--workbench-blue),
+      var(--workbench-bright-blue)
+    );
+
+  border: 1px solid transparent;
+
+  box-shadow: 0 8px 18px rgba(0, 79, 159, 0.16);
+}
+
+.secondary-button {
+  color: var(--workbench-navy);
+  background: white;
+
+  border: 1px solid var(--workbench-border);
+}
+
+.primary-button:hover:not(:disabled),
+.secondary-button:hover:not(:disabled),
+#copyEmail:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow: var(--workbench-shadow-sm);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+
+
+
+.collapsible-card,
+.compiled-output-section {
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid var(--workbench-border);
+  border-radius: var(--workbench-radius-md);
+}
+
+.collapsible-summary,
+.compiled-output-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 16px 18px;
+
+  color: var(--workbench-navy);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f2f8ff
+    );
+
+  cursor: pointer;
+
+  list-style: none;
+}
+
+.collapsible-summary::-webkit-details-marker,
+.compiled-output-summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary-title {
+  display: block;
+
+  color: var(--workbench-navy);
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.summary-subtitle {
+  display: block;
+  margin-top: 3px;
+
+  color: var(--workbench-muted);
+
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.collapse-indicator {
+  display: grid;
+  place-items: center;
+
+  width: 28px;
+  height: 28px;
+
+  color: var(--workbench-blue);
+  background: var(--workbench-surface-blue);
+
+  border-radius: 50%;
+
+  transition: transform var(--workbench-transition);
+}
+
+details[open] > summary .collapse-indicator {
+  transform: rotate(180deg);
+}
+
+.collapsible-content {
+  padding: 20px;
+}
+
+/* =========================================================
+   17. STATE REQUIREMENTS
+=================================================

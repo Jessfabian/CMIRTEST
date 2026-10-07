@@ -18,6 +18,9 @@
 
 @import url( ./utilities/responsive.css );
 
+
+@import url(./visual-system.css);
+
 /* ============================================
    CASE SETUP RESPONSIVE LAYOUT
 ============================================ */
