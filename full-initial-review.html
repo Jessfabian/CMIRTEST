@@ -1,12 +1,34 @@
 <!doctype html>
 <html lang="en">
+  <!-- =====================================================
+					FULL INITIAL REVIEW WORKBENCH
+					Main review workflow for MMSD Initial Review Process
+					Connected Scripts:
+          stateLoader.js
+          amendment-engine.js
+          initial-review.js
+          review-output-package.js
+      ===================================================== -->
+
   <head>
+    <!-- ============================================
+					PAGE METADATA & STYLES
+					Loads page title, viewport settings,
+					and main stylesheet.
+			============================================ -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Full Initial Review</title>
-    <link rel="stylesheet" href="styling/app.css"/>
+    <link rel="stylesheet" href="Styling/backup.css"/>
+
   </head>
- <body>
+
+  <!-- ============================================
+					GLOBAL PAGE HEADER
+					Back navigation and page branding
+				============================================ -->
+
+  <body>
     <header class="top">
       <div class="shell head">
         <a href="index.html">← Main Menu</a>
@@ -19,8 +41,18 @@
         </div>
       </div>
     </header>
- <main class="review-workspace">
-
+    <!-- =====================================================
+					MAIN REVIEW WORKSPACE
+					Contains all sections of the Full Initial Review.
+			  ===================================================== -->
+    <main class="review-workspace">
+      <!-- =====================================================
+					REVIEW HEADER
+					Displays review title and completion progress.
+					JS Updates:
+          progressFill
+          progressText
+          ===================================================== -->
       <div class="review-header">
         <h1>Full Initial Review</h1>
         <div class="progress-panel">
@@ -31,115 +63,65 @@
           <span id="progressText">0 of 0 steps complete</span>
         </div>
       </div>
-
+      <!-- =====================================================
+					 CASE DASHBOARD
+					 Real-time case summary:
+           Contract State
+           Product
+           Applicable Forms
+           Open Issues
+					 Updated by:
+					 stateLoader.js
+					 initial-review.js
+			     ===================================================== -->
       <section id="dashboardStrip" class="dashboard-strip">
-
-
-
-       <div class="dashboard-card">
-   <div class="dashboard-icon">
-<img src= images/Picture1.png>
-  </div>
-  <span id="dashboardState"
-        class="dashboard-value">
-    Select State
-  </span>
-  <span class="dashboard-label">
-    Contract State
-  </span>
-</div>
-
-
         <div class="dashboard-card">
-
-           <div class="dashboard-icon">
-            <img src= images/Picture9.png>
-           </div>
-            <span id="dashboardProduct" class="dashboard-value">Pending</span>
+          <span class="dashboard-label">Contract State</span>
+          <span id="dashboardState" class="dashboard-value">--</span>
+        </div>
+        <div class="dashboard-card">
           <span class="dashboard-label">Product</span>
-
+          <span id="dashboardProduct" class="dashboard-value">--</span>
         </div>
-
         <div class="dashboard-card">
-        <div class="dashboard-icon">
-          <img src= images/Picture6.png>
-          </div>
- <span id="dashboardFormCount" class="dashboard-value">Pending</span>
           <span class="dashboard-label">Applicable Forms</span>
-
+          <span id="dashboardFormCount" class="dashboard-value">0</span>
         </div>
-
         <div class="dashboard-card">
-          <div class="dashboard-icon">
-          <img src= images/Picture8.png>
-          </div>
-          <span id="dashboardIssueCount" class="dashboard-value danger">Pending</span>
           <span class="dashboard-label">Open Issues</span>
-
+          <span id="dashboardIssueCount" class="dashboard-value danger">0</span>
         </div>
-
       </section>
       <!-- MAIN LAYOUT -->
+      <div class="review-layout">
+        <!-- =====================================================
+						 REVIEW STEP NAVIGATION
+						 Acts as workflow menu.
+						 Allows users to jump between:
+            Case Setup
+            State Requirements
+            Application Review
+            Requirements
+            Amendments
+            Email
+            ===================================================== -->
+        <aside class="review-sidebar">
+          <!-- WORKFLOW NAVIGATION -->
 
+          <div class="sidebar-section">
+            <h3 class="sidebar-heading">Case Workflow</h3>
 
- <div class="review-layout">
-<aside class="review-sidebar">
-<div class="sidebar-section">
+            <button class="step-btn active">Case Setup</button>
 
-    <div class="workflow-header">
+            <button class="step-btn">State Requirements</button>
 
-    <span class="workflow-eyebrow">
-      Workbench
-    </span>
+            <button class="step-btn">Review Output Package</button>
 
-    <h3 class="sidebar-heading">
-      Case Workflow
-    </h3>
+            <button class="step-btn">Email</button>
+          </div>
 
-    </div>
-
-    <button class="step-btn active">
-    <span class="step-icon">
-      ●
-    </span>
-
-    <span class="step-label">
-      Case Setup
-    </span>
-   </button>
-
-    <button class="step-btn">
-    <span class="step-icon">
-      ●
-    </span>
-
-    <span class="step-label">
-      State Requirements
-    </span>
-    </button>
-
-    <button class="step-btn">
-    <span class="step-icon">
-      ●
-    </span>
-
-    <span class="step-label">
-      Final Deliverables
-    </span>
-   </button>
-
-    <button class="step-btn">
-    <span class="step-icon">
-      ●
-    </span>
-
-    <span class="step-label">
-      Initial Review Email
-    </span>
-    </button>
-</div>
-
-<details class="sidebar-workspace">
+          <!-- POLICY AMENDMENT WORKSPACE -->
+          <details class="sidebar-workspace">
             <summary class="workspace-summary">Policy Amendment</summary>
 
   <details class="workspace-help">
@@ -217,6 +199,8 @@
 </div>
           </details>
 
+          <!-- REQUIREMENT WORKSPACE -->
+
 <details class="sidebar-workspace">
   <summary class="workspace-summary">Agency Requirement</summary>
 
@@ -234,8 +218,11 @@
     </ol>
 </div>
 </details>
+
+
   <div class="case-field">
     <label for="globalRequirementTemplate">Requirement Template</label>
+
     <div class="requirement-template-row">
       <select id="globalRequirementTemplate">
         <option value="">Select Requirement</option>
@@ -284,27 +271,41 @@
   class="copy-status"
   aria-live="polite">
 </div>
-</details>
-</aside>
 
-<section id="reviewContent">
+</details>
+
+
+
+        </aside>
+        <!-- =====================================================
+						 CASE SETUP SECTION
+						 Captures:
+            Policy Information
+            Insured Information
+            Contract State
+            Ownership Details
+            Risk Class
+            Policy Dating
+                        Drives:
+            Initial Review Notes
+            State Requirements
+            Dashboard Values
+            ===================================================== -->
+
+        <section id="reviewContent">
           <section id="caseSetupSection" class="card case-setup-card">
             <div class="section-title-row">
-    <div>
-      <h2>MMSD INITIAL REVIEW</h2>
-    </div>
-
-    <span id="caseSetupStatus"
-          class="setup-status">
-      In Progress
-    </span>
-        </div>
-<h3 class="case-group-title">
-  Policy Information
-</h3>
-
-      <div class="case-setup-grid-equal">
-                    <div class="case-field">
+              <div>
+                <h2>MMSD INITIAL REVIEW</h2>
+              </div>
+              <span id="caseSetupStatus" class="setup-status">In Progress</span>
+            </div>
+            <!-- =====================================================
+								 CASE SETUP ROW 1
+								 Core policy identification information
+						===================================================== -->
+            <div class="case-setup-grid-equal">
+              <div class="case-field">
                 <label for="policyNumber">Policy Number</label>
                 <input id="policyNumber" type="text" autocomplete="off" />
               </div>
@@ -372,277 +373,120 @@
                 </select>
               </div>
             </div>
-          </section>
-<div class="case-details-layout">
+            <br />
+            <div class="case-indicator-row">
+              <label class="indicator-checkbox">
+                <input type="checkbox" id="replacement" />
+                Replacement
+              </label>
+              <label class="indicator-checkbox">
+                <input type="checkbox" id="tlirRequested" />
+                TLIR
+              </label>
+              <label class="indicator-checkbox">
+                <input type="checkbox" id="additionalInsured" />
+                Additional Insured
+              </label>
+              <label class="indicator-checkbox">
+                <input type="checkbox" id="internalTermReplacement" />
+                Internal Replacement
+              </label>
+            </div>
+            <!-- =====================================================
+								 CASE SETUP ROW 2
+								 Ownership, Beneficiary and Insurance Purpose
+						===================================================== -->
+            <div class="case-setup-grid-equal">
+              <div class="case-field">
+                <label for="ownerType">Owner</label>
+                <select id="ownerType">
+                  <option value="insured">Insured</option>
+                  <option value="otherIndividual">Other Individual</option>
+                  <option value="trust">Trust</option>
+                  <option value="business">Business or Entity</option>
+                </select>
+              </div>
+              <div class="case-field">
+                <label for="beneficiaryOther">Beneficiary</label>
+                <select id="beneficiaryOther">
+                  <option value="no">Part 1 Beneficiary Information</option>
+                  <option value="yes">E-2 Other Selected</option>
+                </select>
+              </div>
+              <div class="case-field">
+                <label for="purposeOfInsurance">Purpose of Insurance</label>
+                <input
+                  id="purposeOfInsurance"
+                  type="text"
+                  placeholder="Enter the purpose of insurance"
+                  autocomplete="off" />
+              </div>
+            </div>
+            <!-- =====================================================
+								 CASE SETUP ROW 3
+								 Risk Class, Policy Dating and Polaris Status
+						===================================================== -->
+            <div class="case-setup-grid-equal">
+              <div class="case-field">
+                <label for="riskClass">Risk Class</label>
+                <select id="riskClass">
+                  <option value="">Select Risk Class</option>
+                  <option value="Ultra Preferred Non-Tobacco">
+                    Ultra Preferred Non-Tobacco
+                  </option>
+                  <option
+                    value="Select Preferred Non-Tobacco/Preferred Non-Smoker">
+                    Select Preferred Non-Tobacco/Preferred Non-Smoker
+                  </option>
+                  <option value="Standard Non-Tobacco/Juvenile">
+                    Standard Non-Tobacco/Juvenile
+                  </option>
+                  <option value="Select Preferred Tobacco">
+                    Select Preferred Tobacco
+                  </option>
+                  <option value="Tobacco">Tobacco</option>
+                </select>
+              </div>
+              <div class="case-field">
+                <label for="policyDating">Policy Dating</label>
+                <select id="policyDating">
+                  <option value="">Select Policy Dating</option>
+                  <option value="saveAge">Save Age</option>
+                  <option value="currentDate">Current Date</option>
+                  <option value="specificDate">Specific Date</option>
+                </select>
+              </div>
+              <div class="case-field">
+                <label for="polarisCheck">Polaris Check</label>
+                <select id="polarisCheck">
+                  <option value="">Select Status</option>
+                  <option value="notApplicable">Not Applicable</option>
+                  <option value="completedClear">Completed, Clear</option>
+                  <option value="completedMatch">Completed, Match Found</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+            </div>
+            <div class="case-field">
+              <label for="illustrationStatus">
+                Signed Illustration as Applied For?
+              </label>
+              <select id="illustrationStatus">
+                <option value="">Select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="notReceived">Not Received</option>
+              </select>
+              <small id="illustrationGuidance" class="field-guidance"></small>
+<!-- =====================================================
+     ILLUSTRATION VS PART 1 VALIDATION
+===================================================== -->
 
-  <!-- ============================================
-       OWNERSHIP AND BENEFICIARY
-  ============================================= -->
-  <section class="case-design-panel ownership-panel">
 
-    <div class="case-design-panel-header">
+<div class="collapsible-content"></div>
 
-      <div class="case-design-icon">
-        <img src= images/Picture12.png>
-      </div>
 
-      <div class="case-design-heading">
-        <span class="case-design-eyebrow">
-          Case Parties
-        </span>
-
-        <h3>
-          Ownership &amp; Beneficiary
-        </h3>
-
-        <p>
-          Confirm ownership, beneficiary selection,
-          and the purpose of insurance.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="case-design-fields">
-
-      <div class="case-field">
-        <label for="ownerType">
-          Owner
-        </label>
-
-        <select id="ownerType">
-          <option value="insured">
-            Insured
-          </option>
-
-          <option value="otherIndividual">
-            Other Individual
-          </option>
-
-          <option value="trust">
-            Trust
-          </option>
-
-          <option value="business">
-            Business or Entity
-          </option>
-        </select>
-      </div>
-
-      <div class="case-field">
-        <label for="beneficiaryOther">
-          Beneficiary
-        </label>
-
-        <select id="beneficiaryOther">
-          <option value="no">
-            Part 1 Beneficiary Information
-          </option>
-
-          <option value="yes">
-            E-2 Other Selected
-          </option>
-        </select>
-      </div>
-
-      <div class="case-field field-span-full">
-        <label for="purposeOfInsurance">
-          Purpose of Insurance
-        </label>
-
-        <input
-          id="purposeOfInsurance"
-          type="text"
-          placeholder="Enter the purpose of insurance"
-          autocomplete="off"
-        />
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ============================================
-       POLICY DESIGN
-  ============================================= -->
-  <section class="case-design-panel policy-design-panel">
-
-    <div class="case-design-panel-header">
-
-      <div class="case-design-icon">
-        <img src= images/Picture10.png>
-      </div>
-
-      <div class="case-design-heading">
-        <span class="case-design-eyebrow">
-          Policy Review
-        </span>
-
-        <h3>
-          Policy Design
-        </h3>
-
-        <p>
-          Review risk class, dating instructions,
-          Polaris status, and illustration details.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="case-design-fields">
-
-      <div class="case-field">
-        <label for="riskClass">
-          Risk Class
-        </label>
-
-        <select id="riskClass">
-          <option value="">
-            Select Risk Class
-          </option>
-
-          <option value="Ultra Preferred Non-Tobacco">
-            Ultra Preferred Non-Tobacco
-          </option>
-
-          <option value="Select Preferred Non-Tobacco/Preferred Non-Smoker">
-            Select Preferred Non-Tobacco/Preferred Non-Smoker
-          </option>
-
-          <option value="Standard Non-Tobacco/Juvenile">
-            Standard Non-Tobacco/Juvenile
-          </option>
-
-          <option value="Select Preferred Tobacco">
-            Select Preferred Tobacco
-          </option>
-
-          <option value="Tobacco">
-            Tobacco
-          </option>
-        </select>
-      </div>
-
-      <div class="case-field">
-        <label for="policyDating">
-          Policy Dating
-        </label>
-
-        <select id="policyDating">
-          <option value="">
-            Select Policy Dating
-          </option>
-
-          <option value="saveAge">
-            Save Age
-          </option>
-
-          <option value="currentDate">
-            Current Date
-          </option>
-
-          <option value="specificDate">
-            Specific Date
-          </option>
-        </select>
-      </div>
-
-      <div class="case-field">
-        <label for="polarisCheck">
-          Polaris Check
-        </label>
-
-        <select id="polarisCheck">
-          <option value="">
-            Select Status
-          </option>
-
-          <option value="notApplicable">
-            Not Applicable
-          </option>
-
-          <option value="completedClear">
-            Completed, Clear
-          </option>
-
-          <option value="completedMatch">
-            Completed, Match Found
-          </option>
-
-          <option value="pending">
-            Pending
-          </option>
-        </select>
-      </div>
-
-      <div class="case-field">
-        <label for="illustrationStatus">
-          Signed Illustration as Applied For?
-        </label>
-
-        <select id="illustrationStatus">
-          <option value="">
-            Select
-          </option>
-
-          <option value="yes">
-            Yes
-          </option>
-
-          <option value="no">
-            No
-          </option>
-
-          <option value="notReceived">
-            Not Received
-          </option>
-        </select>
-
-        <small
-          id="illustrationGuidance"
-          class="field-guidance">
-        </small>
-      </div>
-
-    </div>
-
-  </section>
-
-</div>
-<section class="validation-tools-panel">
-
-  <div class="validation-tools-header">
-
-    <div class="validation-tools-icon">
-      <img src= images/Picture11.png>
-    </div>
-
-    <div>
-      <span class="case-design-eyebrow">
-        Review Assistance
-      </span>
-
-      <h3>
-        Validation Tools
-      </h3>
-
-      <p>
-        Compare application information, review policy
-        dating, and resolve design inconsistencies.
-      </p>
-    </div>
-
-    <span class="validation-tools-badge">
-      Available when applicable
-    </span>
-
-  </div>
-
-
-</section>
-<details id="Illustration-Validation" class="card collapsible-card" hidden>
+       <details id="Illustration-Validation" class="card collapsible-card" hidden>
             <summary class="collapsible-summary">
               <span class="summary-heading">
                 <span>
@@ -653,28 +497,27 @@
             </summary>
             <div class="collapsible-content">
 
-                <details class="workspace-help">
-                <summary><strong> How to use</strong></summary>
+            <details class="workspace-help">
+            <summary><strong> How to use</strong></summary>
 
-                  <ol>
-                  <li>
-                    Enter the value shown on the Part 1.
-                  </li>
+            <ol>
+              <li>
+                Enter the value shown on the Part 1.
+              </li>
 
-                  <li>
-                    Enter the corresponding value shown on the illustration.
-                  </li>
+              <li>
+                Enter the corresponding value shown on the illustration.
+              </li>
 
-                  <li>
-                    Select Not Applicable for policy-design items that do not apply.
-                  </li>
+              <li>
+                Select Not Applicable for policy-design items that do not apply.
+              </li>
 
-                  <li>
-                    Review the validation result and any identified mismatches.
-                  </li>
-                    </ol>
+              <li>
+                Review the validation result and any identified mismatches.
+              </li>
+                </ol>
               </details>
-            </div>
 
         <div class="validation-column-headings">
           <span>Policy Design Item</span>
@@ -699,8 +542,9 @@
               class="secondary-button">
               Clear
             </button>
-          </div
+          </div>
 
+          <section
             id="illustrationValidationResult"
             class="illustration-validation-result validation-neutral"
             aria-live="polite">
@@ -720,30 +564,32 @@
                 0 of 0 reviewed
               </span>
             </div>
-                    </section>
+
                 <div id="illustrationValidationDetails"></div>
+              </section>
+              <section
+                id="illustrationMismatchRequirementSection"
+                class="illustration-mismatch-output"
+                hidden>
 
-                      <section
-                          id="illustrationMismatchRequirementSection"
-                          class="illustration-mismatch-output"
-                          hidden>
+                <label for="illustrationMismatchRequirement">
+                  Generated Requirement
+                </label>
 
-                            <label for="illustrationMismatchRequirement">
-                              Generated Requirement
-                            </label>
+                <textarea
+                  id="illustrationMismatchRequirement"
+                  rows="7"
+                  readonly></textarea>
 
-                      <textarea
-                        id="illustrationMismatchRequirement"
-                        rows="7"
-                        readonly></textarea>
+                <button
+                  type="button"
+                  id="copyIllustrationMismatchRequirement"
+                  class="secondary-button">
+                  Copy Requirement
+                </button>
 
-                      <button
-                        type="button"
-                        id="copyIllustrationMismatchRequirement"
-                        class="secondary-button">
-                        Copy Requirement
-                      </button>
-                          <span
+
+                    <span
                       id="illustrationMismatchCopyStatus"
                       class="copy-status"
                       aria-live="polite">
@@ -752,11 +598,19 @@
                 </div>
        </details>
 
-
-       <!--------->
-
-
-<div id="saveAgeFields" class="save-age-panel" hidden>
+          <!-- =====================================================
+					 SAVE AGE CALCULATOR
+					 Displayed Only When:
+					 Policy Dating = Save Age
+					 Calculates:
+Eligibility
+Save Age Date
+Backdating Duration
+Processing Guidance
+					 Controlled By:
+					 initial-review.js
+			===================================================== -->
+          <div id="saveAgeFields" class="save-age-panel" hidden>
             <div class="save-age-heading">
               <div>
                 <h3>Save Age Calculator</h3>
@@ -886,7 +740,7 @@
               <input id="specificPolicyDate" type="date" />
             </div>
           </div>
-        </section>
+
           <!-- =====================================================
 											 STATE REQUIREMENTS
 											 Dynamically loaded from:
@@ -959,21 +813,15 @@ Review Checklist
 
   </div>
 
- <div class="nigo-empty">
+  <div
+    id="openNigoList"
+    class="open-nigo-list">
 
-  <div class="nigo-empty-icon">
-    ✓
+    <div class="nigo-empty">
+      No documented NIGOs
+    </div>
+
   </div>
-
-  <div class="nigo-empty-title">
-    No Open NIGO Issues
-  </div>
-
-  <div class="nigo-empty-text">
-    All reviewed forms are currently in good order.
-  </div>
-
-</div>
 
 </div>
               <!-- =====================================================

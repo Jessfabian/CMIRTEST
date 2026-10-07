@@ -32,3 +32,25 @@
     font-size: 30px;
   }
 }
+
+@media (max-width: 1024px) {
+
+  .case-details-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .validation-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-details-layout::before {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+
+  .validation-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
