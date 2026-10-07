@@ -588,6 +588,7 @@ textarea {
   font-weight: 800;
 }
 
+}
 .case-setup-grid-equal {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
