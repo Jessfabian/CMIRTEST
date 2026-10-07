@@ -78,5 +78,14 @@
 }
 
 #reviewContent {
-  min-width: 0;
+    padding: 12px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.55),
+            rgba(255,255,255,.20)
+        );
 }

@@ -136,6 +136,94 @@
  <div class="review-layout">
 <aside class="review-sidebar">
 <div class="sidebar-section">
+<aside class="review-sidebar"></aside>
+<section class="review-timer" aria-labelledby="reviewTimerTitle">
+
+  <div class="review-timer-header">
+
+    <div>
+      <span class="review-timer-eyebrow">
+        REVIEW SESSION
+      </span>
+
+      <h2 id="reviewTimerTitle">
+        Initial Review Timer
+      </h2>
+    </div>
+
+    <span
+      id="timerStatus"
+      class="timer-status timer-status-ready"
+      aria-live="polite">
+      Ready
+    </span>
+
+  </div>
+
+  <div class="timer-display" aria-live="polite">
+    <span id="timerHours">00</span>
+    <span class="timer-separator">:</span>
+    <span id="timerMinutes">00</span>
+    <span class="timer-separator">:</span>
+    <span id="timerSeconds">00</span>
+  </div>
+
+  <div class="timer-unit-labels" aria-hidden="true">
+    <span>Hours</span>
+    <span>Minutes</span>
+    <span>Seconds</span>
+  </div>
+
+  <div class="timer-actions">
+
+    <button
+      type="button"
+      id="startReviewTimer"
+      class="timer-button timer-button-primary">
+      Start Review
+    </button>
+
+    <button
+      type="button"
+      id="pauseReviewTimer"
+      class="timer-button timer-button-secondary"
+      disabled>
+      Pause
+    </button>
+
+    <button
+      type="button"
+      id="completeReviewTimer"
+      class="timer-button timer-button-complete"
+      disabled>
+      Complete
+    </button>
+
+  </div>
+
+  <div id="timerSessionDetails" class="timer-session-details" hidden>
+
+    <div class="timer-session-row">
+      <span>Started</span>
+      <strong id="timerStartedAt">--</strong>
+    </div>
+
+    <div class="timer-session-row">
+      <span>Paused time</span>
+      <strong id="timerPausedDuration">00:00</strong>
+    </div>
+
+  </div>
+
+  <div
+    id="timerMessage"
+    class="timer-message"
+    aria-live="polite">
+    Start the timer when the initial review begins.
+  </div>
+
+</section>
+
 
     <div class="workflow-header">
 
@@ -1562,6 +1650,7 @@ Review Checklist
     <script src="scripts/illustration-validation.js"></script>
     <script src="scripts/library.js"></script>
     <script src="scripts/review-output-package.js"></script>
+    <script src="scripts/review-timer.js"></script>
   </body>
   <footer>
     Jessie Fabian ©2026

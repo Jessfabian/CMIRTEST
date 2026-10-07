@@ -1763,3 +1763,275 @@ gap: 24px !important;
 
     text-transform: uppercase;
 }
+
+/* ============================================
+   INITIAL REVIEW TIMER
+============================================ */
+
+.review-timer {
+  margin-bottom: 20px;
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      155deg,
+      #002e6b 0%,
+      #004f9f 58%,
+      #0875c9 100%
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+
+  color: white;
+
+  box-shadow:
+    0 14px 28px rgba(0, 46, 107, 0.18);
+}
+
+.review-timer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.review-timer-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+
+  color: #b9ddff;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.review-timer h2 {
+  margin: 0;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.timer-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 26px;
+  padding: 0 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.timer-status-ready {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e8f4ff;
+}
+
+.timer-status-running {
+  background: #dff8e8;
+  border-color: #dff8e8;
+  color: #126b39;
+}
+
+.timer-status-paused {
+  background: #fff0cc;
+  border-color: #fff0cc;
+  color: #815500;
+}
+
+.timer-status-complete {
+  background: #dceeff;
+  border-color: #dceeff;
+  color: #003d80;
+}
+
+.timer-display {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+
+  margin-top: 24px;
+
+  color: white;
+
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.timer-display > span:not(.timer-separator) {
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.timer-separator {
+  padding: 0 4px;
+
+  color: #80c8ff;
+
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.timer-unit-labels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  margin-top: 2px;
+
+  color: #b9ddff;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.timer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.timer-button {
+  min-height: 40px;
+  padding: 0 12px;
+
+  border-radius: 10px;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.timer-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.timer-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.timer-button-primary {
+  grid-column: 1 / -1;
+
+  background: white;
+  border: 1px solid white;
+
+  color: #00458f;
+}
+
+.timer-button-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  color: white;
+}
+
+.timer-button-complete {
+  background: #00a76f;
+  border: 1px solid #00a76f;
+
+  color: white;
+}
+
+.timer-session-details {
+  display: grid;
+  gap: 8px;
+
+  margin-top: 16px;
+  padding-top: 14px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.timer-session-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: #cde6fa;
+
+  font-size: 11px;
+}
+
+.timer-session-row strong {
+  color: white;
+  font-weight: 700;
+}
+
+.timer-message {
+  margin-top: 14px;
+
+  color: #cde6fa;
+
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+/* Timer pulse while actively running */
+
+.review-timer.is-running {
+  box-shadow:
+    0 14px 30px rgba(0, 46, 107, 0.22),
+    0 0 0 3px rgba(79, 179, 255, 0.12);
+}
+
+/* Narrow sidebar fallback */
+
+@media (max-width: 1100px) {
+  .timer-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .timer-button-primary {
+    grid-column: auto;
+  }
+}
+
+.review-timer.is-running {
+    animation:
+        timerPulse 3s infinite;
+}
+
+@keyframes timerPulse {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(77,199,235,.25);
+    }
+
+    70% {
+        box-shadow:
+            0 0 0 14px rgba(77,199,235,0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(77,199,235,0);
+    }
+}
