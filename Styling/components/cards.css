@@ -1467,3 +1467,54 @@ gap: 24px !important;
 
   font-weight: 700;
 }
+.output-summary-card {
+  padding: 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #f8fbff
+    );
+
+  border: 1px solid #dce8f3;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 16px rgba(0,46,107,.05);
+}
+
+.output-summary-card strong {
+  font-size: 34px;
+}
+
+.compiled-output-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 24px;
+}
+
+.initial-review-notes {
+  min-height: 320px;
+
+  padding: 24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fbfdff
+    );
+
+  border: 1px solid #dce8f3;
+
+  border-radius: 16px;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}

@@ -1237,67 +1237,28 @@ Review Checklist
     class="primary-button">
 
     Open Final Deliverables
-
   </button>
-
 </div>
-          </details>
+</details>
 
 
-          <!-- =====================================================
-					 APPLICATION REVIEW
-					 Main NIGO Review Area
-					 Form review panels are dynamically
-					 injected here.
-					 Supports:
-Questions
-NIGO Tracking
-Amendment Generation
-Requirement Generation
-===================================================== -->
-
-          <!-- =====================================================
-					 GENERATED REQUIREMENTS
-					 Displays all contractual requirements
-					 generated during review.
-			===================================================== -->
-          <section id="requirementsSection" class="card">
+<section id="requirementsSection" class="card">
             <h2>Contractual Requirements</h2>
             <div id="requirementList"></div>
-          </section>
-          <!-- =====================================================
-					 GENERATED AMENDMENTS
-					 Displays all amendments generated
-					 during application review.
-			===================================================== -->
-
-          <!-- =====================================================
-				 REVIEW OUTPUT PACKAGE
-				 Final compiled review deliverables.
-				 Collects:
-All generated amendments
-All generated requirements
-				 Provides:
-Copy All functionality
-Final review counts
-Initial Review Notes
-				 Controlled By:
-				 review-output-package.js
-		===================================================== -->
 
 
 
-
-<details id="reviewOutputPackage" class="card collapsible-card">
+            <details id="reviewOutputPackage" class="card collapsible-card">
             <summary class="collapsible-summary">
               <span class="summary-heading">
 
                   <span class="summary-title">FINAL DELIVERABLES</span>
 
                 </span>
-
+              </section>
               <span class="collapse-indicator" class="validation-badge validation-not-started"aria-hidden="true">▼</span>
             </summary>
+
             <div class="collapsible-content">
 
             <div class="review-output-summary">
@@ -1316,12 +1277,7 @@ Initial Review Notes
               </div>
             </div>
             <div class="compiled-output-grid">
-              <!-- =====================================================
-							 COMPILED POLICY AMENDMENTS
-							 Aggregates all amendment output
-							 from every reviewed form.
-							 Copy Ready
-					===================================================== -->
+
               <details
                 id="compiledAmendmentsDetails"
                 class="compiled-output-section"
@@ -1349,20 +1305,7 @@ Initial Review Notes
                     readonly
                     placeholder="Generated policy amendments will appear here."></textarea>
                 </div>
-              </details>
-              <!-- =====================================================
-							 COMPILED AGENCY REQUIREMENTS
-							 Aggregates all requirement output
-							 from every reviewed form.
-							 Copy Ready
-					===================================================== -->
-
-
-
-
-
-
-
+                </details>
 
           <details
                 id="compiledRequirementsDetails"
@@ -1397,15 +1340,7 @@ Initial Review Notes
               id="reviewOutputCopyStatus"
               class="copy-status"
               aria-live="polite"></p>
-            <!-- =====================================================
-						 AUTO-GENERATED INITIAL REVIEW NOTES
-						 Created from:
-Case Setup selections
-State selections
-Policy Dating selections
-						 Designed for:
-						 MMSD Workbench Notes
-				===================================================== -->
+
             <section class="generated-notes-section">
               <div class="generated-notes-header">
                 <div>
@@ -1428,42 +1363,70 @@ Policy Dating selections
                 id="initialReviewNotesStatus"
                 class="copy-status"
                 aria-live="polite"></p>
+                 </details>
             </section>
-          </section>
-          <!-- =====================================================
-INITIAL REVIEW EMAIL GENERATOR
-Produces agency-facing review email.
-Features:
-Generate Email
-Copy Email
-Output Target:
-#emailOutput
-===================================================== -->
-          <section id="emailSection" class="card">
-            <h2>Initial Review Email</h2>
-            <div
-                  id="emailOutput"
-                  class="email-preview"
-                  contenteditable="true">
-          </div>
-            <button id="copyEmail">Copy Email</button>
-          </section>
+
+
+  <section id="emailSection">
+
+  <div class="email-toolbar">
+
+    <h2>
+      Initial Review Email
+    </h2>
+<span class="email-preview-badge">
+  Outlook Preview
+</span>
+  </div>
+
+  <div class="email-meta">
+
+    <div class="email-row">
+
+      <div class="email-row-label">
+        To
+      </div>
+
+      <div class="email-row-value">
+        BGA Contact
+      </div>
+
+    </div>
+
+    <div class="email-row">
+
+      <div class="email-row-label">
+        Subject
+      </div>
+
+      <div class="email-row-value">
+        MMSD Initial Review - No Contractual Requirements - Awaiting Underwriting Review
+      </div>
+
+    </div>
+
+  </div>
+
+  <div
+    id="emailOutput"
+    class="email-preview"
+    contenteditable="true">
+
+  </div>
+
+  <div class="email-actions">
+
+    <button id="copyEmail">
+      Copy Email
+    </button>
+
+  </div>
+
+</section>
         </section>
       </div>
     </main>
-    <!-- =====================================================
-SCRIPT LOAD ORDER
-stateLoader.js
-Loads state JSON requirements.
-amendment-engine.js
-Handles amendment and requirement generation.
-initial-review.js
-Controls page behavior and calculations.
-library.js
-Shared utility functions.
-review-output-package.js
-Compiles final review outputs.
-===================================================== -->
+
     <script src="scripts/stateLoader.js"></script>
     <script src="scripts/amendment-engine.js"></script>
     <script src="scripts/initial-review.js"></script>
