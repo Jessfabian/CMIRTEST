@@ -89,3 +89,35 @@
 
   font-size: 13px;
 }
+.compiled-output-textarea {
+    width: 100%;
+
+    min-height: 250px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    border: 1px solid #dce8f3;
+}
+.initial-review-notes {
+    width: 100%;
+
+    min-height: 300px;
+
+    padding: 20px;
+}
+/* ============================================
+   FINAL DELIVERABLES
+============================================ */
+
+.review-output-summary {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
