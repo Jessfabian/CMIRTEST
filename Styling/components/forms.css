@@ -1,0 +1,110 @@
+.case-field input,
+.case-field select,
+.case-field textarea {
+
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 0 14px;
+
+  background: white;
+
+  border: 1px solid #d8e4f0;
+
+  border-radius: 12px;
+
+  color: var(--mm-text);
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+.case-field input:hover,
+.case-field select:hover,
+.case-field textarea:hover {
+  border-color: var(--mm-charge-blue);
+}
+
+.case-field input:focus,
+.case-field select:focus,
+.case-field textarea:focus {
+
+  outline: none;
+
+  border-color: var(--mm-charge-blue);
+
+  box-shadow:
+    0 0 0 4px rgba(2,101,255,.12);
+
+  transform: translateY(-1px);
+}
+
+.case-field label {
+
+  color: var(--mm-blue);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+
+  margin-bottom: 6px;
+}
+.case-setup-grid-equal {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 18px;
+
+  padding: 22px;
+
+  margin-bottom: 26px;
+
+  background: white;
+
+  border: 1px solid var(--mm-border);
+
+  border-radius: 16px;
+
+  box-shadow: var(--shadow-xs);
+}
+
+.case-group-title {
+
+  margin: 28px 0 14px;
+
+  padding-bottom: 10px;
+
+  color: var(--mm-blue);
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  border-bottom: 2px solid #e5edf6;
+
+  position: relative;
+}
+
+.case-group-title::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -2px;
+
+  width: 56px;
+
+  height: 2px;
+
+  background: var(--mm-charge-blue);
+}

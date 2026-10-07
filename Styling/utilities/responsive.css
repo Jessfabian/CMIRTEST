@@ -18,3 +18,17 @@
     font-size: 30px;
   }
 }
+@media (max-width: 768px) {
+
+  .case-setup-grid-equal {
+    grid-template-columns: 1fr;
+  }
+
+  .case-group-title {
+    font-size: 18px;
+  }
+
+  .dashboard-value {
+    font-size: 30px;
+  }
+}

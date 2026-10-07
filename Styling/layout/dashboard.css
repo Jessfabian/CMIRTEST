@@ -24,7 +24,8 @@
 
   border-radius: 14px;
 
-  background: white;
+  background: linear-gradient (180deg,#ffffff 100%,
+rgb(31, 126, 126) 100%) !important;
 
   border: 1px solid var(--mm-border);
 
@@ -113,8 +114,8 @@ overflow: hidden;
 .dashboard-icon {
   grid-row: 1 / span 2;
 
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   margin-bottom: 8px;
   opacity: 0.75;
 }
