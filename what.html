@@ -1243,128 +1243,217 @@ Review Checklist
 
 
 <section id="requirementsSection" class="card">
-            <h2>Contractual Requirements</h2>
-            <div id="requirementList"></div>
 
+    <h2>Contractual Requirements</h2>
 
+    <div id="requirementList"></div>
 
-            <details id="reviewOutputPackage" class="card collapsible-card">
-            <summary class="collapsible-summary">
-              <span class="summary-heading">
+</section>
 
-                  <span class="summary-title">FINAL DELIVERABLES</span>
+<details id="reviewOutputPackage"
+         class="card collapsible-card">
 
-                </span>
-              </section>
-              <span class="collapse-indicator" class="validation-badge validation-not-started"aria-hidden="true">▼</span>
-            </summary>
+    <summary class="collapsible-summary">
 
-            <div class="collapsible-content">
+        <span class="summary-heading">
 
-            <div class="review-output-summary">
-              <div class="output-summary-card">
+            <span class="summary-title">
+                FINAL DELIVERABLES
+            </span>
+
+        </span>
+
+        <span class="collapse-indicator"
+              aria-hidden="true">
+
+            ▼
+
+        </span>
+
+    </summary>
+
+    <div class="collapsible-content">
+
+        <div class="review-output-summary">
+
+            <div class="output-summary-card">
 
                 <span>Amendments</span>
-                <strong id="compiledAmendmentCount">0</strong>
-              </div>
-              <div class="output-summary-card">
+
+                <strong id="compiledAmendmentCount">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="output-summary-card">
+
                 <span>Requirements</span>
-                <strong id="compiledRequirementCount">0</strong>
-              </div>
-              <div class="output-summary-card">
+
+                <strong id="compiledRequirementCount">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="output-summary-card">
+
                 <span>Total Outputs</span>
-                <strong id="compiledTotalCount">0</strong>
-              </div>
+
+                <strong id="compiledTotalCount">
+                    0
+                </strong>
+
             </div>
-            <div class="compiled-output-grid">
 
-              <details
-                id="compiledAmendmentsDetails"
-                class="compiled-output-section"
-                open>
+        </div>
+
+        <div class="compiled-output-grid">
+
+            <details id="compiledAmendmentsDetails"
+                     class="compiled-output-section"
+                     open>
+
                 <summary class="compiled-output-summary">
-                  <span>Generated Policy Amendments</span>
-                  <span id="compiledAmendmentBadge" class="section-count">
-                    0 amendments
-                  </span>
-                </summary>
-                <div class="compiled-output-content">
-                  <div class="compiled-output-actions">
-                    <button
-                      type="button"
-                      id="copyAllAmendments"
-                      class="secondary-button"
-                      disabled>
-                      Copy All
-                    </button>
-                  </div>
-                  <textarea
-                    id="compiledAmendments"
-                    class="compiled-output-textarea"
-                    rows="10"
-                    readonly
-                    placeholder="Generated policy amendments will appear here."></textarea>
-                </div>
-                </details>
 
-          <details
-                id="compiledRequirementsDetails"
-                class="compiled-output-section"
-                open>
+                    <span>
+                        Generated Policy Amendments
+                    </span>
+
+                    <span id="compiledAmendmentBadge"
+                          class="section-count">
+
+                        0 amendments
+
+                    </span>
+
+                </summary>
+
+                <div class="compiled-output-content">
+
+                    <div class="compiled-output-actions">
+
+                        <button
+                            type="button"
+                            id="copyAllAmendments"
+                            class="secondary-button"
+                            disabled>
+
+                            Copy All
+
+                        </button>
+
+                    </div>
+
+                    <textarea
+                        id="compiledAmendments"
+                        class="compiled-output-textarea"
+                        rows="10"
+                        readonly
+                        placeholder="Generated policy amendments will appear here."></textarea>
+
+                </div>
+
+            </details>
+
+            <details id="compiledRequirementsDetails"
+                     class="compiled-output-section"
+                     open>
+
                 <summary class="compiled-output-summary">
-                  <span>Generated Agency Requirements</span>
-                  <span id="compiledRequirementBadge" class="section-count">
-                    0 requirements
-                  </span>
-                </summary>
-                <div class="compiled-output-content">
-                  <div class="compiled-output-actions">
-                    <button
-                      type="button"
-                      id="copyAllRequirements"
-                      class="secondary-button"
-                      disabled>
-                      Copy All
-                    </button>
-                  </div>
-                  <textarea
-                    id="compiledRequirements"
-                    class="compiled-output-textarea"
-                    rows="10"
-                    readonly
-                    placeholder="Generated agency requirements will appear here."></textarea>
-                </div>
-              </details>
-            </div>
-            <p
-              id="reviewOutputCopyStatus"
-              class="copy-status"
-              aria-live="polite"></p>
 
-            <section class="generated-notes-section">
-              <div class="generated-notes-header">
+                    <span>
+                        Generated Agency Requirements
+                    </span>
+
+                    <span id="compiledRequirementBadge"
+                          class="section-count">
+
+                        0 requirements
+
+                    </span>
+
+                </summary>
+
+                <div class="compiled-output-content">
+
+                    <div class="compiled-output-actions">
+
+                        <button
+                            type="button"
+                            id="copyAllRequirements"
+                            class="secondary-button"
+                            disabled>
+
+                            Copy All
+
+                        </button>
+
+                    </div>
+
+                    <textarea
+                        id="compiledRequirements"
+                        class="compiled-output-textarea"
+                        rows="10"
+                        readonly
+                        placeholder="Generated agency requirements will appear here."></textarea>
+
+                </div>
+
+            </details>
+
+        </div>
+
+        <p id="reviewOutputCopyStatus"
+           class="copy-status"
+           aria-live="polite"></p>
+
+        <section class="generated-notes-section">
+
+            <div class="generated-notes-header">
+
                 <div>
-                  <p class="section-eyebrow">COPY-READY</p>
-                  <h3>Initial Review Notes</h3>
-                  <p>Notes update automatically based on Case Setup.</p>
+
+                    <p class="section-eyebrow">
+                        COPY-READY
+                    </p>
+
+                    <h3>
+                        Initial Review Notes
+                    </h3>
+
+                    <p>
+                        Notes update automatically based on Case Setup.
+                    </p>
+
                 </div>
+
                 <button
-                  type="button"
-                  id="copyInitialReviewNotes"
-                  class="primary-button">
-                  Copy Notes
+                    type="button"
+                    id="copyInitialReviewNotes"
+                    class="primary-button">
+
+                    Copy Notes
+
                 </button>
-              </div>
-              <textarea
+
+            </div>
+
+            <textarea
                 id="initialReviewNotes"
                 class="initial-review-notes"
                 readonly></textarea>
-              <p
-                id="initialReviewNotesStatus"
-                class="copy-status"
-                aria-live="polite"></p>
-                 </details>
-            </section>
+
+            <p id="initialReviewNotesStatus"
+               class="copy-status"
+               aria-live="polite"></p>
+
+        </section>
+
+    </div>
+
+</details>
+
 
 
   <section id="emailSection">
@@ -1423,9 +1512,9 @@ Review Checklist
   </div>
 
 </section>
-        </section>
-      </div>
-    </main>
+</section>
+</div>
+</main>
 
     <script src="scripts/stateLoader.js"></script>
     <script src="scripts/amendment-engine.js"></script>
