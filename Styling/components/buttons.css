@@ -1,0 +1,99 @@
+.step-btn {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    padding: 12px 0 12px 4px;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--mm-blue);
+
+    text-align: left;
+
+    box-shadow: none;
+}
+.step-btn:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 34px;
+
+    width: 2px;
+
+    height: 28px;
+
+    background: #dce8f3;
+}
+.step-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: #dce8f3;
+
+    color: transparent;
+
+    flex-shrink: 0;
+}
+.step-btn.active {
+    background: transparent;
+
+    color: var(--mm-blue);
+
+    font-weight: 800;
+}
+.step-btn.active .step-icon {
+    background: var(--mm-charge-blue);
+}
+.step-btn:hover {
+    transform: none;
+
+    background: transparent;
+
+    box-shadow: none;
+}
+.sidebar-section {
+    padding: 24px;
+}
+.sidebar-heading {
+    font-size: 28px;
+
+    font-weight: 800;
+
+    margin: 0;
+}
+
+.workflow-header {
+    margin-bottom: 22px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #dce8f3;
+}
+.step-label {
+    font-size: 15px;
+
+    font-weight: 600;
+}
