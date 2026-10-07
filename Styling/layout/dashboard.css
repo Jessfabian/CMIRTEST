@@ -1,0 +1,132 @@
+.dashboard-strip {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+
+  margin-bottom: var(--space-6);
+  padding: 10px;
+
+  background: rgba(244, 248, 252, 0.94);
+  border: 1px solid rgba(215, 226, 237, 0.94);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px);
+}
+
+.dashboard-card {
+  position: relative;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background: white;
+
+  border: 1px solid var(--mm-border);
+
+  box-shadow: var(--shadow-xs);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.dashboard-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 110px;
+
+  padding: 18px;
+
+  background: white;
+
+  border: 1px solid var(--mm-border);
+
+  border-radius: 14px;
+
+  box-shadow: var(--shadow-xs);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.dashboard-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px;
+  background: var(--mm-charge-blue);
+}
+#dashboardIssueCount {
+  color: var(--mm-orange);
+}
+.dashboard-label {
+  display: block;
+
+  color: var(--mm-text-muted);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.dashboard-value {
+  display: block;
+
+  margin-top: 6px;
+
+  color: var(--mm-blue);
+
+  font-size: 42px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+.dashboard-card:nth-child(1)::before {
+  background: var(--mm-charge-blue);
+}
+
+.dashboard-card:nth-child(2)::before {
+  background: var(--mm-light-blue);
+}
+
+.dashboard-card:nth-child(3)::before {
+  background: var(--mm-green);
+}
+
+.dashboard-card:nth-child(4)::before {
+  background: var(--mm-orange);
+}
+
+.dashboard-icon {
+  width: 24px;
+  height: 24px;
+
+  margin-bottom: 10px;
+
+  opacity: .75;
+}

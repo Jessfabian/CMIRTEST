@@ -1,0 +1,44 @@
+h1,
+h2,
+h3,
+h4,
+.summary-title,
+.workspace-heading,
+.sidebar-heading {
+  margin-top: 0;
+  color: var(--mm-blue);
+  font-family: var(--font-display);
+  line-height: 1.12;
+}
+
+h1 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+p {
+  margin-top: 0;
+}
+
+.eyebrow,
+.section-eyebrow,
+.dashboard-label,
+.validation-eyebrow {
+  color: var(--mm-peacock-blue);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}

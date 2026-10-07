@@ -1,0 +1,84 @@
+:root {
+  /* MassMutual primary palette */
+  --mm-blue: #002e6b;
+  --mm-dark-blue: #001735;
+  --mm-charge-blue: #0265ff;
+  --mm-peacock-blue: #004db2;
+  --mm-light-blue: #4dc7eb;
+  --mm-white: #ffffff;
+
+  /* MassMutual secondary accents */
+  --mm-green: #43b02a;
+  --mm-yellow: #f6be00;
+  --mm-orange: #ff671f;
+
+  /* Interface neutrals */
+  --mm-ink: #001735;
+  --mm-text: #24364b;
+  --mm-text-muted: #647386;
+  --mm-canvas: #f4f8fc;
+  --mm-surface: #ffffff;
+  --mm-surface-blue: #f2f8ff;
+  --mm-border: #d7e2ed;
+  --mm-border-strong: #b9cadb;
+
+  /* Semantic states */
+  --status-success: var(--mm-green);
+  --status-success-soft: #edf9e9;
+  --status-warning: #9a7000;
+  --status-warning-soft: #fff8dc;
+  --status-issue: var(--mm-orange);
+  --status-issue-soft: #fff3ed;
+  --status-info: var(--mm-charge-blue);
+  --status-info-soft: #edf4ff;
+
+  /* Typography */
+  --font-display:
+    "MM Sharp Sans",
+    "Century Gothic",
+    "Avenir Next",
+    Arial,
+    sans-serif;
+
+  --font-body:
+    "Lato",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  /* Type scale */
+  --text-xs: 0.72rem;
+  --text-sm: 0.82rem;
+  --text-md: 0.94rem;
+  --text-lg: 1.1rem;
+  --text-xl: 1.42rem;
+  --text-2xl: clamp(1.75rem, 3vw, 2.55rem);
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Elevation */
+  --shadow-xs: 0 1px 2px rgba(0, 23, 53, 0.06);
+  --shadow-sm: 0 5px 16px rgba(0, 23, 53, 0.08);
+  --shadow-md: 0 14px 34px rgba(0, 23, 53, 0.12);
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px rgba(2, 101, 255, 0.2);
+
+  /* Motion */
+  --motion-fast: 140ms ease;
+  --motion-standard: 220ms ease;
+}

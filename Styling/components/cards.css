@@ -1,0 +1,59 @@
+.case-section-group {
+  margin-top: 24px;
+
+  padding: 20px;
+
+  background: white;
+
+  border: 1px solid var(--mm-border);
+
+  border-radius: 16px;
+
+  box-shadow: var(--shadow-xs);
+}
+
+.group-header {
+  margin-bottom: 18px;
+}
+
+.group-kicker {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--mm-peacock-blue);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+.group-header h3 {
+  margin: 0;
+
+  color: var(--mm-blue);
+
+  font-size: 20px;
+}
+.case-group-title {
+  margin: 28px 0 12px;
+
+  padding-bottom: 10px;
+
+  border-bottom: 2px solid #e5edf6;
+
+  color: var(--mm-blue);
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.case-group-title:first-of-type {
+  margin-top: 10px;
+}
+
